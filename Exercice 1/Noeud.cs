@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    internal class Noeud
+    public class Noeud
     {
         public int Noeud_id { get; set; }
         public List<Lien> Liens { get; set; }

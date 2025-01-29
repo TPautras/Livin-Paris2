@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    internal class Lien
+    public class Lien
     {
-        private Noeud Lien_Depart {  get; set; }
-        private Noeud Lien_Arrivee { get; set; }
-        private double Lien_Poids {  get; set; }
+        public Noeud Lien_Depart {  get; set; }
+        public Noeud Lien_Arrivee { get; set; }
+        public double Lien_Poids {  get; set; }
 
         public Lien(Noeud depart, Noeud arrivee, double poids)
         {

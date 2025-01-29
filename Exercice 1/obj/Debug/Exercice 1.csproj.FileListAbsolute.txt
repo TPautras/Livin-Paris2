@@ -5,3 +5,7 @@ C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 
 C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.csproj.CoreCompileInputs.cache
 C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.exe
 C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.pdb
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Common.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Common.pdb
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Common.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.csproj.CopyComplete

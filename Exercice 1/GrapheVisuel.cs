@@ -1,63 +1,60 @@
-﻿using System;
+﻿using Exercice_1;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
+
 namespace Exercice_1
 {
-    internal class GrapheVisuel
+    public class GrapheImage
     {
-
-        private Dictionary<int, Point> positionsNoeuds;
+        public Dictionary<int, Point> positionsNoeuds;
         private Graphe graphe;
 
-        public GrapheVisuel(Graphe g)
+        public GrapheImage(Graphe g)
         {
             this.graphe = g;
-            this.Text = "Visualisation du Graphe";
-            this.Size = new Size(600, 600);
-            this.DoubleBuffered = true;
             this.positionsNoeuds = new Dictionary<int, Point>();
 
-            // Génération aléatoire des positions des nœuds
             Random rnd = new Random();
             foreach (var noeud in graphe.Noeuds.Values)
             {
-                positionsNoeuds[noeud.Id] = new Point(rnd.Next(50, 550), rnd.Next(50, 550));
+                positionsNoeuds[noeud.Noeud_id] = new Point(rnd.Next(50, 450), rnd.Next(50, 450));
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        public void DessinerGraphe(string filename = "graphe.png")
         {
-            base.OnPaint(e);
-            Graphics g = e.Graphics;
+            Bitmap bmp = new Bitmap(500, 500);
+            Graphics g = Graphics.FromImage(bmp);
+            g.Clear(Color.White);
             Pen pen = new Pen(Color.Black, 2);
             Brush brushNoeud = new SolidBrush(Color.Blue);
             Brush brushTexte = new SolidBrush(Color.White);
             Font font = new Font("Arial", 10);
 
-            // Dessiner les liens (arêtes)
             foreach (var noeud in graphe.Noeuds.Values)
             {
                 foreach (var lien in noeud.Liens)
                 {
-                    Point p1 = positionsNoeuds[lien.Source.Id];
-                    Point p2 = positionsNoeuds[lien.Destination.Id];
+                    Point p1 = positionsNoeuds[lien.Lien_Depart.Noeud_id];
+                    Point p2 = positionsNoeuds[lien.Lien_Arrivee.Noeud_id];
 
                     g.DrawLine(pen, p1, p2);
                 }
             }
 
-            // Dessiner les nœuds (sommets)
             foreach (var noeud in graphe.Noeuds.Values)
             {
                 Point position = positionsNoeuds[noeud.Noeud_id];
-                Rectangle rect = new Rectangle(position.X - 15, position.Y - 15, 30, 30);
+                Rectangle rect = new Rectangle(position.X - 10, position.Y - 10, 20, 20);
                 g.FillEllipse(brushNoeud, rect);
                 g.DrawEllipse(pen, rect);
 
-                // Afficher l'ID du nœud au centre
-                g.DrawString(noeud.Noeud_id.ToString(), font, brushTexte, position.X - 7, position.Y - 7);
+                g.DrawString(noeud.Noeud_id.ToString(), font, brushTexte, position.X - 5, position.Y - 5);
             }
+
+            bmp.Save(filename);
+            Console.WriteLine($"Graphe sauvegardé sous {filename}");
         }
     }
 }

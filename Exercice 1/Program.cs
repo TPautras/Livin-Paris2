@@ -13,6 +13,8 @@ namespace Exercice_1
             Console.WriteLine("test");
             Graphe mygraph = new Graphe("../../soc-karate.mtx",' ',34);
             Console.WriteLine(mygraph.ToString());
+            GrapheImage visualiseur = new GrapheImage(mygraph);
+            visualiseur.DessinerGraphe("graphe.png");
             Console.ReadKey();
         }
     }

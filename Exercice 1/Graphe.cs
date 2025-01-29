@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    internal class Graphe
+    public class Graphe
     {
         public Dictionary<int,Noeud> Noeuds { get; set; } = new Dictionary<int, Noeud>();
 
