@@ -1,7 +1,9 @@
 ﻿using Exercice_1;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 
 namespace Exercice_1
 {
@@ -53,8 +55,27 @@ namespace Exercice_1
                 g.DrawString(noeud.Noeud_id.ToString(), font, brushTexte, position.X - 5, position.Y - 5);
             }
 
-            bmp.Save(filename);
-            Console.WriteLine($"Graphe sauvegardé sous {filename}");
+            try
+            {
+
+                bmp.Save(filename);
+                Console.WriteLine($"Graphe sauvegardé sous {filename}");
+            }
+            catch (System.Runtime.InteropServices.ExternalException)
+            {
+                throw new Exception($"Erreur lors de la sauvegarde de l'image : {filename}");
+            }
+            string path = Path.Combine(Directory.GetCurrentDirectory(), filename);
+            this.ImageViewer(path);
+        }
+        public void ImageViewer(string path)
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = path,
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
     }
 }

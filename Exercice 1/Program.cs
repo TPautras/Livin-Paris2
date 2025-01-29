@@ -14,7 +14,7 @@ namespace Exercice_1
             Graphe mygraph = new Graphe("../../soc-karate.mtx",' ',34);
             Console.WriteLine(mygraph.ToString());
             GrapheImage visualiseur = new GrapheImage(mygraph);
-            visualiseur.DessinerGraphe("graphe.png");
+            visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
         }
     }

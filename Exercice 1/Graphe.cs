@@ -32,7 +32,7 @@ namespace Exercice_1
                 var relation = line.Split(divider);
                 if(relation.Length == 2)
                 {
-                    AjouterLien(Convert.ToInt32(relation[0]), Convert.ToInt32(relation[1]), 1);
+                    AjouterLien(Convert.ToInt32(relation[0]), Convert.ToInt32(relation[1]));
                 }
                 if (relation.Length == 3)
                 {
