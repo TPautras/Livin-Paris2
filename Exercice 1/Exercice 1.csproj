@@ -40,6 +40,7 @@
     <Compile Include="Graphe.cs" />
     <Compile Include="Lien.cs" />
     <Compile Include="Noeud.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

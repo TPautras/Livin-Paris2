@@ -8,16 +8,18 @@ namespace Exercice_1
 {
     internal class Noeud
     {
-        private int noeud_id;
+        public int Noeud_id { get; set; }
+        public List<Lien> Liens { get; set; }
 
-        public Noeud(int num) 
+        public Noeud(int id) 
         { 
-            this.noeud_id = num;
+            this.Noeud_id = id;
+            this.Liens = new List<Lien>();
         }
-        public int Noeud_id () 
+
+        public override string ToString()
         {
-            Get{ }
-            return noeud_id; 
+            return $"L'id de ce noeud est : {Noeud_id}";
         }
     }
 }
