@@ -11,6 +11,8 @@ namespace Exercice_1
         static void Main(string[] args)
         {
             Console.WriteLine("test");
+            Graphe mygraph = new Graphe("../../soc-karate.mtx",' ',34);
+            Console.WriteLine(mygraph.ToString());
             Console.ReadKey();
         }
     }

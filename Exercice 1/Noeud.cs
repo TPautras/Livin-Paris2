@@ -19,7 +19,9 @@ namespace Exercice_1
 
         public override string ToString()
         {
-            return $"L'id de ce noeud est : {Noeud_id}";
+            string res = $"L'id de ce noeud est : {Noeud_id}\n";
+            foreach (Lien l in this.Liens) { res += l.ToString() + "\n";}
+            return res;
         }
     }
 }

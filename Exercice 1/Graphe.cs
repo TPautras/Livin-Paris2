@@ -11,7 +11,7 @@ namespace Exercice_1
     {
         public Dictionary<int,Noeud> Noeuds { get; set; } = new Dictionary<int, Noeud>();
 
-        public Graphe(string path, char divider) 
+        public Graphe(string path, char divider, int maxCount) 
         {
             int counter = 0;
             IEnumerable<string> lines = null;
@@ -23,12 +23,10 @@ namespace Exercice_1
             {
                 Console.WriteLine(ex.ToString());
             }
-            foreach (var line in lines)
+            for(int i = 0; i < maxCount; i++) 
             {
-                AjouterNoeud(counter);
-                counter++;
+                AjouterNoeud(i);
             }
-            counter = 0;
             foreach (var line in lines)
             {
                 var relation = line.Split(divider);
@@ -59,6 +57,16 @@ namespace Exercice_1
                 Lien lien = new Lien(Noeuds[idSource], Noeuds[idDestination], poids);
                 Noeuds[idSource].Liens.Add(lien);
             }
+        }
+
+        public override string ToString()
+        {
+            string res = "";
+            foreach(var Noeud in this.Noeuds)
+            {
+                res += Noeud.ToString() + "\n";
+            }
+            return res;
         }
     }
 }

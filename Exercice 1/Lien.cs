@@ -21,7 +21,7 @@ namespace Exercice_1
 
         public override string ToString()
         {
-            return $"{Lien_Depart.Noeud_id} → {Lien_Arrivee.Noeud_id} (Poids: {Lien_Poids})";
+            return $"{Lien_Depart.Noeud_id} -> {Lien_Arrivee.Noeud_id} (Poids: {Lien_Poids})";
         }
     }
 }
