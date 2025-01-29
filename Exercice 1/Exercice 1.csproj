@@ -37,6 +37,8 @@
     <None Include="soc-karate.mtx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphe.cs" />
+    <Compile Include="Lien.cs" />
     <Compile Include="Noeud.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
