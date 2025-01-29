@@ -36,5 +36,8 @@
     <None Include="App.config" />
     <None Include="soc-karate.mtx" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Noeud.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
