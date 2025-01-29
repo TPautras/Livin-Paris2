@@ -28,6 +28,20 @@ namespace Exercice_1
                 AjouterNoeud(counter);
                 counter++;
             }
+            counter = 0;
+            foreach (var line in lines)
+            {
+                var relation = line.Split(divider);
+                if(relation.Length == 2)
+                {
+                    AjouterLien(Convert.ToInt32(relation[0]), Convert.ToInt32(relation[1]), 1);
+                }
+                if (relation.Length == 3)
+                {
+                    AjouterLien(Convert.ToInt32(relation[0]), Convert.ToInt32(relation[1]), Convert.ToInt32(relation[2]));
+                }
+                counter++;
+            }
 
         }
         public void AjouterNoeud(int id)
