@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,22 @@ namespace Exercice_1
 
         public Graphe(string path, char divider) 
         {
-            
+            int counter = 0;
+            IEnumerable<string> lines = null;
+            try
+            {
+                lines = File.ReadLines(path);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            foreach (var line in lines)
+            {
+                AjouterNoeud(counter);
+                counter++;
+            }
+
         }
         public void AjouterNoeud(int id)
         {
