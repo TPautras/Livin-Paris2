@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    public class Lien
+    public class Lien <T> where T : class
     {
-        public Noeud Lien_Depart {  get; set; }
-        public Noeud Lien_Arrivee { get; set; }
+        public Noeud<T> Lien_Depart {  get; set; }
+        public Noeud<T> Lien_Arrivee { get; set; }
         public double Lien_Poids {  get; set; }
 
-        public Lien(Noeud depart, Noeud arrivee, double poids)
+        public Lien(Noeud<T> depart, Noeud<T> arrivee, double poids)
         {
             Lien_Depart = depart;
             Lien_Arrivee = arrivee;

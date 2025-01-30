@@ -11,9 +11,9 @@ namespace Exercice_1
         static void Main(string[] args)
         {
             Console.WriteLine("test");
-            Graphe mygraph = new Graphe("../../soc-karate.mtx",' ',34);
+            Graphe<string> mygraph = new Graphe<string>("../../soc-karate.mtx",' ',34);
             Console.WriteLine(mygraph.ToString());
-            GrapheImage visualiseur = new GrapheImage(mygraph);
+            GrapheImage<string> visualiseur = new GrapheImage<string>(mygraph);
             visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
         }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    public class Graphe
+    public class Graphe<T> where T : class
     {
-        public Dictionary<int,Noeud> Noeuds { get; set; } = new Dictionary<int, Noeud>();
+        public Dictionary<int,Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
 
         public Graphe(string path, char divider, int maxCount) 
         {
@@ -46,16 +46,17 @@ namespace Exercice_1
         {
             if (!Noeuds.ContainsKey(id))
             {
-                Noeuds[id] = new Noeud(id);
+                Noeuds[id] = new Noeud<T>(id);
             }
         }
 
         public void AjouterLien(int idSource, int idDestination, double poids = 1)
         {
+            Noeud<T> source = Noeuds[idSource];
+            Noeud<T> destination = Noeuds[idDestination];
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
             {
-                Lien lien = new Lien(Noeuds[idSource], Noeuds[idDestination], poids);
-                Noeuds[idSource].Liens.Add(lien);
+                source.Liens.Add(new Lien<T>(source, destination, poids));
             }
         }
 

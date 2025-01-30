@@ -7,12 +7,12 @@ using System.IO;
 
 namespace Exercice_1
 {
-    public class GrapheImage
+    public class GrapheImage <T> where T : class
     {
         public Dictionary<int, Point> positionsNoeuds;
-        private Graphe graphe;
+        private Graphe<T> graphe;
 
-        public GrapheImage(Graphe g)
+        public GrapheImage(Graphe<T> g)
         {
             this.graphe = g;
             this.positionsNoeuds = new Dictionary<int, Point>();
