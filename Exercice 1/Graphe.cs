@@ -1,71 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    public class Graphe<T> where T : class
+    public class Graphe<T>
     {
-        public Dictionary<int,Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
+        public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
 
-        public Graphe(string path, char divider, int maxCount) 
+        public Graphe(string path, char divider, int maxCount)
         {
-            int counter = 0;
-            IEnumerable<string> lines = null;
             try
             {
-                lines = File.ReadLines(path);
+                var lines = File.ReadLines(path);
+                for (int i = 0; i < maxCount; i++)
+                {
+                    AjouterNoeud(i);
+                }
+                foreach (var line in lines)
+                {
+                    var relation = line.Split(divider);
+                    if (relation.Length >= 2)
+                    {
+                        int source = Convert.ToInt32(relation[0]);
+                        int destination = Convert.ToInt32(relation[1]);
+                        double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
+                        AjouterLien(source, destination, poids);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-            for(int i = 0; i < maxCount; i++) 
-            {
-                AjouterNoeud(i);
-            }
-            foreach (var line in lines)
-            {
-                var relation = line.Split(divider);
-                if(relation.Length == 2)
-                {
-                    AjouterLien(Convert.ToInt32(relation[0]), Convert.ToInt32(relation[1]));
-                }
-                if (relation.Length == 3)
-                {
-                    AjouterLien(Convert.ToInt32(relation[0]), Convert.ToInt32(relation[1]), Convert.ToInt32(relation[2]));
-                }
-                counter++;
-            }
-
         }
-        public void AjouterNoeud(int id)
+
+        public void AjouterNoeud(int id, T valeur = default)
         {
             if (!Noeuds.ContainsKey(id))
             {
-                Noeuds[id] = new Noeud<T>(id);
+                Noeuds[id] = new Noeud<T>(id, valeur);
             }
         }
 
         public void AjouterLien(int idSource, int idDestination, double poids = 1)
         {
-            Noeud<T> source = Noeuds[idSource];
-            Noeud<T> destination = Noeuds[idDestination];
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
             {
-                source.Liens.Add(new Lien<T>(source, destination, poids));
+                Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
             }
         }
 
         public override string ToString()
         {
             string res = "";
-            foreach(var Noeud in this.Noeuds)
+            foreach (var noeud in Noeuds.Values)
             {
-                res += Noeud.ToString() + "\n";
+                res += noeud.ToString() + "\n";
             }
             return res;
         }

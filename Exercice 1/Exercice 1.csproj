@@ -38,6 +38,7 @@
     <None Include="soc-karate.mtx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Affichages.cs" />
     <Compile Include="Graphe.cs" />
     <Compile Include="GrapheVisuel.cs" />
     <Compile Include="Lien.cs" />
