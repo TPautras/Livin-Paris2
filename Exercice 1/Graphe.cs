@@ -13,7 +13,7 @@ namespace Exercice_1
             try
             {
                 var lines = File.ReadLines(path);
-                for (int i = 0; i < maxCount; i++)
+                for (int i = 1; i < maxCount; i++)
                 {
                     AjouterNoeud(i);
                 }
@@ -50,7 +50,7 @@ namespace Exercice_1
                 Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
             }
         }
-
+        #region Infos
         public override string ToString()
         {
             string res = "";
@@ -58,7 +58,66 @@ namespace Exercice_1
             {
                 res += noeud.ToString() + "\n";
             }
+            res += "\n\n\n";
+            res += "Les propriétés du graphe sont :\n";
+            if (this.Connexe())
+            {
+                res += "Le graphe est connexe\n";
+            }
+            else
+            {
+                res += "Le graphe n'est pas connexe\n";
+            }
+            res += $"L'ordre du graphe est {Convert.ToString(this.Ordre())}\n";
+            res += $"La taille du graphe est {Convert.ToString(this.Taille())}\n";
+            if (this.Pondere())
+            {
+                res += "Le graphe est pondéré\n";
+            }
+            else
+            {
+                res += "Le graphe n'est pas pondéré\n";
+            }
             return res;
         }
+
+        public bool Connexe()
+        {
+            bool res = true;
+            foreach(var Noeud in  Noeuds.Values)
+            {
+                if(Noeud.Liens.Count == 0)
+                    res = false;
+            }
+            return res;
+        }
+        public int Ordre()
+        {
+            return Noeuds.Count;
+        }
+
+        public int Taille()
+        {
+            int res = 0;
+            foreach (var Noeud in Noeuds.Values)
+            {
+                    res += Noeud.Liens.Count;
+            }
+            return res;
+        }
+        public bool Pondere()
+        {
+            bool res = false;
+            foreach (var Noeud in Noeuds.Values)
+            {
+                foreach(var Lien in Noeud.Liens)
+                {
+                    if(Lien.LienPoids != 1)
+                        res = true;
+                }
+            }
+            return res;
+        }
+        #endregion
     }
 }

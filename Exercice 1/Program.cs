@@ -49,7 +49,7 @@ namespace Exercice_1
 
         static void Myfunc<T>()
         {
-            Graphe<T> myGraph = new Graphe<T>("../../soc-karate.mtx", ' ', 34);
+            Graphe<T> myGraph = new Graphe<T>("../../soc-karate.mtx", ' ', 35);
             Console.WriteLine(myGraph.ToString());
             GrapheImage<T> VisualiseurBool = new GrapheImage<T>(myGraph);
             VisualiseurBool.DessinerGraphe("../../graphe.png");
