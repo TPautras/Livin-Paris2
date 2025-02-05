@@ -1,40 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Exercice_1
 {
-    internal class Graphe
+    public class Graphe<T>
     {
-        public Dictionary<int,Noeud> Noeuds { get; set; } = new Dictionary<int, Noeud>();
+        public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
 
-        public Graphe(string path, char divider) 
+        public Graphe(string path, char divider, int maxCount)
         {
-            int counter = 0;
-            IEnumerable<string> lines = null;
             try
             {
-                lines = File.ReadLines(path);
+                var lines = File.ReadLines(path);
+                for (int i = 0; i < maxCount; i++)
+                {
+                    AjouterNoeud(i);
+                }
+                foreach (var line in lines)
+                {
+                    var relation = line.Split(divider);
+                    if (relation.Length >= 2)
+                    {
+                        int source = Convert.ToInt32(relation[0]);
+                        int destination = Convert.ToInt32(relation[1]);
+                        double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
+                        AjouterLien(source, destination, poids);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-            foreach (var line in lines)
-            {
-                AjouterNoeud(counter);
-                counter++;
-            }
-
         }
-        public void AjouterNoeud(int id)
+
+        public void AjouterNoeud(int id, T valeur = default)
         {
             if (!Noeuds.ContainsKey(id))
             {
-                Noeuds[id] = new Noeud(id);
+                Noeuds[id] = new Noeud<T>(id, valeur);
             }
         }
 
@@ -42,9 +47,18 @@ namespace Exercice_1
         {
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
             {
-                Lien lien = new Lien(Noeuds[idSource], Noeuds[idDestination], poids);
-                Noeuds[idSource].Liens.Add(lien);
+                Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
             }
+        }
+
+        public override string ToString()
+        {
+            string res = "";
+            foreach (var noeud in Noeuds.Values)
+            {
+                res += noeud.ToString() + "\n";
+            }
+            return res;
         }
     }
 }
