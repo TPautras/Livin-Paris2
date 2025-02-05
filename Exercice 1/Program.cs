@@ -19,21 +19,37 @@ namespace Exercice_1
                 switch (res)
                 {
                     case 0:
-                        Myfunc<string>();
+                        DemoGraph<string>();
                         break;
                     case 1:
-                        string[] optionsType = { "string", "int", "bool", "Quitter" };
-                        int res2 = Affichages.MenuSelect(Affichages.Banner() + "\n De quel type sont vos noeuds ?", optionsType);
-                        switch (res2)
+                        string[] optionsDivider = { "Period", "Comma", "Default"};
+                        int DividerChoice = Affichages.MenuSelect(Affichages.Banner() + "\n De quel type sont vos noeuds ?", optionsDivider);
+                        char divider = ' ';
+                        switch (DividerChoice)
                         {
                             case 0:
-                                Myfunc<string>();
+                                divider = '.';
                                 break;
                             case 1:
-                                Myfunc<int>();
+                                divider = ',';
                                 break;
                             case 2:
-                                Myfunc<bool>();
+                                break;
+                            default:
+                                break;
+                        }
+                        string[] optionsType = { "string", "int", "bool", "Quitter" };
+                        int TypeChoice = Affichages.MenuSelect(Affichages.Banner() + "\n De quel type sont vos noeuds ?", optionsType);
+                        switch (TypeChoice)
+                        {
+                            case 0:
+                                DemoGraph<string>(divider);
+                                break;
+                            case 1:
+                                DemoGraph<int>(divider);
+                                break;
+                            case 2:
+                                DemoGraph<bool>(divider);
                                 break;
                             default:
                                 break;
@@ -47,13 +63,27 @@ namespace Exercice_1
             }
         }
 
-        static void Myfunc<T>()
+        static void DemoGraph<T>(char divider = ' ', int maxCount = 35, string path = "../../soc-karate.mtx")
         {
-            Graphe<T> myGraph = new Graphe<T>("../../soc-karate.mtx", ' ', 35);
+            Graphe<T> myGraph = new Graphe<T>(path, divider, maxCount);
             Console.WriteLine(myGraph.ToString());
-            GrapheImage<T> VisualiseurBool = new GrapheImage<T>(myGraph);
-            VisualiseurBool.DessinerGraphe("../../graphe.png");
+
+            Console.WriteLine("Veuillez entrer un index de départ pour le parcours du graphe : ");
+            int startIndex;
+            if (int.TryParse(Console.ReadLine(), out startIndex))
+            {
+                myGraph.BFS(startIndex);
+                myGraph.DFS(startIndex);
+            }
+            else
+            {
+                Console.WriteLine("Entrée invalide.");
+            }
+
+            GrapheImage<T> visualiseur = new GrapheImage<T>(myGraph);
+            visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
         }
+
     }
 }

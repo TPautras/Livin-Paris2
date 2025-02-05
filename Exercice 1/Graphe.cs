@@ -119,5 +119,75 @@ namespace Exercice_1
             return res;
         }
         #endregion
+
+        #region Parcours
+        public void BFS(int startIndex)
+        {
+            if (!Noeuds.ContainsKey(startIndex))
+            {
+                Console.WriteLine("Le nœud de départ n'existe pas dans le graphe.");
+                return;
+            }
+
+            HashSet<int> visited = new HashSet<int>();
+            Queue<Noeud<T>> queue = new Queue<Noeud<T>>();
+
+            queue.Enqueue(Noeuds[startIndex]);
+            visited.Add(startIndex);
+
+            Console.WriteLine("Parcours en largeur (BFS) :");
+
+            while (queue.Count > 0)
+            {
+                Noeud<T> current = queue.Dequeue();
+                Console.WriteLine($"Visite du nœud : {current.Noeud_id}");
+
+                foreach (var lien in current.Liens)
+                {
+                    if (!visited.Contains(lien.LienArrivee.Noeud_id))
+                    {
+                        queue.Enqueue(lien.LienArrivee);
+                        visited.Add(lien.LienArrivee.Noeud_id);
+                    }
+                }
+            }
+        }
+
+        public void DFS(int startIndex)
+        {
+            if (!Noeuds.ContainsKey(startIndex))
+            {
+                Console.WriteLine("Le nœud de départ n'existe pas dans le graphe.");
+                return;
+            }
+
+            HashSet<int> visited = new HashSet<int>();
+            Stack<Noeud<T>> stack = new Stack<Noeud<T>>();
+
+            stack.Push(Noeuds[startIndex]);
+
+            Console.WriteLine("Parcours en profondeur (DFS) :");
+
+            while (stack.Count > 0)
+            {
+                Noeud<T> current = stack.Pop();
+
+                if (!visited.Contains(current.Noeud_id))
+                {
+                    visited.Add(current.Noeud_id);
+                    Console.WriteLine($"Visite du nœud : {current.Noeud_id}");
+
+                    foreach (var lien in current.Liens)
+                    {
+                        if (!visited.Contains(lien.LienArrivee.Noeud_id))
+                        {
+                            stack.Push(lien.LienArrivee);
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
     }
 }
