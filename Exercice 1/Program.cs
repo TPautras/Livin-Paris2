@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,14 +19,25 @@ namespace Exercice_1
                 switch (res)
                 {
                     case 0:
-                        Graphe<string> mygraph = new Graphe<string>("../../soc-karate.mtx",' ',34);
-                        Console.WriteLine(mygraph.ToString());
-                        GrapheImage<string> visualiseur = new GrapheImage<string>(mygraph);
-                        visualiseur.DessinerGraphe("../../graphe.png");
-                        Console.ReadKey();
+                        Myfunc<string>();
                         break;
                     case 1:
-                        Console.WriteLine("WIP");
+                        string[] optionsType = { "string", "int", "bool", "Quitter" };
+                        int res2 = Affichages.MenuSelect(Affichages.Banner() + "\n De quel type sont vos noeuds ?", optionsType);
+                        switch (res2)
+                        {
+                            case 0:
+                                Myfunc<string>();
+                                break;
+                            case 1:
+                                Myfunc<int>();
+                                break;
+                            case 2:
+                                Myfunc<bool>();
+                                break;
+                            default:
+                                break;
+                        }
                         Console.ReadKey();
                         break;
                     case 2:
@@ -33,6 +45,15 @@ namespace Exercice_1
                         break;
                 }
             }
+        }
+
+        static void Myfunc<T>()
+        {
+            Graphe<T> myGraph = new Graphe<T>("../../soc-karate.mtx", ' ', 34);
+            Console.WriteLine(myGraph.ToString());
+            GrapheImage<T> VisualiseurBool = new GrapheImage<T>(myGraph);
+            VisualiseurBool.DessinerGraphe("../../graphe.png");
+            Console.ReadKey();
         }
     }
 }
