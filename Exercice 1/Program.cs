@@ -14,6 +14,7 @@ namespace Exercice_1
         {
             string[] options = { "Oui", "Non", "Quitter" };
             SqlTest();
+            Console.ReadKey();
             bool Quit = false;
             while (!Quit)
             {
@@ -89,19 +90,19 @@ namespace Exercice_1
 
         static void SqlTest()
         {
-            string connectionString = "server=localhost;database=school;uid=root;pwd=;";
+            string connectionString = "server=localhost;database=sakila;uid=root;pwd=root;";
 
             try
             {
                 using (MySqlConnection cnn = new MySqlConnection(connectionString))
                 {
                     cnn.Open();
-                    MessageBox.Show("Connection Open!");
+                    Console.WriteLine("Connection Open!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection!\n" + ex.Message);
+                Console.WriteLine("Can not open connection!\n" + ex.Message);
             }
         }
     }
