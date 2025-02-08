@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Exercice_1
 {
@@ -12,6 +13,7 @@ namespace Exercice_1
         static void Main(string[] args)
         {
             string[] options = { "Oui", "Non", "Quitter" };
+            SqlTest();
             bool Quit = false;
             while (!Quit)
             {
@@ -85,5 +87,22 @@ namespace Exercice_1
             Console.ReadKey();
         }
 
+        static void SqlTest()
+        {
+            string connectionString = "server=localhost;database=school;uid=root;pwd=;";
+
+            try
+            {
+                using (MySqlConnection cnn = new MySqlConnection(connectionString))
+                {
+                    cnn.Open();
+                    MessageBox.Show("Connection Open!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can not open connection!\n" + ex.Message);
+            }
+        }
     }
 }
