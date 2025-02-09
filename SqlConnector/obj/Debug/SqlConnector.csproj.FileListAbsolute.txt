@@ -1,0 +1,6 @@
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\SqlConnector.exe
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\SqlConnector.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConnector.csproj.AssemblyReference.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConnector.csproj.CoreCompileInputs.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConnector.exe
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConnector.pdb
