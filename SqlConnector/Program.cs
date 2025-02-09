@@ -6,7 +6,7 @@ namespace SqlConnector
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Database.TestConnexion();
         }
     }
 }
