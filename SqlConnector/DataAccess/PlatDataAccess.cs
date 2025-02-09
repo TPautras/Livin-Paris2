@@ -14,12 +14,14 @@ namespace SqlConnector
             using (var conn = db.GetConnection())
             {
                 conn.Open();
-                string query = "INSERT INTO Plats (nom, description, categorie, personnes, prix, nationalite, regime_alimentaire, ingredients, cuisinier_id) VALUES (@nom, @description, @categorie, @personnes, @prix, @nationalite, @regime, @ingredients, @cuisinier_id)";
+                string query = "INSERT INTO Plats (nom, description, categorie, personnes, date_fabrication, date_peremption, prix, nationalite, regime_alimentaire, ingredients, cuisinier_id) VALUES (@nom, @description, @categorie, @personnes, @date_fabrication, @date_peremption, @prix, @nationalite, @regime, @ingredients, @cuisinier_id)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@nom", plat.Nom);
                 cmd.Parameters.AddWithValue("@description", plat.Description);
                 cmd.Parameters.AddWithValue("@categorie", plat.Categorie);
                 cmd.Parameters.AddWithValue("@personnes", plat.Personnes);
+                cmd.Parameters.AddWithValue("@date_fabrication", plat.DateFabrication);  
+                cmd.Parameters.AddWithValue("@date_peremption", plat.DatePeremption);
                 cmd.Parameters.AddWithValue("@prix", plat.Prix);
                 cmd.Parameters.AddWithValue("@nationalite", plat.Nationalite);
                 cmd.Parameters.AddWithValue("@regime", plat.RegimeAlimentaire);
