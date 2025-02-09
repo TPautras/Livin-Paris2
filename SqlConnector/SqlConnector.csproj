@@ -93,9 +93,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DataAccess\CommandeDataAccess.cs" />
         <Compile Include="DataAccess\DataAccess.cs" />
-        <Compile Include="DataAccess\PlatDataAccess.cs" />
         <Compile Include="DataAccess\UserDataAccess.cs" />
         <Compile Include="DataServices\UserServices.cs" />
         <Compile Include="Models\Commande.cs" />
