@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Exercice_1
+namespace Graphs
 {
     public class Noeud<T>
     {

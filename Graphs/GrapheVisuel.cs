@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 
-namespace Exercice_1
+namespace Graphs
 {
     public class GrapheImage<T>
     {

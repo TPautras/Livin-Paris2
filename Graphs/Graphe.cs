@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Exercice_1
+namespace Graphs
 {
     public class Graphe<T>
     {

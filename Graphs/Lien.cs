@@ -1,4 +1,4 @@
-﻿namespace Exercice_1
+﻿namespace Graphs
 {
     public class Lien<T>
     {
