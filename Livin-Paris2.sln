@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice 1", "Exercice 1\Exercice 1.csproj", "{B52485B4-3BBB-484D-A0CB-5BE94A9CED48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlConnector", "SqlConnector\SqlConnector.csproj", "{8265C565-6099-4785-BE9D-52F36E787F42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B52485B4-3BBB-484D-A0CB-5BE94A9CED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B52485B4-3BBB-484D-A0CB-5BE94A9CED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B52485B4-3BBB-484D-A0CB-5BE94A9CED48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8265C565-6099-4785-BE9D-52F36E787F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8265C565-6099-4785-BE9D-52F36E787F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8265C565-6099-4785-BE9D-52F36E787F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8265C565-6099-4785-BE9D-52F36E787F42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
