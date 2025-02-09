@@ -12,7 +12,6 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Buffer
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Configuration.ConfigurationManager.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Drawing.Common.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Drawing.Primitives.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.IO.Pipelines.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Memory.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Numerics.Vectors.dll
@@ -39,6 +38,6 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Runtim
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.AssemblyReference.cache
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.Up2Date
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.exe
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.CopyComplete
