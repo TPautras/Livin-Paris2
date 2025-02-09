@@ -1,43 +1,27 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace SqlConnector
 {
-    public class UserDataAccess
+    public class UtilisateurDao : IDataAccess<User>
     {
-        private readonly Database db = new Database();
+        private readonly string _connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
-        // 🔹 Créer un utilisateur
-        public void Ajouter(User user)
+        public UtilisateurDao(string connectionString)
         {
-            using (var conn = db.GetConnection())
-            {
-                conn.Open();
-                string query = "INSERT INTO Utilisateurs (nom, prenom, email, telephone, adresse, type, password) VALUES (@nom, @prenom, @email, @telephone, @adresse, @type, @password)";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nom", user.Nom);
-                cmd.Parameters.AddWithValue("@prenom", user.Prenom);
-                cmd.Parameters.AddWithValue("@email", user.Email);
-                cmd.Parameters.AddWithValue("@telephone", user.Telephone);
-                cmd.Parameters.AddWithValue("@adresse", user.Adresse);
-                cmd.Parameters.AddWithValue("@type", user.Type);
-                cmd.Parameters.AddWithValue("@password", user.Password);
-                cmd.ExecuteNonQuery();
-            }
+            _connectionString = connectionString;
         }
 
-        // 🔹 Lire tous les utilisateurs
-        public List<User> ObtenirTous()
+        public List<User> GetAll()
         {
             List<User> utilisateurs = new List<User>();
-
-            using (var conn = db.GetConnection())
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                conn.Open();
-                string query = "SELECT * FROM Utilisateurs";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM Utilisateurs", connection);
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -58,35 +42,78 @@ namespace SqlConnector
             return utilisateurs;
         }
 
-        // 🔹 Mettre à jour un utilisateur
-        public void MettreAJour(User user)
+        public User GetById(int id)
         {
-            using (var conn = db.GetConnection())
+            User utilisateur = null;
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                conn.Open();
-                string query = "UPDATE Utilisateurs SET nom=@nom, prenom=@prenom, email=@email, telephone=@telephone, adresse=@adresse, type=@type WHERE id=@id";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@id", user.Id);
-                cmd.Parameters.AddWithValue("@nom", user.Nom);
-                cmd.Parameters.AddWithValue("@prenom", user.Prenom);
-                cmd.Parameters.AddWithValue("@email", user.Email);
-                cmd.Parameters.AddWithValue("@telephone", user.Telephone);
-                cmd.Parameters.AddWithValue("@adresse", user.Adresse);
-                cmd.Parameters.AddWithValue("@type", user.Type);
-                cmd.ExecuteNonQuery();
+                connection.Open();
+                var command = new MySqlCommand("SELECT * FROM Utilisateurs WHERE id = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        utilisateur = new User
+                        {
+                            Id = reader.GetInt32("id"),
+                            Nom = reader.GetString("nom"),
+                            Prenom = reader.GetString("prenom"),
+                            Email = reader.GetString("email"),
+                            Telephone = reader.GetString("telephone"),
+                            Adresse = reader.GetString("adresse"),
+                            Type = reader.GetString("type"),
+                            Password = reader.GetString("password")
+                        };
+                    }
+                }
+            }
+            return utilisateur;
+        }
+
+        public void Insert(User utilisateur)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new MySqlCommand("INSERT INTO Utilisateurs (nom, prenom, email, telephone, adresse, type, password) VALUES (@nom, @prenom, @email, @telephone, @adresse, @type, @password)", connection);
+                command.Parameters.AddWithValue("@nom", utilisateur.Nom);
+                command.Parameters.AddWithValue("@prenom", utilisateur.Prenom);
+                command.Parameters.AddWithValue("@email", utilisateur.Email);
+                command.Parameters.AddWithValue("@telephone", utilisateur.Telephone);
+                command.Parameters.AddWithValue("@adresse", utilisateur.Adresse);
+                command.Parameters.AddWithValue("@type", utilisateur.Type);
+                command.Parameters.AddWithValue("@password", utilisateur.Password);
+                command.ExecuteNonQuery();
             }
         }
 
-        // 🔹 Supprimer un utilisateur
-        public void Supprimer(int id)
+        public void Update(User utilisateur)
         {
-            using (var conn = db.GetConnection())
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                conn.Open();
-                string query = "DELETE FROM Utilisateurs WHERE id=@id";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.ExecuteNonQuery();
+                connection.Open();
+                var command = new MySqlCommand("UPDATE Utilisateurs SET nom = @nom, prenom = @prenom, email = @email, telephone = @telephone, adresse = @adresse, type = @type, password = @password WHERE id = @id", connection);
+                command.Parameters.AddWithValue("@id", utilisateur.Id);
+                command.Parameters.AddWithValue("@nom", utilisateur.Nom);
+                command.Parameters.AddWithValue("@prenom", utilisateur.Prenom);
+                command.Parameters.AddWithValue("@email", utilisateur.Email);
+                command.Parameters.AddWithValue("@telephone", utilisateur.Telephone);
+                command.Parameters.AddWithValue("@adresse", utilisateur.Adresse);
+                command.Parameters.AddWithValue("@type", utilisateur.Type);
+                command.Parameters.AddWithValue("@password", utilisateur.Password);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new MySqlCommand("DELETE FROM Utilisateurs WHERE id = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
             }
         }
     }

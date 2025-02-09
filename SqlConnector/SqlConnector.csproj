@@ -94,8 +94,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="DataAccess\CommandeDataAccess.cs" />
+        <Compile Include="DataAccess\DataAccess.cs" />
         <Compile Include="DataAccess\PlatDataAccess.cs" />
         <Compile Include="DataAccess\UserDataAccess.cs" />
+        <Compile Include="DataServices\UserServices.cs" />
         <Compile Include="Models\Commande.cs" />
         <Compile Include="Models\Plat.cs" />
         <Compile Include="Models\Users.cs" />
@@ -108,9 +110,10 @@
       <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include=".env" />
       <Content Include=".gitignore" />
-      <Content Include="database\sampleData.sql" />
-      <Content Include="database\schema.sql" />
+      <Content Include="Sql\sampleData.sql" />
+      <Content Include="Sql\schema.sql" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
