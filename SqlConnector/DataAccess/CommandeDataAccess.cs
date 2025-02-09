@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace SqlConnector
 {
-    public class CommandeDAO
+    public class CommandeDataAccess
     {
         private readonly Database db = new Database();
 
