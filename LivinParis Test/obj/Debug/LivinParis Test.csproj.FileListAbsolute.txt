@@ -36,6 +36,15 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\K4os
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.AssemblyReference.cache
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CoreCompileInputs.cache
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\DotNetEnv.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Sprache.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Configuration.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Sprache.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Configuration.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
