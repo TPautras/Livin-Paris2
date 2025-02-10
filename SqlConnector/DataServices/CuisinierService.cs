@@ -3,28 +3,28 @@ using SqlConnector.Models;
 
 namespace SqlConnector.DataServices
 {
-    public class ClientsService
+    public class CuisinierService
     {
-        private readonly ClientsDataAccess _dataAccess = new ClientsDataAccess();
+        private readonly CuisinierDataAccess _dataAccess = new CuisinierDataAccess();
         private readonly PersonneService _personneService = new PersonneService();
-        
-        public List<Clients> GetAll()
+
+        public List<Cuisinier> GetAll()
         {
             return _dataAccess.GetAll();
         }
 
-        public Clients GetById(int id)
+        public Cuisinier GetById(int id)
         {
             return _dataAccess.GetById(id);
         }
 
-        public void Insert(Clients c)
+        public void Insert(Cuisinier c)
         {
             _personneService.Insert(c);
             _dataAccess.Insert(c);
         }
 
-        public void Update(Clients c)
+        public void Update(Cuisinier c)
         {
             _personneService.Update(c);
             _dataAccess.Update(c);
@@ -35,5 +35,4 @@ namespace SqlConnector.DataServices
             _dataAccess.Delete(id);
         }
     }
-
 }

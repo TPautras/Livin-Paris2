@@ -106,7 +106,16 @@
         <Compile Include="DataAccess\PersonneDataAccess.cs" />
         <Compile Include="DataAccess\PlatDataAccess.cs" />
         <Compile Include="DataServices\ClientsService.cs" />
+        <Compile Include="DataServices\CommandeService.cs" />
+        <Compile Include="DataServices\CompositionDuPlatService.cs" />
+        <Compile Include="DataServices\ContientService.cs" />
+        <Compile Include="DataServices\CreationService.cs" />
+        <Compile Include="DataServices\CuisinierService.cs" />
+        <Compile Include="DataServices\EvaluationService.cs" />
+        <Compile Include="DataServices\IngredientService.cs" />
+        <Compile Include="DataServices\LivraisonService.cs" />
         <Compile Include="DataServices\PersonneService.cs" />
+        <Compile Include="DataServices\PlatService.cs" />
         <Compile Include="DataServices\ValidationHelper.cs" />
         <Compile Include="Models\Clients.cs" />
         <Compile Include="Models\Commande.cs" />

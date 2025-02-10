@@ -37,4 +37,4 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConnector.csproj.CopyComplete
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConne.4ABBB281.Up2Date
