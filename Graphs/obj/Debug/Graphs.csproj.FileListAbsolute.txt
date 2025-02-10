@@ -40,5 +40,4 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.exe
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.pdb
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\bin\Debug\System.Drawing.Primitives.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.Up2Date
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\Graphs\obj\Debug\Graphs.csproj.CopyComplete

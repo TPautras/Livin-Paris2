@@ -47,4 +47,4 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Spra
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Configuration.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Microsoft.Extensions.Primitives.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete
