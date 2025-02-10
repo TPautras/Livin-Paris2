@@ -9,9 +9,6 @@ namespace SqlConnector
 
         public MySqlConnection GetConnection()
         {
-            Console.WriteLine("Connecting to database...");
-            Console.WriteLine(_connectionString);
-            Console.WriteLine("TEST");
             return new MySqlConnection(_connectionString);
         }
     }

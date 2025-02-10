@@ -12,7 +12,6 @@ namespace SqlConnector
         {
             DotNetEnv.Env.Load(); 
             string connString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-            Console.WriteLine(connString ?? "null");
             Console.WriteLine("=== Application de test DataAccess & Services ===");
 
             var personneService = new PersonneService();
