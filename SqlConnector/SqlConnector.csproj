@@ -105,6 +105,9 @@
         <Compile Include="DataAccess\LivraisonDataAccess.cs" />
         <Compile Include="DataAccess\PersonneDataAccess.cs" />
         <Compile Include="DataAccess\PlatDataAccess.cs" />
+        <Compile Include="DataServices\ClientsService.cs" />
+        <Compile Include="DataServices\PersonneService.cs" />
+        <Compile Include="DataServices\ValidationHelper.cs" />
         <Compile Include="Models\Clients.cs" />
         <Compile Include="Models\Commande.cs" />
         <Compile Include="Models\Composition_du_plat.cs" />
@@ -130,9 +133,6 @@
       <Content Include="README.md" />
       <Content Include="Sql\sampleData.sql" />
       <Content Include="Sql\schema.sql" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="DataServices\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
