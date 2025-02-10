@@ -1,130 +1,103 @@
 CREATE DATABASE IF NOT EXISTS livin_paris;
 USE livin_paris;
 
--- Table Utilisateurs (Clients & Cuisiniers)
-CREATE TABLE Utilisateurs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    prenom VARCHAR(100) NOT NULL,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    telephone VARCHAR(20),
-    adresse TEXT NOT NULL,
-    type ENUM('client', 'cuisinier', 'les deux') NOT NULL,
-    password VARCHAR(255) NOT NULL
+DROP TABLE IF EXISTS Composition_du_plat CASCADE;
+DROP TABLE IF EXISTS Ingredient CASCADE;
+DROP TABLE IF EXISTS Contient CASCADE;
+DROP TABLE IF EXISTS Creation CASCADE;
+DROP TABLE IF EXISTS Plat CASCADE;
+DROP TABLE IF EXISTS Livraison CASCADE;
+DROP TABLE IF EXISTS Evaluation CASCADE;
+DROP TABLE IF EXISTS Commande CASCADE;
+DROP TABLE IF EXISTS Cuisinier CASCADE;
+DROP TABLE IF EXISTS Clients CASCADE;
+DROP TABLE IF EXISTS Personne CASCADE;
+
+CREATE TABLE Personne (
+    Personne_Id INT PRIMARY KEY,
+    Personne_Nom VARCHAR(50) NOT NULL,
+    Personne_Prenom VARCHAR(50) NOT NULL,
+    Personne_Numero_de_licence VARCHAR(50),
+    Personne_Ville VARCHAR(50),
+    Personne_Code_postale VARCHAR(10),
+    Personne_Nom_de_la_rue VARCHAR(100),
+    Personne_Email VARCHAR(100),
+    Personne_Telephone VARCHAR(20),
+    Personne_Station_de_metro_la_plus_proche VARCHAR(50)
 );
 
--- Table Plats
-CREATE TABLE Plats (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL,
-    description TEXT,
-    categorie ENUM('entrée', 'plat', 'dessert') NOT NULL,
-    personnes INT NOT NULL,
-    date_fabrication DATE NOT NULL,
-    date_peremption DATE NOT NULL,
-    prix DECIMAL(10,2) NOT NULL,
-    nationalite VARCHAR(100),
-    regime_alimentaire VARCHAR(255),
-    ingredients TEXT,
-    photo VARCHAR(255),
-    cuisinier_id INT,
-    FOREIGN KEY (cuisinier_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
+CREATE TABLE Clients (
+    Client_Id INT PRIMARY KEY,
+    FOREIGN KEY (Client_Id) REFERENCES Personne(Personne_Id)
 );
 
--- Table Commandes
-CREATE TABLE Commandes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_id INT,
-    date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
-    prix_total DECIMAL(10,2) NOT NULL,
-    statut ENUM('en attente', 'validée', 'livrée', 'annulée') DEFAULT 'en attente',
-    FOREIGN KEY (client_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
+CREATE TABLE Cuisinier (
+    Cuisinier_Id INT PRIMARY KEY,
+    FOREIGN KEY (Cuisinier_Id) REFERENCES Personne(Personne_Id)
 );
 
--- Table LigneCommande (Un client peut commander plusieurs plats)
-CREATE TABLE LigneCommande (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    commande_id INT,
-    plat_id INT,
-    quantite INT NOT NULL,
-    prix_unitaire DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (commande_id) REFERENCES Commandes(id) ON DELETE CASCADE,
-    FOREIGN KEY (plat_id) REFERENCES Plats(id) ON DELETE CASCADE
+CREATE TABLE Commande (
+    Commande_Id INT PRIMARY KEY,
+    Commande_Date DATE,
+    Client_Id INT,
+    FOREIGN KEY (Client_Id) REFERENCES Clients(Client_Id)
 );
 
--- Table Livraisons
-CREATE TABLE Livraisons (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    commande_id INT,
-    adresse_livraison TEXT NOT NULL,
-    date_livraison DATE NOT NULL,
-    cuisinier_id INT,
-    FOREIGN KEY (commande_id) REFERENCES Commandes(id) ON DELETE CASCADE,
-    FOREIGN KEY (cuisinier_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
+CREATE TABLE Evaluation (
+    Evaluation_Id INT PRIMARY KEY,
+    Evaluation_Client INT,
+    Evaluation_Cuisinier INT,
+    Commande_Id INT,
+    FOREIGN KEY (Evaluation_Client) REFERENCES Clients(Client_Id),
+    FOREIGN KEY (Evaluation_Cuisinier) REFERENCES Cuisinier(Cuisinier_Id),
+    FOREIGN KEY (Commande_Id) REFERENCES Commande(Commande_Id)
 );
 
--- Table Historique des Transactions
-CREATE TABLE Transactions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    commande_id INT,
-    date_transaction DATETIME DEFAULT CURRENT_TIMESTAMP,
-    montant DECIMAL(10,2) NOT NULL,
-    mode_paiement ENUM('carte', 'paypal', 'espèces') NOT NULL,
-    statut ENUM('réussi', 'échec', 'remboursé') DEFAULT 'réussi',
-    FOREIGN KEY (commande_id) REFERENCES Commandes(id) ON DELETE CASCADE
+CREATE TABLE Livraison (
+    Livraison_Id INT PRIMARY KEY,
+    Livraison_Adresse VARCHAR(255),
+    Livraison_Date DATE,
+    Commande_Id INT,
+    FOREIGN KEY (Commande_Id) REFERENCES Commande(Commande_Id)
 );
 
--- Table Avis Clients
-CREATE TABLE Avis (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_id INT,
-    cuisinier_id INT,
-    note INT CHECK (note >= 1 AND note <= 5),
-    commentaire TEXT,
-    date_avis DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (client_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE,
-    FOREIGN KEY (cuisinier_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
+CREATE TABLE Plat (
+    Plat_Id INT PRIMARY KEY,
+    Plat_Nom VARCHAR(50),
+    Plat_Origine VARCHAR(50),
+    Plat_Aromes_naturels VARCHAR(100),
+    Plat_Date_de_fabrication DATE,
+    Plat_Date_de_peremption DATE,
+    Plat_Type_de_plat VARCHAR(50),
+    Plat_Regime_alimentaire VARCHAR(50)
 );
 
--- Table Relations Client-Cuisinier (Historique des commandes passées entre eux)
-CREATE TABLE Relations_Client_Cuisinier (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_id INT,
-    cuisinier_id INT,
-    total_commandes INT DEFAULT 0,
-    FOREIGN KEY (client_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE,
-    FOREIGN KEY (cuisinier_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE
+CREATE TABLE Creation (
+    Cuisinier_Id INT,
+    Plat_Id INT,
+    PRIMARY KEY (Cuisinier_Id, Plat_Id),
+    FOREIGN KEY (Cuisinier_Id) REFERENCES Cuisinier(Cuisinier_Id),
+    FOREIGN KEY (Plat_Id) REFERENCES Plat(Plat_Id)
 );
 
--- Table Zones de Livraison
-CREATE TABLE Zones_Livraison (
-     id INT AUTO_INCREMENT PRIMARY KEY,
-     nom_zone VARCHAR(255) NOT NULL,
-     description TEXT
+CREATE TABLE Contient (
+    Commande_Id INT,
+    Plat_Id INT,
+    PRIMARY KEY (Commande_Id, Plat_Id),
+    FOREIGN KEY (Commande_Id) REFERENCES Commande(Commande_Id),
+    FOREIGN KEY (Plat_Id) REFERENCES Plat(Plat_Id)
 );
 
--- Table Assignation des Zones aux Cuisiniers
-CREATE TABLE Assignation_Zones (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    cuisinier_id INT,
-    zone_id INT,
-    FOREIGN KEY (cuisinier_id) REFERENCES Utilisateurs(id) ON DELETE CASCADE,
-    FOREIGN KEY (zone_id) REFERENCES Zones_Livraison(id) ON DELETE CASCADE
+CREATE TABLE Ingredient (
+    Ingredient_Id INT PRIMARY KEY,
+    Ingredient_Nom VARCHAR(50),
+    Ingredient_Volume VARCHAR(50)
 );
 
--- Table Métro pour le calcul des itinéraires (Graphes)
-CREATE TABLE Metro_Stations (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL,
-    latitude DECIMAL(10,6),
-    longitude DECIMAL(10,6)
-);
-
-CREATE TABLE Metro_Liaisons (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    station_depart INT,
-    station_arrivee INT,
-    duree INT NOT NULL,
-    FOREIGN KEY (station_depart) REFERENCES Metro_Stations(id) ON DELETE CASCADE,
-    FOREIGN KEY (station_arrivee) REFERENCES Metro_Stations(id) ON DELETE CASCADE
+CREATE TABLE Composition_du_plat (
+    Plat_Id INT,
+    Ingredient_Id INT,
+    PRIMARY KEY (Plat_Id, Ingredient_Id),
+    FOREIGN KEY (Plat_Id) REFERENCES Plat(Plat_Id),
+    FOREIGN KEY (Ingredient_Id) REFERENCES Ingredient(Ingredient_Id)
 );

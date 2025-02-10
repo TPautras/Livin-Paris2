@@ -5,11 +5,11 @@ namespace SqlConnector
 {
     public class Database
     {
-        private readonly string connectionString = "Server=localhost;Port=3306;Database=livin_paris;User Id=root;Password=root;";
+        private readonly string _connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
         public MySqlConnection GetConnection()
         {
-            return new MySqlConnection(connectionString);
+            return new MySqlConnection(_connectionString);
         }
     }
 }

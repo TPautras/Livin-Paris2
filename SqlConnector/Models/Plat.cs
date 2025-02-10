@@ -1,20 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace SqlConnector
+namespace SqlConnector.Models
 {
     public class Plat
     {
-        public int Id { get; set; }
-        public string Nom { get; set; }
-        public string Description { get; set; }
-        public string Categorie { get; set; }
-        public int Personnes { get; set; }
-        public DateTime DateFabrication { get; set; } = DateTime.Today;
-        public DateTime DatePeremption { get; set; } = DateTime.Today;
-        public decimal Prix { get; set; }
-        public string Nationalite { get; set; }
-        public string RegimeAlimentaire { get; set; }
-        public string Ingredients { get; set; }
-        public int CuisinierId { get; set; }
+        public int PlatId { get; set; }
+        public string PlatNom { get; set; }
+        public string PlatOrigine { get; set; }
+        public string PlatAromesNaturels { get; set; }
+        public DateTime? PlatDateDeFabrication { get; set; }
+        public DateTime? PlatDateDePeremption { get; set; }
+        public string PlatTypeDePlat { get; set; }
+        public string PlatRegimeAlimentaire { get; set; }
+        public ICollection<Creation> Creations { get; set; }
+        public ICollection<Contient> Contients { get; set; }
+        public ICollection<CompositionDuPlat> CompositionDuPlat { get; set; }
     }
 }
