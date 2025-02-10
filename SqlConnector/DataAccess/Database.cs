@@ -5,7 +5,9 @@ namespace SqlConnector
 {
     public class Database
     {
-        private readonly string _connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+        private readonly string _connectionString =
+            "Server=localhost;Port=3306;Database=livin_paris;Uid=root;Password=root;";
+            //Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
         public MySqlConnection GetConnection()
         {
