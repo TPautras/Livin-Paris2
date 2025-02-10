@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SqlConnector.DataServices;
 using SqlConnector.Models;
+using DotNetEnv;
 
 namespace SqlConnector
 {
@@ -9,6 +10,9 @@ namespace SqlConnector
     {
         static void Main(string[] args)
         {
+            DotNetEnv.Env.Load(); 
+            string connString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            Console.WriteLine(connString ?? "null");
             Console.WriteLine("=== Application de test DataAccess & Services ===");
 
             var personneService = new PersonneService();
