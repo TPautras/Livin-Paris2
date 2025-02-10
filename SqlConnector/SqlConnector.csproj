@@ -93,7 +93,14 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="DataAccess\ClientsDataAccess.cs" />
+        <Compile Include="DataAccess\CommandeDataAccess.cs" />
+        <Compile Include="DataAccess\CuisinierDataAccess.cs" />
         <Compile Include="DataAccess\DataAccess.cs" />
+        <Compile Include="DataAccess\EvaluationDataAccess.cs" />
+        <Compile Include="DataAccess\LivraisonDataAccess.cs" />
+        <Compile Include="DataAccess\PersonneDataAccess.cs" />
+        <Compile Include="DataAccess\PlatDataAccess.cs" />
         <Compile Include="Models\Clients.cs" />
         <Compile Include="Models\Commande.cs" />
         <Compile Include="Models\Composition_du_plat.cs" />

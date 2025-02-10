@@ -1,6 +1,6 @@
 ﻿namespace SqlConnector.Models
 {
-    public abstract class Personne
+    public class Personne
     {
         public int PersonneId { get; set; }
         public string PersonneNom { get; set; }
