@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LivinParis.Properties
+namespace LivinParisGraphique.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -45,7 +45,7 @@ namespace LivinParis.Properties
                 if ((resourceMan == null))
                 {
                     global::System.Resources.ResourceManager temp =
-                        new global::System.Resources.ResourceManager("LivinParis.Properties.Resources",
+                        new global::System.Resources.ResourceManager("LivinParisGraphique.Properties.Resources",
                             typeof(Resources).Assembly);
                     resourceMan = temp;
                 }

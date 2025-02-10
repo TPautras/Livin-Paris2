@@ -6,8 +6,8 @@
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{DA53BA2F-F558-4CAB-8215-F3D10EEC9EB8}</ProjectGuid>
         <OutputType>WinExe</OutputType>
-        <RootNamespace>LivinParis</RootNamespace>
-        <AssemblyName>LivinParis</AssemblyName>
+        <RootNamespace>LivinParisGraphique</RootNamespace>
+        <AssemblyName>LivinParisGraphique</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

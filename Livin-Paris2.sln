@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlConnector", "SqlConnecto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivinParis Test", "LivinParis Test\LivinParis Test.csproj", "{D019BED6-F76B-4490-8AFE-834DA94C6A92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivinParis", "LivinParis\LivinParis.csproj", "{DA53BA2F-F558-4CAB-8215-F3D10EEC9EB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivinParisGraphique", "LivinParisGraphique\LivinParisGraphique.csproj", "{DA53BA2F-F558-4CAB-8215-F3D10EEC9EB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

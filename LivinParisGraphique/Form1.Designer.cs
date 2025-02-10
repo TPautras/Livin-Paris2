@@ -1,4 +1,4 @@
-﻿namespace LivinParis
+﻿namespace LivinParisGraphique
 {
     partial class Form1
     {
