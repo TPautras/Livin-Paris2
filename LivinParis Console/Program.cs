@@ -1,5 +1,6 @@
 ﻿using System;
 using Graphs;
+using SqlConnector;
 
 namespace LivinParis_Console
 {
@@ -7,7 +8,7 @@ namespace LivinParis_Console
     {
         public static void Main(string[] args)
         {
-            Exercice1.Exo1();
+            SqlConnectorTest.ConnectorTest();
         }
     }
 }

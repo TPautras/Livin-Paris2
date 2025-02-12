@@ -222,7 +222,6 @@
         <Compile Include="Models\Livraison.cs" />
         <Compile Include="Models\Personne.cs" />
         <Compile Include="Models\Plat.cs" />
-        <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="DataAccess\Database.cs" />
     </ItemGroup>
