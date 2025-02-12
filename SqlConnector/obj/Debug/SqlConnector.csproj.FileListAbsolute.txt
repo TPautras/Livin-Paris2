@@ -37,13 +37,16 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConne.4ABBB281.Up2Date
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\DotNetEnv.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Configuration.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Primitives.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Sprache.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Configuration.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Sprache.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.AppContext.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Console.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Diagnostics.Tracing.dll
@@ -68,7 +71,4 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Text.RegularExpressions.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\System.Xml.ReaderWriter.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Configuration.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Microsoft.Extensions.Primitives.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\bin\Debug\Sprache.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\SqlConnector\obj\Debug\SqlConne.4ABBB281.Up2Date

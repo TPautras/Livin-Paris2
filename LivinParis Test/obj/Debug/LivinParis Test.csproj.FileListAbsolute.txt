@@ -1,8 +1,18 @@
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.pdb
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Graphs.exe
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\SqlConnector.exe
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.AssemblyReference.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CoreCompileInputs.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe.config
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\ZstdSharp.dll
@@ -16,11 +26,8 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\K4os
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\System.IO.Pipelines.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Hash.xxHash.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Graphs.pdb
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Graphs.exe.config
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\SqlConnector.pdb
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\SqlConnector.exe.config
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll.config
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.pdb
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.xml
@@ -34,8 +41,3 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\K4os
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\System.IO.Pipelines.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Hash.xxHash.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.AssemblyReference.cache
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CoreCompileInputs.cache
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
