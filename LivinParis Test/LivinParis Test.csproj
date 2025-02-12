@@ -50,6 +50,10 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\DBConnectionLibrary\DBConnectionLibrary.csproj">
+        <Project>{e5d6cc2b-678e-453b-b211-744bb4e76da9}</Project>
+        <Name>DBConnectionLibrary</Name>
+      </ProjectReference>
       <ProjectReference Include="..\GraphsLibrary\GraphsLibrary.csproj">
         <Project>{845a2cea-a6fa-405e-9267-65b375abf980}</Project>
         <Name>GraphsLibrary</Name>
