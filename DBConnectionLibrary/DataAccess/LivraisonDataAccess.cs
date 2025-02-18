@@ -1,129 +1,102 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
 
-namespace SqlConnector
+namespace SqlConnector.DataAccess
 {
-    public class LivraisonDataAccess : IDataAccess<Livraison>
+    public class LivraisonDataAccess : BaseDataAccess, IDataAccess<Livraison>
     {
-        private readonly Database _database = new Database();
-
         public List<Livraison> GetAll()
         {
-            var result = new List<Livraison>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Livraison>();
+            string query = "SELECT * FROM Livraison";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Livraison";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var l = new Livraison
+                        list.Add(new Livraison
                         {
-                            LivraisonId = reader.GetInt32("Livraison_Id"),
-                            LivraisonAdresse = reader["Livraison_Adresse"] as string,
-                            LivraisonDate = reader["Livraison_Date"] == DBNull.Value
-                                ? (DateTime?)null
-                                : reader.GetDateTime("Livraison_Date"),
-                            CommandeId = reader["Commande_Id"] == DBNull.Value
-                                ? null
-                                : (int?)reader.GetInt32("Commande_Id")
-                        };
-                        result.Add(l);
+                            LivraisonId = Convert.ToInt32(reader["Livraison_Id"]),
+                            LivraisonAdresse = reader["Livraison_Adresse"].ToString(),
+                            LivraisonDate = Convert.ToDateTime(reader["Livraison_Date"])
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
 
         public Livraison GetById(int id)
         {
-            Livraison l = null;
-            using (var conn = _database.GetConnection())
+            Livraison livraison = null;
+            string query = "SELECT * FROM Livraison WHERE Livraison_Id = @Id";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Livraison WHERE Livraison_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        livraison = new Livraison
                         {
-                            l = new Livraison
-                            {
-                                LivraisonId = reader.GetInt32("Livraison_Id"),
-                                LivraisonAdresse = reader["Livraison_Adresse"] as string,
-                                LivraisonDate = reader["Livraison_Date"] == DBNull.Value
-                                    ? (DateTime?)null
-                                    : reader.GetDateTime("Livraison_Date"),
-                                CommandeId = reader["Commande_Id"] == DBNull.Value
-                                    ? null
-                                    : (int?)reader.GetInt32("Commande_Id")
-                            };
-                        }
+                            LivraisonId = Convert.ToInt32(reader["Livraison_Id"]),
+                            LivraisonAdresse = reader["Livraison_Adresse"].ToString(),
+                            LivraisonDate = Convert.ToDateTime(reader["Livraison_Date"])
+                        };
                     }
                 }
             }
-            return l;
+            return livraison;
         }
 
         public void Insert(Livraison entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "INSERT INTO Livraison (Livraison_Id, Livraison_Adresse, Livraison_Date) " +
+                           "VALUES (@Id, @Adresse, @Date)";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"INSERT INTO Livraison 
-                    (Livraison_Id, Livraison_Adresse, Livraison_Date, Commande_Id) 
-                    VALUES (@id, @adresse, @date, @commande)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.LivraisonId);
-                    cmd.Parameters.AddWithValue("@adresse", (object)entity.LivraisonAdresse ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@date", (object)entity.LivraisonDate ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@commande", (object)entity.CommandeId ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", entity.LivraisonId);
+                command.Parameters.AddWithValue("@Adresse", entity.LivraisonAdresse);
+                command.Parameters.AddWithValue("@Date", entity.LivraisonDate);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Update(Livraison entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "UPDATE Livraison SET Livraison_Adresse = @Adresse, Livraison_Date = @Date " +
+                           "WHERE Livraison_Id = @Id";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"UPDATE Livraison SET 
-                    Livraison_Adresse = @adresse, 
-                    Livraison_Date = @date, 
-                    Commande_Id = @commande
-                    WHERE Livraison_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.LivraisonId);
-                    cmd.Parameters.AddWithValue("@adresse", (object)entity.LivraisonAdresse ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@date", (object)entity.LivraisonDate ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@commande", (object)entity.CommandeId ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Adresse", entity.LivraisonAdresse);
+                command.Parameters.AddWithValue("@Date", entity.LivraisonDate);
+                command.Parameters.AddWithValue("@Id", entity.LivraisonId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM Livraison WHERE Livraison_Id = @Id";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "DELETE FROM Livraison WHERE Livraison_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }
-
 }

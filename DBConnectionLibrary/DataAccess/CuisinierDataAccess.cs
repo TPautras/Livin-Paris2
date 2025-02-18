@@ -1,92 +1,99 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
 
-namespace SqlConnector
+namespace SqlConnector.DataAccess
 {
-    public class CuisinierDataAccess : IDataAccess<Cuisinier>
+    public class CuisinierDataAccess : BaseDataAccess, IDataAccess<Cuisinier>
     {
-        private readonly Database _database = new Database();
-
         public List<Cuisinier> GetAll()
         {
-            var result = new List<Cuisinier>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Cuisinier>();
+            string query = "SELECT * FROM Cuisinier";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Cuisinier";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var c = new Cuisinier
+                        list.Add(new Cuisinier
                         {
-                            PersonneId = reader.GetInt32("Cuisinier_Id")
-                        };
-                        result.Add(c);
+                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            CuisinierPassword = reader["Cuisinier_Password"].ToString(),
+                            PersonneId = reader["Personne_Id"].ToString()
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
 
         public Cuisinier GetById(int id)
         {
-            Cuisinier c = null;
-            using (var conn = _database.GetConnection())
+            Cuisinier cuisinier = null;
+            string query = "SELECT * FROM Cuisinier WHERE Cuisinier_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Cuisinier WHERE Cuisinier_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if(reader.Read())
                     {
-                        if (reader.Read())
+                        cuisinier = new Cuisinier
                         {
-                            c = new Cuisinier
-                            {
-                                PersonneId = reader.GetInt32("Cuisinier_Id")
-                            };
-                        }
+                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            CuisinierPassword = reader["Cuisinier_Password"].ToString(),
+                            PersonneId = reader["Personne_Id"].ToString()
+                        };
                     }
                 }
             }
-            return c;
+            return cuisinier;
         }
 
         public void Insert(Cuisinier entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "INSERT INTO Cuisinier (Cuisinier_Id, Cuisinier_Password, Personne_Id) VALUES (@Id, @Password, @PersonneId)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "INSERT INTO Cuisinier (Cuisinier_Id) VALUES (@id)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.PersonneId);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", entity.CuisinierId);
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneId", entity.PersonneId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Update(Cuisinier entity)
         {
-            Console.WriteLine("WORKINPROGRESS");
+            string query = "UPDATE Cuisinier SET Cuisinier_Password = @Password, Personne_Id = @PersonneId WHERE Cuisinier_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneId", entity.PersonneId);
+                command.Parameters.AddWithValue("@Id", entity.CuisinierId);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Delete(int id)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM Cuisinier WHERE Cuisinier_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "DELETE FROM Cuisinier WHERE Cuisinier_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

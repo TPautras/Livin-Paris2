@@ -6,12 +6,12 @@ using SqlConnector.Models;
 
 namespace SqlConnector.DataAccess
 {
-    public class CreationDataAccess : BaseDataAccess, IDataAccess<Creation>
+    public class LivreDataAccess : BaseDataAccess, IDataAccess<Livre>
     {
-        public List<Creation> GetAll()
+        public List<Livre> GetAll()
         {
-            var list = new List<Creation>();
-            string query = "SELECT * FROM Creation";
+            var list = new List<Livre>();
+            string query = "SELECT * FROM livré";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
@@ -20,10 +20,10 @@ namespace SqlConnector.DataAccess
                 {
                     while(reader.Read())
                     {
-                        list.Add(new Creation
+                        list.Add(new Livre
                         {
-                            CommandeId = Convert.ToInt32(reader["Commande_Id"]),
-                            PlatId = Convert.ToInt32(reader["Plat_Id"])
+                            PlatId = Convert.ToInt32(reader["Plat_Id"]),
+                            LivraisonId = Convert.ToInt32(reader["Livraison_Id"])
                         });
                     }
                 }
@@ -31,32 +31,32 @@ namespace SqlConnector.DataAccess
             return list;
         }
 
-        public Creation GetById(int id)
+        public Livre GetById(int id)
         {
-            throw new NotImplementedException("Cette entité possède une clé composite. Utilisez une méthode dédiée.");
+            throw new NotImplementedException("Cette entité possède une clé composite.");
         }
 
-        public void Insert(Creation entity)
+        public void Insert(Livre entity)
         {
-            string query = "INSERT INTO Creation (Commande_Id, Plat_Id) VALUES (@CommandeId, @PlatId)";
+            string query = "INSERT INTO livré (Plat_Id, Livraison_Id) VALUES (@PlatId, @LivraisonId)";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@CommandeId", entity.CommandeId);
                 command.Parameters.AddWithValue("@PlatId", entity.PlatId);
+                command.Parameters.AddWithValue("@LivraisonId", entity.LivraisonId);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
 
-        public void Update(Creation entity)
+        public void Update(Livre entity)
         {
             throw new NotImplementedException("Mise à jour non supportée pour une clé composite.");
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException("Suppression non supportée pour une clé composite. Utilisez une méthode dédiée.");
+            throw new NotImplementedException("Suppression non supportée pour une clé composite.");
         }
     }
 }

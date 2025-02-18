@@ -1,8 +1,8 @@
 ﻿namespace SqlConnector.Models
 {
-    public class Creation
+    public class Livre
     {
-        public int CommandeId { get; set; }
         public int PlatId { get; set; }
+        public int LivraisonId { get; set; }
     }
 }

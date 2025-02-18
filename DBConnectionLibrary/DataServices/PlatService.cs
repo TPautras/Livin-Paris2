@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
 using SqlConnector.Models;
+using SqlConnector.DataAccess;
+using SqlConnector.DataServices;
 
-namespace SqlConnector.DataServices
+namespace SqlConnector.DataService
 {
-    public class PlatService
+    public class PlatService : IDataService<Plat>
     {
-        private readonly PlatDataAccess _dataAccess = new PlatDataAccess();
+        private readonly IDataAccess<Plat> _dataAccess;
+
+        public PlatService(IDataAccess<Plat> dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
 
         public List<Plat> GetAll()
         {
@@ -17,30 +24,35 @@ namespace SqlConnector.DataServices
             return _dataAccess.GetById(id);
         }
 
-        public void Insert(Plat plat)
+        public void Insert(Plat entity)
         {
-            ValidatePlat(plat);
-            _dataAccess.Insert(plat);
+            NumericValidationHelper.ValidatePositiveInt(entity.PlatId, "Plat_Id");
+            DateValidationHelper.ValidateDateNotInPast(entity.PlatDateDeFabrication, "Plat_date_de_fabrication");
+            DateValidationHelper.ValidateDateNotInPast(entity.PlatDateDePeremption, "Plat_Date_de_peremption");
+            ValidationHelper.ValidateStringField(entity.PlatPrix, "Plat_Prix", 50, allowNull: false);
+            NumericValidationHelper.ValidatePositiveInt(entity.PlatNombrePortion, "Plat_Nombre_Portion");
+            NumericValidationHelper.ValidatePositiveInt(entity.CuisinierId, "Cuisinier_Id");
+            NumericValidationHelper.ValidatePositiveInt(entity.RecetteId, "Recette_id");
+
+            _dataAccess.Insert(entity);
         }
 
-        public void Update(Plat plat)
+        public void Update(Plat entity)
         {
-            ValidatePlat(plat);
-            _dataAccess.Update(plat);
+            NumericValidationHelper.ValidatePositiveInt(entity.PlatId, "Plat_Id");
+            DateValidationHelper.ValidateDateNotInPast(entity.PlatDateDeFabrication, "Plat_date_de_fabrication");
+            DateValidationHelper.ValidateDateNotInPast(entity.PlatDateDePeremption, "Plat_Date_de_peremption");
+            ValidationHelper.ValidateStringField(entity.PlatPrix, "Plat_Prix", 50, allowNull: false);
+            NumericValidationHelper.ValidatePositiveInt(entity.PlatNombrePortion, "Plat_Nombre_Portion");
+            NumericValidationHelper.ValidatePositiveInt(entity.CuisinierId, "Cuisinier_Id");
+            NumericValidationHelper.ValidatePositiveInt(entity.RecetteId, "Recette_id");
+
+            _dataAccess.Update(entity);
         }
 
         public void Delete(int id)
         {
             _dataAccess.Delete(id);
-        }
-
-        private void ValidatePlat(Plat p)
-        {
-            ValidationHelper.ValidateStringField(p.PlatNom, "Plat_Nom", 50);
-            ValidationHelper.ValidateStringField(p.PlatOrigine, "Plat_Origine", 50);
-            ValidationHelper.ValidateStringField(p.PlatAromesNaturels, "Plat_Aromes_naturels", 100);
-            ValidationHelper.ValidateStringField(p.PlatTypeDePlat, "Plat_Type_de_plat", 50);
-            ValidationHelper.ValidateStringField(p.PlatRegimeAlimentaire, "Plat_Regime_alimentaire", 50);
         }
     }
 }

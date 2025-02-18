@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
 using SqlConnector.Models;
+using SqlConnector.DataAccess;
+using SqlConnector.DataServices;
 
-namespace SqlConnector.DataServices
+namespace SqlConnector.DataService
 {
-    public class IngredientService
+    public class IngredientService : IDataService<Ingredient>
     {
-        private readonly IngredientDataAccess _dataAccess = new IngredientDataAccess();
+        private readonly IDataAccess<Ingredient> _dataAccess;
+
+        public IngredientService(IDataAccess<Ingredient> dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
 
         public List<Ingredient> GetAll()
         {
@@ -17,28 +24,29 @@ namespace SqlConnector.DataServices
             return _dataAccess.GetById(id);
         }
 
-        public void Insert(Ingredient ing)
+        public void Insert(Ingredient entity)
         {
-            ValidateIngredient(ing);
-            _dataAccess.Insert(ing);
+            NumericValidationHelper.ValidatePositiveInt(entity.IngredientId, "Ingredient_Id");
+            ValidationHelper.ValidateStringField(entity.IngredientNom, "Ingredient_Nom", 50, allowNull: false);
+            ValidationHelper.ValidateStringField(entity.IngredientVolume, "Ingredient_volume", 50, allowNull: false);
+            ValidationHelper.ValidateStringField(entity.IngredientUnite, "Ingrédient_Unité", 50, allowNull: false);
+
+            _dataAccess.Insert(entity);
         }
 
-        public void Update(Ingredient ing)
+        public void Update(Ingredient entity)
         {
-            ValidateIngredient(ing);
-            _dataAccess.Update(ing);
+            NumericValidationHelper.ValidatePositiveInt(entity.IngredientId, "Ingredient_Id");
+            ValidationHelper.ValidateStringField(entity.IngredientNom, "Ingredient_Nom", 50, allowNull: false);
+            ValidationHelper.ValidateStringField(entity.IngredientVolume, "Ingredient_volume", 50, allowNull: false);
+            ValidationHelper.ValidateStringField(entity.IngredientUnite, "Ingrédient_Unité", 50, allowNull: false);
+
+            _dataAccess.Update(entity);
         }
 
         public void Delete(int id)
         {
             _dataAccess.Delete(id);
         }
-
-        private void ValidateIngredient(Ingredient ing)
-        {
-            ValidationHelper.ValidateStringField(ing.Ingredient_Nom, "Ingredient_Nom", 50);
-            ValidationHelper.ValidateStringField(ing.Ingredient_Volume, "Ingredient_Volume", 50);
-        }
     }
-
 }

@@ -92,42 +92,61 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DataAccess\ClientsDataAccess.cs" />
+        <Compile Include="DataAccess\BaseDataAccess.cs" />
+        <Compile Include="DataAccess\ClientDataAccess.cs" />
         <Compile Include="DataAccess\CommandeDataAccess.cs" />
+        <Compile Include="DataAccess\CompositionDeLaRecetteDataAccess.cs" />
         <Compile Include="DataAccess\CompositionDuPlatDataAccess.cs" />
         <Compile Include="DataAccess\ContientDataAccess.cs" />
         <Compile Include="DataAccess\CreationDataAccess.cs" />
         <Compile Include="DataAccess\CuisinierDataAccess.cs" />
         <Compile Include="DataAccess\DataAccess.cs" />
         <Compile Include="DataAccess\Database.cs" />
+        <Compile Include="DataAccess\EntrepriseDataAccess.cs" />
         <Compile Include="DataAccess\EvaluationDataAccess.cs" />
+        <Compile Include="DataAccess\FaitPartieDeDataAccess.cs" />
         <Compile Include="DataAccess\IngredientsDataAccess.cs" />
         <Compile Include="DataAccess\LivraisonDataAccess.cs" />
+        <Compile Include="DataAccess\LivreDataAccess.cs" />
         <Compile Include="DataAccess\PersonneDataAccess.cs" />
         <Compile Include="DataAccess\PlatDataAccess.cs" />
-        <Compile Include="DataServices\ClientsService.cs" />
+        <Compile Include="DataAccess\RecetteDataAccess.cs" />
+        <Compile Include="DataServices\ClientService.cs" />
         <Compile Include="DataServices\CommandeService.cs" />
+        <Compile Include="DataServices\CompositionDeLaRecetteService.cs" />
         <Compile Include="DataServices\CompositionDuPlatService.cs" />
         <Compile Include="DataServices\ContientService.cs" />
         <Compile Include="DataServices\CreationService.cs" />
         <Compile Include="DataServices\CuisinierService.cs" />
+        <Compile Include="DataServices\DateValidationHelper.cs" />
+        <Compile Include="DataServices\EntrepriseService.cs" />
         <Compile Include="DataServices\EvaluationService.cs" />
+        <Compile Include="DataServices\FaitPartieDeService.cs" />
+        <Compile Include="DataServices\IDataService.cs" />
         <Compile Include="DataServices\IngredientService.cs" />
         <Compile Include="DataServices\LivraisonService.cs" />
+        <Compile Include="DataServices\LivreService.cs" />
+        <Compile Include="DataServices\NumericValidationHelper.cs" />
         <Compile Include="DataServices\PersonneService.cs" />
         <Compile Include="DataServices\PlatService.cs" />
+        <Compile Include="DataServices\RecetteService.cs" />
         <Compile Include="DataServices\ValidationHelper.cs" />
-        <Compile Include="Models\Clients.cs" />
+        <Compile Include="Models\Client.cs" />
         <Compile Include="Models\Commande.cs" />
+        <Compile Include="Models\CompositionDeLaRecette.cs" />
         <Compile Include="Models\Composition_du_plat.cs" />
         <Compile Include="Models\Contient.cs" />
         <Compile Include="Models\Creation.cs" />
         <Compile Include="Models\Cuisinier.cs" />
+        <Compile Include="Models\Entreprise.cs" />
         <Compile Include="Models\Evaluation.cs" />
+        <Compile Include="Models\FaitPartieDe.cs" />
         <Compile Include="Models\Ingredient.cs" />
         <Compile Include="Models\Livraison.cs" />
+        <Compile Include="Models\Livre.cs" />
         <Compile Include="Models\Personne.cs" />
         <Compile Include="Models\Plat.cs" />
+        <Compile Include="Models\Recette.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>

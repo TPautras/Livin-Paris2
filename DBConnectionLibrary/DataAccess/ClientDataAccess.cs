@@ -5,13 +5,13 @@ using MySql.Data.MySqlClient;
 
 namespace SqlConnector
 {
-    public class ClientsDataAccess : IDataAccess<Clients>
+    public class ClientDataAccess : IDataAccess<Client>
     {
         private readonly Database _database = new Database();
 
-        public List<Clients> GetAll()
+        public List<Client> GetAll()
         {
-            var result = new List<Clients>();
+            var result = new List<Client>();
             using (var conn = _database.GetConnection())
             {
                 conn.Open();
@@ -21,7 +21,7 @@ namespace SqlConnector
                 {
                     while (reader.Read())
                     {
-                        var c = new Clients
+                        var c = new Client
                         {
                             PersonneId = reader.GetInt32("Client_Id")
                         };
@@ -33,9 +33,9 @@ namespace SqlConnector
             return result;
         }
 
-        public Clients GetById(int id)
+        public Client GetById(int id)
         {
-            Clients c = null;
+            Client c = null;
             using (var conn = _database.GetConnection())
             {
                 conn.Open();
@@ -47,7 +47,7 @@ namespace SqlConnector
                     {
                         if (reader.Read())
                         {
-                            c = new Clients
+                            c = new Client
                             {
                                 PersonneId = reader.GetInt32("Client_Id")
                             };
@@ -59,7 +59,7 @@ namespace SqlConnector
             return c;
         }
 
-        public void Insert(Clients entity)
+        public void Insert(Client entity)
         {
             using (var conn = _database.GetConnection())
             {
@@ -73,7 +73,7 @@ namespace SqlConnector
             }
         }
 
-        public void Update(Clients entity)
+        public void Update(Client entity)
         {
             Console.WriteLine("WORK IN PROGRESS");
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Graphs;
 using SqlConnector;
+using SqlConnectorConsoleApp;
 
 namespace LivinParis_Console
 {

@@ -1,68 +1,58 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
 
-namespace SqlConnector
+namespace SqlConnector.DataAccess
 {
-    public class CommandeDataAccess : IDataAccess<Commande>
+    public class CommandeDataAccess : BaseDataAccess, IDataAccess<Commande>
     {
-        private readonly Database _database = new Database();
-        
         public List<Commande> GetAll()
         {
-            var result = new List<Commande>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Commande>();
+            string query = "SELECT * FROM Commande";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Commande";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var commande = new Commande
+                        list.Add(new Commande
                         {
-                            CommandeId = reader.GetInt32("Commande_Id"),
-                            CommandeDate = reader["Commande_Date"] == DBNull.Value 
-                                ? (DateTime?)null 
-                                : reader.GetDateTime("Commande_Date"),
-                            ClientId = reader["Client_Id"] == DBNull.Value 
-                                ? null 
-                                : (int?)reader.GetInt32("Client_Id")
-                        };
-                        result.Add(commande);
+                            CommandeId = Convert.ToInt32(reader["Commande_Id"]),
+                            EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"]),
+                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            ClientId = Convert.ToInt32(reader["Client_Id"])
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
 
         public Commande GetById(int id)
         {
             Commande commande = null;
-            using (var conn = _database.GetConnection())
+            string query = "SELECT * FROM Commande WHERE Commande_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Commande WHERE Commande_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if(reader.Read())
                     {
-                        if (reader.Read())
+                        commande = new Commande
                         {
-                            commande = new Commande
-                            {
-                                CommandeId = reader.GetInt32("Commande_Id"),
-                                CommandeDate = reader["Commande_Date"] == DBNull.Value 
-                                    ? (DateTime?)null 
-                                    : reader.GetDateTime("Commande_Date"),
-                                ClientId = reader["Client_Id"] == DBNull.Value 
-                                    ? null 
-                                    : (int?)reader.GetInt32("Client_Id")
-                            };
-                        }
+                            CommandeId = Convert.ToInt32(reader["Commande_Id"]),
+                            EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"]),
+                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            ClientId = Convert.ToInt32(reader["Client_Id"])
+                        };
                     }
                 }
             }
@@ -71,52 +61,46 @@ namespace SqlConnector
 
         public void Insert(Commande entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "INSERT INTO Commande (Commande_Id, Entreprise_Id, Cuisinier_Id, Client_Id) " +
+                           "VALUES (@Id, @EntrepriseId, @CuisinierId, @ClientId)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"INSERT INTO Commande (Commande_Id, Commande_Date, Client_Id) 
-                              VALUES (@id, @date, @clientId)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.CommandeId);
-                    cmd.Parameters.AddWithValue("@date", (object)entity.CommandeDate ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@clientId", (object)entity.ClientId ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", entity.CommandeId);
+                command.Parameters.AddWithValue("@EntrepriseId", entity.EntrepriseId);
+                command.Parameters.AddWithValue("@CuisinierId", entity.CuisinierId);
+                command.Parameters.AddWithValue("@ClientId", entity.ClientId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Update(Commande entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "UPDATE Commande SET Entreprise_Id = @EntrepriseId, Cuisinier_Id = @CuisinierId, Client_Id = @ClientId " +
+                           "WHERE Commande_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"UPDATE Commande 
-                              SET Commande_Date = @date, Client_Id = @clientId
-                              WHERE Commande_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.CommandeId);
-                    cmd.Parameters.AddWithValue("@date", (object)entity.CommandeDate ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@clientId", (object)entity.ClientId ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@EntrepriseId", entity.EntrepriseId);
+                command.Parameters.AddWithValue("@CuisinierId", entity.CuisinierId);
+                command.Parameters.AddWithValue("@ClientId", entity.ClientId);
+                command.Parameters.AddWithValue("@Id", entity.CommandeId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM Commande WHERE Commande_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "DELETE FROM Commande WHERE Commande_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }
-
 }

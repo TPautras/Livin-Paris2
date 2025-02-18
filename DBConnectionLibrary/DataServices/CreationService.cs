@@ -1,20 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SqlConnector.Models;
+using SqlConnector.DataAccess;
 
-namespace SqlConnector.DataServices
+namespace SqlConnector.DataService
 {
-    public class CreationService
+    public class CreationService : IDataService<Creation>
     {
-        private readonly CreationDataAccess _dataAccess = new CreationDataAccess();
+        private readonly IDataAccess<Creation> _dataAccess;
+
+        public CreationService(IDataAccess<Creation> dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
 
         public List<Creation> GetAll()
         {
             return _dataAccess.GetAll();
         }
-        
-        public void Insert(Creation c)
+
+        public Creation GetById(int id)
         {
-            _dataAccess.Insert(c);
+            throw new NotImplementedException("Cette entité possède une clé composite. Utilisez une méthode dédiée.");
+        }
+
+        public void Insert(Creation entity)
+        {
+            // Vous pouvez ajouter ici des validations spécifiques aux clés composites si nécessaire.
+            _dataAccess.Insert(entity);
+        }
+
+        public void Update(Creation entity)
+        {
+            throw new NotImplementedException("Mise à jour non supportée pour une clé composite.");
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException("Suppression non supportée pour une clé composite. Utilisez une méthode dédiée.");
         }
     }
 }
