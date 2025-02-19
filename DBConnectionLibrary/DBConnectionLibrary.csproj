@@ -152,6 +152,7 @@
     <ItemGroup>
       <Content Include="Sql\sampleData.sql" />
       <Content Include="Sql\schema.sql" />
+      <Content Include="Sql\setup_livinparis.sql" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

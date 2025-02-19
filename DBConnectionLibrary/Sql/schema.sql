@@ -31,6 +31,7 @@ CREATE TABLE Ingredient(
                            Ingredient_Id INT,
                            Ingredient_Nom VARCHAR(50),
                            Ingredient_volume VARCHAR(50),
+                           Ingrédient_Unité VARCHAR(50),
                            PRIMARY KEY(Ingredient_Id)
 );
 
@@ -49,6 +50,13 @@ CREATE TABLE Recette(
                         Recette_Apport_nutritifs VARCHAR(50),
                         Recette_Regime_alimentaire VARCHAR(50),
                         PRIMARY KEY(Recette_id)
+);
+
+CREATE TABLE Entreprise(
+                           Entreprise_Id INT,
+                           Entreprise_Nom VARCHAR(50) NOT NULL,
+                           PRIMARY KEY(Entreprise_Id),
+                           UNIQUE(Entreprise_Nom)
 );
 
 CREATE TABLE Cuisinier(
@@ -71,9 +79,11 @@ CREATE TABLE Clients(
 
 CREATE TABLE Commande(
                          Commande_Id INT,
+                         Entreprise_Id INT NOT NULL,
                          Cuisinier_Id INT NOT NULL,
                          Client_Id INT NOT NULL,
                          PRIMARY KEY(Commande_Id),
+                         FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id),
                          FOREIGN KEY(Cuisinier_Id) REFERENCES Cuisinier(Cuisinier_Id),
                          FOREIGN KEY(Client_Id) REFERENCES Clients(Client_Id)
 );
@@ -84,20 +94,30 @@ CREATE TABLE Plat(
                      Plat_Date_de_peremption DATE,
                      Plat_Prix VARCHAR(50),
                      Plat_Nombre_Portion INT NOT NULL,
+                     Cuisinier_Id INT NOT NULL,
                      Recette_id INT NOT NULL,
-                     Commande_Id INT NOT NULL,
                      PRIMARY KEY(Plat_Id),
-                     FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id),
-                     FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id)
+                     FOREIGN KEY(Cuisinier_Id) REFERENCES Cuisinier(Cuisinier_Id),
+                     FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id)
 );
 
 CREATE TABLE evaluation(
                            Evaluation_Id INT,
                            Evaluation_Client DECIMAL(15,2),
                            Evaluation_Cuisinier DECIMAL(15,2),
+                           Evaluation_Description_Client TEXT,
+                           Evaluation_Description_Cuisinier TEXT,
                            Commande_Id INT NOT NULL,
                            PRIMARY KEY(Evaluation_Id),
                            FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id)
+);
+
+CREATE TABLE Creation(
+                         Commande_Id INT,
+                         Plat_Id INT,
+                         PRIMARY KEY(Commande_Id, Plat_Id),
+                         FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id),
+                         FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id)
 );
 
 CREATE TABLE Composition_de_la_recette(
@@ -114,4 +134,12 @@ CREATE TABLE livré(
                       PRIMARY KEY(Plat_Id, Livraison_Id),
                       FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id),
                       FOREIGN KEY(Livraison_Id) REFERENCES Livraison(Livraison_Id)
+);
+
+CREATE TABLE Fait_Partie_De(
+                               Personne_Id VARCHAR(50),
+                               Entreprise_Id INT,
+                               PRIMARY KEY(Personne_Id, Entreprise_Id),
+                               FOREIGN KEY(Personne_Id) REFERENCES Personne(Personne_Id),
+                               FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id)
 );

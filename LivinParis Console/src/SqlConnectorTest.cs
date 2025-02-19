@@ -64,10 +64,11 @@ namespace SqlConnectorConsoleApp
                 return;
             }
             Console.Write("Entrez votre mot de passe : ");
+            Client client = clientService.GetById(clientId);
+            Console.WriteLine(client.ClientPassword);
             string password = Console.ReadLine();
 
             // Tentative de connexion
-            Client client = clientService.GetById(clientId);
             if (client == null)
             {
                 Console.WriteLine("Client introuvable.");

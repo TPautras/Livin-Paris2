@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using SqlConnector.DataAccess;
 
 namespace SqlConnector
 {
@@ -11,6 +12,7 @@ namespace SqlConnector
 
         public List<Client> GetAll()
         {
+            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
             var result = new List<Client>();
             using (var conn = _database.GetConnection())
             {
@@ -23,7 +25,10 @@ namespace SqlConnector
                     {
                         var c = new Client
                         {
-                            PersonneId = reader.GetInt32("Client_Id")
+                            ClientId = reader.GetInt32("Client_Id"),
+                            ClientPassword = reader.GetString("Client_Password"),
+                            PersonneId = reader.GetInt32("Personne_Id"),
+                            Personne = personneDataAccess.GetById(reader.GetInt32("Personne_Id"))
                         };
                         result.Add(c);
                     }
@@ -35,6 +40,7 @@ namespace SqlConnector
 
         public Client GetById(int id)
         {
+            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
             Client c = null;
             using (var conn = _database.GetConnection())
             {
@@ -49,7 +55,10 @@ namespace SqlConnector
                         {
                             c = new Client
                             {
-                                PersonneId = reader.GetInt32("Client_Id")
+                                ClientId = reader.GetInt32("Client_Id"),
+                                ClientPassword = reader.GetString("Client_Password"),
+                                PersonneId = reader.GetInt32("Personne_Id"),
+                                Personne = personneDataAccess.GetById(reader.GetInt32("Personne_Id"))
                             };
                         }
                     }
