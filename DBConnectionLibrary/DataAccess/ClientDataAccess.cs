@@ -1,103 +1,111 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-using SqlConnector.DataAccess;
-
-namespace SqlConnector
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
+namespace SqlConnector.DataAccess
 {
-    public class ClientDataAccess : IDataAccess<Client>
+    public class ClientDataAccess : BaseDataAccess, IDataAccess<Client>
     {
-        private readonly Database _database = new Database();
-
         public List<Client> GetAll()
         {
-            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
-            var result = new List<Client>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Client>();
+            string query = "SELECT * FROM Clients";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Clients";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var c = new Client
+                        list.Add(new Client
                         {
-                            ClientId = reader.GetInt32("Client_Id"),
-                            ClientPassword = reader.GetString("Client_Password"),
-                            PersonneId = reader.GetInt32("Personne_Id"),
-                            Personne = personneDataAccess.GetById(reader.GetInt32("Personne_Id"))
-                        };
-                        result.Add(c);
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            ClientPassword = reader["Client_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        });
                     }
                 }
             }
-
-            return result;
+            return list;
         }
 
         public Client GetById(int id)
         {
-            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
+            throw new NotImplementedException();
+        }
+
+        public Client GetByUsername(string username)
+        {
             Client c = null;
-            using (var conn = _database.GetConnection())
+            string query = "SELECT * FROM Clients WHERE Client_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Clients WHERE Client_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if(reader.Read())
                     {
-                        if (reader.Read())
+                        c = new Client
                         {
-                            c = new Client
-                            {
-                                ClientId = reader.GetInt32("Client_Id"),
-                                ClientPassword = reader.GetString("Client_Password"),
-                                PersonneId = reader.GetInt32("Personne_Id"),
-                                Personne = personneDataAccess.GetById(reader.GetInt32("Personne_Id"))
-                            };
-                        }
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            ClientPassword = reader["Client_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        };
                     }
                 }
             }
-
             return c;
         }
-
         public void Insert(Client entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = @"INSERT INTO Clients 
+                             (Client_Username, Client_Password, Personne_Email)
+                             VALUES (@Username, @Password, @PersonneEmail)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "INSERT INTO Clients (Client_Id) VALUES (@id)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.PersonneId);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Username", entity.ClientUsername);
+                command.Parameters.AddWithValue("@Password", entity.ClientPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
-
         public void Update(Client entity)
         {
-            Console.WriteLine("WORK IN PROGRESS");
+            string query = @"UPDATE Clients SET 
+                             Client_Password = @Password,
+                             Personne_Email = @PersonneEmail
+                             WHERE Client_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Password", entity.ClientPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                command.Parameters.AddWithValue("@Username", entity.ClientUsername);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Delete(int id)
         {
-            using (var conn = _database.GetConnection())
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string username)
+        {
+            string query = "DELETE FROM Clients WHERE Client_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "DELETE FROM Clients WHERE Client_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

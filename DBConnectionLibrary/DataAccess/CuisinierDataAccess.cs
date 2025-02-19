@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
 using SqlConnector.Models;
-
 namespace SqlConnector.DataAccess
 {
     public class CuisinierDataAccess : BaseDataAccess, IDataAccess<Cuisinier>
@@ -22,76 +21,85 @@ namespace SqlConnector.DataAccess
                     {
                         list.Add(new Cuisinier
                         {
-                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
                             CuisinierPassword = reader["Cuisinier_Password"].ToString(),
-                            PersonneId = reader["Personne_Id"].ToString()
+                            PersonneEmail = reader["Personne_Email"].ToString()
                         });
                     }
                 }
             }
             return list;
         }
-
         public Cuisinier GetById(int id)
         {
-            Cuisinier cuisinier = null;
-            string query = "SELECT * FROM Cuisinier WHERE Cuisinier_Id = @Id";
+            throw new NotImplementedException("Utilisez GetByUsername(string username).");
+        }
+        public void Insert(Cuisinier entity)
+        {
+            string query = @"INSERT INTO Cuisinier 
+                             (Cuisinier_Username, Cuisinier_Password, Personne_Email)
+                             VALUES (@Username, @Password, @PersonneEmail)";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Username", entity.CuisinierUsername);
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Update(Cuisinier entity)
+        {
+            string query = @"UPDATE Cuisinier SET 
+                             Cuisinier_Password = @Password,
+                             Personne_Email = @PersonneEmail
+                             WHERE Cuisinier_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                command.Parameters.AddWithValue("@Username", entity.CuisinierUsername);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Delete(int id)
+        {
+            throw new NotImplementedException("Utilisez DeleteByUsername(string username).");
+        }
+        public Cuisinier GetByUsername(string username)
+        {
+            Cuisinier c = null;
+            string query = "SELECT * FROM Cuisinier WHERE Cuisinier_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Username", username);
                 connection.Open();
                 using(var reader = command.ExecuteReader())
                 {
                     if(reader.Read())
                     {
-                        cuisinier = new Cuisinier
+                        c = new Cuisinier
                         {
-                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
                             CuisinierPassword = reader["Cuisinier_Password"].ToString(),
-                            PersonneId = reader["Personne_Id"].ToString()
+                            PersonneEmail = reader["Personne_Email"].ToString()
                         };
                     }
                 }
             }
-            return cuisinier;
+            return c;
         }
-
-        public void Insert(Cuisinier entity)
+        public void DeleteByUsername(string username)
         {
-            string query = "INSERT INTO Cuisinier (Cuisinier_Id, Cuisinier_Password, Personne_Id) VALUES (@Id, @Password, @PersonneId)";
+            string query = "DELETE FROM Cuisinier WHERE Cuisinier_Username = @Username";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@Id", entity.CuisinierId);
-                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
-                command.Parameters.AddWithValue("@PersonneId", entity.PersonneId);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void Update(Cuisinier entity)
-        {
-            string query = "UPDATE Cuisinier SET Cuisinier_Password = @Password, Personne_Id = @PersonneId WHERE Cuisinier_Id = @Id";
-            using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
-                command.Parameters.AddWithValue("@PersonneId", entity.PersonneId);
-                command.Parameters.AddWithValue("@Id", entity.CuisinierId);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void Delete(int id)
-        {
-            string query = "DELETE FROM Cuisinier WHERE Cuisinier_Id = @Id";
-            using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Username", username);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

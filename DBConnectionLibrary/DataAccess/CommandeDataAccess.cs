@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
 using SqlConnector.Models;
-
 namespace SqlConnector.DataAccess
 {
     public class CommandeDataAccess : BaseDataAccess, IDataAccess<Commande>
@@ -24,18 +23,17 @@ namespace SqlConnector.DataAccess
                         {
                             CommandeId = Convert.ToInt32(reader["Commande_Id"]),
                             EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"]),
-                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
-                            ClientId = Convert.ToInt32(reader["Client_Id"])
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
+                            ClientUsername = reader["Client_Username"].ToString()
                         });
                     }
                 }
             }
             return list;
         }
-
         public Commande GetById(int id)
         {
-            Commande commande = null;
+            Commande cmd = null;
             string query = "SELECT * FROM Commande WHERE Commande_Id = @Id";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
@@ -46,51 +44,52 @@ namespace SqlConnector.DataAccess
                 {
                     if(reader.Read())
                     {
-                        commande = new Commande
+                        cmd = new Commande
                         {
                             CommandeId = Convert.ToInt32(reader["Commande_Id"]),
                             EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"]),
-                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
-                            ClientId = Convert.ToInt32(reader["Client_Id"])
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
+                            ClientUsername = reader["Client_Username"].ToString()
                         };
                     }
                 }
             }
-            return commande;
+            return cmd;
         }
-
         public void Insert(Commande entity)
         {
-            string query = "INSERT INTO Commande (Commande_Id, Entreprise_Id, Cuisinier_Id, Client_Id) " +
-                           "VALUES (@Id, @EntrepriseId, @CuisinierId, @ClientId)";
+            string query = @"INSERT INTO Commande 
+                             (Commande_Id, Entreprise_Id, Cuisinier_Username, Client_Username)
+                             VALUES (@Id, @EntrepriseId, @CuisinierUsername, @ClientUsername)";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", entity.CommandeId);
                 command.Parameters.AddWithValue("@EntrepriseId", entity.EntrepriseId);
-                command.Parameters.AddWithValue("@CuisinierId", entity.CuisinierId);
-                command.Parameters.AddWithValue("@ClientId", entity.ClientId);
+                command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
+                command.Parameters.AddWithValue("@ClientUsername", entity.ClientUsername);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
-
         public void Update(Commande entity)
         {
-            string query = "UPDATE Commande SET Entreprise_Id = @EntrepriseId, Cuisinier_Id = @CuisinierId, Client_Id = @ClientId " +
-                           "WHERE Commande_Id = @Id";
+            string query = @"UPDATE Commande SET 
+                             Entreprise_Id = @EntrepriseId,
+                             Cuisinier_Username = @CuisinierUsername,
+                             Client_Username = @ClientUsername
+                             WHERE Commande_Id = @Id";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@EntrepriseId", entity.EntrepriseId);
-                command.Parameters.AddWithValue("@CuisinierId", entity.CuisinierId);
-                command.Parameters.AddWithValue("@ClientId", entity.ClientId);
+                command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
+                command.Parameters.AddWithValue("@ClientUsername", entity.ClientUsername);
                 command.Parameters.AddWithValue("@Id", entity.CommandeId);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
-
         public void Delete(int id)
         {
             string query = "DELETE FROM Commande WHERE Commande_Id = @Id";

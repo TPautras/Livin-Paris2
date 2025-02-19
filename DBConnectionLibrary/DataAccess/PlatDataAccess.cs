@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
 using SqlConnector.Models;
-
 namespace SqlConnector.DataAccess
 {
     public class PlatDataAccess : BaseDataAccess, IDataAccess<Plat>
@@ -27,7 +26,7 @@ namespace SqlConnector.DataAccess
                             PlatDateDePeremption = Convert.ToDateTime(reader["Plat_Date_de_peremption"]),
                             PlatPrix = reader["Plat_Prix"].ToString(),
                             PlatNombrePortion = Convert.ToInt32(reader["Plat_Nombre_Portion"]),
-                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
                             RecetteId = Convert.ToInt32(reader["Recette_id"])
                         });
                     }
@@ -35,7 +34,6 @@ namespace SqlConnector.DataAccess
             }
             return list;
         }
-
         public Plat GetById(int id)
         {
             Plat plat = null;
@@ -56,7 +54,7 @@ namespace SqlConnector.DataAccess
                             PlatDateDePeremption = Convert.ToDateTime(reader["Plat_Date_de_peremption"]),
                             PlatPrix = reader["Plat_Prix"].ToString(),
                             PlatNombrePortion = Convert.ToInt32(reader["Plat_Nombre_Portion"]),
-                            CuisinierId = Convert.ToInt32(reader["Cuisinier_Id"]),
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
                             RecetteId = Convert.ToInt32(reader["Recette_id"])
                         };
                     }
@@ -64,12 +62,11 @@ namespace SqlConnector.DataAccess
             }
             return plat;
         }
-
         public void Insert(Plat entity)
         {
             string query = @"INSERT INTO Plat 
-                             (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Id, Recette_id)
-                             VALUES (@Id, @DateFab, @DatePeremption, @Prix, @NombrePortion, @CuisinierId, @RecetteId)";
+                             (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id)
+                             VALUES (@Id, @DateFab, @DatePeremption, @Prix, @NombrePortion, @CuisinierUsername, @RecetteId)";
             using(var connection = GetConnection())
             using(var command = new SqlCommand(query, connection))
             {
@@ -78,21 +75,20 @@ namespace SqlConnector.DataAccess
                 command.Parameters.AddWithValue("@DatePeremption", entity.PlatDateDePeremption);
                 command.Parameters.AddWithValue("@Prix", entity.PlatPrix);
                 command.Parameters.AddWithValue("@NombrePortion", entity.PlatNombrePortion);
-                command.Parameters.AddWithValue("@CuisinierId", entity.CuisinierId);
+                command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
                 command.Parameters.AddWithValue("@RecetteId", entity.RecetteId);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
-
         public void Update(Plat entity)
         {
             string query = @"UPDATE Plat SET 
-                             Plat_date_de_fabrication = @DateFab, 
-                             Plat_Date_de_peremption = @DatePeremption, 
-                             Plat_Prix = @Prix, 
-                             Plat_Nombre_Portion = @NombrePortion, 
-                             Cuisinier_Id = @CuisinierId, 
+                             Plat_date_de_fabrication = @DateFab,
+                             Plat_Date_de_peremption = @DatePeremption,
+                             Plat_Prix = @Prix,
+                             Plat_Nombre_Portion = @NombrePortion,
+                             Cuisinier_Username = @CuisinierUsername,
                              Recette_id = @RecetteId
                              WHERE Plat_Id = @Id";
             using(var connection = GetConnection())
@@ -102,14 +98,13 @@ namespace SqlConnector.DataAccess
                 command.Parameters.AddWithValue("@DatePeremption", entity.PlatDateDePeremption);
                 command.Parameters.AddWithValue("@Prix", entity.PlatPrix);
                 command.Parameters.AddWithValue("@NombrePortion", entity.PlatNombrePortion);
-                command.Parameters.AddWithValue("@CuisinierId", entity.CuisinierId);
+                command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
                 command.Parameters.AddWithValue("@RecetteId", entity.RecetteId);
                 command.Parameters.AddWithValue("@Id", entity.PlatId);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
-
         public void Delete(int id)
         {
             string query = "DELETE FROM Plat WHERE Plat_Id = @Id";

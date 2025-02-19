@@ -11,17 +11,14 @@ namespace SqlConnectorConsoleApp
     {
         public static void ConnectorTest()
         {
-            // Chargement de la configuration d'environnement (ex. pour récupérer la chaîne de connexion)
             DotNetEnv.Env.Load();
             string connString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
             Console.WriteLine("=== Interface Console de Connexion ===");
             Console.WriteLine("Chaîne de connexion : " + connString);
             Console.WriteLine();
 
-            // Instanciation des services nécessaires
             var clientService = new ClientService(new ClientDataAccess());
             var cuisinierService = new CuisinierService(new CuisinierDataAccess());
-            // Vous pouvez ajouter d'autres services pour d'autres entités si besoin
 
             bool exit = false;
             while (!exit)
@@ -57,18 +54,12 @@ namespace SqlConnectorConsoleApp
         static void LoginAndShowClientMenu(ClientService clientService)
         {
             Console.WriteLine("=== Connexion en tant que Client ===");
-            Console.Write("Entrez votre ID (numérique) : ");
-            if (!int.TryParse(Console.ReadLine(), out int clientId))
-            {
-                Console.WriteLine("ID invalide.");
-                return;
-            }
+            Console.Write("Entrez votre Username : ");
+            string username = Console.ReadLine();
             Console.Write("Entrez votre mot de passe : ");
-            Client client = clientService.GetById(clientId);
-            Console.WriteLine(client.ClientPassword);
             string password = Console.ReadLine();
 
-            // Tentative de connexion
+            Client client = clientService.GetByUsername(username);
             if (client == null)
             {
                 Console.WriteLine("Client introuvable.");
@@ -79,7 +70,7 @@ namespace SqlConnectorConsoleApp
                 Console.WriteLine("Mot de passe incorrect.");
                 return;
             }
-            Console.WriteLine("Connexion réussie ! Bienvenue Client " + client.ClientId);
+            Console.WriteLine("Connexion réussie ! Bienvenue Client " + client.ClientUsername);
 
             bool logout = false;
             while (!logout)
@@ -96,8 +87,8 @@ namespace SqlConnectorConsoleApp
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine($"ID: {client.ClientId}");
-                        Console.WriteLine($"Personne ID: {client.PersonneId}");
+                        Console.WriteLine($"Username: {client.ClientUsername}");
+                        Console.WriteLine($"Personne Email: {client.PersonneEmail}");
                         Console.WriteLine($"Mot de passe: {client.ClientPassword}");
                         break;
                     case "2":
@@ -120,27 +111,25 @@ namespace SqlConnectorConsoleApp
         static void LoginAndShowCuisinierMenu(CuisinierService cuisinierService)
         {
             Console.WriteLine("=== Connexion en tant que Cuisinier ===");
-            Console.Write("Entrez votre ID (numérique) : ");
-            if (!int.TryParse(Console.ReadLine(), out int cuisId))
-            {
-                Console.WriteLine("ID invalide.");
-                return;
-            }
+            Console.Write("Entrez votre Username : ");
+            string username = Console.ReadLine();
             Console.Write("Entrez votre mot de passe : ");
             string password = Console.ReadLine();
 
-            Cuisinier cuisinier = cuisinierService.GetById(cuisId);
+            Cuisinier cuisinier = cuisinierService.GetByUsername(username);
             if (cuisinier == null)
             {
                 Console.WriteLine("Cuisinier introuvable.");
                 return;
             }
+
             if (cuisinier.CuisinierPassword != password)
             {
                 Console.WriteLine("Mot de passe incorrect.");
                 return;
             }
-            Console.WriteLine("Connexion réussie ! Bienvenue Cuisinier " + cuisinier.CuisinierId);
+
+            Console.WriteLine("Connexion réussie ! Bienvenue Cuisinier " + cuisinier.CuisinierUsername);
 
             bool logout = false;
             while (!logout)
@@ -157,8 +146,8 @@ namespace SqlConnectorConsoleApp
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine($"ID: {cuisinier.CuisinierId}");
-                        Console.WriteLine($"Personne ID: {cuisinier.PersonneId}");
+                        Console.WriteLine($"Username: {cuisinier.CuisinierUsername}");
+                        Console.WriteLine($"Personne Email: {cuisinier.PersonneEmail}");
                         Console.WriteLine($"Mot de passe: {cuisinier.CuisinierPassword}");
                         break;
                     case "2":

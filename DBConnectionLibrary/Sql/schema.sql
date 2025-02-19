@@ -2,29 +2,33 @@ CREATE DATABASE IF NOT EXISTS livin_paris;
 USE livin_paris;
 
 DROP TABLE IF EXISTS Composition_du_plat CASCADE;
+DROP TABLE IF EXISTS composition_de_la_recette CASCADE;
 DROP TABLE IF EXISTS Ingredient CASCADE;
+DROP TABLE IF EXISTS creation CASCADE;
 DROP TABLE IF EXISTS Contient CASCADE;
-DROP TABLE IF EXISTS Creation CASCADE;
+DROP TABLE IF EXISTS fait_partie_de CASCADE;
+DROP TABLE IF EXISTS livré CASCADE;
 DROP TABLE IF EXISTS Plat CASCADE;
-DROP TABLE IF EXISTS Livraison CASCADE;
+DROP TABLE IF EXISTS livraison CASCADE;
 DROP TABLE IF EXISTS Evaluation CASCADE;
 DROP TABLE IF EXISTS Commande CASCADE;
-DROP TABLE IF EXISTS Cuisinier CASCADE;
+DROP TABLE IF EXISTS cuisinier CASCADE;
 DROP TABLE IF EXISTS Clients CASCADE;
-DROP TABLE IF EXISTS Personne CASCADE;
+DROP TABLE IF EXISTS personne CASCADE;
+DROP TABLE IF EXISTS entreprise CASCADE;
+DROP TABLE IF EXISTS recette CASCADE;
 
 CREATE TABLE Personne(
-                         Personne_Id VARCHAR(50),
+                         Personne_Email VARCHAR(50),
                          Personne_Nom VARCHAR(50),
                          Personne_Prenom VARCHAR(50),
                          Personne_Ville VARCHAR(50),
                          Personne_Code_postale INT,
                          Personne_Nom_de_la_rue VARCHAR(50),
                          Personne_Numero_de_la_rue INT,
-                         Personne_Email VARCHAR(50),
                          Personne_Telephone VARCHAR(50),
                          Personne_Station_de_metro_la_plus_proche VARCHAR(50),
-                         PRIMARY KEY(Personne_Id)
+                         PRIMARY KEY(Personne_Email)
 );
 
 CREATE TABLE Ingredient(
@@ -60,32 +64,32 @@ CREATE TABLE Entreprise(
 );
 
 CREATE TABLE Cuisinier(
-                          Cuisinier_Id INT,
+                          Cuisinier_Username VARCHAR(50),
                           Cuisinier_Password VARCHAR(50) NOT NULL,
-                          Personne_Id VARCHAR(50) NOT NULL,
-                          PRIMARY KEY(Cuisinier_Id),
-                          UNIQUE(Personne_Id),
-                          FOREIGN KEY(Personne_Id) REFERENCES Personne(Personne_Id)
+                          Personne_Email VARCHAR(50) NOT NULL,
+                          PRIMARY KEY(Cuisinier_Username),
+                          UNIQUE(Personne_Email),
+                          FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email)
 );
 
 CREATE TABLE Clients(
-                        Client_Id INT,
+                        Client_Username VARCHAR(50),
                         Client_Password VARCHAR(50) NOT NULL,
-                        Personne_Id VARCHAR(50) NOT NULL,
-                        PRIMARY KEY(Client_Id),
-                        UNIQUE(Personne_Id),
-                        FOREIGN KEY(Personne_Id) REFERENCES Personne(Personne_Id)
+                        Personne_Email VARCHAR(50) NOT NULL,
+                        PRIMARY KEY(Client_Username),
+                        UNIQUE(Personne_Email),
+                        FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email)
 );
 
 CREATE TABLE Commande(
                          Commande_Id INT,
                          Entreprise_Id INT NOT NULL,
-                         Cuisinier_Id INT NOT NULL,
-                         Client_Id INT NOT NULL,
+                         Cuisinier_Username VARCHAR(50) NOT NULL,
+                         Client_Username VARCHAR(50) NOT NULL,
                          PRIMARY KEY(Commande_Id),
                          FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id),
-                         FOREIGN KEY(Cuisinier_Id) REFERENCES Cuisinier(Cuisinier_Id),
-                         FOREIGN KEY(Client_Id) REFERENCES Clients(Client_Id)
+                         FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username),
+                         FOREIGN KEY(Client_Username) REFERENCES Clients(Client_Username)
 );
 
 CREATE TABLE Plat(
@@ -94,10 +98,10 @@ CREATE TABLE Plat(
                      Plat_Date_de_peremption DATE,
                      Plat_Prix VARCHAR(50),
                      Plat_Nombre_Portion INT NOT NULL,
-                     Cuisinier_Id INT NOT NULL,
+                     Cuisinier_Username VARCHAR(50) NOT NULL,
                      Recette_id INT NOT NULL,
                      PRIMARY KEY(Plat_Id),
-                     FOREIGN KEY(Cuisinier_Id) REFERENCES Cuisinier(Cuisinier_Id),
+                     FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username),
                      FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id)
 );
 
@@ -137,9 +141,9 @@ CREATE TABLE livré(
 );
 
 CREATE TABLE Fait_Partie_De(
-                               Personne_Id VARCHAR(50),
+                               Personne_Email VARCHAR(50),
                                Entreprise_Id INT,
-                               PRIMARY KEY(Personne_Id, Entreprise_Id),
-                               FOREIGN KEY(Personne_Id) REFERENCES Personne(Personne_Id),
+                               PRIMARY KEY(Personne_Email, Entreprise_Id),
+                               FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email),
                                FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id)
 );
