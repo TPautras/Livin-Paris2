@@ -6,8 +6,16 @@ namespace Graphs
 {
     public class Graphe<T>
     {
+        /// <summary>
+        /// Fonction qui donne l'accès en lecture et en écriture
+        /// </summary>
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
-
+        /// <summary>
+        /// Constructeur de la classe Graphe
+        /// </summary>
+        /// <param name="path">variable chemin</param>
+        /// <param name="divider">variable diviseur</param>
+        /// <param name="maxCount">variable nombreMax</param>
         public Graphe(string path, char divider, int maxCount)
         {
             try
@@ -34,7 +42,11 @@ namespace Graphs
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Fonction qui permet d'ajouter un Noeuds
+        /// </summary>
+        /// <param name="id">identifiant du noeud</param>
+        /// <param name="valeur">valeur du noeud</param>
         public void AjouterNoeud(int id, T valeur = default)
         {
             if (!Noeuds.ContainsKey(id))
@@ -42,7 +54,12 @@ namespace Graphs
                 Noeuds[id] = new Noeud<T>(id, valeur);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idSource"></param>
+        /// <param name="idDestination"></param>
+        /// <param name="poids"></param>
         public void AjouterLien(int idSource, int idDestination, double poids = 1)
         {
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
@@ -80,7 +97,10 @@ namespace Graphs
             }
             return res;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool Connexe()
         {
             bool res = true;
@@ -95,7 +115,10 @@ namespace Graphs
         {
             return Noeuds.Count;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int Taille()
         {
             int res = 0;
@@ -105,6 +128,10 @@ namespace Graphs
             }
             return res;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool Pondere()
         {
             bool res = false;
@@ -119,7 +146,10 @@ namespace Graphs
             return res;
         }
         #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startIndex"></param>
         #region Parcours
         public void BFS(int startIndex)
         {
@@ -152,7 +182,10 @@ namespace Graphs
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startIndex"></param>
         public void DFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -188,16 +221,22 @@ namespace Graphs
             }
         }
         #endregion
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         #region Modes d'affichage
-
+      
         public string MatriceAdjacence()
         {
             string res = "";
 
             return res;
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string ListeAdjacence()
         {
             string res = "";
