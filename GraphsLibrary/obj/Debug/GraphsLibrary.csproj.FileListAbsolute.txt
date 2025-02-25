@@ -9,3 +9,13 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\GraphsLibrary\obj\Debug\Graphs
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLi.EAF20264.Up2Date
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\GraphsLibrary.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\GraphsLibrary.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Common.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Common.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Common.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.csproj.AssemblyReference.cache
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.csproj.CopyComplete
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.pdb
