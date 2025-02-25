@@ -1,0 +1,9 @@
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\bin\Debug\LivinParis.exe.config
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\bin\Debug\LivinParis.exe
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\bin\Debug\LivinParis.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\obj\Debug\LivinParis.csproj.AssemblyReference.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\obj\Debug\LivinParis.Properties.Resources.resources
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\obj\Debug\LivinParis.csproj.GenerateResource.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\obj\Debug\LivinParis.csproj.CoreCompileInputs.cache
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\obj\Debug\LivinParis.exe
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis\obj\Debug\LivinParis.pdb

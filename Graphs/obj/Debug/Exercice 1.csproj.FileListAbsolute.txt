@@ -1,0 +1,44 @@
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Exercice 1.exe.config
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Exercice 1.exe
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Exercice 1.pdb
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.csproj.AssemblyReference.cache
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.csproj.CoreCompileInputs.cache
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.exe
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.pdb
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Common.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Common.pdb
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Common.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Google.Protobuf.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\MySql.Data.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Buffers.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.IO.Pipelines.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Memory.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\ZstdSharp.dll
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Google.Protobuf.pdb
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Google.Protobuf.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\MySql.Data.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Buffers.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.IO.Pipelines.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Memory.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\paren\Source\Repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\Exercice 1\bin\Debug\System.Drawing.Primitives.dll
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\Exercice 1\obj\Debug\Exercice 1.csproj.Up2Date
