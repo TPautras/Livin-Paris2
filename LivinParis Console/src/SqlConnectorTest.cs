@@ -1,20 +1,34 @@
-﻿using System;
-using SqlConnector;
+﻿// File: Program.cs
+using System;
+using System.Collections.Generic;
 using SqlConnector.Models;
-using SqlConnector.DataService;
 using SqlConnector.DataAccess;
+using SqlConnector.DataService;
 
-
-namespace SqlConnectorConsoleApp
+namespace LivinParis_Console
 {
-    class SqlConnectorTest
+    public class SqlConnectorTest
     {
         public static void ConnectorTest()
         {
             DotNetEnv.Env.Load();
             string connString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            if (string.IsNullOrWhiteSpace(connString))
+            {
+                connString = "Server=localhost;Port=3306;Database=livin_paris;Uid=root;Password=root;";
+            }
             Console.WriteLine("=== Interface Console de Connexion ===");
             Console.WriteLine("Chaîne de connexion : " + connString);
+            Console.WriteLine();
+
+            // Pour le développement : affichage des identifiants de test
+            Console.WriteLine("=== Identifiants de test ===");
+            Console.WriteLine("Clients :");
+            Console.WriteLine("  Username: client1  /  Mot de passe: clientpass1");
+            Console.WriteLine("  Username: client2  /  Mot de passe: clientpass2");
+            Console.WriteLine("Cuisiniers :");
+            Console.WriteLine("  Username: chef1    /  Mot de passe: chefpass1");
+            Console.WriteLine("  Username: chef2    /  Mot de passe: chefpass2");
             Console.WriteLine();
 
             var clientService = new ClientService(new ClientDataAccess());
@@ -24,15 +38,16 @@ namespace SqlConnectorConsoleApp
             while (!exit)
             {
                 Console.WriteLine();
-                Console.WriteLine("Sélectionnez votre rôle pour vous connecter :");
-                Console.WriteLine("1. Client");
-                Console.WriteLine("2. Cuisinier");
-                Console.WriteLine("3. Quitter");
+                Console.WriteLine("Sélectionnez une option :");
+                Console.WriteLine("1. Se connecter en tant que Client");
+                Console.WriteLine("2. Se connecter en tant que Cuisinier");
+                Console.WriteLine("3. Lister tous les identifiants (Clients et Cuisiniers)");
+                Console.WriteLine("4. Quitter");
                 Console.Write("Votre choix : ");
-                string roleChoice = Console.ReadLine();
+                string choice = Console.ReadLine();
                 Console.WriteLine();
 
-                switch (roleChoice)
+                switch (choice)
                 {
                     case "1":
                         LoginAndShowClientMenu(clientService);
@@ -41,6 +56,9 @@ namespace SqlConnectorConsoleApp
                         LoginAndShowCuisinierMenu(cuisinierService);
                         break;
                     case "3":
+                        ListAllCredentials(clientService, cuisinierService);
+                        break;
+                    case "4":
                         exit = true;
                         break;
                     default:
@@ -122,13 +140,11 @@ namespace SqlConnectorConsoleApp
                 Console.WriteLine("Cuisinier introuvable.");
                 return;
             }
-
             if (cuisinier.CuisinierPassword != password)
             {
                 Console.WriteLine("Mot de passe incorrect.");
                 return;
             }
-
             Console.WriteLine("Connexion réussie ! Bienvenue Cuisinier " + cuisinier.CuisinierUsername);
 
             bool logout = false;
@@ -164,6 +180,24 @@ namespace SqlConnectorConsoleApp
                         Console.WriteLine("Choix invalide.");
                         break;
                 }
+            }
+        }
+
+        static void ListAllCredentials(ClientService clientService, CuisinierService cuisinierService)
+        {
+            Console.WriteLine("=== Liste des Identifiants ===");
+            Console.WriteLine("Clients :");
+            List<Client> clients = clientService.GetAll();
+            foreach (var c in clients)
+            {
+                Console.WriteLine($"Username: {c.ClientUsername} - Mot de passe: {c.ClientPassword} - Email: {c.PersonneEmail}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Cuisiniers :");
+            List<Cuisinier> cuisiniers = cuisinierService.GetAll();
+            foreach (var cu in cuisiniers)
+            {
+                Console.WriteLine($"Username: {cu.CuisinierUsername} - Mot de passe: {cu.CuisinierPassword} - Email: {cu.PersonneEmail}");
             }
         }
     }
