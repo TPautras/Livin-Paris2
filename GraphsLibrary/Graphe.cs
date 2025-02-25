@@ -188,6 +188,23 @@ namespace Graphs
             }
         }
         #endregion
+        
+        #region Modes d'affichage
+
+        public string MatriceAdjacence()
+        {
+            string res = "";
+
+            return res;
+        }
+        
+        public string ListeAdjacence()
+        {
+            string res = "";
+
+            return res;
+        }
+        #endregion
 
     }
 }
