@@ -2,6 +2,17 @@
 
 Par Candice ALEV, Samuel BENCHIMOL, Thomas PAUTRAS
 
+## Pour le rendu 1
+
+**Partie BDD** : Les différents schémas se trouvent dans le dossier Assets,
+le peuplement de la base de donnée et les différentes requêtes "simples" demandées se trouvent dans
+SqlConnector>Sql
+
+**Partie Graphe** : Les différentes classes demandées se trouvent dans le projet
+GraphsLibrary, quand au test de ces classes, il se trouve dans LivinParis Console qu'il faut exécuter
+
+**Autre** : Les tests notamment se trouvent dans le projet de test associé
+
 ## Contenu de la solution
 
 ### Projet Librairie 1 : GraphsLibrary
@@ -33,3 +44,10 @@ Ce projet sert à faire l'interface avec l'utilisateur et pour l'instant à test
 
 Ce projet sert également à faire l'interface avec l'utilisateur, il utilisera à terme les librairies définies plus haut, et sera le projet d'interface graphique.
 
+### Assets
+
+Dans ce dossier se trouvent tous les Assets qui se trouvent dans le projet.
+On retrouve notamment :
+- **Le fichier .loo comprenant notre diagramme entité association**
+- Les différents fichiers utilisés pour injecter des données dans les bases de donnée
+- L'énoncé du projet PSI
