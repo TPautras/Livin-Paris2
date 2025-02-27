@@ -198,7 +198,7 @@ namespace Graphs
         /// <returns>
         /// la matrice adjacente double ainsi créee.
         /// </returns>
-        public double[,] MatriceAdjacence()
+        public string MatriceAdjacence()
         {
             int taille = this.Noeuds.Count;
             double[,] result= new double[taille, taille];
@@ -233,9 +233,19 @@ namespace Graphs
 
                 }
             }
-            return result;
+
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    Console.Write(result[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
         }
-        
+
+      
         public int[,] ListeAdjacence()
         {
             string res = "";
