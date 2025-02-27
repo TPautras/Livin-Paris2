@@ -1,92 +1,107 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-
-namespace SqlConnector
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
+namespace SqlConnector.DataAccess
 {
-    public class CuisinierDataAccess : IDataAccess<Cuisinier>
+    public class CuisinierDataAccess : BaseDataAccess, IDataAccess<Cuisinier>
     {
-        private readonly Database _database = new Database();
-
         public List<Cuisinier> GetAll()
         {
-            var result = new List<Cuisinier>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Cuisinier>();
+            string query = "SELECT * FROM Cuisinier";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Cuisinier";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var c = new Cuisinier
+                        list.Add(new Cuisinier
                         {
-                            PersonneId = reader.GetInt32("Cuisinier_Id")
-                        };
-                        result.Add(c);
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
+                            CuisinierPassword = reader["Cuisinier_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
-
         public Cuisinier GetById(int id)
         {
-            Cuisinier c = null;
-            using (var conn = _database.GetConnection())
+            throw new NotImplementedException("Utilisez GetByUsername(string username).");
+        }
+        public void Insert(Cuisinier entity)
+        {
+            string query = @"INSERT INTO Cuisinier 
+                             (Cuisinier_Username, Cuisinier_Password, Personne_Email)
+                             VALUES (@Username, @Password, @PersonneEmail)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Cuisinier WHERE Cuisinier_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Username", entity.CuisinierUsername);
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Update(Cuisinier entity)
+        {
+            string query = @"UPDATE Cuisinier SET 
+                             Cuisinier_Password = @Password,
+                             Personne_Email = @PersonneEmail
+                             WHERE Cuisinier_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                command.Parameters.AddWithValue("@Username", entity.CuisinierUsername);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Delete(int id)
+        {
+            throw new NotImplementedException("Utilisez DeleteByUsername(string username).");
+        }
+        public Cuisinier GetByUsername(string username)
+        {
+            Cuisinier c = null;
+            string query = "SELECT * FROM Cuisinier WHERE Cuisinier_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if(reader.Read())
                     {
-                        if (reader.Read())
+                        c = new Cuisinier
                         {
-                            c = new Cuisinier
-                            {
-                                PersonneId = reader.GetInt32("Cuisinier_Id")
-                            };
-                        }
+                            CuisinierUsername = reader["Cuisinier_Username"].ToString(),
+                            CuisinierPassword = reader["Cuisinier_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        };
                     }
                 }
             }
             return c;
         }
-
-        public void Insert(Cuisinier entity)
+        public void DeleteByUsername(string username)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM Cuisinier WHERE Cuisinier_Username = @Username";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "INSERT INTO Cuisinier (Cuisinier_Id) VALUES (@id)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.PersonneId);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void Update(Cuisinier entity)
-        {
-            Console.WriteLine("WORKINPROGRESS");
-        }
-
-        public void Delete(int id)
-        {
-            using (var conn = _database.GetConnection())
-            {
-                conn.Open();
-                var query = "DELETE FROM Cuisinier WHERE Cuisinier_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

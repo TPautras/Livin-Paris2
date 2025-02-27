@@ -1,131 +1,119 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
 
-namespace SqlConnector
+namespace SqlConnector.DataAccess
 {
-    public class EvaluationDataAccess : IDataAccess<Evaluation>
+    public class EvaluationDataAccess : BaseDataAccess, IDataAccess<Evaluation>
     {
-        private readonly Database _database = new Database();
-
         public List<Evaluation> GetAll()
         {
-            var result = new List<Evaluation>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Evaluation>();
+            string query = "SELECT * FROM evaluation";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Evaluation";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var e = new Evaluation
+                        list.Add(new Evaluation
                         {
-                            EvaluationId = reader.GetInt32("Evaluation_Id"),
-                            EvaluationClient = reader["Evaluation_Client"] == DBNull.Value
-                                ? null
-                                : (int?)reader.GetInt32("Evaluation_Client"),
-                            EvaluationCuisinier = reader["Evaluation_Cuisinier"] == DBNull.Value
-                                ? null
-                                : (int?)reader.GetInt32("Evaluation_Cuisinier"),
-                            CommandeId = reader["Commande_Id"] == DBNull.Value
-                                ? null
-                                : (int?)reader.GetInt32("Commande_Id")
-                        };
-                        result.Add(e);
+                            EvaluationId = Convert.ToInt32(reader["Evaluation_Id"]),
+                            EvaluationClient = Convert.ToDecimal(reader["Evaluation_Client"]),
+                            EvaluationCuisinier = Convert.ToDecimal(reader["Evaluation_Cuisinier"]),
+                            EvaluationDescriptionClient = reader["Evaluation_Description_Client"].ToString(),
+                            EvaluationDescriptionCuisinier = reader["Evaluation_Description_Cuisinier"].ToString(),
+                            CommandeId = Convert.ToInt32(reader["Commande_Id"])
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
 
         public Evaluation GetById(int id)
         {
-            Evaluation e = null;
-            using (var conn = _database.GetConnection())
+            Evaluation evaluation = null;
+            string query = "SELECT * FROM evaluation WHERE Evaluation_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Evaluation WHERE Evaluation_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if(reader.Read())
                     {
-                        if (reader.Read())
+                        evaluation = new Evaluation
                         {
-                            e = new Evaluation
-                            {
-                                EvaluationId = reader.GetInt32("Evaluation_Id"),
-                                EvaluationClient = reader["Evaluation_Client"] == DBNull.Value
-                                    ? null
-                                    : (int?)reader.GetInt32("Evaluation_Client"),
-                                EvaluationCuisinier = reader["Evaluation_Cuisinier"] == DBNull.Value
-                                    ? null
-                                    : (int?)reader.GetInt32("Evaluation_Cuisinier"),
-                                CommandeId = reader["Commande_Id"] == DBNull.Value
-                                    ? null
-                                    : (int?)reader.GetInt32("Commande_Id")
-                            };
-                        }
+                            EvaluationId = Convert.ToInt32(reader["Evaluation_Id"]),
+                            EvaluationClient = Convert.ToDecimal(reader["Evaluation_Client"]),
+                            EvaluationCuisinier = Convert.ToDecimal(reader["Evaluation_Cuisinier"]),
+                            EvaluationDescriptionClient = reader["Evaluation_Description_Client"].ToString(),
+                            EvaluationDescriptionCuisinier = reader["Evaluation_Description_Cuisinier"].ToString(),
+                            CommandeId = Convert.ToInt32(reader["Commande_Id"])
+                        };
                     }
                 }
             }
-            return e;
+            return evaluation;
         }
 
         public void Insert(Evaluation entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = @"INSERT INTO evaluation 
+                             (Evaluation_Id, Evaluation_Client, Evaluation_Cuisinier, Evaluation_Description_Client, Evaluation_Description_Cuisinier, Commande_Id)
+                             VALUES (@Id, @Client, @Cuisinier, @DescClient, @DescCuisinier, @CommandeId)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"INSERT INTO Evaluation 
-                    (Evaluation_Id, Evaluation_Client, Evaluation_Cuisinier, Commande_Id) 
-                    VALUES (@id, @client, @cuisinier, @commande)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.EvaluationId);
-                    cmd.Parameters.AddWithValue("@client", (object)entity.EvaluationClient ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@cuisinier", (object)entity.EvaluationCuisinier ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@commande", (object)entity.CommandeId ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", entity.EvaluationId);
+                command.Parameters.AddWithValue("@Client", entity.EvaluationClient);
+                command.Parameters.AddWithValue("@Cuisinier", entity.EvaluationCuisinier);
+                command.Parameters.AddWithValue("@DescClient", entity.EvaluationDescriptionClient);
+                command.Parameters.AddWithValue("@DescCuisinier", entity.EvaluationDescriptionCuisinier);
+                command.Parameters.AddWithValue("@CommandeId", entity.CommandeId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Update(Evaluation entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = @"UPDATE evaluation SET 
+                             Evaluation_Client = @Client, 
+                             Evaluation_Cuisinier = @Cuisinier, 
+                             Evaluation_Description_Client = @DescClient, 
+                             Evaluation_Description_Cuisinier = @DescCuisinier, 
+                             Commande_Id = @CommandeId
+                             WHERE Evaluation_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"UPDATE Evaluation SET 
-                    Evaluation_Client = @client, 
-                    Evaluation_Cuisinier = @cuisinier, 
-                    Commande_Id = @commande
-                    WHERE Evaluation_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.EvaluationId);
-                    cmd.Parameters.AddWithValue("@client", (object)entity.EvaluationClient ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@cuisinier", (object)entity.EvaluationCuisinier ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@commande", (object)entity.CommandeId ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Client", entity.EvaluationClient);
+                command.Parameters.AddWithValue("@Cuisinier", entity.EvaluationCuisinier);
+                command.Parameters.AddWithValue("@DescClient", entity.EvaluationDescriptionClient);
+                command.Parameters.AddWithValue("@DescCuisinier", entity.EvaluationDescriptionCuisinier);
+                command.Parameters.AddWithValue("@CommandeId", entity.CommandeId);
+                command.Parameters.AddWithValue("@Id", entity.EvaluationId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM evaluation WHERE Evaluation_Id = @Id";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "DELETE FROM Evaluation WHERE Evaluation_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

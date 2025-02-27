@@ -1,152 +1,138 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-
-namespace SqlConnector
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
+namespace SqlConnector.DataAccess
 {
-    public class PersonneDataAccess : IDataAccess<Personne>
+    public class PersonneDataAccess : BaseDataAccess, IDataAccess<Personne>
     {
-        private readonly Database _database = new Database();
-
         public List<Personne> GetAll()
         {
-            var result = new List<Personne>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Personne>();
+            string query = "SELECT * FROM Personne";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Personne";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var p = new Personne
+                        list.Add(new Personne
                         {
-                            PersonneId = reader.GetInt32("Personne_Id"),
-                            PersonneNom = reader.GetString("Personne_Nom"),
-                            PersonnePrenom = reader.GetString("Personne_Prenom"),
-                            PersonneNumeroDeLicence = reader["Personne_Numero_de_licence"] as string,
-                            PersonneVille = reader["Personne_Ville"] as string,
-                            PersonneCodepostale = reader["Personne_Code_postale"] as string,
-                            PersonneNomDeLaRue = reader["Personne_Nom_de_la_rue"] as string,
-                            PersonneEmail = reader["Personne_Email"] as string,
-                            PersonneTelephone = reader["Personne_Telephone"] as string,
-                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"] as string
-                        };
-                        result.Add(p);
+                            PersonneEmail = reader["Personne_Email"].ToString(),
+                            PersonneNom = reader["Personne_Nom"].ToString(),
+                            PersonnePrenom = reader["Personne_Prenom"].ToString(),
+                            PersonneVille = reader["Personne_Ville"].ToString(),
+                            PersonneCodePostale = Convert.ToInt32(reader["Personne_Code_postale"]),
+                            PersonneNomDeLaRue = reader["Personne_Nom_de_la_rue"].ToString(),
+                            PersonneNumeroDeLaRue = Convert.ToInt32(reader["Personne_Numero_de_la_rue"]),
+                            PersonneTelephone = reader["Personne_Telephone"].ToString(),
+                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString()
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
-
         public Personne GetById(int id)
         {
-            Personne p = null;
-            using (var conn = _database.GetConnection())
+            throw new NotImplementedException("Utilisez GetByEmail pour récupérer une Personne.");
+        }
+        public void Insert(Personne entity)
+        {
+            string query = @"INSERT INTO Personne 
+                             (Personne_Email, Personne_Nom, Personne_Prenom, Personne_Ville, Personne_Code_postale,
+                              Personne_Nom_de_la_rue, Personne_Numero_de_la_rue, Personne_Telephone, Personne_Station_de_metro_la_plus_proche)
+                             VALUES (@Email, @Nom, @Prenom, @Ville, @CodePostale, @NomRue, @NumeroRue, @Telephone, @Metro)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Personne WHERE Personne_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Email", entity.PersonneEmail);
+                command.Parameters.AddWithValue("@Nom", entity.PersonneNom);
+                command.Parameters.AddWithValue("@Prenom", entity.PersonnePrenom);
+                command.Parameters.AddWithValue("@Ville", entity.PersonneVille);
+                command.Parameters.AddWithValue("@CodePostale", entity.PersonneCodePostale);
+                command.Parameters.AddWithValue("@NomRue", entity.PersonneNomDeLaRue);
+                command.Parameters.AddWithValue("@NumeroRue", entity.PersonneNumeroDeLaRue);
+                command.Parameters.AddWithValue("@Telephone", entity.PersonneTelephone);
+                command.Parameters.AddWithValue("@Metro", entity.PersonneStationDeMetroLaPlusProche);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Update(Personne entity)
+        {
+            string query = @"UPDATE Personne SET 
+                             Personne_Nom = @Nom,
+                             Personne_Prenom = @Prenom,
+                             Personne_Ville = @Ville,
+                             Personne_Code_postale = @CodePostale,
+                             Personne_Nom_de_la_rue = @NomRue,
+                             Personne_Numero_de_la_rue = @NumeroRue,
+                             Personne_Telephone = @Telephone,
+                             Personne_Station_de_metro_la_plus_proche = @Metro
+                             WHERE Personne_Email = @Email";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Nom", entity.PersonneNom);
+                command.Parameters.AddWithValue("@Prenom", entity.PersonnePrenom);
+                command.Parameters.AddWithValue("@Ville", entity.PersonneVille);
+                command.Parameters.AddWithValue("@CodePostale", entity.PersonneCodePostale);
+                command.Parameters.AddWithValue("@NomRue", entity.PersonneNomDeLaRue);
+                command.Parameters.AddWithValue("@NumeroRue", entity.PersonneNumeroDeLaRue);
+                command.Parameters.AddWithValue("@Telephone", entity.PersonneTelephone);
+                command.Parameters.AddWithValue("@Metro", entity.PersonneStationDeMetroLaPlusProche);
+                command.Parameters.AddWithValue("@Email", entity.PersonneEmail);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Delete(int id)
+        {
+            throw new NotImplementedException("Utilisez DeleteByEmail pour supprimer une Personne.");
+        }
+        public Personne GetByEmail(string email)
+        {
+            Personne p = null;
+            string query = "SELECT * FROM Personne WHERE Personne_Email = @Email";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", email);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if(reader.Read())
                     {
-                        if (reader.Read())
+                        p = new Personne
                         {
-                            p = new Personne
-                            {
-                                PersonneId = reader.GetInt32("Personne_Id"),
-                                PersonneNom = reader.GetString("Personne_Nom"),
-                                PersonnePrenom = reader.GetString("Personne_Prenom"),
-                                PersonneNumeroDeLicence = reader["Personne_Numero_de_licence"] as string,
-                                PersonneVille = reader["Personne_Ville"] as string,
-                                PersonneCodepostale = reader["Personne_Code_postale"] as string,
-                                PersonneNomDeLaRue = reader["Personne_Nom_de_la_rue"] as string,
-                                PersonneEmail = reader["Personne_Email"] as string,
-                                PersonneTelephone = reader["Personne_Telephone"] as string,
-                                PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"] as string
-                            };
-                        }
+                            PersonneEmail = reader["Personne_Email"].ToString(),
+                            PersonneNom = reader["Personne_Nom"].ToString(),
+                            PersonnePrenom = reader["Personne_Prenom"].ToString(),
+                            PersonneVille = reader["Personne_Ville"].ToString(),
+                            PersonneCodePostale = Convert.ToInt32(reader["Personne_Code_postale"]),
+                            PersonneNomDeLaRue = reader["Personne_Nom_de_la_rue"].ToString(),
+                            PersonneNumeroDeLaRue = Convert.ToInt32(reader["Personne_Numero_de_la_rue"]),
+                            PersonneTelephone = reader["Personne_Telephone"].ToString(),
+                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString()
+                        };
                     }
                 }
             }
             return p;
         }
-
-        public void Insert(Personne entity)
+        public void DeleteByEmail(string email)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM Personne WHERE Personne_Email = @Email";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"INSERT INTO Personne 
-                    (Personne_Id, Personne_Nom, Personne_Prenom, Personne_Numero_de_licence, Personne_Ville, 
-                     Personne_Code_postale, Personne_Nom_de_la_rue, Personne_Email, Personne_Telephone, 
-                     Personne_Station_de_metro_la_plus_proche)
-                    VALUES
-                    (@id, @nom, @prenom, @licence, @ville, @cp, @rue, @mail, @tel, @metro)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.PersonneId);
-                    cmd.Parameters.AddWithValue("@nom", entity.PersonneNom);
-                    cmd.Parameters.AddWithValue("@prenom", entity.PersonnePrenom);
-                    cmd.Parameters.AddWithValue("@licence", (object)entity.PersonneNumeroDeLicence ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@ville", (object)entity.PersonneVille ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@cp", (object)entity.PersonneCodepostale ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@rue", (object)entity.PersonneNomDeLaRue ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@mail", (object)entity.PersonneEmail ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@tel", (object)entity.PersonneTelephone ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@metro", (object)entity.PersonneStationDeMetroLaPlusProche ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void Update(Personne entity)
-        {
-            using (var conn = _database.GetConnection())
-            {
-                conn.Open();
-                var query = @"UPDATE Personne SET
-                    Personne_Nom = @nom,
-                    Personne_Prenom = @prenom,
-                    Personne_Numero_de_licence = @licence,
-                    Personne_Ville = @ville,
-                    Personne_Code_postale = @cp,
-                    Personne_Nom_de_la_rue = @rue,
-                    Personne_Email = @mail,
-                    Personne_Telephone = @tel,
-                    Personne_Station_de_metro_la_plus_proche = @metro
-                    WHERE Personne_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.PersonneId);
-                    cmd.Parameters.AddWithValue("@nom", entity.PersonneNom);
-                    cmd.Parameters.AddWithValue("@prenom", entity.PersonnePrenom);
-                    cmd.Parameters.AddWithValue("@licence", (object)entity.PersonneNumeroDeLicence ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@ville", (object)entity.PersonneVille ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@cp", (object)entity.PersonneCodepostale ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@rue", (object)entity.PersonneNomDeLaRue ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@mail", (object)entity.PersonneEmail ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@tel", (object)entity.PersonneTelephone ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@metro", (object)entity.PersonneStationDeMetroLaPlusProche ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void Delete(int id)
-        {
-            using (var conn = _database.GetConnection())
-            {
-                conn.Open();
-                var query = "DELETE FROM Personne WHERE Personne_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Email", email);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

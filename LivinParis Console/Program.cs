@@ -1,14 +1,15 @@
 ﻿using System;
 using Graphs;
 using SqlConnector;
+using static LivinParis_Console.SqlConnectorTest;
 
 namespace LivinParis_Console
 {
-    internal class Program
+    class Program
     {
         public static void Main(string[] args)
         {
-            SqlConnectorTest.ConnectorTest();
+            Exercice1.Exo1();
         }
     }
 }

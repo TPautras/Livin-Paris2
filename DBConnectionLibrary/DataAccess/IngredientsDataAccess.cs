@@ -1,117 +1,105 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
 
-namespace SqlConnector
+namespace SqlConnector.DataAccess
 {
-    public class IngredientDataAccess : IDataAccess<Ingredient>
+    public class IngredientDataAccess : BaseDataAccess, IDataAccess<Ingredient>
     {
-        private readonly Database _database;
-
-        public IngredientDataAccess()
-        {
-            _database = new Database();
-        }
-
         public List<Ingredient> GetAll()
         {
-            var result = new List<Ingredient>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Ingredient>();
+            string query = "SELECT * FROM Ingredient";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Ingredient";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var i = new Ingredient
+                        list.Add(new Ingredient
                         {
-                            Ingredient_Id = reader.GetInt32("Ingredient_Id"),
-                            Ingredient_Nom = reader["Ingredient_Nom"] as string,
-                            Ingredient_Volume = reader["Ingredient_Volume"] as string
-                        };
-                        result.Add(i);
+                            IngredientId = Convert.ToInt32(reader["Ingredient_Id"]),
+                            IngredientNom = reader["Ingredient_Nom"].ToString(),
+                            IngredientVolume = reader["Ingredient_volume"].ToString(),
+                            IngredientUnite = reader["Ingrédient_Unité"].ToString()
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
 
         public Ingredient GetById(int id)
         {
-            Ingredient i = null;
-            using (var conn = _database.GetConnection())
+            Ingredient ingredient = null;
+            string query = "SELECT * FROM Ingredient WHERE Ingredient_Id = @Id";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Ingredient WHERE Ingredient_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = cmd.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        ingredient = new Ingredient
                         {
-                            i = new Ingredient
-                            {
-                                Ingredient_Id = reader.GetInt32("Ingredient_Id"),
-                                Ingredient_Nom = reader["Ingredient_Nom"] as string,
-                                Ingredient_Volume = reader["Ingredient_Volume"] as string
-                            };
-                        }
+                            IngredientId = Convert.ToInt32(reader["Ingredient_Id"]),
+                            IngredientNom = reader["Ingredient_Nom"].ToString(),
+                            IngredientVolume = reader["Ingredient_volume"].ToString(),
+                            IngredientUnite = reader["Ingrédient_Unité"].ToString()
+                        };
                     }
                 }
             }
-            return i;
+            return ingredient;
         }
 
         public void Insert(Ingredient entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "INSERT INTO Ingredient (Ingredient_Id, Ingredient_Nom, Ingredient_volume, Ingrédient_Unité) " +
+                           "VALUES (@Id, @Nom, @Volume, @Unite)";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"INSERT INTO Ingredient (Ingredient_Id, Ingredient_Nom, Ingredient_Volume) 
-                              VALUES (@id, @nom, @vol)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.Ingredient_Id);
-                    cmd.Parameters.AddWithValue("@nom", (object)entity.Ingredient_Nom ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@vol", (object)entity.Ingredient_Volume ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", entity.IngredientId);
+                command.Parameters.AddWithValue("@Nom", entity.IngredientNom);
+                command.Parameters.AddWithValue("@Volume", entity.IngredientVolume);
+                command.Parameters.AddWithValue("@Unite", entity.IngredientUnite);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Update(Ingredient entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "UPDATE Ingredient SET Ingredient_Nom = @Nom, Ingredient_volume = @Volume, Ingrédient_Unité = @Unite " +
+                           "WHERE Ingredient_Id = @Id";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = @"UPDATE Ingredient 
-                              SET Ingredient_Nom = @nom, Ingredient_Volume = @vol
-                              WHERE Ingredient_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", entity.Ingredient_Id);
-                    cmd.Parameters.AddWithValue("@nom", (object)entity.Ingredient_Nom ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@vol", (object)entity.Ingredient_Volume ?? DBNull.Value);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Nom", entity.IngredientNom);
+                command.Parameters.AddWithValue("@Volume", entity.IngredientVolume);
+                command.Parameters.AddWithValue("@Unite", entity.IngredientUnite);
+                command.Parameters.AddWithValue("@Id", entity.IngredientId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var conn = _database.GetConnection())
+            string query = "DELETE FROM Ingredient WHERE Ingredient_Id = @Id";
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "DELETE FROM Ingredient WHERE Ingredient_Id = @id";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@Id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
     }

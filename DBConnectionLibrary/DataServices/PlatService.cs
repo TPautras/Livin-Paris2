@@ -1,46 +1,40 @@
 ﻿using System.Collections.Generic;
 using SqlConnector.Models;
+using SqlConnector.DataAccess;
+using SqlConnector.DataServices;
 
-namespace SqlConnector.DataServices
+namespace SqlConnector.DataService
 {
-    public class PlatService
+    public class PlatService : IDataService<Plat>
     {
-        private readonly PlatDataAccess _dataAccess = new PlatDataAccess();
-
+        private readonly IDataAccess<Plat> _dataAccess;
+        public PlatService(IDataAccess<Plat> dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
         public List<Plat> GetAll()
         {
             return _dataAccess.GetAll();
         }
-
         public Plat GetById(int id)
         {
             return _dataAccess.GetById(id);
         }
-
-        public void Insert(Plat plat)
+        public void Insert(Plat entity)
         {
-            ValidatePlat(plat);
-            _dataAccess.Insert(plat);
+            ValidationHelper.ValidateStringField(entity.PlatPrix, "Plat_Prix", 50, false);
+            NumericValidationHelper.ValidatePositiveInt(entity.PlatNombrePortion, "Plat_Nombre_Portion");
+            _dataAccess.Insert(entity);
         }
-
-        public void Update(Plat plat)
+        public void Update(Plat entity)
         {
-            ValidatePlat(plat);
-            _dataAccess.Update(plat);
+            ValidationHelper.ValidateStringField(entity.PlatPrix, "Plat_Prix", 50, false);
+            NumericValidationHelper.ValidatePositiveInt(entity.PlatNombrePortion, "Plat_Nombre_Portion");
+            _dataAccess.Update(entity);
         }
-
         public void Delete(int id)
         {
             _dataAccess.Delete(id);
-        }
-
-        private void ValidatePlat(Plat p)
-        {
-            ValidationHelper.ValidateStringField(p.PlatNom, "Plat_Nom", 50);
-            ValidationHelper.ValidateStringField(p.PlatOrigine, "Plat_Origine", 50);
-            ValidationHelper.ValidateStringField(p.PlatAromesNaturels, "Plat_Aromes_naturels", 100);
-            ValidationHelper.ValidateStringField(p.PlatTypeDePlat, "Plat_Type_de_plat", 50);
-            ValidationHelper.ValidateStringField(p.PlatRegimeAlimentaire, "Plat_Regime_alimentaire", 50);
         }
     }
 }

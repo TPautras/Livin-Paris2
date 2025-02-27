@@ -14,5 +14,10 @@ namespace LivinParisGraphique
         {
             MessageBox.Show($@"Hello {textBox1.Text}");
         }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

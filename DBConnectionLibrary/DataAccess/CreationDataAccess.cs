@@ -1,70 +1,62 @@
-﻿using SqlConnector.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using LivinParis.DataAccess;
+using SqlConnector.Models;
 
-namespace SqlConnector
+namespace SqlConnector.DataAccess
 {
-    public class CreationDataAccess : IDataAccess<Creation>
+    public class CreationDataAccess : BaseDataAccess, IDataAccess<Creation>
     {
-        private readonly Database _database= new Database();
-
         public List<Creation> GetAll()
         {
-            var result = new List<Creation>();
-            using (var conn = _database.GetConnection())
+            var list = new List<Creation>();
+            string query = "SELECT * FROM Creation";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "SELECT * FROM Creation";
-                using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                connection.Open();
+                using(var reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        var c = new Creation
+                        list.Add(new Creation
                         {
-                            CuisinierId = reader.GetInt32("Cuisinier_Id"),
-                            PlatId = reader.GetInt32("Plat_Id")
-                        };
-                        result.Add(c);
+                            CommandeId = Convert.ToInt32(reader["Commande_Id"]),
+                            PlatId = Convert.ToInt32(reader["Plat_Id"])
+                        });
                     }
                 }
             }
-            return result;
+            return list;
         }
 
         public Creation GetById(int id)
         {
-            // Not really relevant because composite key is (Cuisinier_Id, Plat_Id)
-            // We'll just fetch based on a single key for demonstration.
-            // You might need a different approach for composite PK.
-            return null;
+            throw new NotImplementedException("Cette entité possède une clé composite. Utilisez une méthode dédiée.");
         }
 
         public void Insert(Creation entity)
         {
-            using (var conn = _database.GetConnection())
+            string query = "INSERT INTO Creation (Commande_Id, Plat_Id) VALUES (@CommandeId, @PlatId)";
+            using(var connection = GetConnection())
+            using(var command = new SqlCommand(query, connection))
             {
-                conn.Open();
-                var query = "INSERT INTO Creation (Cuisinier_Id, Plat_Id) VALUES (@cuisinier, @plat)";
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@cuisinier", entity.CuisinierId);
-                    cmd.Parameters.AddWithValue("@plat", entity.PlatId);
-                    cmd.ExecuteNonQuery();
-                }
+                command.Parameters.AddWithValue("@CommandeId", entity.CommandeId);
+                command.Parameters.AddWithValue("@PlatId", entity.PlatId);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Update(Creation entity)
         {
-            // Typically, you'd need logic to handle the composite key update
+            throw new NotImplementedException("Mise à jour non supportée pour une clé composite.");
         }
 
         public void Delete(int id)
         {
-            // Same note about composite key. This is only an example.
+            throw new NotImplementedException("Suppression non supportée pour une clé composite. Utilisez une méthode dédiée.");
         }
     }
-
 }

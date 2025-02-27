@@ -26,8 +26,7 @@ namespace SqlConnector.DataServices
                 }
                 if (!Regex.IsMatch(fieldValue, @"^[a-zA-Z0-9À-ÖØ-öø-ÿ \-]*$"))
                 {
-                    throw new ArgumentException(
-                        $"Le champ {fieldName} contient des caractères non pris en charge.");
+                    throw new ArgumentException($"Le champ {fieldName} contient des caractères non pris en charge.");
                 }
             }
         }

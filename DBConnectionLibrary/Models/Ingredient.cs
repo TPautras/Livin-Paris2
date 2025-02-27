@@ -5,9 +5,9 @@ namespace SqlConnector.Models
 {
     public class Ingredient
     {
-        public int Ingredient_Id { get; set; }
-        public string Ingredient_Nom { get; set; }
-        public string Ingredient_Volume { get; set; }
-        public ICollection<CompositionDuPlat> CompositionDuPlat { get; set; }
+        public int IngredientId { get; set; }
+        public string IngredientNom { get; set; }
+        public string IngredientVolume { get; set; }
+        public string IngredientUnite { get; set; }
     }
 }

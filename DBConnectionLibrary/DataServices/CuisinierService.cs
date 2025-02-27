@@ -1,38 +1,48 @@
 ﻿using System.Collections.Generic;
 using SqlConnector.Models;
+using SqlConnector.DataAccess;
+using SqlConnector.DataServices;
 
-namespace SqlConnector.DataServices
+namespace SqlConnector.DataService
 {
-    public class CuisinierService
+    public class CuisinierService : IDataService<Cuisinier>
     {
-        private readonly CuisinierDataAccess _dataAccess = new CuisinierDataAccess();
-        private readonly PersonneService _personneService = new PersonneService();
-
+        private readonly IDataAccess<Cuisinier> _dataAccess;
+        public CuisinierService(IDataAccess<Cuisinier> dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
         public List<Cuisinier> GetAll()
         {
             return _dataAccess.GetAll();
         }
-
         public Cuisinier GetById(int id)
         {
             return _dataAccess.GetById(id);
         }
-
-        public void Insert(Cuisinier c)
+        public void Insert(Cuisinier entity)
         {
-            _personneService.Insert(c);
-            _dataAccess.Insert(c);
+            ValidationHelper.ValidateStringField(entity.CuisinierUsername, "Cuisinier_Username", 50, false);
+            ValidationHelper.ValidateStringField(entity.CuisinierPassword, "Cuisinier_Password", 50, false);
+            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
+            _dataAccess.Insert(entity);
         }
-
-        public void Update(Cuisinier c)
+        public void Update(Cuisinier entity)
         {
-            _personneService.Update(c);
-            _dataAccess.Update(c);
+            ValidationHelper.ValidateStringField(entity.CuisinierUsername, "Cuisinier_Username", 50, false);
+            ValidationHelper.ValidateStringField(entity.CuisinierPassword, "Cuisinier_Password", 50, false);
+            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
+            _dataAccess.Update(entity);
         }
-
         public void Delete(int id)
         {
             _dataAccess.Delete(id);
+        }
+
+        public Cuisinier GetByUsername(string username)
+        {
+            CuisinierDataAccess cuisinierDataAccess = new CuisinierDataAccess();
+            return cuisinierDataAccess.GetByUsername(username);
         }
     }
 }
