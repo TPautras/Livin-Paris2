@@ -191,14 +191,52 @@ namespace Graphs
         
         #region Modes d'affichage
 
-        public string MatriceAdjacence()
+        
+        /// <summary>
+        /// methode qui construit la matrice Adjacente en prenant en considération si le graphe est pondéré ou non.
+        /// </summary>
+        /// <returns>
+        /// la matrice adjacente double ainsi créee.
+        /// </returns>
+        public double[,] MatriceAdjacence()
         {
-            string res = "";
+            int taille = this.Noeuds.Count;
+            double[,] result= new double[taille, taille];
 
-            return res;
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    result[i, j] = 0;
+                }
+            }
+            bool estPondere = false;
+            if(Pondere()==true);
+            {
+                estPondere = true;
+            }
+            foreach (Noeud<T> noeud in this.Noeuds.Values)
+            {
+                foreach (Lien<T> lien in this.Noeuds[noeud.Noeud_id].Liens)
+                {
+                    int  indexDepart= this.Noeuds[noeud.Noeud_id].Noeud_id-1;
+                    int  indexArrivee= this.Noeuds[lien.LienArrivee.Noeud_id].Noeud_id-1;
+
+                    if (estPondere == true)
+                    {
+                        result[indexDepart, indexArrivee] = lien.LienPoids;
+                    }
+                    else
+                    {
+                        result[indexDepart, indexArrivee] = 1;
+                    }
+
+                }
+            }
+            return result;
         }
         
-        public string ListeAdjacence()
+        public int[,] ListeAdjacence()
         {
             string res = "";
 
