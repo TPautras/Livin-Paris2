@@ -7,7 +7,7 @@ namespace Graphs
     public class Graphe<T>
     {
         /// <summary>
-        /// Fonction qui donne l'accès en lecture et en écriture
+        /// Fonction qui donne l'accès en lecture et en écriture aux paramètres de la classe
         /// </summary>
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
         /// <summary>
@@ -55,11 +55,11 @@ namespace Graphs
             }
         }
         /// <summary>
-        /// 
+        /// Fonction qui permet d'ajouter un lien
         /// </summary>
-        /// <param name="idSource"></param>
-        /// <param name="idDestination"></param>
-        /// <param name="poids"></param>
+        /// <param name="idSource">Source du lien</param>
+        /// <param name="idDestination">destination du lien</param>
+        /// <param name="poids">poids du lien</param>
         public void AjouterLien(int idSource, int idDestination, double poids = 1)
         {
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
@@ -68,6 +68,10 @@ namespace Graphs
             }
         }
         #region Infos
+        /// <summary>
+        /// Fonction qui permet de donner le nom des propriétés du graphe
+        /// </summary>
+        /// <returns>renvoie le nom des propriétés du graphe</returns>
         public override string ToString()
         {
             string res = "";
@@ -98,9 +102,9 @@ namespace Graphs
             return res;
         }
         /// <summary>
-        /// 
+        /// Fonction qui définit si un graphe est connexe
         /// </summary>
-        /// <returns></returns>
+        /// <returns>renvoie si oui ou non le graphe est connexe</returns>
         public bool Connexe()
         {
             bool res = true;
@@ -111,14 +115,18 @@ namespace Graphs
             }
             return res;
         }
+        /// <summary>
+        /// Fonction qui permet de compter le nombre de neuds du graphe
+        /// </summary>
+        /// <returns>renvoie le nombre de neuds du graphe</returns>
         public int Ordre()
         {
             return Noeuds.Count;
         }
         /// <summary>
-        /// 
+        /// Fonction qui permet de compter le nombre de lien du graphe
         /// </summary>
-        /// <returns></returns>
+        /// <returns>renvoie le nombre de lien du graphe</returns>
         public int Taille()
         {
             int res = 0;
@@ -129,9 +137,9 @@ namespace Graphs
             return res;
         }
         /// <summary>
-        /// 
+        /// Fonction qui définit si un graphe est pondéré
         /// </summary>
-        /// <returns></returns>
+        /// <returns>renvoie si oui ou non le graphe est pondéré</returns>
         public bool Pondere()
         {
             bool res = false;
@@ -146,11 +154,11 @@ namespace Graphs
             return res;
         }
         #endregion
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="startIndex"></param>
         #region Parcours
+        /// <summary>
+        /// Fonction qui permet d'effectuer un parcours en largeur (BFS) 
+        /// </summary>
+        /// <param name="startIndex">noeud de départ pour commencer le parcours en largeur</param>
         public void BFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -183,9 +191,9 @@ namespace Graphs
             }
         }
         /// <summary>
-        /// 
+        /// Fonction qui permet d'effectuer un parcours en profondeur (DFS) 
         /// </summary>
-        /// <param name="startIndex"></param>
+        /// <param name="startIndex">noeud de départ pour commencer le parcours en profondeur</param>
         public void DFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -221,22 +229,13 @@ namespace Graphs
             }
         }
         #endregion
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         #region Modes d'affichage
-      
         public string MatriceAdjacence()
         {
             string res = "";
 
             return res;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public string ListeAdjacence()
         {
             string res = "";
