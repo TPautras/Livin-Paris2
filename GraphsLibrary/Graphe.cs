@@ -28,9 +28,9 @@ namespace Graphs
                         int destination = Convert.ToInt32(relation[1]);
                         double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
                         AjouterLien(source, destination, poids);
-                        AjouterLien(destination, source,
-                            
-                            poids);
+
+                        //
+                        //AjouterLien(destination, source, poids);
                     }
                 }
             }
@@ -54,11 +54,11 @@ namespace Graphs
             {
                 Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
             }
-            else
+            /*else
             {
                 AjouterNoeud(idSource);
                 Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
-            }
+            }*/
             
         }
         #region Infos
@@ -205,6 +205,7 @@ namespace Graphs
                 }
             }
         }
+        
         #endregion
         
         
@@ -319,6 +320,7 @@ namespace Graphs
                     {
                         poids = lien.LienPoids;
                         resultat += "(" + indexVoisin + ", Poids: " + poids + ")";
+                        
                     }
                     else
                     {
