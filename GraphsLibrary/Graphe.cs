@@ -7,6 +7,8 @@ namespace Graphs
     public class Graphe<T>
     {
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
+        
+        private bool IsOriented { get; set; }= false;
 
         public Graphe(string path, char divider, int maxCount)
         {
@@ -26,6 +28,9 @@ namespace Graphs
                         int destination = Convert.ToInt32(relation[1]);
                         double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
                         AjouterLien(source, destination, poids);
+                        AjouterLien(destination, source,
+                            
+                            poids);
                     }
                 }
             }
@@ -49,6 +54,12 @@ namespace Graphs
             {
                 Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
             }
+            else
+            {
+                AjouterNoeud(idSource);
+                Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
+            }
+            
         }
         #region Infos
         public override string ToString()
@@ -189,6 +200,7 @@ namespace Graphs
         }
         #endregion
         
+        
         #region Modes d'affichage
 
         
@@ -196,12 +208,13 @@ namespace Graphs
         /// methode qui construit la matrice Adjacente en prenant en considération si le graphe est pondéré ou non.
         /// </summary>
         /// <returns>
-        /// la matrice adjacente double ainsi créee.
+        /// la matrice adjacente double ainsi créee en string 
         /// </returns>
         public string MatriceAdjacence()
         {
             int taille = this.Noeuds.Count;
-            double[,] result= new double[taille, taille];
+            double[,] result = new double[taille, taille];
+            string a = "";
 
             for (int i = 0; i < taille; i++)
             {
@@ -210,49 +223,113 @@ namespace Graphs
                     result[i, j] = 0;
                 }
             }
-            bool estPondere = false;
-            if(Pondere()==true);
-            {
-                estPondere = true;
-            }
-            foreach (Noeud<T> noeud in this.Noeuds.Values)
-            {
-                foreach (Lien<T> lien in this.Noeuds[noeud.Noeud_id].Liens)
-                {
-                    int  indexDepart= this.Noeuds[noeud.Noeud_id].Noeud_id-1;
-                    int  indexArrivee= this.Noeuds[lien.LienArrivee.Noeud_id].Noeud_id-1;
+            bool estPondere = this.Pondere();
 
+            foreach (Noeud<T> noeud in Noeuds.Values)
+            {
+                foreach (Lien<T> lien in noeud.Liens)
+                {
+                    int idDepart= noeud.Noeud_id-1;
+                    int idArrivee = lien.LienArrivee.Noeud_id-1;
+
+                    double valeur = 0;
                     if (estPondere == true)
                     {
-                        result[indexDepart, indexArrivee] = lien.LienPoids;
+                        valeur = lien.LienPoids;
                     }
                     else
                     {
-                        result[indexDepart, indexArrivee] = 1;
+                        valeur = 1;
                     }
+                    result[idDepart, idArrivee] = valeur;
 
+                    if (IsOriented == false)
+                    {
+                        result[idArrivee, idDepart] = valeur;
+                    }
                 }
             }
-
             for (int i = 0; i < taille; i++)
             {
                 for (int j = 0; j < taille; j++)
                 {
-                    Console.Write(result[i, j] + " ");
+                    a= a+result[i, j] + " ";
                 }
 
-                Console.WriteLine();
+                a= a + "\n";
             }
+            return a;
         }
-
-      
-        public int[,] ListeAdjacence()
+        /// <summary>
+        /// méthode qui construit la liste d'ajdacence d'un graph
+        /// </summary>
+        /// <returns>
+        /// une string comportant la liste d'adjacence
+        /// </returns>
+        public string ListeAdjacence()
         {
-            string res = "";
+            int taille = this.Noeuds.Count;
+            bool estPondere = false;
+            if (Pondere() == true)
+            {
+                estPondere = true;
+            } 
+            string resultat = "";
 
-            return res;
+            if (estPondere == true)
+            {
+                if (IsOriented == true)
+                {
+                    resultat +="Liste d'adjacence (Pondérée, Orientée) : \n";
+                }
+                else
+                {
+                    resultat += "Liste d'adjacence (Pondérée,Non Orientée) : \n";
+                }
+            }
+            else
+            {
+                if (IsOriented == true)
+                {
+                    resultat += "Liste d'adjacence (Non pondérée, Orientée): \n";
+                }
+                else
+                {
+                    resultat += "Liste d'adjacence (Non pondérée, Non Orientée): \n";
+                }
+            }
+
+            foreach (Noeud<T> noeud in this.Noeuds.Values)
+            {
+                resultat += "Noeud" + noeud.Noeud_id + "--->";
+
+                foreach (Lien<T> lien in noeud.Liens)
+                {
+                    int indexVoisin = lien.LienArrivee.Noeud_id;
+
+                    double poids = 1;
+                    if (estPondere == true)
+                    {
+                        poids = lien.LienPoids;
+                        resultat += "(" + indexVoisin + ", Poids: " + poids + ")";
+                    }
+                    else
+                    {
+                        resultat += "(" + indexVoisin + " ";
+                    }
+
+                    /*if (IsOriented == false && indexVoisin > noeud.Noeud_id)
+                    {
+                        this.Noeuds[indexVoisin].Liens.Add(new Lien<T>(this.Noeuds[indexVoisin], this.Noeuds[noeud.Noeud_id], poids));
+                    }*/
+                    
+                }
+
+                resultat += "\n";
+            }
+            return resultat;
         }
-        #endregion
-
+        #endregion Modes d'affichage'
     }
 }
+

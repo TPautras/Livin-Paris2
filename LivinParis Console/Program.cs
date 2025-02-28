@@ -9,7 +9,7 @@ namespace LivinParis_Console
     {
         public static void Main(string[] args)
         {
-            ConnectorTest();
+            Exercice1.Exo1();
         }
     }
 }

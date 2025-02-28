@@ -86,10 +86,14 @@ namespace LivinParis_Console
             {
                 Console.WriteLine("Entrée invalide.");
             }
-
+            Console.WriteLine(myGraph.ListeAdjacence());
+            
+            Console.WriteLine(myGraph.MatriceAdjacence());
             GrapheImage<T> visualiseur = new GrapheImage<T>(myGraph);
             visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
+            
+            
         }
     }
 }
