@@ -7,7 +7,7 @@ namespace Graphs
     public class Graphe<T>
     {
         /// <summary>
-        /// Fonction qui donne l'accès en lecture et en écriture
+        /// Fonction qui donne l'accès en lecture et en écriture aux paramètres de la classe
         /// </summary>
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
         /// <summary>
@@ -116,17 +116,17 @@ namespace Graphs
             return res;
         }
         /// <summary>
-        /// SSSSSSSSSSSSSSSSSSSSS
+        /// Fonction qui permet de compter le nombre de neuds du graphe
         /// </summary>
-        /// <returns></returns>
+        /// <returns>renvoie le nombre de neuds du graphe</returns>
         public int Ordre()
         {
             return Noeuds.Count;
         }
         /// <summary>
-        /// SSSSSSSSSSSSSSSSSSSS
+        /// Fonction qui permet de compter le nombre de lien du graphe
         /// </summary>
-        /// <returns></returns>
+        /// <returns>renvoie le nombre de lien du graphe</returns>
         public int Taille()
         {
             int res = 0;
