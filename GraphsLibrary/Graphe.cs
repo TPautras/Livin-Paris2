@@ -132,6 +132,10 @@ namespace Graphs
         #endregion
 
         #region Parcours
+        /// <summary>
+        /// méthode de parcours de graph en BFS
+        /// </summary>
+        /// <param name="startIndex"></param>L'index de départ pour le comptage en BFS
         public void BFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -163,7 +167,10 @@ namespace Graphs
                 }
             }
         }
-
+        /// <summary>
+        /// méthode de parcours de graph DFS
+        /// </summary>
+        /// <param name="startIndex"></param>L'indice du noeud de départ pour commencer le parcours des différents noeuds
         public void DFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -315,14 +322,8 @@ namespace Graphs
                     }
                     else
                     {
-                        resultat += "(" + indexVoisin + " ";
+                        resultat += "" + "" + indexVoisin + " ";
                     }
-
-                    /*if (IsOriented == false && indexVoisin > noeud.Noeud_id)
-                    {
-                        this.Noeuds[indexVoisin].Liens.Add(new Lien<T>(this.Noeuds[indexVoisin], this.Noeuds[noeud.Noeud_id], poids));
-                    }*/
-                    
                 }
 
                 resultat += "\n";
