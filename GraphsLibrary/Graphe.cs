@@ -230,20 +230,12 @@ namespace Graphs
         }
         #endregion
         #region Modes d'affichage
-        /// <summary>
-        /// SSSSSSSSSSSSSSSSSSSS
-        /// </summary>
-        /// <returns></returns>
         public string MatriceAdjacence()
         {
             string res = "";
 
             return res;
         }
-        /// <summary>
-        /// SSSSSSSSSSSSSSSSSSS
-        /// </summary>
-        /// <returns></returns>
         public string ListeAdjacence()
         {
             string res = "";
