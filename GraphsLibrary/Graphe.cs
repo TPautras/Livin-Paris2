@@ -240,14 +240,10 @@ namespace Graphs
                     int idDepart= noeud.Noeud_id-1;
                     int idArrivee = lien.LienArrivee.Noeud_id-1;
 
-                    double valeur = 0;
+                    double valeur = 1;
                     if (estPondere == true)
                     {
                         valeur = lien.LienPoids;
-                    }
-                    else
-                    {
-                        valeur = 1;
                     }
                     result[idDepart, idArrivee] = valeur;
 
@@ -313,22 +309,34 @@ namespace Graphs
 
                 foreach (Lien<T> lien in noeud.Liens)
                 {
+                    int indexDepart = noeud.Noeud_id;
                     int indexVoisin = lien.LienArrivee.Noeud_id;
-
+                    
                     double poids = 1;
                     if (estPondere == true)
                     {
                         poids = lien.LienPoids;
-                        resultat += "(" + indexVoisin + ", Poids: " + poids + ")";
-                        
+                    
+                        resultat += " " + indexVoisin + ", Poids: " + poids + " ";
                     }
                     else
                     {
-                        resultat += "" + "" + indexVoisin + " ";
+                        if(IsOriented == true)
+                        resultat += " " + indexVoisin ;
+                        else
+                        {
+                            resultat += " " + indexDepart;
+                            resultat += " " + indexVoisin;
+                        }
                     }
+
+                   
+                    
+                    
                 }
 
                 resultat += "\n";
+                
             }
             return resultat;
         }
