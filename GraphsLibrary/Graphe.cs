@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Graphs
 {
@@ -28,9 +29,6 @@ namespace Graphs
                         int destination = Convert.ToInt32(relation[1]);
                         double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
                         AjouterLien(source, destination, poids);
-
-                        //
-                        //AjouterLien(destination, source, poids);
                     }
                 }
             }
@@ -101,6 +99,98 @@ namespace Graphs
             else
             {
                 res += "Le graphe n'est pas pondéré\n";
+            }
+            return res;
+        }
+
+        public string Boucle()
+        {
+            string res = "";
+            bool boucle = false;
+            List<string> parcours = new List<string>();
+            foreach (var noeud in Noeuds.Values)
+            {
+                HashSet<int> visited = new HashSet<int>();
+                Queue<Noeud<T>> queue = new Queue<Noeud<T>>();
+
+                queue.Enqueue(Noeuds[noeud.Noeud_id]);
+                visited.Add(noeud.Noeud_id);
+
+                while (queue.Count > 0)
+                {
+                    Noeud<T> current = queue.Dequeue();
+
+                    foreach (var lien in current.Liens)
+                    {
+                        if (!visited.Contains(lien.LienArrivee.Noeud_id))
+                        {
+                            queue.Enqueue(lien.LienArrivee);
+                            visited.Add(lien.LienArrivee.Noeud_id);
+                        }
+                        else
+                        {
+                            boucle = true;
+                            string ceParcours = "";
+                            foreach (var n in visited)
+                            {
+                                ceParcours += $"{n} ";
+                            }
+                            ceParcours += lien.LienArrivee.Noeud_id;
+                            parcours.Add(ceParcours);
+
+                        }
+                    }
+                }
+                
+            }
+
+            if (boucle)
+            {
+                res += "Le graphe a au moins une boucle\n";
+                res += "Voici la liste contenant toutes les boucles trouves \n";
+                res += TrimmedBoucles(parcours);
+            }
+            return res;
+        }
+
+        public string TrimmedBoucles(List<string> boucles)
+        {
+            string res = "";
+            
+            
+            foreach (var varParcour in boucles)
+            {
+                List<string> parcours = new List<string>();
+                string[] indices = varParcour.Split(' ');
+                Dictionary<string, int> seen = new Dictionary<string, int>();
+                int debutCycle = -1, finCycle = -1;
+                
+                for (int i = 0; i < indices.Length; i++)
+                {
+                    if (seen.ContainsKey(indices[i]))
+                    {
+                        debutCycle = seen[indices[i]];
+                        finCycle = i;
+                        break;
+                    }
+                    else
+                    {
+                        seen.Add(indices[i], i);
+                    }
+                }
+
+                if (debutCycle != -1 && finCycle != -1)
+                {
+                    string[] boucle = indices.Skip(debutCycle).Take(finCycle - debutCycle + 1).ToArray();
+                    parcours.Add(string.Join(" ", boucle));
+                }
+
+                foreach (string id in parcours)
+                {
+                    res += id + " ";
+                }
+
+                res += "\n";
             }
             return res;
         }
@@ -373,7 +463,6 @@ namespace Graphs
                         else
                         {
                             resultat += " " + lien.LienArrivee.Noeud_id;
-                            
                         }
                     }
                 }
@@ -411,7 +500,7 @@ namespace Graphs
             }
             return leLienExiste;
         }
-        #endregion Modes d'affichage'
+        #endregion
     }
 }
 

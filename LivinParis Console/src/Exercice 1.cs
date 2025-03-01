@@ -76,6 +76,11 @@ namespace LivinParis_Console
             Console.WriteLine(myGraph.ToString());
 
             Console.WriteLine("Veuillez entrer un index de départ pour le parcours du graphe : ");
+            Console.WriteLine(myGraph.ListeAdjacence());
+            
+            Console.WriteLine(myGraph.MatriceAdjacence());
+
+            Console.WriteLine(myGraph.Boucle());
             int startIndex;
             if (int.TryParse(Console.ReadLine(), out startIndex))
             {
@@ -86,9 +91,6 @@ namespace LivinParis_Console
             {
                 Console.WriteLine("Entrée invalide.");
             }
-            Console.WriteLine(myGraph.ListeAdjacence());
-            
-            Console.WriteLine(myGraph.MatriceAdjacence());
             GrapheImage<T> visualiseur = new GrapheImage<T>(myGraph);
             visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
