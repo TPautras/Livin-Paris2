@@ -2,7 +2,7 @@
 [![C#](https://img.shields.io/badge/C%23-youlike?label=Language)](https://img.shields.io/badge/C%23-youlike?label=Language)
 [![C#](https://img.shields.io/badge/.NET-youlike?logoColor=%23b024b3&label=Framework&color=%23b024b3
 )](https://img.shields.io/badge/.NET-youlike?logoColor=%23b024b3&label=Framework&color=%23b024b3
-)ddd
+)
 
 Par Candice ALEV, Samuel BENCHIMOL, Thomas PAUTRAS
 
