@@ -273,11 +273,7 @@ namespace Graphs
         public string ListeAdjacence()
         {
             int taille = this.Noeuds.Count;
-            bool estPondere = false;
-            if (Pondere() == true)
-            {
-                estPondere = true;
-            } 
+            bool estPondere = Pondere();
             string resultat = "";
 
             if (estPondere == true)
@@ -306,39 +302,78 @@ namespace Graphs
             foreach (Noeud<T> noeud in this.Noeuds.Values)
             {
                 resultat += "Noeud" + noeud.Noeud_id + "--->";
-
-                foreach (Lien<T> lien in noeud.Liens)
+                if (IsOriented != true)
                 {
-                    int indexDepart = noeud.Noeud_id;
-                    int indexVoisin = lien.LienArrivee.Noeud_id;
+                     for (int noeudvoisin = 1; noeudvoisin <= Noeuds.Count; noeudvoisin++)
+                     {
+                         if (Noeuds.ContainsKey(noeudvoisin))
+                         {
+                             Noeud<T> voisin = Noeuds[noeudvoisin];
+                             if (LienExiste(noeud, voisin))
+                             {
+                                 double poids = 1;
+                                 foreach (Lien<T> lien in voisin.Liens)
+                                 {
+                                     if (lien.LienArrivee == voisin)
+                                     {
+                                         poids = lien.LienPoids;
+                                         break;
+                                     }
+                                 }
                     
-                    double poids = 1;
-                    if (estPondere == true)
+                                 if (estPondere == true)
+                                 {
+                                     resultat += " " + voisin.Noeud_id + ", Poids: " + poids;
+                                 }
+                                 else
+                                 {
+                                     resultat += " " + voisin.Noeud_id;
+                                 }
+                             }
+                         }
+                     }
+                }
+                else
+                {
+                    foreach (Lien<T> lien in noeud.Liens)
                     {
-                        poids = lien.LienPoids;
-                    
-                        resultat += " " + indexVoisin + ", Poids: " + poids + " ";
-                    }
-                    else
-                    {
-                        if(IsOriented == true)
-                        resultat += " " + indexVoisin ;
+                        if (estPondere == true)
+                        {
+                            resultat += " "+lien.LienArrivee.Noeud_id + ",Poids: " + lien.LienPoids;
+                        }
                         else
                         {
-                            resultat += " " + indexDepart;
-                            resultat += " " + indexVoisin;
+                            resultat += " " + lien.LienArrivee.Noeud_id;
+                            
                         }
                     }
-
-                   
-                    
-                    
                 }
-
+               
                 resultat += "\n";
-                
             }
             return resultat;
+        }
+        
+        public static bool LienExiste(Noeud<T> l1, Noeud<T> l2)
+        {
+            bool leLienExiste = false;
+            
+            foreach (Lien<T> lien in l1.Liens)
+            {
+                if (lien.LienArrivee == l2)
+                {
+                    leLienExiste = true;
+                }
+            }
+
+            foreach (Lien<T> lien in l2.Liens)
+            {
+                if (lien.LienArrivee == l1)
+                {
+                    leLienExiste = true; 
+                }
+            }
+            return leLienExiste;
         }
         #endregion Modes d'affichage'
     }
