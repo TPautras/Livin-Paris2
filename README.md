@@ -1,5 +1,6 @@
 # Projet Livin'Paris
-[![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
+[![C#](https://img.shields.io/badge/C%23-youlike?label=Language)](https://img.shields.io/badge/C%23-youlike?label=Language)
+![C#](https://img.shields.io/badge/C%23-youlike?label=Language)](https://img.shields.io/badge/C%23-youlike?label=Language)
 
 Par Candice ALEV, Samuel BENCHIMOL, Thomas PAUTRAS
 
