@@ -10,7 +10,7 @@ namespace Graphs
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
         
         private bool IsOriented { get; set; }= false;
-
+        
         public Graphe(string path, char divider, int maxCount)
         {
             try
@@ -102,7 +102,12 @@ namespace Graphs
             }
             return res;
         }
-
+        /// <summary>
+        /// Fonction permettant de trouver tous les cycles contenus dans le graphe
+        /// en reprenant une logique de parcours Bfs comme implementee dans la fonction dediee.
+        /// Pour la retour final on utilise la fonction support TrimmedBoucle
+        /// </summary>
+        /// <returns>Une string a afficher</returns>
         public string Boucle()
         {
             string res = "";
@@ -152,7 +157,13 @@ namespace Graphs
             }
             return res;
         }
-
+        /// <summary>
+        /// Fonction support a la recherche de cycle,
+        /// Est utilisee pour extraire le cycle du chemin
+        /// comp[et qui est trouve par la fonction Boucle()
+        /// </summary>
+        /// <param name="boucles">Une liste de tous les chemins complets trouves par la fonction Boucle</param>
+        /// <returns>La string contenant seulement les boucles</returns>
         public string TrimmedBoucles(List<string> boucles)
         {
             string res = "";
@@ -250,10 +261,10 @@ namespace Graphs
 
         #region Parcours
         /// <summary>
-        /// Fonction qui permet d'effectuer un parcours en largeur (BFS) 
+        /// Fonction qui permet d'effectuer un parcours en largeur (Bfs) 
         /// </summary>
         /// <param name="startIndex">noeud de départ pour commencer le parcours en largeur</param>
-        public void BFS(int startIndex)
+        public void Bfs(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
             {
@@ -267,7 +278,7 @@ namespace Graphs
             queue.Enqueue(Noeuds[startIndex]);
             visited.Add(startIndex);
 
-            Console.WriteLine("Parcours en largeur (BFS) :");
+            Console.WriteLine("Parcours en largeur (Bfs) :");
 
             while (queue.Count > 0)
             {
@@ -285,10 +296,10 @@ namespace Graphs
             }
         }
         /// <summary>
-        /// méthode de parcours de graph DFS
+        /// méthode de parcours de graph Dfs
         /// </summary>
         /// <param name="startIndex"></param>L'indice du noeud de départ pour commencer le parcours des différents noeuds
-        public void DFS(int startIndex)
+        public void Dfs(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
             {
@@ -301,7 +312,7 @@ namespace Graphs
 
             stack.Push(Noeuds[startIndex]);
 
-            Console.WriteLine("Parcours en profondeur (DFS) :");
+            Console.WriteLine("Parcours en profondeur (Dfs) :");
 
             while (stack.Count > 0)
             {
