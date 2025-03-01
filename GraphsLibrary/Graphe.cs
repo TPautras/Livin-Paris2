@@ -353,7 +353,14 @@ namespace Graphs
             }
             return resultat;
         }
-        
+        /// <summary>
+        /// méthode qui permet de vérfier si un lien existe entre deux noeud et ce qu'importe la direction du lien.
+        /// </summary>
+        /// <param name="l1"></param> Le noeud numéro 1
+        /// <param name="l2"></param> Le noeud numéro 2
+        /// <returns>
+        /// un booléen qui retourne l'état du lien, si il est existant ou non. 
+        /// </returns>
         public static bool LienExiste(Noeud<T> l1, Noeud<T> l2)
         {
             bool leLienExiste = false;
