@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Graphs
 {
@@ -9,7 +10,7 @@ namespace Graphs
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
         
         private bool IsOriented { get; set; }= false;
-
+        
         public Graphe(string path, char divider, int maxCount)
         {
             try
@@ -28,9 +29,6 @@ namespace Graphs
                         int destination = Convert.ToInt32(relation[1]);
                         double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
                         AjouterLien(source, destination, poids);
-
-                        //
-                        //AjouterLien(destination, source, poids);
                     }
                 }
             }
@@ -105,6 +103,109 @@ namespace Graphs
             return res;
         }
         /// <summary>
+        /// Fonction permettant de trouver tous les cycles contenus dans le graphe
+        /// en reprenant une logique de parcours Bfs comme implementee dans la fonction dediee.
+        /// Pour la retour final on utilise la fonction support TrimmedBoucle
+        /// </summary>
+        /// <returns>Une string a afficher</returns>
+        public string Boucle()
+        {
+            string res = "";
+            bool boucle = false;
+            List<string> parcours = new List<string>();
+            foreach (var noeud in Noeuds.Values)
+            {
+                HashSet<int> visited = new HashSet<int>();
+                Queue<Noeud<T>> queue = new Queue<Noeud<T>>();
+
+                queue.Enqueue(Noeuds[noeud.Noeud_id]);
+                visited.Add(noeud.Noeud_id);
+
+                while (queue.Count > 0)
+                {
+                    Noeud<T> current = queue.Dequeue();
+
+                    foreach (var lien in current.Liens)
+                    {
+                        if (!visited.Contains(lien.LienArrivee.Noeud_id))
+                        {
+                            queue.Enqueue(lien.LienArrivee);
+                            visited.Add(lien.LienArrivee.Noeud_id);
+                        }
+                        else
+                        {
+                            boucle = true;
+                            string ceParcours = "";
+                            foreach (var n in visited)
+                            {
+                                ceParcours += $"{n} ";
+                            }
+                            ceParcours += lien.LienArrivee.Noeud_id;
+                            parcours.Add(ceParcours);
+
+                        }
+                    }
+                }
+                
+            }
+
+            if (boucle)
+            {
+                res += "Le graphe a au moins une boucle\n";
+                res += "Voici la liste contenant toutes les boucles trouves \n";
+                res += TrimmedBoucles(parcours);
+            }
+            return res;
+        }
+        /// <summary>
+        /// Fonction support a la recherche de cycle,
+        /// Est utilisee pour extraire le cycle du chemin
+        /// comp[et qui est trouve par la fonction Boucle()
+        /// </summary>
+        /// <param name="boucles">Une liste de tous les chemins complets trouves par la fonction Boucle</param>
+        /// <returns>La string contenant seulement les boucles</returns>
+        public string TrimmedBoucles(List<string> boucles)
+        {
+            string res = "";
+            
+            
+            foreach (var varParcour in boucles)
+            {
+                List<string> parcours = new List<string>();
+                string[] indices = varParcour.Split(' ');
+                Dictionary<string, int> seen = new Dictionary<string, int>();
+                int debutCycle = -1, finCycle = -1;
+                
+                for (int i = 0; i < indices.Length; i++)
+                {
+                    if (seen.ContainsKey(indices[i]))
+                    {
+                        debutCycle = seen[indices[i]];
+                        finCycle = i;
+                        break;
+                    }
+                    else
+                    {
+                        seen.Add(indices[i], i);
+                    }
+                }
+
+                if (debutCycle != -1 && finCycle != -1)
+                {
+                    string[] boucle = indices.Skip(debutCycle).Take(finCycle - debutCycle + 1).ToArray();
+                    parcours.Add(string.Join(" ", boucle));
+                }
+
+                foreach (string id in parcours)
+                {
+                    res += id + " ";
+                }
+
+                res += "\n";
+            }
+            return res;
+        }
+        /// <summary>
         /// Fonction qui définit si un graphe est connexe
         /// </summary>
         /// <returns>renvoie si oui ou non le graphe est connexe</returns>
@@ -160,10 +261,10 @@ namespace Graphs
 
         #region Parcours
         /// <summary>
-        /// Fonction qui permet d'effectuer un parcours en largeur (BFS) 
+        /// Fonction qui permet d'effectuer un parcours en largeur (Bfs) 
         /// </summary>
         /// <param name="startIndex">noeud de départ pour commencer le parcours en largeur</param>
-        public void BFS(int startIndex)
+        public void Bfs(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
             {
@@ -177,7 +278,7 @@ namespace Graphs
             queue.Enqueue(Noeuds[startIndex]);
             visited.Add(startIndex);
 
-            Console.WriteLine("Parcours en largeur (BFS) :");
+            Console.WriteLine("Parcours en largeur (Bfs) :");
 
             while (queue.Count > 0)
             {
@@ -195,10 +296,10 @@ namespace Graphs
             }
         }
         /// <summary>
-        /// méthode de parcours de graph DFS
+        /// méthode de parcours de graph Dfs
         /// </summary>
         /// <param name="startIndex"></param>L'indice du noeud de départ pour commencer le parcours des différents noeuds
-        public void DFS(int startIndex)
+        public void Dfs(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
             {
@@ -211,7 +312,7 @@ namespace Graphs
 
             stack.Push(Noeuds[startIndex]);
 
-            Console.WriteLine("Parcours en profondeur (DFS) :");
+            Console.WriteLine("Parcours en profondeur (Dfs) :");
 
             while (stack.Count > 0)
             {
@@ -373,7 +474,6 @@ namespace Graphs
                         else
                         {
                             resultat += " " + lien.LienArrivee.Noeud_id;
-                            
                         }
                     }
                 }
@@ -411,7 +511,7 @@ namespace Graphs
             }
             return leLienExiste;
         }
-        #endregion Modes d'affichage'
+        #endregion
     }
 }
 
