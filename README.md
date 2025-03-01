@@ -11,6 +11,8 @@ SqlConnector>Sql
 **Partie Graphe** : Les différentes classes demandées se trouvent dans le projet
 GraphsLibrary, quand au test de ces classes, il se trouve dans LivinParis Console qu'il faut exécuter
 
+**Rapport** : Le rapport se trouve egalement dans la partie asset, egalement sous forme de fichier markdown.
+
 **Autre** : Les tests notamment se trouvent dans le projet de test associé
 
 ## Contenu de la solution
