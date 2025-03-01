@@ -1,5 +1,5 @@
 # Projet Livin'Paris
-[![Build Status](https://img.shields.io/travis/username/repository.svg)](https://travis-ci.org/username/repository)
+[![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 
 Par Candice ALEV, Samuel BENCHIMOL, Thomas PAUTRAS
 
