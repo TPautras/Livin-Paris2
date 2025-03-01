@@ -1,4 +1,5 @@
 # Projet Livin'Paris
+[![Build Status](https://img.shields.io/travis/username/repository.svg)](https://travis-ci.org/username/repository)
 
 Par Candice ALEV, Samuel BENCHIMOL, Thomas PAUTRAS
 
