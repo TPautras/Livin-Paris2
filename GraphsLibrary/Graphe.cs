@@ -39,7 +39,11 @@ namespace Graphs
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Fonction qui permet d'ajouter un Noeuds
+        /// </summary>
+        /// <param name="id">identifiant du noeud</param>
+        /// <param name="valeur">valeur du noeud</param>
         public void AjouterNoeud(int id, T valeur = default)
         {
             if (!Noeuds.ContainsKey(id))
@@ -47,7 +51,12 @@ namespace Graphs
                 Noeuds[id] = new Noeud<T>(id, valeur);
             }
         }
-
+        /// <summary>
+        /// Fonction qui permet d'ajouter un lien
+        /// </summary>
+        /// <param name="idSource">Source du lien</param>
+        /// <param name="idDestination">destination du lien</param>
+        /// <param name="poids">poids du lien</param>
         public void AjouterLien(int idSource, int idDestination, double poids = 1)
         {
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
@@ -62,6 +71,10 @@ namespace Graphs
             
         }
         #region Infos
+        /// <summary>
+        /// Fonction qui permet de donner le nom des propriétés du graphe
+        /// </summary>
+        /// <returns>renvoie le nom des propriétés du graphe</returns>
         public override string ToString()
         {
             string res = "";
@@ -91,7 +104,10 @@ namespace Graphs
             }
             return res;
         }
-
+        /// <summary>
+        /// Fonction qui définit si un graphe est connexe
+        /// </summary>
+        /// <returns>renvoie si oui ou non le graphe est connexe</returns>
         public bool Connexe()
         {
             bool res = true;
@@ -102,11 +118,18 @@ namespace Graphs
             }
             return res;
         }
+        /// <summary>
+        /// Fonction qui permet de compter le nombre de neuds du graphe
+        /// </summary>
+        /// <returns>renvoie le nombre de neuds du graphe</returns>
         public int Ordre()
         {
             return Noeuds.Count;
         }
-
+        /// <summary>
+        /// Fonction qui permet de compter le nombre de lien du graphe
+        /// </summary>
+        /// <returns>renvoie le nombre de lien du graphe</returns>
         public int Taille()
         {
             int res = 0;
@@ -116,6 +139,10 @@ namespace Graphs
             }
             return res;
         }
+        /// <summary>
+        /// Fonction qui définit si un graphe est pondéré
+        /// </summary>
+        /// <returns>renvoie si oui ou non le graphe est pondéré</returns>
         public bool Pondere()
         {
             bool res = false;
@@ -133,9 +160,9 @@ namespace Graphs
 
         #region Parcours
         /// <summary>
-        /// méthode de parcours de graph en BFS
+        /// Fonction qui permet d'effectuer un parcours en largeur (BFS) 
         /// </summary>
-        /// <param name="startIndex"></param>L'index de départ pour le comptage en BFS
+        /// <param name="startIndex">noeud de départ pour commencer le parcours en largeur</param>
         public void BFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -205,9 +232,7 @@ namespace Graphs
                 }
             }
         }
-        
         #endregion
-        
         
         #region Modes d'affichage
 
@@ -273,7 +298,11 @@ namespace Graphs
         public string ListeAdjacence()
         {
             int taille = this.Noeuds.Count;
-            bool estPondere = Pondere();
+            bool estPondere = false;
+            if (Pondere() == true)
+            {
+                estPondere = true;
+            } 
             string resultat = "";
 
             if (estPondere == true)
