@@ -33,7 +33,8 @@ namespace SqlConnector.DataAccess
 
         public CompositionDeLaRecette GetById(int id)
         {
-            throw new NotImplementedException("Cette entité possède une clé composite.");
+            throw new NotImplementedException("Cette entité possède une clé composite."); // si ça lit ça à un moment==> erreur
+            //récuperer une seul composition de recette par son id
         }
 
         public void Insert(CompositionDeLaRecette entity)

@@ -7,6 +7,8 @@ namespace Graphs
     public class Graphe<T>
     {
         public Dictionary<int, Noeud<T>> Noeuds { get; set; } = new Dictionary<int, Noeud<T>>();
+        
+        private bool IsOriented { get; set; }= false;
 
         public Graphe(string path, char divider, int maxCount)
         {
@@ -26,6 +28,9 @@ namespace Graphs
                         int destination = Convert.ToInt32(relation[1]);
                         double poids = relation.Length == 3 ? Convert.ToDouble(relation[2]) : 1;
                         AjouterLien(source, destination, poids);
+
+                        //
+                        //AjouterLien(destination, source, poids);
                     }
                 }
             }
@@ -34,7 +39,11 @@ namespace Graphs
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Fonction qui permet d'ajouter un Noeuds
+        /// </summary>
+        /// <param name="id">identifiant du noeud</param>
+        /// <param name="valeur">valeur du noeud</param>
         public void AjouterNoeud(int id, T valeur = default)
         {
             if (!Noeuds.ContainsKey(id))
@@ -42,15 +51,30 @@ namespace Graphs
                 Noeuds[id] = new Noeud<T>(id, valeur);
             }
         }
-
+        /// <summary>
+        /// Fonction qui permet d'ajouter un lien
+        /// </summary>
+        /// <param name="idSource">Source du lien</param>
+        /// <param name="idDestination">destination du lien</param>
+        /// <param name="poids">poids du lien</param>
         public void AjouterLien(int idSource, int idDestination, double poids = 1)
         {
             if (Noeuds.ContainsKey(idSource) && Noeuds.ContainsKey(idDestination))
             {
                 Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
             }
+            /*else
+            {
+                AjouterNoeud(idSource);
+                Noeuds[idSource].Liens.Add(new Lien<T>(Noeuds[idSource], Noeuds[idDestination], poids));
+            }*/
+            
         }
         #region Infos
+        /// <summary>
+        /// Fonction qui permet de donner le nom des propriétés du graphe
+        /// </summary>
+        /// <returns>renvoie le nom des propriétés du graphe</returns>
         public override string ToString()
         {
             string res = "";
@@ -80,7 +104,10 @@ namespace Graphs
             }
             return res;
         }
-
+        /// <summary>
+        /// Fonction qui définit si un graphe est connexe
+        /// </summary>
+        /// <returns>renvoie si oui ou non le graphe est connexe</returns>
         public bool Connexe()
         {
             bool res = true;
@@ -91,11 +118,18 @@ namespace Graphs
             }
             return res;
         }
+        /// <summary>
+        /// Fonction qui permet de compter le nombre de neuds du graphe
+        /// </summary>
+        /// <returns>renvoie le nombre de neuds du graphe</returns>
         public int Ordre()
         {
             return Noeuds.Count;
         }
-
+        /// <summary>
+        /// Fonction qui permet de compter le nombre de lien du graphe
+        /// </summary>
+        /// <returns>renvoie le nombre de lien du graphe</returns>
         public int Taille()
         {
             int res = 0;
@@ -105,6 +139,10 @@ namespace Graphs
             }
             return res;
         }
+        /// <summary>
+        /// Fonction qui définit si un graphe est pondéré
+        /// </summary>
+        /// <returns>renvoie si oui ou non le graphe est pondéré</returns>
         public bool Pondere()
         {
             bool res = false;
@@ -121,6 +159,10 @@ namespace Graphs
         #endregion
 
         #region Parcours
+        /// <summary>
+        /// Fonction qui permet d'effectuer un parcours en largeur (BFS) 
+        /// </summary>
+        /// <param name="startIndex">noeud de départ pour commencer le parcours en largeur</param>
         public void BFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -152,7 +194,10 @@ namespace Graphs
                 }
             }
         }
-
+        /// <summary>
+        /// méthode de parcours de graph DFS
+        /// </summary>
+        /// <param name="startIndex"></param>L'indice du noeud de départ pour commencer le parcours des différents noeuds
         public void DFS(int startIndex)
         {
             if (!Noeuds.ContainsKey(startIndex))
@@ -191,20 +236,182 @@ namespace Graphs
         
         #region Modes d'affichage
 
+        
+        /// <summary>
+        /// methode qui construit la matrice Adjacente en prenant en considération si le graphe est pondéré ou non.
+        /// </summary>
+        /// <returns>
+        /// la matrice adjacente double ainsi créee en string 
+        /// </returns>
         public string MatriceAdjacence()
         {
-            string res = "";
+            int taille = this.Noeuds.Count;
+            double[,] result = new double[taille, taille];
+            string a = "";
 
-            return res;
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    result[i, j] = 0;
+                }
+            }
+            bool estPondere = this.Pondere();
+
+            foreach (Noeud<T> noeud in Noeuds.Values)
+            {
+                foreach (Lien<T> lien in noeud.Liens)
+                {
+                    int idDepart= noeud.Noeud_id-1;
+                    int idArrivee = lien.LienArrivee.Noeud_id-1;
+
+                    double valeur = 1;
+                    if (estPondere == true)
+                    {
+                        valeur = lien.LienPoids;
+                    }
+                    result[idDepart, idArrivee] = valeur;
+
+                    if (IsOriented == false)
+                    {
+                        result[idArrivee, idDepart] = valeur;
+                    }
+                }
+            }
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    a= a+result[i, j] + " ";
+                }
+
+                a= a + "\n";
+            }
+            return a;
         }
-        
+        /// <summary>
+        /// méthode qui construit la liste d'ajdacence d'un graph
+        /// </summary>
+        /// <returns>
+        /// une string comportant la liste d'adjacence
+        /// </returns>
         public string ListeAdjacence()
         {
-            string res = "";
+            int taille = this.Noeuds.Count;
+            bool estPondere = false;
+            if (Pondere() == true)
+            {
+                estPondere = true;
+            } 
+            string resultat = "";
 
-            return res;
+            if (estPondere == true)
+            {
+                if (IsOriented == true)
+                {
+                    resultat +="Liste d'adjacence (Pondérée, Orientée) : \n";
+                }
+                else
+                {
+                    resultat += "Liste d'adjacence (Pondérée,Non Orientée) : \n";
+                }
+            }
+            else
+            {
+                if (IsOriented == true)
+                {
+                    resultat += "Liste d'adjacence (Non pondérée, Orientée): \n";
+                }
+                else
+                {
+                    resultat += "Liste d'adjacence (Non pondérée, Non Orientée): \n";
+                }
+            }
+
+            foreach (Noeud<T> noeud in this.Noeuds.Values)
+            {
+                resultat += "Noeud" + noeud.Noeud_id + "--->";
+                if (IsOriented != true)
+                {
+                     for (int noeudvoisin = 1; noeudvoisin <= Noeuds.Count; noeudvoisin++)
+                     {
+                         if (Noeuds.ContainsKey(noeudvoisin))
+                         {
+                             Noeud<T> voisin = Noeuds[noeudvoisin];
+                             if (LienExiste(noeud, voisin))
+                             {
+                                 double poids = 1;
+                                 foreach (Lien<T> lien in voisin.Liens)
+                                 {
+                                     if (lien.LienArrivee == voisin)
+                                     {
+                                         poids = lien.LienPoids;
+                                         break;
+                                     }
+                                 }
+                    
+                                 if (estPondere == true)
+                                 {
+                                     resultat += " " + voisin.Noeud_id + ", Poids: " + poids;
+                                 }
+                                 else
+                                 {
+                                     resultat += " " + voisin.Noeud_id;
+                                 }
+                             }
+                         }
+                     }
+                }
+                else
+                {
+                    foreach (Lien<T> lien in noeud.Liens)
+                    {
+                        if (estPondere == true)
+                        {
+                            resultat += " "+lien.LienArrivee.Noeud_id + ",Poids: " + lien.LienPoids;
+                        }
+                        else
+                        {
+                            resultat += " " + lien.LienArrivee.Noeud_id;
+                            
+                        }
+                    }
+                }
+               
+                resultat += "\n";
+            }
+            return resultat;
         }
-        #endregion
+        /// <summary>
+        /// méthode qui permet de vérfier si un lien existe entre deux noeud et ce qu'importe la direction du lien.
+        /// </summary>
+        /// <param name="l1"></param> Le noeud numéro 1
+        /// <param name="l2"></param> Le noeud numéro 2
+        /// <returns>
+        /// un booléen qui retourne l'état du lien, si il est existant ou non. 
+        /// </returns>
+        public static bool LienExiste(Noeud<T> l1, Noeud<T> l2)
+        {
+            bool leLienExiste = false;
+            
+            foreach (Lien<T> lien in l1.Liens)
+            {
+                if (lien.LienArrivee == l2)
+                {
+                    leLienExiste = true;
+                }
+            }
 
+            foreach (Lien<T> lien in l2.Liens)
+            {
+                if (lien.LienArrivee == l1)
+                {
+                    leLienExiste = true; 
+                }
+            }
+            return leLienExiste;
+        }
+        #endregion Modes d'affichage'
     }
 }
+
