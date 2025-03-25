@@ -64,7 +64,7 @@ namespace LivinParis_Console
             }
         }
         /// <summary>
-        /// Charge un graphe à partir d'un fichier, l'affiche en texte, effectue des parcours BFS et DFS, puis génère une image du graphe.
+        /// Charge un graphe à partir d'un fichier, l'affiche en texte, effectue des parcours Bfs et Dfs, puis génère une image du graphe.
         /// </summary>
         /// <param name="divider"></param> Caractère utilisé comme séparateur dans le fichier du graphe (' ' par défaut)
         /// <param name="maxCount"></param> Nombre maximal de noeuds à lire dans le fichier 
@@ -75,17 +75,17 @@ namespace LivinParis_Console
             Graphe<T> myGraph = new Graphe<T>(path, divider, maxCount);
             Console.WriteLine(myGraph.ToString());
 
-            Console.WriteLine("Veuillez entrer un index de départ pour le parcours du graphe : ");
             Console.WriteLine(myGraph.ListeAdjacence());
             
             Console.WriteLine(myGraph.MatriceAdjacence());
 
             Console.WriteLine(myGraph.Boucle());
             int startIndex;
+            Console.WriteLine("Veuillez entrer un index de départ pour le parcours du graphe : ");
             if (int.TryParse(Console.ReadLine(), out startIndex))
             {
-                myGraph.BFS(startIndex);
-                myGraph.DFS(startIndex);
+                myGraph.Bfs(startIndex);
+                myGraph.Dfs(startIndex);
             }
             else
             {
@@ -94,8 +94,6 @@ namespace LivinParis_Console
             GrapheImage<T> visualiseur = new GrapheImage<T>(myGraph);
             visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
-            
-            
         }
     }
 }
