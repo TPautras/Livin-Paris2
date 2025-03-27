@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 
 namespace SqlConnector.DataAccess
@@ -13,7 +14,7 @@ namespace SqlConnector.DataAccess
             var list = new List<CompositionDeLaRecette>();
             string query = "SELECT * FROM Composition_de_la_recette";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -33,14 +34,15 @@ namespace SqlConnector.DataAccess
 
         public CompositionDeLaRecette GetById(int id)
         {
-            throw new NotImplementedException("Cette entité possède une clé composite.");
+            throw new NotImplementedException("Cette entité possède une clé composite."); // si ça lit ça à un moment==> erreur
+            //récuperer une seul composition de recette par son id
         }
 
         public void Insert(CompositionDeLaRecette entity)
         {
             string query = "INSERT INTO Composition_de_la_recette (Ingredient_Id, Recette_id) VALUES (@IngredientId, @RecetteId)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@IngredientId", entity.IngredientId);
                 command.Parameters.AddWithValue("@RecetteId", entity.RecetteId);

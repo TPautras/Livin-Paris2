@@ -1,10 +1,4 @@
-﻿-- Se connecter au serveur MySQL sur localhost:3306
-\connect root@localhost:3306
-
--- Passage en mode SQL
-\sql
-
--- Création de la base de données livinparis (si elle n'existe pas déjà)
+﻿-- Création de la base de données livinparis (si elle n'existe pas déjà)
 CREATE DATABASE IF NOT EXISTS livinparis;
 
 -- Si un objet serveur existe déjà sous le nom "livinparis_server", on le supprime

@@ -34,5 +34,7 @@
         {
             return $"{LienDepart.Noeud_id} -> {LienArrivee.Noeud_id} (Poids: {LienPoids})";
         }
+
+        
     }
 }

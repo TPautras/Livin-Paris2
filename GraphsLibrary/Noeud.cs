@@ -15,7 +15,12 @@ namespace Graphs
             Noeud_Valeur = valeur;
             Liens = new List<Lien<T>>();
         }
-
+    /// <summary>
+    /// methode qui permet d'afficher un l'identifiant et la valeur d'un noeud
+    /// </summary>
+    /// <returns>
+    /// la méthode retourne une string qui correspond à l'affichage des paramètres du noeud
+    /// </returns>
         public override string ToString()
         {
             string res = $"L'id de ce noeud est : {Noeud_id}\n";

@@ -6,6 +6,10 @@ namespace LivinParis_Console
 {
     public class Exercice1
     {
+        
+       /// <summary>
+       /// Permet à l'utilisateur de charger et de visualiser un graphe à partir d'un fichier, avec la possibilité de personnaliser le type des noeudds et le séparateur.
+       /// </summary>
         public static void Exo1()
         {
             string[] options = { "Oui", "Non", "Quitter" };
@@ -59,23 +63,34 @@ namespace LivinParis_Console
                 }
             }
         }
+        /// <summary>
+        /// Charge un graphe à partir d'un fichier, l'affiche en texte, effectue des parcours Bfs et Dfs, puis génère une image du graphe.
+        /// </summary>
+        /// <param name="divider"></param> Caractère utilisé comme séparateur dans le fichier du graphe (' ' par défaut)
+        /// <param name="maxCount"></param> Nombre maximal de noeuds à lire dans le fichier 
+        /// <param name="path"></param> Chemin du fichier contenant le graphe
+        /// <typeparam name="T"></typeparam> Type des noeuds du graphe (string, int, bool, etc...)
         static void DemoGraph<T>(char divider = ' ', int maxCount = 35, string path = "../../soc-karate.mtx")
         {
             Graphe<T> myGraph = new Graphe<T>(path, divider, maxCount);
             Console.WriteLine(myGraph.ToString());
 
-            Console.WriteLine("Veuillez entrer un index de départ pour le parcours du graphe : ");
+            Console.WriteLine(myGraph.ListeAdjacence());
+            
+            Console.WriteLine(myGraph.MatriceAdjacence());
+
+            Console.WriteLine(myGraph.Boucle());
             int startIndex;
+            Console.WriteLine("Veuillez entrer un index de départ pour le parcours du graphe : ");
             if (int.TryParse(Console.ReadLine(), out startIndex))
             {
-                myGraph.BFS(startIndex);
-                myGraph.DFS(startIndex);
+                myGraph.Bfs(startIndex);
+                myGraph.Dfs(startIndex);
             }
             else
             {
                 Console.WriteLine("Entrée invalide.");
             }
-
             GrapheImage<T> visualiseur = new GrapheImage<T>(myGraph);
             visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
