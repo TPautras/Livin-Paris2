@@ -44,5 +44,20 @@ namespace SqlConnector.DataService
             CuisinierDataAccess cuisinierDataAccess = new CuisinierDataAccess();
             return cuisinierDataAccess.GetByUsername(username);
         }
+        public bool TestConnection(string username, string password)
+        {
+            CuisinierDataAccess dataAccess = new CuisinierDataAccess();
+            CuisinierService clientService = new CuisinierService(dataAccess);
+            
+            Cuisinier client = clientService.GetByUsername(username);
+            if (client.CuisinierPassword == password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

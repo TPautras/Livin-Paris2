@@ -11,11 +11,21 @@ namespace LivinParis_Console
     {
         public static void ConnectorTest()
         {
-            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
-            foreach (var personne in personneDataAccess.GetAll())
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
+            foreach (var personne in clientDataAccess.GetAll())
             {
-                Console.WriteLine(personne.PersonneNom);
+                Console.WriteLine(personne.ClientUsername);
+                Console.WriteLine(personne.ClientPassword);
             }
+
+            (string[] Test1, Personne test2)? bonk = Connexion.ConnexionMenu();
+            if (bonk != null)
+                Console.WriteLine("CA MARCHE AAAAAA AAAAA");
+            else
+                Console.WriteLine("NUUUUUUL");
+            
+            Console.ReadKey();
+            
         }
     }
 }

@@ -44,5 +44,20 @@ namespace SqlConnector.DataService
             ClientDataAccess dataAccess = new ClientDataAccess();
             return dataAccess.GetByUsername(username);
         }
+        public bool TestConnection(string username, string password)
+        {
+            ClientDataAccess dataAccess = new ClientDataAccess();
+            ClientService clientService = new ClientService(dataAccess);
+            
+            Client client = clientService.GetByUsername(username);
+            if (client.ClientPassword == password)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
