@@ -1,4 +1,7 @@
-﻿namespace Graphs.Parcours
+﻿using System;
+using System.Collections.Generic;
+
+namespace Graphs.Parcours
 {
     /// <summary>
     /// Classe implémentant l'algorithme de Bellman-Ford pour trouver le plus court chemin dans un graphe
@@ -12,7 +15,7 @@
         /// <param name="depart">Le sommet de départ</param>
         /// <param name="arrivee">Le sommet d'arrivée</param>
         /// <returns>Un objet représentant le résultat du plus court chemin</returns>
-        public static ResultatBellmanFord CheminPlusCourt(Graphe<T> graphe, int depart, int arrivee)
+        public static (List<int>, double) CheminPlusCourt(Graphe<T> graphe, int depart, int arrivee)
         {
             // Vérifier que les sommets existent dans le graphe
             if (!graphe.Noeuds.ContainsKey(depart) || !graphe.Noeuds.ContainsKey(arrivee))
@@ -97,36 +100,7 @@
                 etapeCourante = predecesseurs[etapeCourante.Value];
             }
 
-            return new ResultatBellmanFord
-            {
-                Chemin = chemin,
-                Distance = distances[arrivee]
-            };
-        }
-    }
-
-    /// <summary>
-    /// Classe représentant le résultat de l'algorithme de Bellman-Ford
-    /// </summary>
-    public class ResultatBellmanFord
-    {
-        /// <summary>
-        /// Le chemin le plus court sous forme de liste de sommets
-        /// </summary>
-        public List<int> Chemin { get; set; }
-
-        /// <summary>
-        /// La distance totale du chemin
-        /// </summary>
-        public double Distance { get; set; }
-
-        /// <summary>
-        /// Méthode pour afficher le résultat
-        /// </summary>
-        /// <returns>Une représentation textuelle du résultat</returns>
-        public override string ToString()
-        {
-            return $"Chemin : {string.Join(" -> ", Chemin)}\nDistance totale : {Distance}";
+            return (chemin, distances[arrivee]);
         }
     }
 }
