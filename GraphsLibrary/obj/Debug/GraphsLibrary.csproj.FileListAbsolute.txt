@@ -29,3 +29,14 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary
 C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLi.EAF20264.Up2Date
 C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.pdb
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\GraphsLibrary.dll
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\GraphsLibrary.pdb
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Common.dll
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Primitives.dll
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Common.pdb
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Drawing.Common.xml
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.csproj.AssemblyReference.cache
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLi.EAF20264.Up2Date
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.dll
+C:\Users\paren\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.pdb

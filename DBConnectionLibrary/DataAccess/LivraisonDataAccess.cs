@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 
 namespace SqlConnector.DataAccess
@@ -13,7 +14,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Livraison>();
             string query = "SELECT * FROM Livraison";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using (var reader = command.ExecuteReader())
@@ -37,7 +38,7 @@ namespace SqlConnector.DataAccess
             Livraison livraison = null;
             string query = "SELECT * FROM Livraison WHERE Livraison_Id = @Id";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();
@@ -62,7 +63,7 @@ namespace SqlConnector.DataAccess
             string query = "INSERT INTO Livraison (Livraison_Id, Livraison_Adresse, Livraison_Date) " +
                            "VALUES (@Id, @Adresse, @Date)";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", entity.LivraisonId);
                 command.Parameters.AddWithValue("@Adresse", entity.LivraisonAdresse);
@@ -77,7 +78,7 @@ namespace SqlConnector.DataAccess
             string query = "UPDATE Livraison SET Livraison_Adresse = @Adresse, Livraison_Date = @Date " +
                            "WHERE Livraison_Id = @Id";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Adresse", entity.LivraisonAdresse);
                 command.Parameters.AddWithValue("@Date", entity.LivraisonDate);
@@ -91,7 +92,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "DELETE FROM Livraison WHERE Livraison_Id = @Id";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();

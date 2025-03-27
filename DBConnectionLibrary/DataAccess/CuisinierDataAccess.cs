@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 namespace SqlConnector.DataAccess
 {
@@ -12,7 +12,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Cuisinier>();
             string query = "SELECT * FROM Cuisinier";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -40,7 +40,7 @@ namespace SqlConnector.DataAccess
                              (Cuisinier_Username, Cuisinier_Password, Personne_Email)
                              VALUES (@Username, @Password, @PersonneEmail)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Username", entity.CuisinierUsername);
                 command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
@@ -56,7 +56,7 @@ namespace SqlConnector.DataAccess
                              Personne_Email = @PersonneEmail
                              WHERE Cuisinier_Username = @Username";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
                 command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
@@ -74,7 +74,7 @@ namespace SqlConnector.DataAccess
             Cuisinier c = null;
             string query = "SELECT * FROM Cuisinier WHERE Cuisinier_Username = @Username";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Username", username);
                 connection.Open();
@@ -97,7 +97,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "DELETE FROM Cuisinier WHERE Cuisinier_Username = @Username";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Username", username);
                 connection.Open();
