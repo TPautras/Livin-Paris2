@@ -6,7 +6,6 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\Livi
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CoreCompileInputs.cache
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.pdb
@@ -170,3 +169,4 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis T
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete

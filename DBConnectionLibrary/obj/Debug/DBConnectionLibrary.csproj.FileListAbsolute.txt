@@ -35,7 +35,6 @@ C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\bin\Debug\
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.csproj.AssemblyReference.cache
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.csproj.CoreCompileInputs.cache
-C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnec.3A6B652D.Up2Date
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.dll
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.pdb
 C:\Users\samue\RiderProjects\Livin-Paris2\DBConnectionLibrary\bin\Debug\DBConnectionLibrary.dll.config
@@ -158,3 +157,4 @@ C:\Users\paren\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnec
 C:\Users\paren\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnec.3A6B652D.Up2Date
 C:\Users\paren\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.pdb
+C:\Users\paren\source\repos\TPautras\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.csproj.CopyComplete

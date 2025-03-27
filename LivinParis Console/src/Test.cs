@@ -25,7 +25,12 @@ namespace LivinParis_Console
             }
             else
                 Console.WriteLine("NUUUUUUL");
-            
+
+            foreach (var personne in clientDataAccess.GetAll())
+            {
+                Console.WriteLine(personne.ClientUsername);
+                Console.WriteLine(personne.ClientPassword);
+            }
             Console.ReadKey();
             
         }
