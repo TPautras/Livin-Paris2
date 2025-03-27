@@ -54,6 +54,7 @@
         <Compile Include="Noeud.cs" />
         <Compile Include="Parcours\Bellman-Ford.cs" />
         <Compile Include="Parcours\Dijsktra.cs" />
+        <Compile Include="Parcours\Floyd-Warshall.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
