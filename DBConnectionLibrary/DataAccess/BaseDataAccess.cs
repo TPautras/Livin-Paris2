@@ -9,10 +9,6 @@ namespace LivinParis.DataAccess
 
         protected MySqlConnection GetConnection()
         {
-            MySqlConnection connection = new MySqlConnection(ConnectionString);
-            connection.Open();
-            Console.WriteLine("Connection established");
-            connection.Close();
             return new MySqlConnection(ConnectionString);
         }
     }

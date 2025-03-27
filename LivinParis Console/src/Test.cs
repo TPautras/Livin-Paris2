@@ -20,7 +20,9 @@ namespace LivinParis_Console
 
             (string[] Test1, Personne test2)? bonk = Connexion.ConnexionMenu();
             if (bonk != null)
-                Console.WriteLine("CA MARCHE AAAAAA AAAAA");
+            {
+                Console.WriteLine(bonk.Value.test2.PersonneNom);
+            }
             else
                 Console.WriteLine("NUUUUUUL");
             
