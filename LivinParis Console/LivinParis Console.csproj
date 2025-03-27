@@ -142,8 +142,10 @@
         <Compile Include="Assets\ASCII.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="src\Connexion.cs" />
         <Compile Include="src\Exercice 1.cs" />
+        <Compile Include="src\Interfaces\ClientMenu.cs" />
+        <Compile Include="src\Interfaces\Connexion.cs" />
+        <Compile Include="src\Interfaces\CuisinierMenu.cs" />
         <Compile Include="src\SqlConnectorTest.cs" />
         <Compile Include="src\Test.cs" />
     </ItemGroup>

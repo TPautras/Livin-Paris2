@@ -12,6 +12,7 @@ namespace LivinParis_Console
         public static void ConnectorTest()
         {
             ClientDataAccess clientDataAccess = new ClientDataAccess();
+            CuisinierDataAccess cuisinierDataAccess = new CuisinierDataAccess();
             foreach (var personne in clientDataAccess.GetAll())
             {
                 Console.WriteLine(personne.ClientUsername);
@@ -22,17 +23,19 @@ namespace LivinParis_Console
             if (bonk != null)
             {
                 Console.WriteLine(bonk.Value.test2.PersonneNom);
+                if (bonk.Value.Test1[2] == "Client")
+                {
+                    ClientMenu.ClientMenuMain();
+                }
+                else
+                {
+                    CuisinierMenu cuisinierMenu = new CuisinierMenu(cuisinierDataAccess.GetByUsername(bonk.Value.Test1[0]));
+                    cuisinierMenu.CuisinierMenuMain();
+                }
             }
             else
-                Console.WriteLine("NUUUUUUL");
-
-            foreach (var personne in clientDataAccess.GetAll())
-            {
-                Console.WriteLine(personne.ClientUsername);
-                Console.WriteLine(personne.ClientPassword);
-            }
+                Console.WriteLine("Erreur dans la connexion");
             Console.ReadKey();
-            
         }
     }
 }
