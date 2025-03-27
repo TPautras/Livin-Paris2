@@ -9,7 +9,7 @@ namespace LivinParis_Console
     {
         public static void Main(string[] args)
         {
-            string[] options = { "Graphes", "Sql", "Quitter" };
+            string[] options = { "Graphes", "Sql", "Test","Quitter" };
             bool Quit = false;
             while (!Quit)
             {
@@ -22,6 +22,9 @@ namespace LivinParis_Console
                         break;
                     case 1:
                         SqlConnectorTest.ConnectorTest();
+                        break;
+                    case 2:
+                        Test.ConnectorTest();
                         break;
                     default:
                         Quit = true;

@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using MySql.Data.MySqlClient;
 
 namespace LivinParis.DataAccess
 {
@@ -6,9 +7,13 @@ namespace LivinParis.DataAccess
     {
         protected readonly string ConnectionString = "Server=localhost;Port=3306;Database=livin_paris;Uid=root;Password=root;";
 
-        protected SqlConnection GetConnection()
+        protected MySqlConnection GetConnection()
         {
-            return new SqlConnection(ConnectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection established");
+            connection.Close();
+            return new MySqlConnection(ConnectionString);
         }
     }
 }
