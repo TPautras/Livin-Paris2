@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DBConnectionLibrary\DBConnectionLibrary.csproj" />
+      <ProjectReference Include="..\GraphsLibrary\GraphsLibrary.csproj" />
+      <ProjectReference Include="..\LivinParis Console\LivinParis Console.csproj" />
+      <ProjectReference Include="..\LivinParis Test\LivinParis Test.csproj" />
+      <ProjectReference Include="..\LivinParisGraphique\LivinParisGraphique.csproj" />
+    </ItemGroup>
+
+</Project>

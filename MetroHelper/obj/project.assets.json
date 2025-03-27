@@ -1,0 +1,178 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "DBConnectionLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DBConnectionLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DBConnectionLibrary.dll": {}
+        }
+      },
+      "GraphsLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/GraphsLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GraphsLibrary.dll": {}
+        }
+      },
+      "LivinParis Console/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DBConnectionLibrary": "1.0.0",
+          "GraphsLibrary": "1.0.0",
+          "LivinParis Test": "1.0.0",
+          "LivinParisGraphique": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LivinParis Console.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LivinParis Console.dll": {}
+        }
+      },
+      "LivinParis Test/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DBConnectionLibrary": "1.0.0",
+          "GraphsLibrary": "1.0.0",
+          "LivinParisGraphique": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LivinParis Test.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LivinParis Test.dll": {}
+        }
+      },
+      "LivinParisGraphique/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/LivinParisGraphique.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LivinParisGraphique.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DBConnectionLibrary/1.0.0": {
+      "type": "project",
+      "path": "../DBConnectionLibrary/DBConnectionLibrary.csproj",
+      "msbuildProject": "../DBConnectionLibrary/DBConnectionLibrary.csproj"
+    },
+    "GraphsLibrary/1.0.0": {
+      "type": "project",
+      "path": "../GraphsLibrary/GraphsLibrary.csproj",
+      "msbuildProject": "../GraphsLibrary/GraphsLibrary.csproj"
+    },
+    "LivinParis Console/1.0.0": {
+      "type": "project",
+      "path": "../LivinParis Console/LivinParis Console.csproj",
+      "msbuildProject": "../LivinParis Console/LivinParis Console.csproj"
+    },
+    "LivinParis Test/1.0.0": {
+      "type": "project",
+      "path": "../LivinParis Test/LivinParis Test.csproj",
+      "msbuildProject": "../LivinParis Test/LivinParis Test.csproj"
+    },
+    "LivinParisGraphique/1.0.0": {
+      "type": "project",
+      "path": "../LivinParisGraphique/LivinParisGraphique.csproj",
+      "msbuildProject": "../LivinParisGraphique/LivinParisGraphique.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "DBConnectionLibrary >= 1.0.0",
+      "GraphsLibrary >= 1.0.0",
+      "LivinParis Console >= 1.0.0",
+      "LivinParis Test >= 1.0.0",
+      "LivinParisGraphique >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\samue\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj",
+      "projectName": "MetroHelper",
+      "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj",
+      "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj": {
+              "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj"
+            },
+            "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
+              "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj"
+            },
+            "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj": {
+              "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj"
+            },
+            "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj": {
+              "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj"
+            },
+            "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\LivinParisGraphique\\LivinParisGraphique.csproj": {
+              "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\LivinParisGraphique\\LivinParisGraphique.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
