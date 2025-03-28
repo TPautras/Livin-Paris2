@@ -51,14 +51,22 @@ namespace SqlConnector.DataService
             ClientService clientService = new ClientService(dataAccess);
             
             Client client = clientService.GetByUsername(username);
-            if (client.ClientPassword == password)
+            try
+            {
+                client = clientService.GetByUsername(username);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                return false;
+            }
+
+            if (client != null)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

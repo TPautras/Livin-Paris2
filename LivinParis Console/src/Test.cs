@@ -25,7 +25,8 @@ namespace LivinParis_Console
                 Console.WriteLine(bonk.Value.test2.PersonneNom);
                 if (bonk.Value.Test1[2] == "Client")
                 {
-                    ClientMenu.ClientMenuMain();
+                    ClientMenu clientMenu = new ClientMenu(clientDataAccess.GetByUsername(bonk.Value.Test1[0]));
+                    clientMenu.ClientMenuMain();
                 }
                 else
                 {

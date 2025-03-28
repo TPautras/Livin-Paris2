@@ -49,8 +49,8 @@ namespace LivinParis_Console
                     userName = Console.ReadLine();
                     Console.WriteLine("Quel est votre password ?");
                     password = Console.ReadLine();
-                    CuisinierDataAccess Cuisinier = new CuisinierDataAccess();
-                    CuisinierService cuisinierService = new CuisinierService(Cuisinier);
+                    CuisinierDataAccess cuisinier = new CuisinierDataAccess();
+                    CuisinierService cuisinierService = new CuisinierService(cuisinier);
                     testConnection = cuisinierService.TestConnection(userName, password);
                     while (!testConnection)
                     {
