@@ -20,16 +20,17 @@ DROP TABLE IF EXISTS entreprise CASCADE;
 DROP TABLE IF EXISTS recette CASCADE;
 
 CREATE TABLE Personne(
-                         Personne_Email VARCHAR(50),
-                         Personne_Nom VARCHAR(50),
-                         Personne_Prenom VARCHAR(50),
-                         Personne_Ville VARCHAR(50),
-                         Personne_Code_postale INT,
-                         Personne_Nom_de_la_rue VARCHAR(50),
-                         Personne_Numero_de_la_rue INT,
-                         Personne_Telephone VARCHAR(50),
-                         Personne_Station_de_metro_la_plus_proche VARCHAR(50),
-                         PRIMARY KEY(Personne_Email)
+    Personne_Email VARCHAR(50),
+    Personne_Nom VARCHAR(50),
+    Personne_Prenom VARCHAR(50),
+    Personne_Ville VARCHAR(50),
+    Personne_Code_postale INT,
+    Personne_Nom_de_la_rue VARCHAR(50),
+    Personne_Numero_de_la_rue INT,
+    Personne_Telephone VARCHAR(50),
+    Personne_Station_de_metro_la_plus_proche VARCHAR(50),
+    Personne_Is_Admin BOOL,
+    PRIMARY KEY(Personne_Email)
 );
 
 CREATE TABLE Ingredient(

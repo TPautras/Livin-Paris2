@@ -40,6 +40,7 @@ namespace LivinParis_Console
                                 Console.WriteLine(plat.PlatPrix);
                             }
                         }
+                        Console.ReadKey();
                         break;
                     case 1:
                         PlatMenuMain(recetteService, recetteDataAccess.GetAll().Count, platDataAccess);

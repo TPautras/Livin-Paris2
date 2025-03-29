@@ -34,7 +34,27 @@ namespace SqlConnector.DataAccess
 
         public Livre GetById(int id)
         {
-            throw new NotImplementedException("Cette entité possède une clé composite.");
+            Livre l = null;
+            string query = "SELECT * FROM livré WHERE Livraison_Id = @id OR Plat_Id = @id";
+            using(var connection = GetConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+                        l = new Livre
+                        {
+                            LivraisonId = Convert.ToInt32(reader["Livraison_Id"]),
+                            PlatId = Convert.ToInt32(reader["Plat_Id"]),
+                            
+                        };
+                    }
+                }
+            }
+            return l;
         }
 
         public void Insert(Livre entity)

@@ -22,7 +22,7 @@ namespace LivinParis_Console
             RecetteDataAccess recetteDataAccess = new RecetteDataAccess();
             RecetteService recetteService = new RecetteService(recetteDataAccess);
             bool quit = false;
-            string[] options = { "Voir la liste des plats" ,"Acheter un plat", "Créer une recette", "Déconnexion"};
+            string[] options = { "Voir la liste des plats" ,"Acheter un plat","Voir la liste des recettes" , "Créer une recette", "Mes commandes", "Déconnexion"};
             while (!quit)
             {
                 int mainMenuChoice = Affichages.MenuSelect(ASCII.Client, options);
@@ -35,17 +35,63 @@ namespace LivinParis_Console
                             Console.WriteLine(recette.RecetteNom);
                             Console.WriteLine(plat.PlatPrix);
                         }
+                        Console.WriteLine("Pour sortir, appuyez sur n'importe quelle touche");
+                        Console.ReadKey();
                         break;
                     case 1:
+                        
                         break;
                     case 2:
+                        foreach (var recette in new RecetteService(recetteDataAccess).GetAll())
+                        {
+                            Console.WriteLine(recette.RecetteNom);
+                            Console.WriteLine(recette.RecetteTypeDePlat);
+                        }
+                        Console.WriteLine("Pour sortir, appuyez sur n'importe quelle touche");
+                        Console.ReadKey();
+                        break;
+                    case 3:
                         recetteDataAccess.Insert(RecetteCréation(recetteDataAccess.GetAll().Count));
                         break;
+                    case 4:
+                        CommandeDataAccess commandeDataAccess = new CommandeDataAccess();
+                        CommandeService commandeService = new CommandeService(commandeDataAccess);
+                        CreationDataAccess creationDataAccess = new CreationDataAccess();
+                        LivreDataAccess livreDataAccess = new LivreDataAccess();
+                        LivraisonDataAccess livraisonDataAccess = new LivraisonDataAccess();
+                        foreach (var commande in commandeService.GetAll())
+                        {
+                            Console.WriteLine("Le nombre de commandes :" + commandeService.GetAll().Count);
+                            Plat plat = platDataAccess.GetById(creationDataAccess.GetById(commande.CommandeId).PlatId);
+                            Livre livre = livreDataAccess.GetById(plat.PlatId);
+                            Livraison livraison = livraisonDataAccess.GetById(livre.LivraisonId);
+                            Console.WriteLine(recetteDataAccess.GetById(plat.RecetteId).RecetteNom);
+                            Console.WriteLine(commande.CuisinierUsername);
+                            if (livraison.LivraisonDate == null)
+                            {
+                                Console.WriteLine("Votre commande est en chemin !");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Votre commande est deja livree !");
+                            }
+                        }
+                        Console.WriteLine("Pour sortir, appuyez sur n'importe quelle touche");
+                        Console.ReadKey();
+                        break;
+                        
                     default:
                         quit = true;
                         break;
                 }
             }
+        }
+
+        public Commande CommandeMain()
+        {
+            Commande command = new Commande();
+            
+            return command;
         }
         public Recette RecetteCréation(int recetteId)
         {
