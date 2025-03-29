@@ -111,6 +111,7 @@
         <Compile Include="DataAccess\PersonneDataAccess.cs" />
         <Compile Include="DataAccess\PlatDataAccess.cs" />
         <Compile Include="DataAccess\RecetteDataAccess.cs" />
+        <Compile Include="DataAccess\StatsDataAccess.cs" />
         <Compile Include="DataServices\ClientService.cs" />
         <Compile Include="DataServices\CommandeService.cs" />
         <Compile Include="DataServices\CompositionDeLaRecetteService.cs" />
