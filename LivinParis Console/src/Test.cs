@@ -22,16 +22,25 @@ namespace LivinParis_Console
             (string[] Test1, Personne test2)? bonk = Connexion.ConnexionMenu();
             if (bonk != null)
             {
-                Console.WriteLine(bonk.Value.test2.PersonneNom);
-                if (bonk.Value.Test1[2] == "Client")
+                if (bonk.Value.test2.PersonneIsAdmin == true)
                 {
-                    ClientMenu clientMenu = new ClientMenu(clientDataAccess.GetByUsername(bonk.Value.Test1[0]));
-                    clientMenu.ClientMenuMain();
+                    AdminMenu adminMenu = new AdminMenu();
+                    adminMenu.AdminMenuMain();
                 }
                 else
                 {
-                    CuisinierMenu cuisinierMenu = new CuisinierMenu(cuisinierDataAccess.GetByUsername(bonk.Value.Test1[0]));
-                    cuisinierMenu.CuisinierMenuMain();
+                    
+                    Console.WriteLine(bonk.Value.test2.PersonneNom);
+                    if (bonk.Value.Test1[2] == "Client")
+                    {
+                        ClientMenu clientMenu = new ClientMenu(clientDataAccess.GetByUsername(bonk.Value.Test1[0]));
+                        clientMenu.ClientMenuMain();
+                    }
+                    else
+                    {
+                        CuisinierMenu cuisinierMenu = new CuisinierMenu(cuisinierDataAccess.GetByUsername(bonk.Value.Test1[0]));
+                        cuisinierMenu.CuisinierMenuMain();
+                    }
                 }
             }
             else

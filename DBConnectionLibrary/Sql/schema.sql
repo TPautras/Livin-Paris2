@@ -91,7 +91,7 @@ CREATE TABLE Commande(
                          PRIMARY KEY(Commande_Id),
                          FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id),
                          FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username),
-                         FOREIGN KEY(Client_Username) REFERENCES Clients(Client_Username)
+                         FOREIGN KEY(Client_Username) REFERENCES Clients(Client_Username) ON DELETE CASCADE
 );
 
 CREATE TABLE Plat(
@@ -115,14 +115,14 @@ CREATE TABLE evaluation(
                            Evaluation_Description_Cuisinier TEXT,
                            Commande_Id INT NOT NULL,
                            PRIMARY KEY(Evaluation_Id),
-                           FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id)
+                           FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE 
 );
 
 CREATE TABLE Creation(
                          Commande_Id INT,
                          Plat_Id INT,
                          PRIMARY KEY(Commande_Id, Plat_Id),
-                         FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id),
+                         FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE,
                          FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id)
 );
 

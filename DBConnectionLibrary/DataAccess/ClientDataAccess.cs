@@ -98,7 +98,7 @@ namespace SqlConnector.DataAccess
             throw new NotImplementedException();
         }
 
-        public void Delete(string username)
+        public void DeleteByUsername(string username)
         {
             string query = "DELETE FROM Clients WHERE Client_Username = @Username";
             using(var connection = GetConnection())

@@ -72,68 +72,16 @@ namespace LivinParis_Console
                 case 2:
                     string[] optionsCompte = {"Compte client", "Compte Cuisinier"};
                     int choixCompte = Affichages.MenuSelect(Assets.ASCII.Bienvenue, optionsCompte);
-                    Console.WriteLine("Quel est votre nom ?");
-                    string nom = Console.ReadLine();
-                    Console.WriteLine("Quel est votre prénom ?");
-                    string prenom = Console.ReadLine();
-                    Console.WriteLine("Quel est votre email ?");
-                    string email = Console.ReadLine();
-                    Console.WriteLine("Quel est votre code postal ?");
-                    int codePostal = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Quelle est votre ville");
-                    string ville = Console.ReadLine();
-                    Console.WriteLine("Quel est votre Nom de rue ?");
-                    string nomDeRue = Console.ReadLine();
-                    Console.WriteLine("Quel est votre numéro de rue");
-                    int numeroDeRue = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Quel est votre numéro de téléphone");
-                    string numeroDeTel = Console.ReadLine();
-                    Console.WriteLine("Quel est votre station de métro la plus proche ?");
-                    string station = Console.ReadLine();
-                    Personne userPersonne = new Personne();
-                    userPersonne.PersonneNom = nom;
-                    userPersonne.PersonnePrenom = prenom;
-                    userPersonne.PersonneEmail = email;
-                    userPersonne.PersonneTelephone = numeroDeTel;
-                    userPersonne.PersonneCodePostale = codePostal;
-                    userPersonne.PersonneVille = ville;
-                    userPersonne.PersonneNumeroDeLaRue = numeroDeRue;
-                    userPersonne.PersonneNomDeLaRue = nomDeRue;
-                    userPersonne.PersonneStationDeMetroLaPlusProche = station;
+                    Personne userPersonne = CreationPersonne();
                     switch (choixCompte)
                     {
                         case 0:
-                            ClientDataAccess client1 = new ClientDataAccess();
-                            ClientService clientService1 = new ClientService(client1);
-                            Console.WriteLine("Quel est votre username ?");
-                            string username = Console.ReadLine();
-                            Console.WriteLine("Quel est votre mot de passe ?");
-                            string motdePasse = Console.ReadLine();
-                            Client userClient = new Client();
-                            userClient.ClientPassword = motdePasse;
-                            userClient.ClientUsername = username;
-                            userClient.PersonneEmail = email;
-                            userClient.Personne = userPersonne;
-                            personneService.Insert(userPersonne);
-                            clientService1.Insert(userClient);
-                            
-                            string[] toReturn3 = {username,motdePasse,"Client"};
+                            Client userClient = CreationClient(userPersonne);
+                            string[] toReturn3 = {userClient.ClientUsername,userClient.ClientPassword,"Client"};
                             return (toReturn3,userPersonne);
                         case 1:
-                            CuisinierDataAccess cuisinierDataAccess = new CuisinierDataAccess();
-                            CuisinierService cuisinierService1 = new CuisinierService(cuisinierDataAccess);
-                            Console.WriteLine("Quel est votre username ?");
-                            string usernameCuisinier = Console.ReadLine();
-                            Console.WriteLine("Quel est votre mot de passe ?");
-                            string motdePasseCuisinier = Console.ReadLine();
-                            Cuisinier userCuisinier = new Cuisinier();
-                            userCuisinier.CuisinierPassword = motdePasseCuisinier;
-                            userCuisinier.CuisinierUsername = usernameCuisinier;
-                            userCuisinier.PersonneEmail = email;
-                            userCuisinier.Personne = userPersonne;
-                            personneService.Insert(userPersonne);
-                            cuisinierService1.Insert(userCuisinier);
-                            string[] toReturn4 = {usernameCuisinier,motdePasseCuisinier,"Cuisinier"};
+                            Cuisinier userCuisinier = CreationCuisinier(userPersonne);
+                            string[] toReturn4 = {userCuisinier.CuisinierUsername,userCuisinier.CuisinierPassword,"Cuisinier"};
                             return (toReturn4,userPersonne);
                         default:
                             return null;
@@ -141,6 +89,77 @@ namespace LivinParis_Console
                 default:
                     return null;
             }
+        }
+
+        public static Personne CreationPersonne()
+        {
+            Console.WriteLine("Quel est votre nom ?");
+            string nom = Console.ReadLine();
+            Console.WriteLine("Quel est votre prénom ?");
+            string prenom = Console.ReadLine();
+            Console.WriteLine("Quel est votre email ?");
+            string email = Console.ReadLine();
+            Console.WriteLine("Quel est votre code postal ?");
+            int codePostal = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Quelle est votre ville");
+            string ville = Console.ReadLine();
+            Console.WriteLine("Quel est votre Nom de rue ?");
+            string nomDeRue = Console.ReadLine();
+            Console.WriteLine("Quel est votre numéro de rue");
+            int numeroDeRue = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Quel est votre numéro de téléphone");
+            string numeroDeTel = Console.ReadLine();
+            Console.WriteLine("Quel est votre station de métro la plus proche ?");
+            string station = Console.ReadLine();
+            Personne userPersonne = new Personne();
+            userPersonne.PersonneNom = nom;
+            userPersonne.PersonnePrenom = prenom;
+            userPersonne.PersonneEmail = email;
+            userPersonne.PersonneTelephone = numeroDeTel;
+            userPersonne.PersonneCodePostale = codePostal;
+            userPersonne.PersonneVille = ville;
+            userPersonne.PersonneNumeroDeLaRue = numeroDeRue;
+            userPersonne.PersonneNomDeLaRue = nomDeRue;
+            userPersonne.PersonneStationDeMetroLaPlusProche = station;
+            return userPersonne;
+        }
+
+        public static Client CreationClient(Personne userPersonne)
+        {
+            ClientDataAccess client1 = new ClientDataAccess();
+            ClientService clientService1 = new ClientService(client1);
+            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
+            Console.WriteLine("Quel est votre username ?");
+            string username = Console.ReadLine();
+            Console.WriteLine("Quel est votre mot de passe ?");
+            string motdePasse = Console.ReadLine();
+            Client userClient = new Client();
+            userClient.ClientPassword = motdePasse;
+            userClient.ClientUsername = username;
+            userClient.PersonneEmail = userPersonne.PersonneEmail;
+            userClient.Personne = userPersonne;
+            personneDataAccess.Insert(userPersonne);
+            clientService1.Insert(userClient);
+            return userClient;
+        }
+
+        public static Cuisinier CreationCuisinier(Personne userPersonne)
+        {
+            CuisinierDataAccess cuisinierDataAccess = new CuisinierDataAccess();
+            CuisinierService cuisinierService1 = new CuisinierService(cuisinierDataAccess);
+            PersonneDataAccess personneDataAccess = new PersonneDataAccess();
+            Console.WriteLine("Quel est votre username ?");
+            string usernameCuisinier = Console.ReadLine();
+            Console.WriteLine("Quel est votre mot de passe ?");
+            string motdePasseCuisinier = Console.ReadLine();
+            Cuisinier userCuisinier = new Cuisinier();
+            userCuisinier.CuisinierPassword = motdePasseCuisinier;
+            userCuisinier.CuisinierUsername = usernameCuisinier;
+            userCuisinier.PersonneEmail = userPersonne.PersonneEmail;
+            userCuisinier.Personne = userPersonne;
+            personneDataAccess.Insert(userPersonne);
+            cuisinierService1.Insert(userCuisinier);
+            return userCuisinier;
         }
     }
 }

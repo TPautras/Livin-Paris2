@@ -118,7 +118,9 @@ namespace SqlConnector.DataAccess
                             PersonneNomDeLaRue = reader["Personne_Nom_de_la_rue"].ToString(),
                             PersonneNumeroDeLaRue = Convert.ToInt32(reader["Personne_Numero_de_la_rue"]),
                             PersonneTelephone = reader["Personne_Telephone"].ToString(),
-                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString()
+                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString(),
+                            PersonneIsAdmin = Convert.ToBoolean(reader["Personne_Is_Admin"]),
+                                
                         };
                     }
                 }

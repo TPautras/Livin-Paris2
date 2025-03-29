@@ -11,5 +11,6 @@
         public int PersonneNumeroDeLaRue { get; set; }
         public string PersonneTelephone { get; set; }
         public string PersonneStationDeMetroLaPlusProche { get; set; }
+        public bool? PersonneIsAdmin { get; set; }
     }
 }
