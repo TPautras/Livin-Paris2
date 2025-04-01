@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\obj\Debug\
+C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\obj\Release\
 LivinParis_Graphique
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\App.xaml
 4-600436477
 1-876569091
