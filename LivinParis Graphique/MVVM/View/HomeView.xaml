@@ -42,7 +42,12 @@
                                    Foreground="White"
                                    FontSize="20"
                                    Margin="20,10,10,0"/>
-                    </StackPanel>
+                    </StackPanel>Hom
+                    
+                    <Image Width="250"
+                           Height="250"
+                           Source="/images/man.png"
+                           HorizontalAlignment="Right"/>
                 </Grid>
                 
             </Border>

@@ -95,8 +95,7 @@
       <Folder Include="MVVM\Model\" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="images\man.jpg" />
-      <Content Include="images\man.webp" />
+      <Content Include="images\man.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>

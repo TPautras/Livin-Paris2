@@ -9,7 +9,7 @@ namespace LivinParis_Console
     {
         public static void Main(string[] args)
         {
-            string[] options = { "Graphes", "Sql", "Test","Quitter" };
+            string[] options = { "Rendu 1", "Partie Metro", "Livin'Paris","Quitter" };
             bool Quit = false;
             while (!Quit)
             {
