@@ -127,3 +127,9 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis 
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.xml

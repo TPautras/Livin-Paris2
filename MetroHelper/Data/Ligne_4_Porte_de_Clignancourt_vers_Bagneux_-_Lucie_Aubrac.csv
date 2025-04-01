@@ -1,5 +1,5 @@
 Nom station de métro,Temps vers station suivante (min)
-Porte de Clignancourt,0
+Porte de Clignancourt,2
 Simplon,2
 Marcadet - Poissonniers,2
 Château Rouge,2
@@ -25,8 +25,4 @@ Raspail,2
 Denfert-Rochereau,2
 Mouton-Duvernet,2
 Alésia,2
-Porte d'Orléans,2
-Mairie de Montrouge,2
-Chatillon - Montrouge,2
-Barbara,2
-Bagneux - Lucie Aubrac,2
+Porte d'Orléans,0

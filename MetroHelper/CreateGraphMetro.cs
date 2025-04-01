@@ -1,69 +1,113 @@
 ﻿using Graphs;
-using System.Globalization;
-namespace MetroHelper;
 
-public class CreateGraphMetro
+namespace MetroHelper
 {
-    private Dictionary<string, int> stationId;
-    private int nextId;
-    private Graphe<string> graph;
-
-    public CreateGraphMetro(Dictionary<string, int> stationId, int nextId, Graphe<string>graph) 
+    public class CreateGraphMetro
     {
-        
-        this.stationId = stationId;
-        this.nextId = nextId;
-        this.graph = graph;
-        
-    }
-
-    public void ConstruireDepuisDossier(string dossierCsv)
-    {
-        foreach (var fichier in Directory.GetFiles(dossierCsv,"*.csv"))
+        private Dictionary<string, Station_de_metro> stations;
+        private int idCounter;
+        public CreateGraphMetro()
         {
-            this.ChargerFichierCsv(fichier);
+            this.stations = new Dictionary<string, Station_de_metro>();
+            this.idCounter = 1;
         }
-    }
-
-    private void ChargerFichierCsv(string chemin)
-    {
-        var lignes = File.ReadAllLines(chemin);
         
-        for (int i = 1; i < lignes.Length; i++)
+        public Dictionary<string, Station_de_metro> Stations
         {
-            var ligne = lignes[i].Split(',');
-            if (ligne.Length < 2) continue;
+            get { return this.stations; }
+            set { this.stations = value; }
+        }
 
-            string station = NettoyerNomStation(ligne[0]);
-            if (!this.stationId.ContainsKey(station))
+        public int IdCounter
+        {
+            get { return this.idCounter; }
+            set { this.idCounter = value; }
+        }
+        
+        public Graphe<Station_de_metro> ChargerReseauDepuisFichiers(string dossierData)
+        {
+            Graphe<Station_de_metro> graphe = new Graphe<Station_de_metro>("", ',', 0);
+
+            AjouterStationsEtLiensDesLignes(dossierData, graphe);
+            AjouterCorrespondances(dossierData, graphe);
+
+            return graphe;
+        }
+        
+        private void AjouterStationsEtLiensDesLignes(string dossierData, Graphe<Station_de_metro> graphe)
+        {
+            string[] fichiersLignes = Directory.GetFiles(dossierData, "Ligne_*.csv");
+
+            foreach (string fichier in fichiersLignes)
             {
-                this.stationId[station] = this.nextId;
-                this.graph.AjouterNoeud(this.nextId, station);
-                this.nextId++;
+                string[] lignes = File.ReadAllLines(fichier);
+                Station_de_metro stationPrecedente = null;
+
+                foreach (string ligne in lignes)
+                {
+                    string nom = ligne.Trim();
+                    if (nom == "") continue;
+
+                    if (!stations.ContainsKey(nom))
+                    {
+                        Station_de_metro nouvelleStation = new Station_de_metro(idCounter, nom);
+                        stations[nom] = nouvelleStation;
+                        graphe.AjouterNoeud(nouvelleStation.Id, nouvelleStation);
+                        idCounter++;
+                    }
+
+                    Station_de_metro stationActuelle = stations[nom];
+
+                    if (stationPrecedente != null)
+                    {
+                        graphe.AjouterLien(stationPrecedente.Id, stationActuelle.Id, 1);
+                        graphe.AjouterLien(stationActuelle.Id, stationPrecedente.Id, 1);
+                    }
+
+                    stationPrecedente = stationActuelle;
+                }
             }
         }
-        for (int i = 1; i < lignes.Length - 1; i++)
+        
+        private void AjouterCorrespondances(string dossierData, Graphe<Station_de_metro> graphe)
         {
-            string depart = NettoyerNomStation(lignes[i].Split(',')[0]);
-            string arrivee = NettoyerNomStation(lignes[i + 1].Split(',')[0]);
-            string poidsStr = lignes[i].Split(',')[1].Trim();
+            string fichierCorrespondance = Path.Combine(dossierData, "Correspondance.csv");
 
-            if (!double.TryParse(poidsStr, NumberStyles.Any, CultureInfo.InvariantCulture, out double poids))
-                poids = 2.0;
+            if (!File.Exists(fichierCorrespondance)) return;
 
-            if (this.stationId.ContainsKey(depart) && this.stationId.ContainsKey(arrivee))
+            string[] lignes = File.ReadAllLines(fichierCorrespondance);
+
+            foreach (string ligne in lignes)
             {
-                int idDepart = this.stationId[depart];
-                int idArrivee = this.stationId[arrivee];
-                this.graph.AjouterLien(idDepart, idArrivee, poids);
+                string[] parties = ligne.Split(';');
+                if (parties.Length < 3) continue;
+
+                string nom1 = parties[0].Trim();
+                string nom2 = parties[1].Trim();
+                int temps = int.TryParse(parties[2], out int t) ? t : 1;
+
+                if (!stations.ContainsKey(nom1))
+                {
+                    Station_de_metro station1 = new Station_de_metro(idCounter, nom1);
+                    stations[nom1] = station1;
+                    graphe.AjouterNoeud(station1.Id, station1);
+                    idCounter++;
+                }
+
+                if (!stations.ContainsKey(nom2))
+                {
+                    Station_de_metro station2 = new Station_de_metro(idCounter, nom2);
+                    stations[nom2] = station2;
+                    graphe.AjouterNoeud(station2.Id, station2);
+                    idCounter++;
+                }
+
+                Station_de_metro s1 = stations[nom1];
+                Station_de_metro s2 = stations[nom2];
+
+                graphe.AjouterLien(s1.Id, s2.Id, temps);
+                graphe.AjouterLien(s2.Id, s1.Id, temps);
             }
         }
     }
-    private string NettoyerNomStation(string nom)
-    {
-        return nom.Trim().Replace("\u00a0", " ").Replace("’", "'").Replace("É", "E").Replace("é", "e")
-            .Replace("è", "e").Replace("à", "a").Replace("î", "i").Replace("ô", "o").Replace("ç", "c");
-    }
-
-
 }

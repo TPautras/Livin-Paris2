@@ -29,3 +29,16 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary
 C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLi.EAF20264.Up2Date
 C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\GraphsLibrary\obj\Debug\GraphsLibrary.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\GraphsLibrary.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Buffers.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Memory.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.ValueTuple.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Buffers.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Memory.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\GraphsLibrary\bin\Debug\System.ValueTuple.xml

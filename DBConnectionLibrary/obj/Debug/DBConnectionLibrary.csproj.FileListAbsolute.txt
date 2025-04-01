@@ -118,3 +118,5 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConne
 C:\Users\Thomas\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnec.3A6B652D.Up2Date
 C:\Users\Thomas\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\DBConnectionLibrary\obj\Debug\DBConnectionLibrary.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\DBConnectionLibrary\bin\Debug\System.ValueTuple.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\DBConnectionLibrary\bin\Debug\System.ValueTuple.xml

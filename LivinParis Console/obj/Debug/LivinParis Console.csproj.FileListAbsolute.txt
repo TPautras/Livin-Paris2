@@ -192,3 +192,7 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinPar
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinPar.374188EB.Up2Date
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis_Console.exe
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis_Console.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.ValueTuple.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\GraphsLibrary.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Test.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.ValueTuple.xml
