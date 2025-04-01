@@ -58,10 +58,6 @@
         <Project>{845a2cea-a6fa-405e-9267-65b375abf980}</Project>
         <Name>GraphsLibrary</Name>
       </ProjectReference>
-      <ProjectReference Include="..\LivinParisGraphique\LivinParisGraphique.csproj">
-        <Project>{da53ba2f-f558-4cab-8215-f3d10eec9eb8}</Project>
-        <Name>LivinParisGraphique</Name>
-      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

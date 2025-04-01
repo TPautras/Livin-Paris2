@@ -115,7 +115,6 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinPar
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DBConnectionLibrary.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DotNetEnv.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\GraphsLibrary.dll
-C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParisGraphique.exe
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Test.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.dll
@@ -139,8 +138,6 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DBConnec
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DBConnectionLibrary.dll.config
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\GraphsLibrary.pdb
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Test.pdb
-C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParisGraphique.pdb
-C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParisGraphique.exe.config
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.xml
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Primitives.xml
