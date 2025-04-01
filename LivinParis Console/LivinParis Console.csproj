@@ -162,10 +162,6 @@
         <Project>{d019bed6-f76b-4490-8afe-834da94c6a92}</Project>
         <Name>LivinParis Test</Name>
       </ProjectReference>
-      <ProjectReference Include="..\LivinParisGraphique\LivinParisGraphique.csproj">
-        <Project>{da53ba2f-f558-4cab-8215-f3d10eec9eb8}</Project>
-        <Name>LivinParisGraphique</Name>
-      </ProjectReference>
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />
