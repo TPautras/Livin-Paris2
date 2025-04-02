@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 
 namespace SqlConnector.DataAccess
@@ -13,7 +14,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Evaluation>();
             string query = "SELECT * FROM evaluation";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -40,7 +41,7 @@ namespace SqlConnector.DataAccess
             Evaluation evaluation = null;
             string query = "SELECT * FROM evaluation WHERE Evaluation_Id = @Id";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();
@@ -69,7 +70,7 @@ namespace SqlConnector.DataAccess
                              (Evaluation_Id, Evaluation_Client, Evaluation_Cuisinier, Evaluation_Description_Client, Evaluation_Description_Cuisinier, Commande_Id)
                              VALUES (@Id, @Client, @Cuisinier, @DescClient, @DescCuisinier, @CommandeId)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", entity.EvaluationId);
                 command.Parameters.AddWithValue("@Client", entity.EvaluationClient);
@@ -92,7 +93,7 @@ namespace SqlConnector.DataAccess
                              Commande_Id = @CommandeId
                              WHERE Evaluation_Id = @Id";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Client", entity.EvaluationClient);
                 command.Parameters.AddWithValue("@Cuisinier", entity.EvaluationCuisinier);
@@ -109,7 +110,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "DELETE FROM evaluation WHERE Evaluation_Id = @Id";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();

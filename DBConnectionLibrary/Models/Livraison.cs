@@ -5,6 +5,6 @@ namespace SqlConnector.Models
     {
         public int LivraisonId { get; set; }
         public string LivraisonAdresse { get; set; }
-        public DateTime LivraisonDate { get; set; }
+        public DateTime? LivraisonDate { get; set; }
     }
 }

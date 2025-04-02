@@ -1,7 +1,7 @@
 ﻿using System;
 using Graphs;
 using SqlConnector;
-using static LivinParis_Console.SqlConnectorTest;
+using static LivinParis_Console.BddConnection;
 
 namespace LivinParis_Console
 {
@@ -9,19 +9,22 @@ namespace LivinParis_Console
     {
         public static void Main(string[] args)
         {
-            string[] options = { "Graphes", "Sql", "Quitter" };
+            string[] options = { "Rendu 1", "Partie Metro/ BDD Initialisation", "Livin'Paris","Quitter" };
             bool Quit = false;
             while (!Quit)
             {
                 int res = Affichages.MenuSelect(
-                    Affichages.Banner() + "\n Quel partie du code voulez vous explorer ?", options);
+                    Assets.ASCII.Psi2025 + "\n Quel partie du code voulez vous explorer ?", options);
                 switch (res)
                 {
                     case 0:
                         Exercice1.Exo1();
                         break;
                     case 1:
-                        SqlConnectorTest.ConnectorTest();
+                        BddConnection.ConnectorTest();
+                        break;
+                    case 2:
+                        LivinParis.ConnectorTest();
                         break;
                     default:
                         Quit = true;

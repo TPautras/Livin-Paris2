@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SqlConnector.Models;
 using SqlConnector.DataAccess;
 using SqlConnector.DataServices;
@@ -24,14 +25,13 @@ namespace SqlConnector.DataService
         {
             ValidationHelper.ValidateStringField(entity.ClientUsername, "Client_Username", 50, false);
             ValidationHelper.ValidateStringField(entity.ClientPassword, "Client_Password", 50, false);
-            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
+           
             _dataAccess.Insert(entity);
         }
         public void Update(Client entity)
         {
             ValidationHelper.ValidateStringField(entity.ClientUsername, "Client_Username", 50, false);
             ValidationHelper.ValidateStringField(entity.ClientPassword, "Client_Password", 50, false);
-            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
             _dataAccess.Update(entity);
         }
         public void Delete(int id)
@@ -43,6 +43,29 @@ namespace SqlConnector.DataService
         {
             ClientDataAccess dataAccess = new ClientDataAccess();
             return dataAccess.GetByUsername(username);
+        }
+        public bool TestConnection(string username, string password)
+        {
+            ClientDataAccess dataAccess = new ClientDataAccess();
+            ClientService clientService = new ClientService(dataAccess);
+            
+            Client client = clientService.GetByUsername(username);
+            try
+            {
+                client = clientService.GetByUsername(username);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                return false;
+            }
+
+            if (client != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

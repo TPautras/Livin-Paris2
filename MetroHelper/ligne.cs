@@ -1,15 +1,18 @@
-﻿namespace MetroHelper;
+﻿using System.Collections.Generic;
 
-public class ligne
+namespace MetroHelper
 {
-    private string numeroligne;
-    private List<Station_de_metro> stations;
-
-    public ligne(string numeroligne, List<Station_de_metro> stations)
+    public class ligne
     {
-        this.numeroligne = numeroligne;
+        private string numeroligne;
+        private List<Station_de_metro> stations;
+
+        public ligne(string numeroligne, List<Station_de_metro> stations)
+        {
+            this.numeroligne = numeroligne;
         
-        this.stations = stations;
-    }
+            this.stations = stations;
+        }
     
+    }
 }

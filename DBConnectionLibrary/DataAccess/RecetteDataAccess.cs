@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 
 namespace SqlConnector.DataAccess
@@ -13,7 +14,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Recette>();
             string query = "SELECT * FROM Recette";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using (var reader = command.ExecuteReader())
@@ -40,7 +41,7 @@ namespace SqlConnector.DataAccess
             Recette recette = null;
             string query = "SELECT * FROM Recette WHERE Recette_id = @Id";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();
@@ -69,7 +70,7 @@ namespace SqlConnector.DataAccess
                              (Recette_id, Recette_Nom, Recette_Origine, Recette_Type_de_plat, Recette_Apport_nutritifs, Recette_Regime_alimentaire)
                              VALUES (@Id, @Nom, @Origine, @TypePlat, @Apport, @Regime)";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", entity.RecetteId);
                 command.Parameters.AddWithValue("@Nom", entity.RecetteNom);
@@ -92,7 +93,7 @@ namespace SqlConnector.DataAccess
                              Recette_Regime_alimentaire = @Regime
                              WHERE Recette_id = @Id";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Nom", entity.RecetteNom);
                 command.Parameters.AddWithValue("@Origine", entity.RecetteOrigine);
@@ -109,7 +110,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "DELETE FROM Recette WHERE Recette_id = @Id";
             using (var connection = GetConnection())
-            using (var command = new SqlCommand(query, connection))
+            using (var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();
