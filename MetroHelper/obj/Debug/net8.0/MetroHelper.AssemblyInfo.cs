@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MetroHelper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf506c577293008294d611f83b1cb5a988af34a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+660f5b0bccaf1637afe8b98b4ada434edf7f71a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MetroHelper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MetroHelper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
