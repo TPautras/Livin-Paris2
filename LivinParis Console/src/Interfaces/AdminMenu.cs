@@ -204,7 +204,7 @@ namespace LivinParis_Console
                         Console.ReadKey();
                         break;
                     case 1:
-                        ModuleClientSuppressing();
+                        ModuleStatistiquesCommandesOverTime();
                         Console.ReadKey();
                         break;
                     case 2:
@@ -223,6 +223,20 @@ namespace LivinParis_Console
                         break;
                 }
                 adminChoice = Affichages.MenuSelect(prompt, options);
+            }
+        }
+
+        private void ModuleStatistiquesCommandesOverTime()
+        {
+            StatsDataAccess dataAccess = new StatsDataAccess();
+            Console.WriteLine("Entrez la date de depart (jj/mm/aaaa)");
+            DateTime startDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Entrez la date d'arrivee (jj/mm/aaaa)");
+            DateTime endDate = DateTime.Parse(Console.ReadLine());
+            List<int> res = dataAccess.GetCommandesBetweenDates(startDate, endDate);
+            foreach (int i in res)
+            {
+                Console.WriteLine("La commande "+ i +" a ete passee entre la date de depart et celle d'arrivee");
             }
         }
 

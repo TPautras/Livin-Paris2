@@ -88,6 +88,7 @@ CREATE TABLE Commande(
                          Entreprise_Id INT NOT NULL,
                          Cuisinier_Username VARCHAR(50) NOT NULL,
                          Client_Username VARCHAR(50) NOT NULL,
+                         Commande_Date DATETIME,
                          PRIMARY KEY(Commande_Id),
                          FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id),
                          FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username),
