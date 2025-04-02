@@ -1,5 +1,6 @@
 ﻿using System;
 using Graphs;
+using MySql.Data.MySqlClient;
 using Sprache;
 using SqlConnector.DataAccess;
 using SqlConnector.DataService;
@@ -138,7 +139,18 @@ namespace LivinParis_Console
             userClient.ClientUsername = username;
             userClient.PersonneEmail = userPersonne.PersonneEmail;
             userClient.Personne = userPersonne;
-            personneDataAccess.Insert(userPersonne);
+            try
+            {
+                personneDataAccess.Insert(userPersonne);    
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("Duplicate"))
+                {
+                    Console.WriteLine("Duplicate username found");
+                }
+                throw;
+            }
             clientService1.Insert(userClient);
             return userClient;
         }
@@ -157,7 +169,18 @@ namespace LivinParis_Console
             userCuisinier.CuisinierUsername = usernameCuisinier;
             userCuisinier.PersonneEmail = userPersonne.PersonneEmail;
             userCuisinier.Personne = userPersonne;
-            personneDataAccess.Insert(userPersonne);
+            try
+            {
+                personneDataAccess.Insert(userPersonne);    
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("Duplicate"))
+                {
+                    Console.WriteLine("Duplicate username found");
+                }
+                throw;
+            }
             cuisinierService1.Insert(userCuisinier);
             return userCuisinier;
         }

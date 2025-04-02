@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/poppins-regular.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/man.png")]
 
 

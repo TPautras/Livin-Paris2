@@ -246,3 +246,9 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinPari
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis Console.csproj.SuggestedBindingRedirects.cache
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis_Console.exe.config
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis Console.csproj.CopyComplete
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Diagnostics.DiagnosticSource.xml

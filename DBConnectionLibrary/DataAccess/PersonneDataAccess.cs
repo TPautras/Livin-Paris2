@@ -108,6 +108,7 @@ namespace SqlConnector.DataAccess
                 {
                     if(reader.Read())
                     {
+                        bool isAdmin = reader["Personne_Is_Admin"] != DBNull.Value && Convert.ToBoolean(reader["Personne_Is_Admin"]);
                         p = new Personne
                         {
                             PersonneEmail = reader["Personne_Email"].ToString(),
@@ -119,7 +120,7 @@ namespace SqlConnector.DataAccess
                             PersonneNumeroDeLaRue = Convert.ToInt32(reader["Personne_Numero_de_la_rue"]),
                             PersonneTelephone = reader["Personne_Telephone"].ToString(),
                             PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString(),
-                            PersonneIsAdmin = Convert.ToBoolean(reader["Personne_Is_Admin"]),
+                            PersonneIsAdmin = isAdmin,
                                 
                         };
                     }

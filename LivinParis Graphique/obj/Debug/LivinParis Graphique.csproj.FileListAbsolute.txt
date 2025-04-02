@@ -37,3 +37,9 @@ C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\obj\Debu
 C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\obj\Debug\LivinParis Graphique.csproj.CoreCompileInputs.cache
 C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\obj\Debug\LivinParis_Graphique.exe
 C:\Users\Thomas\source\repos\TPautras\Livin-Paris2\LivinParis Graphique\obj\Debug\LivinParis_Graphique.pdb
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Graphique\obj\Debug\MVVM\View\HomeView.g.cs
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Graphique\obj\Debug\LivinParis_Graphique_Content.g.cs
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Graphique\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Graphique\obj\Debug\MVVM\View\HomeView.baml
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Graphique\obj\Debug\MVVM\View\DiscoveryView.g.cs
+C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Graphique\obj\Debug\MVVM\View\DiscoveryView.baml

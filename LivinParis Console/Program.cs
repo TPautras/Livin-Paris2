@@ -24,7 +24,7 @@ namespace LivinParis_Console
                         SqlConnectorTest.ConnectorTest();
                         break;
                     case 2:
-                        Test.ConnectorTest();
+                        LivinParis.ConnectorTest();
                         break;
                     default:
                         Quit = true;

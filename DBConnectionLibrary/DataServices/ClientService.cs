@@ -25,14 +25,13 @@ namespace SqlConnector.DataService
         {
             ValidationHelper.ValidateStringField(entity.ClientUsername, "Client_Username", 50, false);
             ValidationHelper.ValidateStringField(entity.ClientPassword, "Client_Password", 50, false);
-            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
+           
             _dataAccess.Insert(entity);
         }
         public void Update(Client entity)
         {
             ValidationHelper.ValidateStringField(entity.ClientUsername, "Client_Username", 50, false);
             ValidationHelper.ValidateStringField(entity.ClientPassword, "Client_Password", 50, false);
-            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
             _dataAccess.Update(entity);
         }
         public void Delete(int id)

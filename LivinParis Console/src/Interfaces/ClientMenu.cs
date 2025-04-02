@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Graphs;
 using LivinParis_Console.Assets;
 using SqlConnector.DataAccess;
@@ -59,9 +61,18 @@ namespace LivinParis_Console
                         CreationDataAccess creationDataAccess = new CreationDataAccess();
                         LivreDataAccess livreDataAccess = new LivreDataAccess();
                         LivraisonDataAccess livraisonDataAccess = new LivraisonDataAccess();
-                        foreach (var commande in commandeService.GetAll())
+                        List<Commande> commandes = commandeService.GetAll();
+                        foreach (var commande in commandes.ToList())
                         {
-                            Console.WriteLine("Le nombre de commandes :" + commandeService.GetAll().Count);
+                            if (commande.ClientUsername != client.ClientUsername)
+                            {
+                                commandes.Remove(commande);
+                            }
+                        }
+
+                        foreach (var commande in commandes)
+                        {
+                            Console.WriteLine("Le nombre de commandes :" + commandes.Count);
                             Plat plat = platDataAccess.GetById(creationDataAccess.GetById(commande.CommandeId).PlatId);
                             Livre livre = livreDataAccess.GetById(plat.PlatId);
                             Livraison livraison = livraisonDataAccess.GetById(livre.LivraisonId);

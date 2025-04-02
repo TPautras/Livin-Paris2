@@ -24,7 +24,7 @@ namespace SqlConnector.DataServices
                 {
                     throw new ArgumentException($"{fieldName} ne doit pas dépasser {maxLength} caractères.");
                 }
-                if (!Regex.IsMatch(fieldValue, @"^[a-zA-Z0-9À-ÖØ-öø-ÿ \-]*$"))
+                if (!Regex.IsMatch(fieldValue, @"^[a-zA-Z0-9À-ÖØ-öø-ÿ @\-]*$"))
                 {
                     throw new ArgumentException($"Le champ {fieldName} contient des caractères non pris en charge.");
                 }

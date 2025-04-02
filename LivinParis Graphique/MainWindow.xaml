@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:LivinParis_Graphique.MVVM.ViewModel"
+        xmlns:view="clr-namespace:LivinParis_Graphique.MVVM.View"
         xmlns:local="clr-namespace:LivinParis_Graphique"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="970"
@@ -10,6 +12,10 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
     <Border Background="#272537"
             CornerRadius="20">
         <Grid>
@@ -26,18 +32,22 @@
                        VerticalAlignment="Center"
                        Foreground="White"
                        FontSize="22"
-                       Margin="20,0,0,0"/>
+                       Margin="20,0,0,0"
+                       FontFamily="/Fonts/#Poppins"/>
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Home"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
                 <RadioButton Content="Discovery"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DiscoveryViewCommand}"/>
                 <RadioButton Content="Featured"
                              Height="50"
                              Foreground="White"
@@ -57,7 +67,8 @@
             <ContentControl 
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="10"/>
+                Margin="10"
+                Content="{Binding CurrentView}"/>
         </Grid>
     </Border>
 </Window>
