@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DBConnectionLibrary.DataAccess;
 using Graphs;
 using LivinParis_Console.Assets;
 using SqlConnector.DataAccess;
@@ -165,24 +166,83 @@ namespace LivinParis_Console
             ClientData.DeleteByUsername(clients[clientChoice].ClientUsername);
         }
         #endregion
+
+        #region Module Cuisinier
         public void ModuleCuisinierMain()
         {
             Console.WriteLine("Module Cuisinier");
         }
+        #endregion
 
+        #region Module Commande
         public void ModuleCommandMain()
         {
             Console.WriteLine("Module Commandes");
         }
-
+        #endregion
+        
+        #region Module Stats
         public void ModuleStatistiquesMain()
         {
-            Console.WriteLine("Module Statistiques");
+            string[] options =
+            {
+                "Avoir le nombre de livraisons effectuees par cuisinier", 
+                "Afficher les commandes selon une periode de temps", 
+                "Afficher la moyenne des prix des commandes", 
+                "Afficher la moyenne des comptes clients",
+                "Afficher la list des commandes pour un client selon la nationalite des plats, la periode",
+                "Quitter"
+            };
+            string prompt = "ADMINISTRATOR | Module Statistiques";
+            int adminChoice = Affichages.MenuSelect(prompt, options);
+            while (adminChoice < options.Length - 1)
+            {
+                switch (adminChoice)
+                {
+                    case 0:
+                        ModuleStatistiquesLivraisonsParCuisinier();
+                        Console.ReadKey();
+                        break;
+                    case 1:
+                        ModuleClientSuppressing();
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        ModuleClientModifying();
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        ModuleClientAdding();
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        ModuleAutreMain();
+                        Console.ReadKey();
+                        break;
+                    default:
+                        break;
+                }
+                adminChoice = Affichages.MenuSelect(prompt, options);
+            }
         }
 
+        private void ModuleStatistiquesLivraisonsParCuisinier()
+        {
+            StatsDataAccess dataAccess = new StatsDataAccess();
+            Dictionary<string, int> stats = dataAccess.GetLivraisonCountByCuisinier();
+            foreach (var kvp in stats)
+            {
+                Console.WriteLine("Le cuisinier : "+kvp.Key+" a effectue : "+kvp.Value + " livraisons");
+            }
+        }
+
+        #endregion
+
+        #region ModuleAutre
         public void ModuleAutreMain()
         {
             Console.WriteLine("Module Autre");
         }
+        #endregion
     }
 }

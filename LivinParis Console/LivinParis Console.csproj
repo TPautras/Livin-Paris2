@@ -195,7 +195,7 @@
         <Compile Include="src\Interfaces\ClientMenu.cs" />
         <Compile Include="src\Interfaces\Connexion.cs" />
         <Compile Include="src\Interfaces\CuisinierMenu.cs" />
-        <Compile Include="src\SqlConnectorTest.cs" />
+        <Compile Include="src\BDDConnection.cs" />
         <Compile Include="src\LivinParis.cs" />
     </ItemGroup>
     <ItemGroup>
