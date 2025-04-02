@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestGraphMetro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e2d923e320070fd939b3b4789cfb4fd6cfcfaa6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+671a7fb6fd9c9570de825df728bceadf8fc28625")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestGraphMetro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestGraphMetro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
