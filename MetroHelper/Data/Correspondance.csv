@@ -1,0 +1,221 @@
+"IdCorrespondance","Station A","Ligne A","Station B","Ligne B","Temps de correspondance (min)"
+1,"Charles de Gaulle – Étoile",1,"Charles de Gaulle – Étoile",2,2
+2,"Charles de Gaulle – Étoile",2,"Charles de Gaulle – Étoile",1,2
+3,"Charles de Gaulle – Étoile",1,"Charles de Gaulle – Étoile",6,2
+4,"Charles de Gaulle – Étoile",6,"Charles de Gaulle – Étoile",1,2
+5,"Charles de Gaulle – Étoile",2,"Charles de Gaulle – Étoile",6,2
+6,"Charles de Gaulle – Étoile",6,"Charles de Gaulle – Étoile",2,2
+7,"Champs-Élysées – Clemenceau",1,"Champs-Élysées – Clemenceau",13,2
+8,"Champs-Élysées – Clemenceau",13,"Champs-Élysées – Clemenceau",1,2
+9,"Concorde",1,"Concorde",8,2
+10,"Concorde",8,"Concorde",1,2
+11,"Concorde",1,"Concorde",12,2
+12,"Concorde",12,"Concorde",1,2
+13,"Concorde",8,"Concorde",12,2
+14,"Concorde",12,"Concorde",8,2
+15,"Palais Royal – Musée du Louvre",1,"Palais Royal – Musée du Louvre",7,2
+16,"Palais Royal – Musée du Louvre",7,"Palais Royal – Musée du Louvre",1,2
+17,"Châtelet",1,"Châtelet",4,5
+18,"Châtelet",4,"Châtelet",1,5
+19,"Châtelet",1,"Châtelet",7,5
+20,"Châtelet",7,"Châtelet",1,5
+21,"Châtelet",1,"Châtelet",11,5
+22,"Châtelet",11,"Châtelet",1,5
+23,"Châtelet",1,"Châtelet",14,5
+24,"Châtelet",14,"Châtelet",1,5
+25,"Châtelet",4,"Châtelet",7,5
+26,"Châtelet",7,"Châtelet",4,5
+27,"Châtelet",4,"Châtelet",11,5
+28,"Châtelet",11,"Châtelet",4,5
+29,"Châtelet",4,"Châtelet",14,5
+30,"Châtelet",14,"Châtelet",4,5
+31,"Châtelet",7,"Châtelet",11,5
+32,"Châtelet",11,"Châtelet",7,5
+33,"Châtelet",7,"Châtelet",14,5
+34,"Châtelet",14,"Châtelet",7,5
+35,"Châtelet",11,"Châtelet",14,5
+36,"Châtelet",14,"Châtelet",11,5
+37,"Bastille",1,"Bastille",5,2
+38,"Bastille",5,"Bastille",1,2
+39,"Bastille",1,"Bastille",8,2
+40,"Bastille",8,"Bastille",1,2
+41,"Bastille",5,"Bastille",8,2
+42,"Bastille",8,"Bastille",5,2
+43,"Gare de Lyon",1,"Gare de Lyon",14,3
+44,"Gare de Lyon",14,"Gare de Lyon",1,3
+45,"Nation",1,"Nation",2,4
+46,"Nation",2,"Nation",1,4
+47,"Nation",1,"Nation",6,4
+48,"Nation",6,"Nation",1,4
+49,"Nation",1,"Nation",9,4
+50,"Nation",9,"Nation",1,4
+51,"Nation",2,"Nation",6,4
+52,"Nation",6,"Nation",2,4
+53,"Nation",2,"Nation",9,4
+54,"Nation",9,"Nation",2,4
+55,"Nation",6,"Nation",9,4
+56,"Nation",9,"Nation",6,4
+57,"Franklin D. Roosevelt",1,"Franklin D. Roosevelt",9,1
+58,"Franklin D. Roosevelt",9,"Franklin D. Roosevelt",1,1
+59,"Hôtel de Ville",1,"Hôtel de Ville",11,1
+60,"Hôtel de Ville",11,"Hôtel de Ville",1,1
+61,"La Motte-Picquet – Grenelle",6,"La Motte-Picquet – Grenelle",8,2
+62,"La Motte-Picquet – Grenelle",8,"La Motte-Picquet – Grenelle",6,2
+63,"La Motte-Picquet – Grenelle",6,"La Motte-Picquet – Grenelle",10,2
+64,"La Motte-Picquet – Grenelle",10,"La Motte-Picquet – Grenelle",6,2
+65,"La Motte-Picquet – Grenelle",8,"La Motte-Picquet – Grenelle",10,2
+66,"La Motte-Picquet – Grenelle",10,"La Motte-Picquet – Grenelle",8,2
+67,"Montparnasse – Bienvenüe",4,"Montparnasse – Bienvenüe",6,5
+68,"Montparnasse – Bienvenüe",6,"Montparnasse – Bienvenüe",4,5
+69,"Montparnasse – Bienvenüe",4,"Montparnasse – Bienvenüe",12,5
+70,"Montparnasse – Bienvenüe",12,"Montparnasse – Bienvenüe",4,5
+71,"Montparnasse – Bienvenüe",4,"Montparnasse – Bienvenüe",13,5
+72,"Montparnasse – Bienvenüe",13,"Montparnasse – Bienvenüe",4,5
+73,"Montparnasse – Bienvenüe",6,"Montparnasse – Bienvenüe",12,5
+74,"Montparnasse – Bienvenüe",12,"Montparnasse – Bienvenüe",6,5
+75,"Montparnasse – Bienvenüe",6,"Montparnasse – Bienvenüe",13,5
+76,"Montparnasse – Bienvenüe",13,"Montparnasse – Bienvenüe",6,5
+77,"Montparnasse – Bienvenüe",12,"Montparnasse – Bienvenüe",13,5
+78,"Montparnasse – Bienvenüe",13,"Montparnasse – Bienvenüe",12,5
+79,"Odéon",4,"Odéon",10,1
+80,"Odéon",10,"Odéon",4,1
+81,"Saint-Lazare",3,"Saint-Lazare",12,4
+82,"Saint-Lazare",12,"Saint-Lazare",3,4
+83,"Saint-Lazare",3,"Saint-Lazare",13,4
+84,"Saint-Lazare",13,"Saint-Lazare",3,4
+85,"Saint-Lazare",3,"Saint-Lazare",14,4
+86,"Saint-Lazare",14,"Saint-Lazare",3,4
+87,"Saint-Lazare",12,"Saint-Lazare",13,4
+88,"Saint-Lazare",13,"Saint-Lazare",12,4
+89,"Saint-Lazare",12,"Saint-Lazare",14,4
+90,"Saint-Lazare",14,"Saint-Lazare",12,4
+91,"Saint-Lazare",13,"Saint-Lazare",14,4
+92,"Saint-Lazare",14,"Saint-Lazare",13,4
+93,"Madeleine",8,"Madeleine",12,3
+94,"Madeleine",12,"Madeleine",8,3
+95,"Madeleine",8,"Madeleine",14,3
+96,"Madeleine",14,"Madeleine",8,3
+97,"Madeleine",12,"Madeleine",14,3
+98,"Madeleine",14,"Madeleine",12,3
+99,"Chaussée d'Antin – La Fayette",7,"Chaussée d'Antin – La Fayette",9,1
+100,"Chaussée d'Antin – La Fayette",9,"Chaussée d'Antin – La Fayette",7,1
+101,"Opéra",3,"Opéra",7,2
+102,"Opéra",7,"Opéra",3,2
+103,"Opéra",3,"Opéra",8,2
+104,"Opéra",8,"Opéra",3,2
+105,"Opéra",7,"Opéra",8,2
+106,"Opéra",8,"Opéra",7,2
+107,"Havre – Caumartin",3,"Havre – Caumartin",9,1
+108,"Havre – Caumartin",9,"Havre – Caumartin",3,1
+109,"République",3,"République",5,3
+110,"République",5,"République",3,3
+111,"République",3,"République",8,3
+112,"République",8,"République",3,3
+113,"République",3,"République",9,3
+114,"République",9,"République",3,3
+115,"République",3,"République",11,3
+116,"République",11,"République",3,3
+117,"République",5,"République",8,3
+118,"République",8,"République",5,3
+119,"République",5,"République",9,3
+120,"République",9,"République",5,3
+121,"République",5,"République",11,3
+122,"République",11,"République",5,3
+123,"République",8,"République",9,3
+124,"République",9,"République",8,3
+125,"République",8,"République",11,3
+126,"République",11,"République",8,3
+127,"République",9,"République",11,3
+128,"République",11,"République",9,3
+129,"Strasbourg – Saint-Denis",4,"Strasbourg – Saint-Denis",8,2
+130,"Strasbourg – Saint-Denis",8,"Strasbourg – Saint-Denis",4,2
+131,"Strasbourg – Saint-Denis",4,"Strasbourg – Saint-Denis",9,2
+132,"Strasbourg – Saint-Denis",9,"Strasbourg – Saint-Denis",4,2
+133,"Strasbourg – Saint-Denis",8,"Strasbourg – Saint-Denis",9,2
+134,"Strasbourg – Saint-Denis",9,"Strasbourg – Saint-Denis",8,2
+135,"Réaumur – Sébastopol",3,"Réaumur – Sébastopol",4,1
+136,"Réaumur – Sébastopol",4,"Réaumur – Sébastopol",3,1
+137,"Arts et Métiers",3,"Arts et Métiers",11,1
+138,"Arts et Métiers",11,"Arts et Métiers",3,1
+139,"Gare du Nord",4,"Gare du Nord",5,1
+140,"Gare du Nord",5,"Gare du Nord",4,1
+141,"Barbès – Rochechouart",2,"Barbès – Rochechouart",4,1
+142,"Barbès – Rochechouart",4,"Barbès – Rochechouart",2,1
+143,"Stalingrad",2,"Stalingrad",5,2
+144,"Stalingrad",5,"Stalingrad",2,2
+145,"Stalingrad",2,"Stalingrad",7,2
+146,"Stalingrad",7,"Stalingrad",2,2
+147,"Stalingrad",5,"Stalingrad",7,2
+148,"Stalingrad",7,"Stalingrad",5,2
+149,"Jaurès",2,"Jaurès",5,2
+150,"Jaurès",5,"Jaurès",2,2
+151,"Jaurès",2,"Jaurès",7bis,2
+152,"Jaurès",7bis,"Jaurès",2,2
+153,"Jaurès",5,"Jaurès",7bis,2
+154,"Jaurès",7bis,"Jaurès",5,2
+155,"Place de Clichy",2,"Place de Clichy",13,1
+156,"Place de Clichy",13,"Place de Clichy",2,1
+157,"Villiers",2,"Villiers",3,1
+158,"Villiers",3,"Villiers",2,1
+159,"Pigalle",2,"Pigalle",12,1
+160,"Pigalle",12,"Pigalle",2,1
+161,"Porte de Clichy",13,"Porte de Clichy",14,2
+162,"Porte de Clichy",14,"Porte de Clichy",13,2
+163,"Miromesnil",9,"Miromesnil",13,1
+164,"Miromesnil",13,"Miromesnil",9,1
+165,"Invalides",8,"Invalides",13,2
+166,"Invalides",13,"Invalides",8,2
+167,"Duroc",10,"Duroc",13,1
+168,"Duroc",13,"Duroc",10,1
+169,"Sèvres – Babylone",10,"Sèvres – Babylone",12,2
+170,"Sèvres – Babylone",12,"Sèvres – Babylone",10,2
+171,"Pasteur",6,"Pasteur",12,1
+172,"Pasteur",12,"Pasteur",6,1
+173,"Bercy",6,"Bercy",14,1
+174,"Bercy",14,"Bercy",6,1
+175,"Place d'Italie",5,"Place d'Italie",6,2
+176,"Place d'Italie",6,"Place d'Italie",5,2
+177,"Place d'Italie",5,"Place d'Italie",7,2
+178,"Place d'Italie",7,"Place d'Italie",5,2
+179,"Place d'Italie",6,"Place d'Italie",7,2
+180,"Place d'Italie",7,"Place d'Italie",6,2
+181,"Denfert-Rochereau",4,"Denfert-Rochereau",6,2
+182,"Denfert-Rochereau",6,"Denfert-Rochereau",4,2
+183,"Raspail",4,"Raspail",6,1
+184,"Raspail",6,"Raspail",4,1
+185,"Gare d'Austerlitz",5,"Gare d'Austerlitz",10,2
+186,"Gare d'Austerlitz",10,"Gare d'Austerlitz",5,2
+187,"Jussieu",7,"Jussieu",10,1
+188,"Jussieu",10,"Jussieu",7,1
+189,"Gare de l'Est",4,"Gare de l'Est",5,2
+190,"Gare de l'Est",5,"Gare de l'Est",4,2
+191,"Gare de l'Est",4,"Gare de l'Est",7,2
+192,"Gare de l'Est",7,"Gare de l'Est",4,2
+193,"Gare de l'Est",5,"Gare de l'Est",7,2
+194,"Gare de l'Est",7,"Gare de l'Est",5,2
+195,"Oberkampf",5,"Oberkampf",9,1
+196,"Oberkampf",9,"Oberkampf",5,1
+197,"Belleville",2,"Belleville",11,1
+198,"Belleville",11,"Belleville",2,1
+199,"Louis Blanc",7,"Louis Blanc",7bis,1
+200,"Louis Blanc",7bis,"Louis Blanc",7,1
+201,"Place des Fêtes",7bis,"Place des Fêtes",11,2
+202,"Place des Fêtes",11,"Place des Fêtes",7bis,2
+203,"Porte des Lilas",3bis,"Porte des Lilas",11,3
+204,"Porte des Lilas",11,"Porte des Lilas",3bis,3
+205,"Gambetta",3,"Gambetta",3bis,1
+206,"Gambetta",3bis,"Gambetta",3,1
+207,"Père Lachaise",2,"Père Lachaise",3,1
+208,"Père Lachaise",3,"Père Lachaise",2,1
+209,"Marcadet – Poissonniers",4,"Marcadet – Poissonniers",12,1
+210,"Marcadet – Poissonniers",12,"Marcadet – Poissonniers",4,1
+211,"Bonne Nouvelle",8,"Bonne Nouvelle",9,1
+212,"Bonne Nouvelle",9,"Bonne Nouvelle",8,1
+213,"Grands Boulevards",8,"Grands Boulevards",9,1
+214,"Grands Boulevards",9,"Grands Boulevards",8,1
+215,"Richelieu – Drouot",8,"Richelieu – Drouot",9,1
+216,"Richelieu – Drouot",9,"Richelieu – Drouot",8,1
+217,"Trocadéro",6,"Trocadéro",9,1
+218,"Trocadéro",9,"Trocadéro",6,1
+219,"Michel-Ange – Molitor",9,"Michel-Ange – Molitor",10,1
+220,"Michel-Ange – Molitor",10,"Michel-Ange – Molitor",9,1

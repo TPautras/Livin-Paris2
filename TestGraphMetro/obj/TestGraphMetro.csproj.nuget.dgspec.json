@@ -4,22 +4,6 @@
     "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\TestGraphMetro.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj",
-        "projectName": "DBConnectionLibrary",
-        "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net472": {
-            "projectReferences": {}
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
     "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
       "restore": {
         "projectUniqueName": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj",
@@ -36,134 +20,24 @@
         "net472": {}
       }
     },
-    "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj",
-        "projectName": "LivinParis Console",
-        "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
-    "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj",
-        "projectName": "LivinParis Test",
-        "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net472": {
-            "projectReferences": {
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj"
-              }
-            }
-          }
-        }
-      },
-      "frameworks": {
-        "net472": {}
-      }
-    },
     "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj": {
-      "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj",
         "projectName": "MetroHelper",
         "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj",
-        "packagesPath": "C:\\Users\\Thomas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\MetroHelper\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\Thomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
+        "UsingMicrosoftNETSdk": false,
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net472": {
             "projectReferences": {
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj"
-              },
               "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
                 "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParisGraphique\\LivinParisGraphique.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParisGraphique\\LivinParisGraphique.csproj"
               }
             }
           }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
-        }
+        "net472": {}
       }
     },
     "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\TestGraphMetro.csproj": {
@@ -184,31 +58,16 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net472"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net472": {
+            "targetAlias": "net472",
             "projectReferences": {
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\DBConnectionLibrary\\DBConnectionLibrary.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Console\\LivinParis Console.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParis Test\\LivinParis Test.csproj"
-              },
-              "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParisGraphique\\LivinParisGraphique.csproj": {
-                "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\LivinParisGraphique\\LivinParisGraphique.csproj"
-              },
               "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj": {
                 "projectPath": "C:\\Users\\Thomas\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj"
               }
@@ -228,53 +87,19 @@
         "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net472": {
+          "targetAlias": "net472",
           "dependencies": {
+            "MSTest": {
+              "target": "Package",
+              "version": "[3.6.4, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.6.0, )"
-            },
-            "NUnit.Analyzers": {
-              "target": "Package",
-              "version": "[3.6.1, )"
-            },
-            "NUnit3TestAdapter": {
-              "target": "Package",
-              "version": "[4.2.1, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.9.3, )"
-            },
-            "xunit.runner.visualstudio": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.0.2, )"
+              "version": "[17.12.0, )"
             }
           },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

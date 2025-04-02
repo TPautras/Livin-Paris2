@@ -1,0 +1,9 @@
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\bin\Debug\MetroHelper.dll
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\bin\Debug\MetroHelper.pdb
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\bin\Debug\GraphsLibrary.dll
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\bin\Debug\GraphsLibrary.pdb
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\obj\Debug\MetroHelper.csproj.AssemblyReference.cache
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\obj\Debug\MetroHelper.csproj.CoreCompileInputs.cache
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\obj\Debug\MetroHel.DDC2E1C5.Up2Date
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\obj\Debug\MetroHelper.dll
+C:\Users\Thomas\RiderProjects\Livin-Paris2\MetroHelper\obj\Debug\MetroHelper.pdb
