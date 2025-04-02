@@ -79,8 +79,7 @@ namespace MetroHelper
 
                     graphe.AjouterLien(stations[cleActuelle].Id, stations[cleSuivante].Id, tempsVersSuivante);
                 }
-
-                // Ajout de la dernière station (terminus) s’il n’a pas encore été ajoutée
+                
                 var lastParts = lignes.Last().Split(',');
                 if (lastParts.Length >= 1)
                 {

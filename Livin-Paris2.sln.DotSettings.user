@@ -19,4 +19,6 @@
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=LivinParisGraphique_002FHome/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=da53ba2f_002Df558_002D4cab_002D8215_002Df3d10eec9eb8_0023LivinParisGraphique/@EntryIndexedValue">True</s:Boolean>
+	
+	
 	</wpf:ResourceDictionary>
