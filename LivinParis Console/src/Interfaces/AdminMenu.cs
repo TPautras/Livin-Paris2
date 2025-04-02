@@ -175,7 +175,7 @@ namespace LivinParis_Console
             {
                 case 0:
                     Console.WriteLine("Ordre alphabétique");
-                    List<Client> clients = ClientService.GetAll();
+                    List<Client> clients = ClientData.GetAllByNameAsc();
                     foreach (Client client in clients)
                     {
                         Console.WriteLine(client.ClientUsername);
@@ -183,10 +183,20 @@ namespace LivinParis_Console
                     break;
                 case 1:
                     Console.WriteLine("Ordre alphabétique de la rue");
+                     clients = ClientData.GetAllByStreetAsc();
+                    foreach (Client client in clients)
+                    {
+                        Console.WriteLine(client.ClientUsername + " : " + new PersonneDataAccess().GetByEmail(client.PersonneEmail).PersonneNomDeLaRue);
+                    }
                     Console.ReadKey();
                     break;
                 case 2:
                     Console.WriteLine("Par montant des achats");
+                    clients = ClientData.GetAllByStreetAsc();
+                    foreach (Client client in clients)
+                    {
+                        Console.WriteLine(client.ClientUsername + " : Rue " + new PersonneDataAccess().GetByEmail(client.PersonneEmail).PersonneNomDeLaRue);
+                    }
                     Console.ReadKey();
                     break;
                 default:
