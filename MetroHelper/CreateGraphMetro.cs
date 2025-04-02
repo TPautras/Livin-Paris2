@@ -1,5 +1,9 @@
-﻿using Graphs;
-using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Graphs;
+
 namespace MetroHelper
 {
     public class CreateGraphMetro
@@ -12,6 +16,7 @@ namespace MetroHelper
             this.stations = new Dictionary<string, Station_de_metro>();
             this.idCounter = 1;
         }
+
         public Dictionary<string, Station_de_metro> Stations
         {
             get { return stations; }
@@ -26,7 +31,7 @@ namespace MetroHelper
 
         public Graphe<Station_de_metro> ChargerReseauDepuisFichiers(string dossierData)
         {
-            Graphe<Station_de_metro> graphe = new Graphe<Station_de_metro>("", ',', 0);
+            var graphe = new Graphe<Station_de_metro>("", ',', 0);
 
             AjouterStationsEtLiensDesLignes(dossierData, graphe);
             AjouterCorrespondances(dossierData, graphe);
@@ -40,36 +45,54 @@ namespace MetroHelper
 
             foreach (var fichier in fichiers)
             {
-                string numeroLigne = Path.GetFileNameWithoutExtension(fichier).Split('_')[1];
+                string nomFichier = Path.GetFileNameWithoutExtension(fichier);
+                string numeroLigne = nomFichier.Split('_')[1];
 
                 var lignes = File.ReadAllLines(fichier).Skip(1).ToList();
-                Station_de_metro stationPrecedente = null;
-
-                foreach (var ligne in lignes)
+                for (int i = 0; i < lignes.Count - 1; i++)
                 {
-                    var parties = ligne.Split(',');
-                    if (parties.Length < 2) continue;
+                    var parts = lignes[i].Split(',');
+                    var partsSuivante = lignes[i + 1].Split(',');
 
-                    string nom = parties[0].Trim();
-                    int temps = int.Parse(parties[1].Trim());
+                    if (parts.Length < 2 || partsSuivante.Length < 1) continue;
 
-                    string cle = $"{nom} (Ligne {numeroLigne})";
+                    string nomActuelle = parts[0].Trim().Trim('"');
+                    int tempsVersSuivante = int.Parse(parts[1].Trim());
+                    string nomSuivante = partsSuivante[0].Trim().Trim('"');
 
-                    if (!stations.ContainsKey(cle))
+                    string cleActuelle = $"{nomActuelle} (Ligne {numeroLigne})";
+                    string cleSuivante = $"{nomSuivante} (Ligne {numeroLigne})";
+
+                    if (!stations.ContainsKey(cleActuelle))
                     {
-                        Station_de_metro station = new Station_de_metro(idCounter++, cle);
-                        stations[cle] = station;
+                        var station = new Station_de_metro(idCounter++, cleActuelle);
+                        stations[cleActuelle] = station;
                         graphe.AjouterNoeud(station.Id, station);
                     }
 
-                    var stationActuelle = stations[cle];
-
-                    if (stationPrecedente != null)
+                    if (!stations.ContainsKey(cleSuivante))
                     {
-                        graphe.AjouterLien(stationPrecedente.Id, stationActuelle.Id, temps);
+                        var station = new Station_de_metro(idCounter++, cleSuivante);
+                        stations[cleSuivante] = station;
+                        graphe.AjouterNoeud(station.Id, station);
                     }
 
-                    stationPrecedente = stationActuelle;
+                    graphe.AjouterLien(stations[cleActuelle].Id, stations[cleSuivante].Id, tempsVersSuivante);
+                }
+
+                // Ajout de la dernière station (terminus) s’il n’a pas encore été ajoutée
+                var lastParts = lignes.Last().Split(',');
+                if (lastParts.Length >= 1)
+                {
+                    string nomDerniere = lastParts[0].Trim().Trim('"');
+                    string cleDerniere = $"{nomDerniere} (Ligne {numeroLigne})";
+
+                    if (!stations.ContainsKey(cleDerniere))
+                    {
+                        var station = new Station_de_metro(idCounter++, cleDerniere);
+                        stations[cleDerniere] = station;
+                        graphe.AjouterNoeud(station.Id, station);
+                    }
                 }
             }
         }
@@ -84,35 +107,40 @@ namespace MetroHelper
 
             foreach (var ligne in lignes)
             {
-                var parties = ligne.Split(',');
-                if (parties.Length < 6) continue;
+                var parts = ligne.Split(',');
+                if (parts.Length < 6) continue;
 
-                string nom1 = $"{parties[1].Trim()} (Ligne {parties[2].Trim()})";
-                string nom2 = $"{parties[3].Trim()} (Ligne {parties[4].Trim()})";
-                int temps = int.Parse(parties[5].Trim());
+                int id = int.Parse(parts[0].Trim());
+                string nomA = parts[1].Trim().Trim('"');
+                string ligneA = parts[2].Trim();
+                string nomB = parts[3].Trim().Trim('"');
+                string ligneB = parts[4].Trim();
+                int temps = int.Parse(parts[5].Trim());
 
-                if (!stations.ContainsKey(nom1))
+                string cleA = $"{nomA} (Ligne {ligneA})";
+                string cleB = $"{nomB} (Ligne {ligneB})";
+
+                if (!stations.ContainsKey(cleA))
                 {
-                    Station_de_metro s1 = new Station_de_metro(idCounter++, nom1);
-                    stations[nom1] = s1;
-                    graphe.AjouterNoeud(s1.Id, s1);
+                    var sA = new Station_de_metro(idCounter++, cleA);
+                    stations[cleA] = sA;
+                    graphe.AjouterNoeud(sA.Id, sA);
                 }
 
-                if (!stations.ContainsKey(nom2))
+                if (!stations.ContainsKey(cleB))
                 {
-                    Station_de_metro s2 = new Station_de_metro(idCounter++, nom2);
-                    stations[nom2] = s2;
-                    graphe.AjouterNoeud(s2.Id, s2);
+                    var sB = new Station_de_metro(idCounter++, cleB);
+                    stations[cleB] = sB;
+                    graphe.AjouterNoeud(sB.Id, sB);
                 }
 
-                Station_de_metro stationA = stations[nom1];
-                Station_de_metro stationB = stations[nom2];
+                var stationA = stations[cleA];
+                var stationB = stations[cleB];
 
-                Correspondance correspondanceAB = new Correspondance(stationA, stationB, temps, -1);
-                Correspondance correspondanceBA = new Correspondance(stationB, stationA, temps, -1);
+                var correspondance = new Correspondance(stationA, stationB, temps, id);
 
-                graphe.AjouterLien(stationA.Id, stationB.Id, correspondanceAB.Temps);
-                graphe.AjouterLien(stationB.Id, stationA.Id, correspondanceBA.Temps);
+                graphe.AjouterLien(correspondance.S1.Id, correspondance.S2.Id, correspondance.Temps);
+                graphe.AjouterLien(correspondance.S2.Id, correspondance.S1.Id, correspondance.Temps);
             }
         }
     }

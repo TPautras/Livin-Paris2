@@ -22,18 +22,18 @@ namespace TestGraphMetro
                 Directory.CreateDirectory(dossierTest);
 
             // Ligne_1.csv
-            File.WriteAllText(Path.Combine(dossierTest, "Ligne_1.csv"),
+            File.WriteAllText(Path.Combine(dossierTest, "Ligne_1_Château_de_Vincennes_vers_La_Defense.csv"),
 @"Nom station de métro,Temps vers station suivante (min)
 Châtelet,2
 Hôtel de Ville,0");
 
             // Ligne_11.csv
-            File.WriteAllText(Path.Combine(dossierTest, "Ligne_11.csv"),
+            File.WriteAllText(Path.Combine(dossierTest, "Ligne_11_Châtelet_vers_Mairie_des_Lilas.csv"),
 @"Nom station de métro,Temps vers station suivante (min)
 Châtelet,2
 Hôtel de Ville,2
 Rambuteau,2
-Arts et Métiers,0");
+Arts et Métiers,2");
 
             // Correspondance.csv (copie de coco.csv mais restreinte)
             File.WriteAllText(Path.Combine(dossierTest, "Correspondance.csv"),
