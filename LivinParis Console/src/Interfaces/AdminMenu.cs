@@ -107,6 +107,7 @@ namespace LivinParis_Console
             {
                 Console.WriteLine(client.ClientUsername);
             }
+            Console.WriteLine("Modification enregistree, appuyez sur n'importe quelle touche pour continuer");
         }
 
         private void ModuleClientModifying()
@@ -119,7 +120,47 @@ namespace LivinParis_Console
             }
             options[clients.Count] = @"Créer un client";
             int clientChoice = Affichages.MenuSelect(ASCII.Client + "\n QUEL CLIENT VOULEZ VOUS MODIFIER ?", options);
-            Console.WriteLine("Vous avez choisi : " + clients[clientChoice].ClientUsername);
+            
+            bool endMod = false;
+            string[] optionsMod = {"Username", "Mot de passe", "Email","Quitter"};
+            Client userClient = clients[clientChoice];
+            while (endMod == false)
+            {
+                Client client = ClientData.GetByUsername(userClient.ClientUsername);
+                string prompt = "Que voulez vous modifier ? \n";
+                prompt += "Username actuel : " + client.ClientUsername + "\n";
+                prompt += "Mot de passe actuel : " + client.ClientPassword + "\n";
+                prompt += "Email actuel : " + client.PersonneEmail + "\n";
+                int userChoice = Affichages.MenuSelect(prompt, optionsMod);
+                switch (userChoice)
+                {
+                    case 0:
+                        Console.WriteLine("ADMINISTRATOR | Module Client | Modifying \n Entrez le nouvel username");
+                        string username = Console.ReadLine();
+                        userClient.ClientUsername = username;
+                        ClientData.UpdateUsername(userClient);
+                        Console.WriteLine("Modification enregistree, appuyez sur n'importe quelle touche pour continuer");
+                        break;
+                    case 1:
+                        Console.WriteLine("ADMINISTRATOR | Module Client | Modifying \n Entrez le nouveau mot de passe");
+                        string mdp = Console.ReadLine();
+                        userClient.ClientPassword = mdp;
+                        ClientData.Update(userClient);
+                        Console.WriteLine("Modification enregistree, appuyez sur n'importe quelle touche pour continuer");
+                        break;
+                    case 2:
+                        Console.WriteLine("ADMINISTRATOR | Module Client | Modifying \n Entrez le nouvel email");
+                        string email = Console.ReadLine();
+                        userClient.PersonneEmail = email;
+                        ClientData.Update(userClient);
+                        Console.WriteLine("Modification enregistree, appuyez sur n'importe quelle touche pour continuer");
+                        break;
+                    default:
+                        endMod = true;
+                        break;
+                }
+                Console.ReadKey();
+            }
         }
         public void ModuleClientListing()
         {
@@ -163,6 +204,7 @@ namespace LivinParis_Console
             }
             int clientChoice = Affichages.MenuSelect(ASCII.Client + "\n QUEL CLIENT VOULEZ VOUS SUPPRIMER ?", options);
             Console.WriteLine("Vous avez choisi : " + clients[clientChoice].ClientUsername);
+            Console.WriteLine("Suppression effectuee, appuyez sur n'importe quelle touche pour continuer");
             ClientData.DeleteByUsername(clients[clientChoice].ClientUsername);
         }
         #endregion

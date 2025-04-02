@@ -92,6 +92,22 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateUsername(Client entity)
+        {
+            string query = @"UPDATE Clients SET 
+                             Client_Username = @Username,
+                             Personne_Email = @PersonneEmail
+                             WHERE Client_Password = @Password";
+            using(var connection = GetConnection())
+            using(var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Password", entity.ClientPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                command.Parameters.AddWithValue("@Username", entity.ClientUsername);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
 
         public void Delete(int id)
         {
