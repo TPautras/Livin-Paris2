@@ -13,10 +13,10 @@ namespace DBConnectionLibrary.DataAccess
         {
             var result = new Dictionary<string, int>();
             string query = @"
-                SELECT Cuisinier_Username, COUNT(*) AS LivraisonCount
+                SELECT cuisinier_Username, COUNT(*) AS LivraisonCount
                 FROM livré
-                JOIN Plat ON livré.Plat_Id = Plat.Plat_Id
-                GROUP BY Cuisinier_Username";
+                JOIN plat ON livré.Plat_Id = plat.Plat_Id
+                GROUP BY cuisinier_Username";
 
             using (var connection = GetConnection())
             using (var command = new MySqlCommand(query, connection))
@@ -37,11 +37,9 @@ namespace DBConnectionLibrary.DataAccess
         {
             var result = new List<int>();
             string query = @"
-                SELECT DISTINCT Commande.Commande_Id
-                FROM Commande
-                JOIN Creation ON Commande.Commande_Id = Creation.Commande_Id
-                JOIN Plat ON Creation.Plat_Id = Plat.Plat_Id
-                WHERE Plat.Plat_date_de_fabrication BETWEEN @Start AND @End";
+                SELECT DISTINCT commande.Commande_Id
+                FROM commande
+                WHERE Commande_Date BETWEEN @Start AND @End";
 
             using (var connection = GetConnection())
             using (var command = new MySqlCommand(query, connection))
@@ -62,8 +60,7 @@ namespace DBConnectionLibrary.DataAccess
 
         public double GetAverageCommandePrice()
         {
-            string query = "SELECT AVG(CAST(Plat_Prix AS DECIMAL(10,2))) FROM Plat";
-
+            string query = "SELECT AVG(TotalPrice) FROM (SELECT Commande_Id, SUM(CAST(Plat_Prix AS DECIMAL(10,2))) AS TotalPrice FROM Creation INNER JOIN Plat ON Creation.Plat_Id = Plat.Plat_Id GROUP BY Commande_Id) AS OrderPrices";
             using (var connection = GetConnection())
             using (var command = new MySqlCommand(query, connection))
             {
@@ -72,10 +69,9 @@ namespace DBConnectionLibrary.DataAccess
             }
         }
 
-        public double GetAverageClientCount()
+        public double GetAverageClientSpending()
         {
-            string query = "SELECT COUNT(*) FROM Clients";
-
+            string query = "SELECT AVG(ClientTotal) FROM (SELECT c.Client_Username, SUM(CAST(p.Plat_Prix AS DECIMAL(10,2))) AS ClientTotal FROM Clients c JOIN Commande co ON c.Client_Username = co.Client_Username JOIN Creation cr ON co.Commande_Id = cr.Commande_Id JOIN Plat p ON cr.Plat_Id = p.Plat_Id GROUP BY c.Client_Username) AS ClientSpending";
             using (var connection = GetConnection())
             using (var command = new MySqlCommand(query, connection))
             {
@@ -88,15 +84,14 @@ namespace DBConnectionLibrary.DataAccess
         {
             var result = new List<int>();
             string query = @"
-                SELECT DISTINCT Commande.Commande_Id
-                FROM Commande
-                JOIN Creation ON Commande.Commande_Id = Creation.Commande_Id
-                JOIN Plat ON Creation.Plat_Id = Plat.Plat_Id
-                JOIN Recette ON Plat.Recette_id = Recette.Recette_id
-                WHERE Commande.Client_Username = @Username
-                  AND Recette.Recette_Origine = @Origine
-                  AND Plat.Plat_date_de_fabrication BETWEEN @Start AND @End";
-
+        SELECT DISTINCT commande.Commande_Id
+        FROM commande
+        JOIN creation ON commande.Commande_Id = creation.Commande_Id
+        JOIN plat ON creation.Plat_Id = plat.Plat_Id
+        JOIN recette ON plat.Recette_id = recette.Recette_id
+        WHERE commande.Client_Username = @Username
+          AND recette.Recette_Origine = @Origine
+          AND plat.Plat_date_de_fabrication BETWEEN @Start AND @End";
             using (var connection = GetConnection())
             using (var command = new MySqlCommand(query, connection))
             {
@@ -104,7 +99,6 @@ namespace DBConnectionLibrary.DataAccess
                 command.Parameters.AddWithValue("@Origine", recetteOrigine);
                 command.Parameters.AddWithValue("@Start", start);
                 command.Parameters.AddWithValue("@End", end);
-
                 connection.Open();
                 using (var reader = command.ExecuteReader())
                 {
@@ -116,5 +110,6 @@ namespace DBConnectionLibrary.DataAccess
             }
             return result;
         }
+
     }
 }

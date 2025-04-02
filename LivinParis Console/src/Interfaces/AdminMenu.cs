@@ -208,15 +208,15 @@ namespace LivinParis_Console
                         Console.ReadKey();
                         break;
                     case 2:
-                        ModuleClientModifying();
+                        ModuleStatistiquesMoyennePrixCommandes();
                         Console.ReadKey();
                         break;
                     case 3:
-                        ModuleClientAdding();
+                        ModuleStatistiquesMoyenneCompte();
                         Console.ReadKey();
                         break;
                     case 4:
-                        ModuleAutreMain();
+                        ModuleStatistiquesCommandesBizarre();
                         Console.ReadKey();
                         break;
                     default:
@@ -224,6 +224,37 @@ namespace LivinParis_Console
                 }
                 adminChoice = Affichages.MenuSelect(prompt, options);
             }
+        }
+
+        private void ModuleStatistiquesCommandesBizarre()
+        {
+            StatsDataAccess dataAccess = new StatsDataAccess();
+            Console.WriteLine("Entrez la date de depart (jj/mm/aaaa)");
+            DateTime startDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Entrez la date d'arrivee (jj/mm/aaaa)");
+            DateTime endDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Entrez l'Username du client que vous voulez analyser");
+            string username = Console.ReadLine();
+            Console.WriteLine("Entrez l'origine des plats");
+            string origine = Console.ReadLine();
+            
+            List<int> commandes = dataAccess.GetCommandesByClientAndFilters(username, origine, startDate, endDate);
+            foreach (int commande in commandes)
+            {
+                Console.WriteLine("La commande "+ commande +" a ete passee entre la date de depart et celle d'arrivee par "+username+" et est bien d'origine "+origine+".");
+            }
+        }
+
+        private void ModuleStatistiquesMoyenneCompte()
+        {
+            StatsDataAccess dataAccess = new StatsDataAccess();
+            Console.WriteLine("La moyenne de depense par compte est de : " + dataAccess.GetAverageClientSpending());
+        }
+
+        private void ModuleStatistiquesMoyennePrixCommandes()
+        {
+            StatsDataAccess dataAccess = new StatsDataAccess();
+            Console.WriteLine("La moyenne de prix des commandes est de : " + dataAccess.GetAverageCommandePrice());
         }
 
         private void ModuleStatistiquesCommandesOverTime()
@@ -239,7 +270,6 @@ namespace LivinParis_Console
                 Console.WriteLine("La commande "+ i +" a ete passee entre la date de depart et celle d'arrivee");
             }
         }
-
         private void ModuleStatistiquesLivraisonsParCuisinier()
         {
             StatsDataAccess dataAccess = new StatsDataAccess();
