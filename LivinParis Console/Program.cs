@@ -9,7 +9,7 @@ namespace LivinParis_Console
     {
         public static void Main(string[] args)
         {
-            string[] options = { "Rendu 1", "Partie Metro/ BDD Initialisation", "Livin'Paris","Quitter" };
+            string[] options = { "Rendu 1", "Partie Metro/ BDD Initialisation", "Livin'Paris", "Afficher Carte du Métro","Quitter" };
             bool Quit = false;
             while (!Quit)
             {
@@ -25,6 +25,9 @@ namespace LivinParis_Console
                         break;
                     case 2:
                         LivinParis.ConnectorTest();
+                        break;
+                    case 3 :
+                        AffichageMetro.AfficherCarte();
                         break;
                     default:
                         Quit = true;

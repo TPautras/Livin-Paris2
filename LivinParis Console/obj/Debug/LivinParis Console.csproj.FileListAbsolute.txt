@@ -58,7 +58,6 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinPari
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DBConnectionLibrary.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DotNetEnv.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\GraphsLibrary.dll
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParisGraphique.exe
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Test.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.dll
@@ -82,8 +81,6 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DBConnect
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\DBConnectionLibrary.dll.config
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\GraphsLibrary.pdb
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Test.pdb
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParisGraphique.pdb
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParisGraphique.exe.config
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Extensions.Primitives.xml
@@ -106,7 +103,6 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinPari
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis Console.csproj.SuggestedBindingRedirects.cache
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis_Console.exe.config
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis Console.csproj.CoreCompileInputs.cache
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis Console.csproj.CopyComplete
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis_Console.exe
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinParis_Console.pdb
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Console.exe.config
@@ -252,3 +248,14 @@ C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.D
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Configuration.ConfigurationManager.xml
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\MetroHelper.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\GraphsLibrary.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\LivinParis_Test.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\MetroHelper.pdb
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Console\obj\Debug\LivinPar.374188EB.Up2Date

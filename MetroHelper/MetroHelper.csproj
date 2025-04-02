@@ -33,15 +33,26 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="mscorlib" />
         <Reference Include="System"/>
         <Reference Include="System.Core"/>
         <Reference Include="System.Data"/>
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Drawing.Common.9.0.1\lib\net462\System.Drawing.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Drawing.Primitives.4.3.0\lib\net45\System.Drawing.Primitives.dll</HintPath>
+        </Reference>
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Correspondance.cs" />
         <Compile Include="CreateGraphMetro.cs" />
+        <Compile Include="GrandeStation.cs" />
+        <Compile Include="GrapheImageGeo.cs" />
         <Compile Include="ligne.cs" />
+        <Compile Include="PeuplementGrandeStation.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="Station de metro.cs" />
     </ItemGroup>
@@ -81,6 +92,10 @@
       <Content Include="Data\Ligne_8_Creteil_-_Prefecture_vers_Balard.csv" />
       <Content Include="Data\Ligne_9_Mairie_de_Montreuil_vers_Pont_de_Sèvres.csv" />
       <Content Include="Data\Ligne_9_Pont_de_Sèvres_vers_Mairie_de_Montreuil.csv" />
+      <Content Include="Data\Coordonnees.csv" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

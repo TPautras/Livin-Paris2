@@ -44,7 +44,6 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_T
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.pdb
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.dll
@@ -62,8 +61,6 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Numer
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.pdb
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll.config
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.pdb
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.pdb
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe.config
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.pdb
@@ -80,7 +77,6 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Hash.xx
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.AssemblyReference.cache
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CoreCompileInputs.cache
-C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
 C:\Users\Thomas\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.dll
@@ -167,3 +163,10 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
 C:\Users\paren\source\repos\TPautras\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.dll
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll.config
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.xml
+C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
