@@ -27,12 +27,35 @@ namespace LivinParis_Console
                         LivinParis.ConnectorTest();
                         break;
                     case 3 :
-                        AffichageMetro.AfficherCarte();
+                        MenuAffichageMetro();
                         break;
                     default:
                         Quit = true;
                         break;
                 }
+            }
+        }
+        
+        public static void MenuAffichageMetro()
+        {
+            string[] sousOptions = {
+                "Afficher la carte des grandes stations (plan simplifié)",
+                "Afficher le graphe complet avec correspondances",
+                "Retour"
+            };
+
+            int choix = Affichages.MenuSelect("\nQuel type de carte souhaitez-vous afficher ?", sousOptions);
+
+            switch (choix)
+            {
+                case 0:
+                    AffichageMetro.AfficherCarte(); 
+                    break;
+                case 1:
+                    AffichageMetro.AfficherCarteAvecCorrespondances(); 
+                    break;
+                default:
+                    break;
             }
         }
     }
