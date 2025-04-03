@@ -1,4 +1,8 @@
-﻿namespace Graphs.Parcours
+﻿
+using System;
+using System.Collections.Generic;
+
+namespace Graphs.Parcours
 {
     public class FloydWarshall<T>
     {
@@ -9,9 +13,9 @@
         private int _nbNoeuds;
 
         /// <summary>
-        /// Constructeur de la classe FloydWarshall
+        /// Constructeur de la classe Floyd-Warshall
         /// </summary>
-        /// <param name="graphe">Le graphe sur lequel appliquer l'algorithme</param>
+        /// <param name="graphe">graphe sur lequel on applique l'algorithme</param>
         public FloydWarshall(Graphe<T> graphe)
         {
             _graphe = graphe;
@@ -180,7 +184,7 @@
                         }
                         else
                         {
-                            result += $"Distance = {distance}, Chemin = {string.Join(" -> ", chemin)}\n";
+                            result += $"Distance = {distance}, Chemin = {string.Join(" -> "+ chemin)}\n";
                         }
                     }
                 }
