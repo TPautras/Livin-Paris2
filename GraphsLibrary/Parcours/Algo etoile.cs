@@ -18,7 +18,7 @@ namespace Graphs.Parcours
         }
 
         /// <summary>
-        /// Trouve le plus court chemin entre deux sommets en utilisant l'algorithme A*
+        /// Permet de trouver le plus court chemin entre deux sommets en utilisant l'algorithme A*
         /// </summary>
         /// <param name="sourceId">ID du sommet de départ</param>
         /// <param name="destinationId">ID du sommet d'arrivée</param>
