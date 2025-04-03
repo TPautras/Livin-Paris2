@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 namespace SqlConnector.DataAccess
 {
@@ -12,7 +13,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Personne>();
             string query = "SELECT * FROM Personne";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -47,7 +48,7 @@ namespace SqlConnector.DataAccess
                               Personne_Nom_de_la_rue, Personne_Numero_de_la_rue, Personne_Telephone, Personne_Station_de_metro_la_plus_proche)
                              VALUES (@Email, @Nom, @Prenom, @Ville, @CodePostale, @NomRue, @NumeroRue, @Telephone, @Metro)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Email", entity.PersonneEmail);
                 command.Parameters.AddWithValue("@Nom", entity.PersonneNom);
@@ -75,7 +76,7 @@ namespace SqlConnector.DataAccess
                              Personne_Station_de_metro_la_plus_proche = @Metro
                              WHERE Personne_Email = @Email";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Nom", entity.PersonneNom);
                 command.Parameters.AddWithValue("@Prenom", entity.PersonnePrenom);
@@ -99,7 +100,7 @@ namespace SqlConnector.DataAccess
             Personne p = null;
             string query = "SELECT * FROM Personne WHERE Personne_Email = @Email";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Email", email);
                 connection.Open();
@@ -107,6 +108,7 @@ namespace SqlConnector.DataAccess
                 {
                     if(reader.Read())
                     {
+                        bool isAdmin = reader["Personne_Is_Admin"] != DBNull.Value && Convert.ToBoolean(reader["Personne_Is_Admin"]);
                         p = new Personne
                         {
                             PersonneEmail = reader["Personne_Email"].ToString(),
@@ -117,7 +119,9 @@ namespace SqlConnector.DataAccess
                             PersonneNomDeLaRue = reader["Personne_Nom_de_la_rue"].ToString(),
                             PersonneNumeroDeLaRue = Convert.ToInt32(reader["Personne_Numero_de_la_rue"]),
                             PersonneTelephone = reader["Personne_Telephone"].ToString(),
-                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString()
+                            PersonneStationDeMetroLaPlusProche = reader["Personne_Station_de_metro_la_plus_proche"].ToString(),
+                            PersonneIsAdmin = isAdmin,
+                                
                         };
                     }
                 }
@@ -128,7 +132,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "DELETE FROM Personne WHERE Personne_Email = @Email";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Email", email);
                 connection.Open();

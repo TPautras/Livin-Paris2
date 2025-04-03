@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 namespace SqlConnector.DataAccess
 {
@@ -12,7 +13,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Plat>();
             string query = "SELECT * FROM Plat";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -39,7 +40,7 @@ namespace SqlConnector.DataAccess
             Plat plat = null;
             string query = "SELECT * FROM Plat WHERE Plat_Id = @Id";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();
@@ -68,7 +69,7 @@ namespace SqlConnector.DataAccess
                              (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id)
                              VALUES (@Id, @DateFab, @DatePeremption, @Prix, @NombrePortion, @CuisinierUsername, @RecetteId)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", entity.PlatId);
                 command.Parameters.AddWithValue("@DateFab", entity.PlatDateDeFabrication);
@@ -92,7 +93,7 @@ namespace SqlConnector.DataAccess
                              Recette_id = @RecetteId
                              WHERE Plat_Id = @Id";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@DateFab", entity.PlatDateDeFabrication);
                 command.Parameters.AddWithValue("@DatePeremption", entity.PlatDateDePeremption);
@@ -109,7 +110,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "DELETE FROM Plat WHERE Plat_Id = @Id";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", id);
                 connection.Open();

@@ -29,7 +29,6 @@ namespace SqlConnector.DataService
         }
         public void Insert(Personne entity)
         {
-            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
             ValidationHelper.ValidateStringField(entity.PersonneNom, "Personne_Nom", 50, false);
             ValidationHelper.ValidateStringField(entity.PersonnePrenom, "Personne_Prenom", 50, false);
             ValidationHelper.ValidateStringField(entity.PersonneVille, "Personne_Ville", 50, false);
@@ -42,7 +41,6 @@ namespace SqlConnector.DataService
         }
         public void Update(Personne entity)
         {
-            ValidationHelper.ValidateStringField(entity.PersonneEmail, "Personne_Email", 50, false);
             ValidationHelper.ValidateStringField(entity.PersonneNom, "Personne_Nom", 50, false);
             ValidationHelper.ValidateStringField(entity.PersonnePrenom, "Personne_Prenom", 50, false);
             ValidationHelper.ValidateStringField(entity.PersonneVille, "Personne_Ville", 50, false);

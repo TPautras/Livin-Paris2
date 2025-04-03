@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using LivinParis.DataAccess;
+using MySql.Data.MySqlClient;
 using SqlConnector.Models;
 
 namespace SqlConnector.DataAccess
@@ -13,7 +14,7 @@ namespace SqlConnector.DataAccess
             var list = new List<FaitPartieDe>();
             string query = "SELECT * FROM Fait_Partie_De";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -40,7 +41,7 @@ namespace SqlConnector.DataAccess
         {
             string query = "INSERT INTO Fait_Partie_De (Personne_Id, Entreprise_Id) VALUES (@PersonneId, @EntrepriseId)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@PersonneId", entity.PersonneId);
                 command.Parameters.AddWithValue("@EntrepriseId", entity.EntrepriseId);

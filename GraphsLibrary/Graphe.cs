@@ -37,6 +37,13 @@ namespace Graphs
                 Console.WriteLine(ex.ToString());
             }
         }
+        public List<Lien<T>> Liens
+        {
+            get
+            {
+                return Noeuds.Values.SelectMany(n => n.Liens).ToList();
+            }
+        }
         /// <summary>
         /// Fonction qui permet d'ajouter un Noeuds
         /// </summary>

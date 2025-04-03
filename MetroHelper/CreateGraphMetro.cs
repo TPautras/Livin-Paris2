@@ -1,69 +1,147 @@
-﻿using Graphs;
-using System.Globalization;
-namespace MetroHelper;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Graphs;
 
-public class CreateGraphMetro
+namespace MetroHelper
 {
-    private Dictionary<string, int> stationId;
-    private int nextId;
-    private Graphe<string> graph;
-
-    public CreateGraphMetro(Dictionary<string, int> stationId, int nextId, Graphe<string>graph) 
+    public class CreateGraphMetro
     {
-        
-        this.stationId = stationId;
-        this.nextId = nextId;
-        this.graph = graph;
-        
-    }
+        private Dictionary<string, Station_de_metro> stations;
+        private int idCounter;
 
-    public void ConstruireDepuisDossier(string dossierCsv)
-    {
-        foreach (var fichier in Directory.GetFiles(dossierCsv,"*.csv"))
+        public CreateGraphMetro()
         {
-            this.ChargerFichierCsv(fichier);
+            this.stations = new Dictionary<string, Station_de_metro>();
+            this.idCounter = 1;
         }
-    }
 
-    private void ChargerFichierCsv(string chemin)
-    {
-        var lignes = File.ReadAllLines(chemin);
-        
-        for (int i = 1; i < lignes.Length; i++)
+        public Dictionary<string, Station_de_metro> Stations
         {
-            var ligne = lignes[i].Split(',');
-            if (ligne.Length < 2) continue;
+            get { return stations; }
+            set { stations = value; }
+        }
 
-            string station = NettoyerNomStation(ligne[0]);
-            if (!this.stationId.ContainsKey(station))
+        public int IdCounter
+        {
+            get { return idCounter; }
+            set { idCounter = value; }
+        }
+
+        public Graphe<Station_de_metro> ChargerReseauDepuisFichiers(string dossierData)
+        {
+            var graphe = new Graphe<Station_de_metro>("", ',', 0);
+
+            AjouterStationsEtLiensDesLignes(dossierData, graphe);
+            AjouterCorrespondances(dossierData, graphe);
+
+            return graphe;
+        }
+
+        private void AjouterStationsEtLiensDesLignes(string dossierData, Graphe<Station_de_metro> graphe)
+        {
+            var fichiers = Directory.GetFiles(dossierData, "Ligne_*.csv");
+
+            foreach (var fichier in fichiers)
             {
-                this.stationId[station] = this.nextId;
-                this.graph.AjouterNoeud(this.nextId, station);
-                this.nextId++;
+                string nomFichier = Path.GetFileNameWithoutExtension(fichier);
+                string numeroLigne = nomFichier.Split('_')[1];
+
+                var lignes = File.ReadAllLines(fichier).Skip(1).ToList();
+                for (int i = 0; i < lignes.Count - 1; i++)
+                {
+                    var parts = lignes[i].Split(',');
+                    var partsSuivante = lignes[i + 1].Split(',');
+
+                    if (parts.Length < 2 || partsSuivante.Length < 1) continue;
+
+                    string nomActuelle = parts[0].Trim().Trim('"');
+                    int tempsVersSuivante = int.Parse(parts[1].Trim());
+                    string nomSuivante = partsSuivante[0].Trim().Trim('"');
+
+                    string cleActuelle = $"{nomActuelle} (Ligne {numeroLigne})";
+                    string cleSuivante = $"{nomSuivante} (Ligne {numeroLigne})";
+
+                    if (!stations.ContainsKey(cleActuelle))
+                    {
+                        var station = new Station_de_metro(idCounter++, cleActuelle);
+                        stations[cleActuelle] = station;
+                        graphe.AjouterNoeud(station.Id, station);
+                    }
+
+                    if (!stations.ContainsKey(cleSuivante))
+                    {
+                        var station = new Station_de_metro(idCounter++, cleSuivante);
+                        stations[cleSuivante] = station;
+                        graphe.AjouterNoeud(station.Id, station);
+                    }
+
+                    graphe.AjouterLien(stations[cleActuelle].Id, stations[cleSuivante].Id, tempsVersSuivante);
+                }
+                
+                var lastParts = lignes.Last().Split(',');
+                if (lastParts.Length >= 1)
+                {
+                    string nomDerniere = lastParts[0].Trim().Trim('"');
+                    string cleDerniere = $"{nomDerniere} (Ligne {numeroLigne})";
+
+                    if (!stations.ContainsKey(cleDerniere))
+                    {
+                        var station = new Station_de_metro(idCounter++, cleDerniere);
+                        stations[cleDerniere] = station;
+                        graphe.AjouterNoeud(station.Id, station);
+                    }
+                }
             }
         }
-        for (int i = 1; i < lignes.Length - 1; i++)
+
+        private void AjouterCorrespondances(string dossierData, Graphe<Station_de_metro> graphe)
         {
-            string depart = NettoyerNomStation(lignes[i].Split(',')[0]);
-            string arrivee = NettoyerNomStation(lignes[i + 1].Split(',')[0]);
-            string poidsStr = lignes[i].Split(',')[1].Trim();
+            string chemin = Path.Combine(dossierData, "Correspondance.csv");
 
-            if (!double.TryParse(poidsStr, NumberStyles.Any, CultureInfo.InvariantCulture, out double poids))
-                poids = 2.0;
+            if (!File.Exists(chemin)) return;
 
-            if (this.stationId.ContainsKey(depart) && this.stationId.ContainsKey(arrivee))
+            var lignes = File.ReadAllLines(chemin).Skip(1);
+
+            foreach (var ligne in lignes)
             {
-                int idDepart = this.stationId[depart];
-                int idArrivee = this.stationId[arrivee];
-                this.graph.AjouterLien(idDepart, idArrivee, poids);
+                var parts = ligne.Split(',');
+                if (parts.Length < 6) continue;
+
+                int id = int.Parse(parts[0].Trim());
+                string nomA = parts[1].Trim().Trim('"');
+                string ligneA = parts[2].Trim();
+                string nomB = parts[3].Trim().Trim('"');
+                string ligneB = parts[4].Trim();
+                int temps = int.Parse(parts[5].Trim());
+
+                string cleA = $"{nomA} (Ligne {ligneA})";
+                string cleB = $"{nomB} (Ligne {ligneB})";
+
+                if (!stations.ContainsKey(cleA))
+                {
+                    var sA = new Station_de_metro(idCounter++, cleA);
+                    stations[cleA] = sA;
+                    graphe.AjouterNoeud(sA.Id, sA);
+                }
+
+                if (!stations.ContainsKey(cleB))
+                {
+                    var sB = new Station_de_metro(idCounter++, cleB);
+                    stations[cleB] = sB;
+                    graphe.AjouterNoeud(sB.Id, sB);
+                }
+
+                var stationA = stations[cleA];
+                var stationB = stations[cleB];
+
+                var correspondance = new Correspondance(stationA, stationB, temps, id);
+
+                graphe.AjouterLien(correspondance.S1.Id, correspondance.S2.Id, correspondance.Temps);
+                graphe.AjouterLien(correspondance.S2.Id, correspondance.S1.Id, correspondance.Temps);
             }
         }
+        
     }
-    private string NettoyerNomStation(string nom)
-    {
-        return nom.Trim().Replace("\u00a0", " ").Replace("’", "'").Replace("É", "E").Replace("é", "e")
-            .Replace("è", "e").Replace("à", "a").Replace("î", "i").Replace("ô", "o").Replace("ç", "c");
-    }
-
-
 }

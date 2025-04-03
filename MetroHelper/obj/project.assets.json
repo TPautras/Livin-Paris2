@@ -25,8 +25,7 @@
         "dependencies": {
           "DBConnectionLibrary": "1.0.0",
           "GraphsLibrary": "1.0.0",
-          "LivinParis Test": "1.0.0",
-          "LivinParisGraphique": "1.0.0"
+          "LivinParis Test": "1.0.0"
         },
         "compile": {
           "bin/placeholder/LivinParis Console.dll": {}
@@ -39,8 +38,7 @@
         "type": "project",
         "dependencies": {
           "DBConnectionLibrary": "1.0.0",
-          "GraphsLibrary": "1.0.0",
-          "LivinParisGraphique": "1.0.0"
+          "GraphsLibrary": "1.0.0"
         },
         "compile": {
           "bin/placeholder/LivinParis Test.dll": {}

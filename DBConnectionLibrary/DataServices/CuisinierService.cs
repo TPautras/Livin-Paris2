@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SqlConnector.Models;
 using SqlConnector.DataAccess;
 using SqlConnector.DataServices;
@@ -43,6 +44,28 @@ namespace SqlConnector.DataService
         {
             CuisinierDataAccess cuisinierDataAccess = new CuisinierDataAccess();
             return cuisinierDataAccess.GetByUsername(username);
+        }
+        public bool TestConnection(string username, string password)
+        {
+            CuisinierDataAccess dataAccess = new CuisinierDataAccess();
+            CuisinierService clientService = new CuisinierService(dataAccess);
+            Cuisinier cuisinier;
+            try
+            {
+                 cuisinier = clientService.GetByUsername(username);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                return false;
+            }
+
+            if (cuisinier != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

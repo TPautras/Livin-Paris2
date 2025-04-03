@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using LivinParis.DataAccess;
 using SqlConnector.Models;
 
@@ -13,7 +13,7 @@ namespace SqlConnector.DataAccess
             var list = new List<Creation>();
             string query = "SELECT * FROM Creation";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 connection.Open();
                 using(var reader = command.ExecuteReader())
@@ -33,14 +33,34 @@ namespace SqlConnector.DataAccess
 
         public Creation GetById(int id)
         {
-            throw new NotImplementedException("Cette entité possède une clé composite. Utilisez une méthode dédiée.");
+            Creation c = null;
+            string query = "SELECT * FROM Creation WHERE Commande_Id = @id OR Plat_Id = @id";
+            using(var connection = GetConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                connection.Open();
+                using(var reader = command.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+                        c = new Creation
+                        {
+                            CommandeId =  Convert.ToInt32(reader["Commande_Id"]),
+                            PlatId = Convert.ToInt32(reader["Plat_Id"]),
+                            
+                        };
+                    }
+                }
+            }
+            return c;
         }
 
         public void Insert(Creation entity)
         {
             string query = "INSERT INTO Creation (Commande_Id, Plat_Id) VALUES (@CommandeId, @PlatId)";
             using(var connection = GetConnection())
-            using(var command = new SqlCommand(query, connection))
+            using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@CommandeId", entity.CommandeId);
                 command.Parameters.AddWithValue("@PlatId", entity.PlatId);

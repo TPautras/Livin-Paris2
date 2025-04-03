@@ -1,0 +1,107 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\TestGraphMetro.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj",
+        "projectName": "GraphsLibrary",
+        "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj",
+        "projectName": "MetroHelper",
+        "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj",
+        "UsingMicrosoftNETSdk": false,
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj": {
+                "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\GraphsLibrary\\GraphsLibrary.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\TestGraphMetro.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\TestGraphMetro.csproj",
+        "projectName": "TestGraphMetro",
+        "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\TestGraphMetro.csproj",
+        "packagesPath": "C:\\Users\\samue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\TestGraphMetro\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\samue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {
+              "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj": {
+                "projectPath": "C:\\Users\\samue\\RiderProjects\\Livin-Paris2\\MetroHelper\\MetroHelper.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "MSTest": {
+              "target": "Package",
+              "version": "[3.6.4, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Users\\samue\\.dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
