@@ -106,5 +106,30 @@ namespace MetroHelper
                 coordonnees[nom] = ((int)(latitude * 1_000_000), (int)(longitude * 1_000_000));
             }
         }
+        
+        public Dictionary<string, GrandeStation> ChargerGrandesStationsDepuisCoordonnees(string cheminFichier)
+        {
+            Dictionary<string, GrandeStation> grandesStations = new Dictionary<string, GrandeStation>();
+
+            var lignes = File.ReadAllLines(cheminFichier).Skip(1);
+            foreach (var ligne in lignes)
+            {
+                var parties = ligne.Split(',');
+                if (parties.Length < 3) continue;
+
+                string nom = parties[0].Trim();
+                double latitude = double.Parse(parties[1], CultureInfo.InvariantCulture);
+                double longitude = double.Parse(parties[2], CultureInfo.InvariantCulture);
+
+                // Conversion en int comme dans tes coordonnées existantes
+                int lat = (int)(latitude * 1_000_000);
+                int lon = (int)(longitude * 1_000_000);
+
+                grandesStations[nom] = new GrandeStation(new List<Station_de_metro>(), lat, lon);
+            }
+
+            return grandesStations;
+        }
+
     }
 }

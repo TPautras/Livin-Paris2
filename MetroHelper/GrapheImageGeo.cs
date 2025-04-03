@@ -11,14 +11,15 @@ public class GrapheImageGeo<T>
     private Graphe<T> graphe;
     private Dictionary<int, PointF> coordonneesNormalisées;
 
-    // ✅ Personnalisation des couleurs
     public string CouleurParDefault { get; set; } = "DarkGray";
     public int RayonNoeud { get; set; } = 7;
     public string CouleurRemplissageNoeud { get; set; } = "White";
     public string CouleurContourNoeud { get; set; } = "Black";
-
-    // ✅ Fonction pour obtenir la couleur à partir d’un objet station (T)
     public Func<T, string> CouleurParLigne { get; set; } = null;
+    public Func<T, T, string> CouleurDesLiens { get; set; } = null;
+
+    public List<int> AffichageChemin { get; set; } = new List<int>();
+    public bool NafficherQueChemin { get; set; } = false;
 
     public GrapheImageGeo(Graphe<T> graphe, Dictionary<int, (int lat, int lon)> coordonnees)
     {
@@ -52,12 +53,16 @@ public class GrapheImageGeo<T>
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.Clear(Color.White);
-
             Font font = new Font("Arial", 8);
 
-            // ✅ Dessin des arêtes (avec couleur personnalisée)
+            bool filtrerChemin = NafficherQueChemin && AffichageChemin != null && AffichageChemin.Count > 0;
+
+            // 🔁 Arêtes
             foreach (var noeud in graphe.Noeuds.Values)
             {
+                if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id)) continue;
+                if (filtrerChemin && !AffichageChemin.Contains(noeud.Noeud_id)) continue;
+
                 PointF p1 = coordonneesNormalisées[noeud.Noeud_id];
 
                 foreach (var lien in noeud.Liens)
@@ -65,31 +70,39 @@ public class GrapheImageGeo<T>
                     if (!coordonneesNormalisées.ContainsKey(lien.LienArrivee.Noeud_id))
                         continue;
 
+                    bool estDansChemin = AffichageChemin.Contains(noeud.Noeud_id) &&
+                                         AffichageChemin.Contains(lien.LienArrivee.Noeud_id);
+
+                    if (filtrerChemin && !estDansChemin)
+                        continue;
+
                     PointF p2 = coordonneesNormalisées[lien.LienArrivee.Noeud_id];
 
-                    T valeur = noeud.Noeud_Valeur;
-                    string couleur = CouleurParLigne?.Invoke(valeur) ?? CouleurParDefault;
+                    T from = noeud.Noeud_Valeur;
+                    T to = lien.LienArrivee.Noeud_Valeur;
 
-                    using (Pen pen = new Pen(Color.FromName(couleur), 2))
+                    string couleur = CouleurDesLiens?.Invoke(from, to) ?? CouleurParDefault;
+
+                    using (Pen pen = new Pen(Color.FromName(couleur), estDansChemin ? 3 : 1.5f))
                     {
                         pen.CustomEndCap = new AdjustableArrowCap(4, 4);
                         g.DrawLine(pen, p1, p2);
                     }
 
-                    // Affichage du poids
-                    /*
-                    float midX = (p1.X + p2.X) / 2;
-                    float midY = (p1.Y + p2.Y) / 2;
-                    g.DrawString(lien.LienPoids.ToString(), font, Brushes.Black, midX, midY);
-                    */
+                    if (estDansChemin)
+                    {
+                        float midX = (p1.X + p2.X) / 2;
+                        float midY = (p1.Y + p2.Y) / 2;
+                        g.DrawString(lien.LienPoids.ToString(), font, Brushes.Black, midX, midY);
+                    }
                 }
             }
 
-            // ✅ Dessin des nœuds
+            // 🔁 Nœuds
             foreach (var noeud in graphe.Noeuds.Values)
             {
-                if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id))
-                    continue;
+                if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id)) continue;
+                if (filtrerChemin && !AffichageChemin.Contains(noeud.Noeud_id)) continue;
 
                 PointF pos = coordonneesNormalisées[noeud.Noeud_id];
                 RectangleF circle = new RectangleF(pos.X - RayonNoeud, pos.Y - RayonNoeud, RayonNoeud * 2, RayonNoeud * 2);
