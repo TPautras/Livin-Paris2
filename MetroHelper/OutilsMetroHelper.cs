@@ -72,7 +72,7 @@ namespace MetroHelper
         /// <param name="arrivee"></param> Correspond à la Grande station d'arrivée de l'algorithme
         /// <param name="dataPath"></param> Base de donnée pour charger le graph
         /// <returns>
-        /// retourne une liste de station parcouru, un temps de trajet et un nombre de correspondance parcouru
+        /// Retourne une liste de station parcourus, un temps de trajet et un nombre de correspondance parcouru
         /// </returns>
         public static (List<Station_de_metro>, int, int) ParcoursBellmanFord(GrandeStation depart, GrandeStation arrivee, string dataPath)
         {

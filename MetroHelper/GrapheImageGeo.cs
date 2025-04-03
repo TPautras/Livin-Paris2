@@ -5,7 +5,10 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using Graphs;
 using MetroHelper;
-
+/// <summary>
+/// Classe pour générer une image de graph qui prend en compte des coordonnées
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class GrapheImageGeo<T>
 {
     private Graphe<T> graphe;

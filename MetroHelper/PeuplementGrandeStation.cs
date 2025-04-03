@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace MetroHelper
 {
+    /// <summary>
+    /// Classe qui permet de peupler  les grandes stations du métro parisien
+    /// </summary>
     public class PeuplementGrandeStation
     {
         private Dictionary<string, (int latitude, int longitude)> coordonnees;
@@ -20,7 +23,12 @@ namespace MetroHelper
             get => coordonnees;
             set => coordonnees = value;
         }
-
+    /// <summary>
+    /// Méthode qui permet de créer les grandes stations à partir de la base de donnée
+    /// </summary>
+    /// <param name="dossierData"> Base de donnée pour générer les grandes stations à partir du fichier Coordonnes (et ligne pour respecter les liens)</param>
+    /// <returns> Renvoit un dictionnaire des différentes grandes stations qui sont uniques</returns>
+    /// <exception cref="Exception">Elimine les doublons avec les stations déjà créées</exception>
         public Dictionary<string, GrandeStation> CreerGrandesStations(string dossierData)
         {
             ChargerCoordonnees(Path.Combine(dossierData, "Coordonnees.csv"));
@@ -47,8 +55,7 @@ namespace MetroHelper
 
                     if (!regroupementParNom.ContainsKey(nomStation))
                         regroupementParNom[nomStation] = new List<Station_de_metro>();
-
-                    // Recherche d'une éventuelle station déjà créée (même nom complet)
+                    
                     Station_de_metro stationExistante = null;
 
                     foreach (var s in regroupementParNom[nomStation])
@@ -72,7 +79,7 @@ namespace MetroHelper
                 }
             }
 
-            // Création des grandes stations avec coordonnées
+           
             Dictionary<string, GrandeStation> grandesStations = new Dictionary<string, GrandeStation>();
 
             foreach (var kvp in regroupementParNom)
@@ -89,7 +96,10 @@ namespace MetroHelper
 
             return grandesStations;
         }
-
+        /// <summary>
+        /// Permet d'exploiter les informations du fichier coord
+        /// </summary>
+        /// <param name="cheminFichier"></param>
         private void ChargerCoordonnees(string cheminFichier)
         {
             var lignes = File.ReadAllLines(cheminFichier).Skip(1); // ignore l'en-tête
