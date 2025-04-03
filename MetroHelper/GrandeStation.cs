@@ -4,6 +4,9 @@ using System.Linq;
 using Graphs;
 namespace MetroHelper
 {
+    /// <summary>
+    /// classe qui permet de regrouper les stations de metro sous une même station. 
+    /// </summary>
     public class GrandeStation
     {
         private List<Station_de_metro> stations;

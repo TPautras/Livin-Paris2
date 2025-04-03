@@ -38,7 +38,11 @@ namespace MetroHelper
 
             return graphe;
         }
-
+        /// <summary>
+        /// Methode qui permet d'ajouter des stations de métro à un graphe issus d'une meme ligne et d'avoir le lien entre les stations d'une meme ligne
+        /// </summary>
+        /// <param name="dossierData"></param> Dossier de la base de données de fichiers csv pour constituer les lignes
+        /// <param name="graphe"></param> Est l'élément sur lequel les différentes stations de metro
         private void AjouterStationsEtLiensDesLignes(string dossierData, Graphe<Station_de_metro> graphe)
         {
             var fichiers = Directory.GetFiles(dossierData, "Ligne_*.csv");
@@ -95,7 +99,11 @@ namespace MetroHelper
                 }
             }
         }
-
+/// <summary>
+/// Permet d'ajouter les différentes correspondances entre les stations de metro. 
+/// </summary>
+/// <param name="dossierData"></param> la base de donnée qui a le fichier Correspondance.csv qui liste les correspondances
+/// <param name="graphe"></param> le graphe sur lequel greffer ces correspondances
         private void AjouterCorrespondances(string dossierData, Graphe<Station_de_metro> graphe)
         {
             string chemin = Path.Combine(dossierData, "Correspondance.csv");
