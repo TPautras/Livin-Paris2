@@ -9,16 +9,16 @@ namespace Graphs.Parcours
         private readonly Graphe<T> _graphe;
         
         /// <summary>
-        /// Constructeur de la classe A*
+        /// Constructeur de la classe AStar
         /// </summary>
-        /// <param name="graphe">graphe sur lequel on applique l'algorithme</param>
+        /// <param name="graphe">Le graphe sur lequel appliquer l'algorithme</param>
         public AStar(Graphe<T> graphe)
         {
             _graphe = graphe;
         }
 
         /// <summary>
-        /// Permet de trouver le plus court chemin entre deux sommets en utilisant l'algorithme A*
+        /// Trouve le plus court chemin entre deux sommets en utilisant l'algorithme A*
         /// </summary>
         /// <param name="sourceId">ID du sommet de départ</param>
         /// <param name="destinationId">ID du sommet d'arrivée</param>
@@ -34,8 +34,8 @@ namespace Graphs.Parcours
             var openSet = new PriorityQueue<int, double>();
             openSet.Enqueue(sourceId, 0);
 
-            // Ensemble des noeuds déjà explorés
-            var closedSet = new HashSet<int>();
+            // Ensemble des noeuds déjà explorés (utilisation d'un Dictionary au lieu d'un HashSet)
+            var closedSet = new Dictionary<int, bool>();
 
             // Dictionnaire des coûts g (coût du chemin de départ jusqu'au noeud)
             var gScore = new Dictionary<int, double>();
@@ -67,7 +67,8 @@ namespace Graphs.Parcours
                     return (gScore[current], ReconstituerChemin(cameFrom, current));
                 }
 
-                closedSet.Add(current);
+                // Marquer le noeud comme exploré
+                closedSet[current] = true;
 
                 // Explorer les voisins du noeud courant
                 foreach (var lien in _graphe.Noeuds[current].Liens)
@@ -75,7 +76,7 @@ namespace Graphs.Parcours
                     int neighborId = lien.LienArrivee.Noeud_id;
 
                     // Ignorer les noeuds déjà explorés
-                    if (closedSet.Contains(neighborId))
+                    if (closedSet.ContainsKey(neighborId) && closedSet[neighborId])
                         continue;
 
                     // Distance depuis le départ jusqu'à ce voisin en passant par le noeud courant
@@ -90,13 +91,7 @@ namespace Graphs.Parcours
                         fScore[neighborId] = gScore[neighborId] + Heuristique(neighborId, destinationId);
 
                         // Ajouter ou mettre à jour le voisin dans la file de priorité
-                        if (openSet.UnorderedItems.Select(x => x.Element).Contains(neighborId))
-                        {
-                            // Si le noeud est déjà dans la file, on devrait le mettre à jour
-                            // mais .NET ne le permet pas directement, donc on le rajoute simplement
-                            openSet.Enqueue(neighborId, fScore[neighborId]);
-                        }
-                        else
+                        if (!openSet.UnorderedItems.Select(x => x.Element).Contains(neighborId))
                         {
                             openSet.Enqueue(neighborId, fScore[neighborId]);
                         }

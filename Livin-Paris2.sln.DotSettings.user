@@ -9,6 +9,7 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9882bc2e_002Da03b_002D43e7_002Db613_002D64add379a163/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;LivinParis Test&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::D019BED6-F76B-4490-8AFE-834DA94C6A92::.NETFramework,Version=v4.7.2::LivinParis_Test.GrapheTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::D019BED6-F76B-4490-8AFE-834DA94C6A92::.NETFramework,Version=v4.7.2::LivinParis_Test.Parcours_Tests.Dijkstra&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=LivinParisGraphique_002FForm1/@EntryIndexedValue">False</s:Boolean>

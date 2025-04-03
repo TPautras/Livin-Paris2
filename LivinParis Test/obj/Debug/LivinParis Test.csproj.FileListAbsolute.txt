@@ -170,3 +170,46 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis T
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\ZstdSharp.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Memory.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Buffers.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.IO.Pipelines.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll.config
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe.config
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Memory.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Buffers.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.IO.Pipelines.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.AssemblyReference.cache
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CoreCompileInputs.cache
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis Test.csproj.CopyComplete
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.dll
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinParis_Test.pdb

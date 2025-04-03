@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Graphs.Parcours
 {
+    
     public class FloydWarshall<T>
     {
         private const double Infinity = double.MaxValue;

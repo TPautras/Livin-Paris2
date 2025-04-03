@@ -38,3 +38,13 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinPar
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.csproj.CoreCompileInputs.cache
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.exe
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\bin\Debug\LivinParisGraphique.exe.config
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\bin\Debug\LivinParisGraphique.exe
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\bin\Debug\LivinParisGraphique.pdb
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.csproj.AssemblyReference.cache
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.Home.resources
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.Properties.Resources.resources
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.csproj.GenerateResource.cache
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.csproj.CoreCompileInputs.cache
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.exe
+C:\Users\candi\RiderProjects\Livin-Paris2\LivinParisGraphique\obj\Debug\LivinParisGraphique.pdb

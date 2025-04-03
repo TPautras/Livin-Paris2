@@ -47,6 +47,10 @@
         <Compile Include="GraphsTests\LienTests.cs" />
         <Compile Include="GraphsTests\GrapheTests.cs" />
         <Compile Include="GraphsTests\NoeudTests.cs" />
+        <Compile Include="Parcours Tests\AStar.cs" />
+        <Compile Include="Parcours Tests\Bellman Ford.cs" />
+        <Compile Include="Parcours Tests\Dijkstra.cs" />
+        <Compile Include="Parcours Tests\Floyd-Warshall.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
@@ -62,6 +66,9 @@
         <Project>{da53ba2f-f558-4cab-8215-f3d10eec9eb8}</Project>
         <Name>LivinParisGraphique</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="soc-karate.mtx" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

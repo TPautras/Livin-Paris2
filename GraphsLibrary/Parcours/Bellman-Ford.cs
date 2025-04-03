@@ -15,7 +15,7 @@ namespace Graphs.Parcours
         /// <param name="depart">Le sommet de départ</param>
         /// <param name="arrivee">Le sommet d'arrivée</param>
         /// <returns>Un objet représentant le résultat du plus court chemin</returns>
-        public static (List<int>, double) CheminPlusCourt(Graphe<T> graphe, int depart, int arrivee)
+        public static (List<int>, double) CheminPlusCourtBellman_Ford(Graphe<T> graphe, int depart, int arrivee)
         {
             // Vérifier que les sommets existent dans le graphe
             if (!graphe.Noeuds.ContainsKey(depart) || !graphe.Noeuds.ContainsKey(arrivee))
