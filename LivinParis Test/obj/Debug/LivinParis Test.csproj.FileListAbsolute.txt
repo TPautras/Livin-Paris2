@@ -123,7 +123,6 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_T
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.pdb
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll
-C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.dll
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.dll
@@ -141,8 +140,6 @@ C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Numer
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.pdb
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\DBConnectionLibrary.dll.config
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.pdb
-C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.pdb
-C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParisGraphique.exe.config
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\nunit.framework.xml
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\MySql.Data.xml
 C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\Google.Protobuf.pdb
@@ -170,3 +167,8 @@ C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrar
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.xml
 C:\Users\samue\RiderProjects\Livin-Paris2\LivinParis Test\obj\Debug\LivinPar.198DDA58.Up2Date
+C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\LivinParis_Test.dll.config
+C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.dll
+C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\GraphsLibrary.dll.config
+C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\paren\RiderProjects\Livin-Paris2\LivinParis Test\bin\Debug\System.ValueTuple.xml

@@ -8,12 +8,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=8265C565_002D6099_002D4785_002DBE9D_002D52F36E787F42_002Ff_003ADatabase_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=845A2CEA_002DA6FA_002D405E_002D9267_002D65B375ABF980_002Ff_003AGraphe_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9882bc2e_002Da03b_002D43e7_002Db613_002D64add379a163/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;LivinParis Test&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::D019BED6-F76B-4490-8AFE-834DA94C6A92::.NETFramework,Version=v4.7.2::LivinParis_Test.GrapheTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;Project Location="C:\Users\Thomas\RiderProjects\Livin-Paris2\TestGraphMetro" Presentation="&amp;lt;TestGraphMetro&amp;gt;" /&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=LivinParisGraphique_002FForm1/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=LivinParisGraphique_002FForm1/@EntryIndexRemoved">True</s:Boolean>
