@@ -10,9 +10,6 @@ namespace LivinParis_Console
 {
     public class AffichageMetro
     {
-        /// <summary>
-        /// Affiche la carte simplifiée du métro avec les grandes stations (sans correspondances).
-        /// </summary>
         public static void AfficherCarte()
         {
             string dataPath = Path.Combine("..", "..", "..", "MetroHelper", "Data");
@@ -54,59 +51,94 @@ namespace LivinParis_Console
                 }
             }
 
-            string imagePath = Path.Combine("..", "..", "..", "graphe.png");
-            var visualiseur = new GrapheImageGeo<Station_de_metro>(graphe, coordonneesGeo);
+            var imagePath = Path.Combine("..", "..", "..", "graphe.png");
+
+            // Définir les couleurs des lignes (clé = numéro de ligne, valeur = nom de la couleur)
+            var couleursParLigne = new Dictionary<int, string>
+            {
+                { 1, "Gold" }, { 2, "Blue" }, { 3, "DarkOrange" }, { 4, "Red" },
+                { 5, "Brown" }, { 6, "OliveDrab" }, { 7, "Pink" }, { 8, "MediumPurple" },
+                { 9, "Goldenrod" }, { 10, "DarkCyan" }, { 11, "DarkRed" }, { 12, "SeaGreen" },
+                { 13, "Green" }, { 14, "SlateBlue" }, { 31, "DarkOrange" }, { 71, "Pink" }
+            };
+
+            var visualiseur = new GrapheImageGeo<Station_de_metro>(graphe, coordonneesGeo)
+            {
+                CouleurParDefault = "DarkGray",
+                RayonNoeud = 7,
+                CouleurRemplissageNoeud = "White",
+                CouleurContourNoeud = "Black",
+                CouleurParLigne = (station) =>
+                {
+                    int num = ExtraireNumeroLigne(station.Nom);
+                    return couleursParLigne.TryGetValue(num, out string color) ? color : "DarkGray";
+                }
+            };
+
             visualiseur.Dessiner(imagePath);
 
             Console.WriteLine("✅ Carte du métro simplifiée enregistrée.");
-
             OuvrirImage(imagePath);
         }
 
-        /// <summary>
-        /// Affiche le graphe complet du métro, avec toutes les stations et les correspondances.
-        /// </summary>
         public static void AfficherCarteAvecCorrespondances()
         {
             string dataPath = Path.Combine("..", "..", "..", "MetroHelper", "Data");
 
-            // === Charger le graphe complet (avec correspondances)
             var constructeur = new CreateGraphMetro();
             var graphe = constructeur.ChargerReseauDepuisFichiers(dataPath);
 
-            // === Générer des coordonnées aléatoires sans superposition
-            var coordonneesGeo = GenererCoordonneesAleatoires(graphe.Noeuds.Count);
-
-            // === Associer les coordonnées aux IDs des stations
-            var mapping = new Dictionary<int, (int lat, int lon)>();
+            var coordonneesGeo = new Dictionary<int, (int lat, int lon)>();
+            var random = new Random();
+            var positions = GenererCoordonneesAleatoires(graphe.Noeuds.Count);
             int i = 0;
             foreach (var noeud in graphe.Noeuds.Values)
             {
-                var (x, y) = coordonneesGeo[i++];
-                mapping[noeud.Noeud_id] = (x, y);
+                coordonneesGeo[noeud.Noeud_id] = positions[i++];
             }
 
-            // === Dessiner le graphe
-            string imagePath = Path.Combine("..", "..", "..", "graphe_complet.png");
-            var visualiseur = new GrapheImageGeo<Station_de_metro>(graphe, mapping);
+            var imagePath = Path.Combine("..", "..", "..", "graphe_complet.png");
+
+            var visualiseur = new GrapheImageGeo<Station_de_metro>(graphe, coordonneesGeo)
+            {
+                CouleurParDefault = "DarkGray",
+                RayonNoeud = 7,
+                CouleurRemplissageNoeud = "White",
+                CouleurContourNoeud = "Black"
+            };
+
             visualiseur.Dessiner(imagePath);
 
             Console.WriteLine("✅ Graphe complet avec correspondances enregistré.");
             OuvrirImage(imagePath);
         }
-        
+
+        private static int ExtraireNumeroLigne(string nomComplet)
+        {
+            int debut = nomComplet.IndexOf("Ligne") + 6;
+            string numero = nomComplet.Substring(debut).Trim(')', ' ');
+
+            if (numero == "3bis") return 31;
+            if (numero == "7bis") return 71;
+
+            return int.TryParse(numero, out int n) ? n : -1;
+        }
+
         private static List<(int, int)> GenererCoordonneesAleatoires(int count)
         {
             var positions = new List<(int, int)>();
-            Random rand = new Random();
+            var rand = new Random();
             int marge = 30;
 
             while (positions.Count < count)
             {
-                int x = rand.Next(marge, 1000 - marge);
-                int y = rand.Next(marge, 1000 - marge);
+                int x = rand.Next(100, 1000);
+                int y = rand.Next(100, 1000);
 
-                bool tropProche = positions.Any(pos => Math.Abs(pos.Item1 - x) < marge && Math.Abs(pos.Item2 - y) < marge);
+                bool tropProche = positions.Any(pos =>
+                    Math.Abs(pos.Item1 - x) < marge &&
+                    Math.Abs(pos.Item2 - y) < marge);
+
                 if (!tropProche)
                 {
                     positions.Add((x, y));
@@ -116,10 +148,6 @@ namespace LivinParis_Console
             return positions;
         }
 
-
-        /// <summary>
-        /// Ouvre une image à partir du chemin donné.
-        /// </summary>
         private static void OuvrirImage(string imagePath)
         {
             try

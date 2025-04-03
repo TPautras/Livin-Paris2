@@ -11,6 +11,15 @@ public class GrapheImageGeo<T>
     private Graphe<T> graphe;
     private Dictionary<int, PointF> coordonneesNormalisées;
 
+    // ✅ Personnalisation des couleurs
+    public string CouleurParDefault { get; set; } = "DarkGray";
+    public int RayonNoeud { get; set; } = 7;
+    public string CouleurRemplissageNoeud { get; set; } = "White";
+    public string CouleurContourNoeud { get; set; } = "Black";
+
+    // ✅ Fonction pour obtenir la couleur à partir d’un objet station (T)
+    public Func<T, string> CouleurParLigne { get; set; } = null;
+
     public GrapheImageGeo(Graphe<T> graphe, Dictionary<int, (int lat, int lon)> coordonnees)
     {
         this.graphe = graphe;
@@ -44,47 +53,56 @@ public class GrapheImageGeo<T>
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.Clear(Color.White);
 
-            // Styles graphiques
-            Pen arrowPen = new Pen(Color.Black, 2)
-            {
-                CustomEndCap = new AdjustableArrowCap(6, 6)
-            };
-            Brush nodeBrush = Brushes.Blue;
-            Font font = new Font("Arial", 9);
+            Font font = new Font("Arial", 8);
 
-            // Dessiner les arêtes avec flèches et poids
+            // ✅ Dessin des arêtes (avec couleur personnalisée)
             foreach (var noeud in graphe.Noeuds.Values)
             {
+                PointF p1 = coordonneesNormalisées[noeud.Noeud_id];
+
                 foreach (var lien in noeud.Liens)
                 {
-                    if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id) || !coordonneesNormalisées.ContainsKey(lien.LienArrivee.Noeud_id))
+                    if (!coordonneesNormalisées.ContainsKey(lien.LienArrivee.Noeud_id))
                         continue;
 
-                    PointF p1 = coordonneesNormalisées[noeud.Noeud_id];
                     PointF p2 = coordonneesNormalisées[lien.LienArrivee.Noeud_id];
 
-                    g.DrawLine(arrowPen, p1, p2);
+                    T valeur = noeud.Noeud_Valeur;
+                    string couleur = CouleurParLigne?.Invoke(valeur) ?? CouleurParDefault;
 
-                    // Afficher le poids au milieu
+                    using (Pen pen = new Pen(Color.FromName(couleur), 2))
+                    {
+                        pen.CustomEndCap = new AdjustableArrowCap(4, 4);
+                        g.DrawLine(pen, p1, p2);
+                    }
+
+                    // Affichage du poids
+                    /*
                     float midX = (p1.X + p2.X) / 2;
                     float midY = (p1.Y + p2.Y) / 2;
                     g.DrawString(lien.LienPoids.ToString(), font, Brushes.Black, midX, midY);
+                    */
                 }
             }
 
-            // Dessiner les nœuds
+            // ✅ Dessin des nœuds
             foreach (var noeud in graphe.Noeuds.Values)
             {
                 if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id))
                     continue;
 
                 PointF pos = coordonneesNormalisées[noeud.Noeud_id];
-                RectangleF circle = new RectangleF(pos.X - 10, pos.Y - 10, 20, 20);
-                g.FillEllipse(nodeBrush, circle);
-                g.DrawEllipse(Pens.Black, circle);
+                RectangleF circle = new RectangleF(pos.X - RayonNoeud, pos.Y - RayonNoeud, RayonNoeud * 2, RayonNoeud * 2);
+
+                using (Brush fillBrush = new SolidBrush(Color.FromName(CouleurRemplissageNoeud)))
+                using (Pen outlinePen = new Pen(Color.FromName(CouleurContourNoeud), 1))
+                {
+                    g.FillEllipse(fillBrush, circle);
+                    g.DrawEllipse(outlinePen, circle);
+                }
 
                 string label = (noeud.Noeud_Valeur as Station_de_metro)?.Nom.Split('(')[0] ?? noeud.Noeud_id.ToString();
-                g.DrawString(label, font, Brushes.Black, pos.X + 12, pos.Y - 8);
+                g.DrawString(label, font, Brushes.Black, pos.X + 10, pos.Y - 6);
             }
 
             bmp.Save(filename);
