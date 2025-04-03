@@ -71,16 +71,16 @@ CREATE TABLE Cuisinier(
                           Personne_Email VARCHAR(50) NOT NULL,
                           PRIMARY KEY(Cuisinier_Username),
                           UNIQUE(Personne_Email),
-                          FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email)
+                          FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email) ON UPDATE CASCADE
 );
 
 CREATE TABLE Clients(
                         Client_Username VARCHAR(50),
                         Client_Password VARCHAR(50) NOT NULL,
                         Personne_Email VARCHAR(50) NOT NULL,
-                        PRIMARY KEY(Client_Username),
+                        PRIMARY KEY(Client_Username) ,
                         UNIQUE(Personne_Email),
-                        FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email)
+                        FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email) ON UPDATE CASCADE
 );
 
 CREATE TABLE Commande(
@@ -90,9 +90,9 @@ CREATE TABLE Commande(
                          Client_Username VARCHAR(50) NOT NULL,
                          Commande_Date DATETIME,
                          PRIMARY KEY(Commande_Id),
-                         FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id),
-                         FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username),
-                         FOREIGN KEY(Client_Username) REFERENCES Clients(Client_Username) ON DELETE CASCADE
+                         FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+                         FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username) ON DELETE CASCADE ON UPDATE CASCADE,
+                         FOREIGN KEY(Client_Username) REFERENCES Clients(Client_Username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Plat(
@@ -104,8 +104,8 @@ CREATE TABLE Plat(
                      Cuisinier_Username VARCHAR(50) NOT NULL,
                      Recette_id INT NOT NULL,
                      PRIMARY KEY(Plat_Id),
-                     FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username),
-                     FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id)
+                     FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username) ON DELETE CASCADE ON UPDATE CASCADE,
+                     FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE evaluation(
@@ -116,37 +116,37 @@ CREATE TABLE evaluation(
                            Evaluation_Description_Cuisinier TEXT,
                            Commande_Id INT NOT NULL,
                            PRIMARY KEY(Evaluation_Id),
-                           FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE 
+                           FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Creation(
                          Commande_Id INT,
                          Plat_Id INT,
                          PRIMARY KEY(Commande_Id, Plat_Id),
-                         FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE,
-                         FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id)
+                         FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+                         FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Composition_de_la_recette(
                                           Ingredient_Id INT,
                                           Recette_id INT,
                                           PRIMARY KEY(Ingredient_Id, Recette_id),
-                                          FOREIGN KEY(Ingredient_Id) REFERENCES Ingredient(Ingredient_Id),
-                                          FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id)
+                                          FOREIGN KEY(Ingredient_Id) REFERENCES Ingredient(Ingredient_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+                                          FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE livré(
                       Plat_Id INT,
                       Livraison_Id INT,
                       PRIMARY KEY(Plat_Id, Livraison_Id),
-                      FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id),
-                      FOREIGN KEY(Livraison_Id) REFERENCES Livraison(Livraison_Id)
+                      FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+                      FOREIGN KEY(Livraison_Id) REFERENCES Livraison(Livraison_Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Fait_Partie_De(
                                Personne_Email VARCHAR(50),
                                Entreprise_Id INT,
                                PRIMARY KEY(Personne_Email, Entreprise_Id),
-                               FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email),
-                               FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id)
+                               FOREIGN KEY(Personne_Email) REFERENCES Personne(Personne_Email) ON DELETE CASCADE ON UPDATE CASCADE,
+                               FOREIGN KEY(Entreprise_Id) REFERENCES Entreprise(Entreprise_Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
