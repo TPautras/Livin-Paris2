@@ -37,40 +37,58 @@ public class GrapheImageGeo<T>
     public void Dessiner(string filename = "graphe.png")
     {
         int width = 1000, height = 1000;
-        Bitmap bmp = new Bitmap(width, height);
-        Graphics g = Graphics.FromImage(bmp);
-        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-        g.Clear(Color.White);
-        Pen edgePen = new Pen(Color.Black, 1);
-        Pen arrowPen = new Pen(Color.Black, 1) { CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 5) };
-        Brush nodeBrush = Brushes.Blue;
-        Brush textBrush = Brushes.White;
-        Font font = new Font("Arial", 9);
 
-        // Dessin des arêtes (flèches)
-        foreach (var noeud in graphe.Noeuds.Values)
+        using (Bitmap bmp = new Bitmap(width, height))
+        using (Graphics g = Graphics.FromImage(bmp))
         {
-            foreach (var lien in noeud.Liens)
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.Clear(Color.White);
+
+            // Styles graphiques
+            Pen arrowPen = new Pen(Color.Black, 2)
             {
-                var p1 = coordonneesNormalisées[noeud.Noeud_id];
-                var p2 = coordonneesNormalisées[lien.LienArrivee.Noeud_id];
-                g.DrawLine(arrowPen, p1, p2);
+                CustomEndCap = new AdjustableArrowCap(6, 6)
+            };
+            Brush nodeBrush = Brushes.Blue;
+            Font font = new Font("Arial", 9);
+
+            // Dessiner les arêtes avec flèches et poids
+            foreach (var noeud in graphe.Noeuds.Values)
+            {
+                foreach (var lien in noeud.Liens)
+                {
+                    if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id) || !coordonneesNormalisées.ContainsKey(lien.LienArrivee.Noeud_id))
+                        continue;
+
+                    PointF p1 = coordonneesNormalisées[noeud.Noeud_id];
+                    PointF p2 = coordonneesNormalisées[lien.LienArrivee.Noeud_id];
+
+                    g.DrawLine(arrowPen, p1, p2);
+
+                    // Afficher le poids au milieu
+                    float midX = (p1.X + p2.X) / 2;
+                    float midY = (p1.Y + p2.Y) / 2;
+                    g.DrawString(lien.LienPoids.ToString(), font, Brushes.Black, midX, midY);
+                }
             }
+
+            // Dessiner les nœuds
+            foreach (var noeud in graphe.Noeuds.Values)
+            {
+                if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id))
+                    continue;
+
+                PointF pos = coordonneesNormalisées[noeud.Noeud_id];
+                RectangleF circle = new RectangleF(pos.X - 10, pos.Y - 10, 20, 20);
+                g.FillEllipse(nodeBrush, circle);
+                g.DrawEllipse(Pens.Black, circle);
+
+                string label = (noeud.Noeud_Valeur as Station_de_metro)?.Nom.Split('(')[0] ?? noeud.Noeud_id.ToString();
+                g.DrawString(label, font, Brushes.Black, pos.X + 12, pos.Y - 8);
+            }
+
+            bmp.Save(filename);
+            Console.WriteLine($"✅ Graphe sauvegardé sous : {filename}");
         }
-
-        // Dessin des nœuds
-        foreach (var noeud in graphe.Noeuds.Values)
-        {
-            var pos = coordonneesNormalisées[noeud.Noeud_id];
-            RectangleF circle = new RectangleF(pos.X - 10, pos.Y - 10, 20, 20);
-            g.FillEllipse(nodeBrush, circle);
-            g.DrawEllipse(Pens.Black, circle);
-
-            string label = (noeud.Noeud_Valeur as Station_de_metro)?.Nom.Split('(')[0] ?? noeud.Noeud_id.ToString();
-            g.DrawString(label, font, Brushes.Black, pos.X + 12, pos.Y - 8);
-        }
-
-        bmp.Save(filename);
-        Console.WriteLine($"Graphe sauvegardé sous : {filename}");
     }
 }

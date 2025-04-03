@@ -8,23 +8,19 @@ namespace MetroHelper
 {
     public class PeuplementGrandeStation
     {
-        // === ATTRIBUTS PRIVÉS ===
         private Dictionary<string, (int latitude, int longitude)> coordonnees;
 
-        // === CONSTRUCTEUR ===
         public PeuplementGrandeStation()
         {
             this.coordonnees = new Dictionary<string, (int, int)>();
         }
 
-        // === GETTER / SETTER POUR LES COORDONNÉES ===
         public Dictionary<string, (int latitude, int longitude)> Coordonnees
         {
-            get { return coordonnees; }
-            set { coordonnees = value; }
+            get => coordonnees;
+            set => coordonnees = value;
         }
 
-        // === MÉTHODE PRINCIPALE POUR CRÉER LES GRANDES STATIONS ===
         public Dictionary<string, GrandeStation> CreerGrandesStations(string dossierData)
         {
             ChargerCoordonnees(Path.Combine(dossierData, "Coordonnees.csv"));
@@ -47,16 +43,36 @@ namespace MetroHelper
                     if (parties.Length < 2) continue;
 
                     string nomStation = parties[0].Trim().Trim('"');
+                    string nomComplet = $"{nomStation} (Ligne {numeroLigne})";
 
                     if (!regroupementParNom.ContainsKey(nomStation))
                         regroupementParNom[nomStation] = new List<Station_de_metro>();
 
-                    string nomComplet = $"{nomStation} (Ligne {numeroLigne})";
-                    var station = new Station_de_metro(idCounter++, nomComplet);
-                    regroupementParNom[nomStation].Add(station);
+                    // Recherche d'une éventuelle station déjà créée (même nom complet)
+                    Station_de_metro stationExistante = null;
+
+                    foreach (var s in regroupementParNom[nomStation])
+                    {
+                        if (s.Nom == nomComplet)
+                        {
+                            stationExistante = s;
+                            break;
+                        }
+                    }
+
+                    if (stationExistante == null)
+                    {
+                        var nouvelleStation = new Station_de_metro(idCounter++, nomComplet);
+                        regroupementParNom[nomStation].Add(nouvelleStation);
+                    }
+                    else
+                    {
+                        regroupementParNom[nomStation].Add(stationExistante);
+                    }
                 }
             }
 
+            // Création des grandes stations avec coordonnées
             Dictionary<string, GrandeStation> grandesStations = new Dictionary<string, GrandeStation>();
 
             foreach (var kvp in regroupementParNom)
@@ -65,22 +81,18 @@ namespace MetroHelper
                 List<Station_de_metro> listeStations = kvp.Value;
 
                 if (!coordonnees.ContainsKey(nom))
-                {
                     throw new Exception($"Coordonnées manquantes pour la station : {nom}");
-                }
 
                 var (lat, lon) = coordonnees[nom];
-                var grandeStation = new GrandeStation(listeStations, lat, lon);
-                grandesStations[nom] = grandeStation;
+                grandesStations[nom] = new GrandeStation(listeStations, lat, lon);
             }
 
             return grandesStations;
         }
 
-        // === MÉTHODE DE CHARGEMENT DU FICHIER DE COORDONNÉES ===
         private void ChargerCoordonnees(string cheminFichier)
         {
-            var lignes = File.ReadAllLines(cheminFichier).Skip(1); // ignorer l'en-tête
+            var lignes = File.ReadAllLines(cheminFichier).Skip(1); // ignore l'en-tête
 
             foreach (var ligne in lignes)
             {
