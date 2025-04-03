@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestGraphMetro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc6e861358f0900c0fefc2134332cc4d05ce6501")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ab22e68b7991ee403bbd657153aadfa91dcffc7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestGraphMetro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestGraphMetro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
