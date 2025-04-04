@@ -84,7 +84,7 @@ namespace LivinParis_Console.Modules
             var randomClient = clients[random.Next(clients.Count)];
             var plats = new PlatDataAccess().GetAll();
             var randomPlat = plats[random.Next(plats.Count)];
-            int newId = new CommandeDataAccess().GetAll().Count;
+            int newId = new CommandeDataAccess().GetAll().Count + 1;
             Commande cmd = new Commande { CommandeId = newId, ClientUsername = randomClient.ClientUsername, CuisinierUsername = randomPlat.CuisinierUsername };
             new CommandeDataAccess().Insert(cmd);
             Creation creation = new Creation { CommandeId = cmd.CommandeId, PlatId = randomPlat.PlatId };
