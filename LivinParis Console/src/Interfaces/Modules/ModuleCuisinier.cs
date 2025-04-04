@@ -119,15 +119,25 @@ namespace LivinParis_Console.Modules
             Console.WriteLine(prompt);
             List<Cuisinier> cuisiniers = CuisinierDataAccess.GetAll();
             List<Commande> commandes = new CommandeDataAccess().GetAll();
+            List<Plat> plats = new PlatDataAccess().GetAll();
             
             foreach (Cuisinier cuisinier in cuisiniers)
             {
                 List<Commande> commandeListing = new List<Commande>();
+                List<Plat> platsListing = new List<Plat>();
                 foreach (Commande commande in commandes)
                 {
                     if (commande.CuisinierUsername == cuisinier.CuisinierUsername)
                     {
                         commandeListing.Add(commande);
+                    }
+                }
+
+                foreach (Plat plat in plats)
+                {
+                    if (plat.CuisinierUsername == cuisinier.CuisinierUsername)
+                    {
+                        platsListing.Add(plat);
                     }
                 }
 
@@ -137,6 +147,17 @@ namespace LivinParis_Console.Modules
                 {
                     Console.WriteLine(ClientData.GetByUsername(commande.ClientUsername).ClientUsername);
                 }
+                Console.WriteLine("Plats prepares :");
+                string pdj = "Il n'y a pas de plat du jour";
+                foreach (Plat plat in platsListing)
+                {
+                    if (plat.PlatDuJour)
+                    {
+                        pdj = new RecetteDataAccess().GetById(plat.RecetteId).RecetteNom;
+                    }
+                    Console.WriteLine(new RecetteDataAccess().GetById(plat.RecetteId).RecetteNom);
+                }
+                Console.WriteLine("Plat du jour: " + pdj);
                 Console.WriteLine();
             }
         }

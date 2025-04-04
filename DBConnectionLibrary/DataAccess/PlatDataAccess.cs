@@ -20,6 +20,7 @@ namespace SqlConnector.DataAccess
                 {
                     while(reader.Read())
                     {
+                        bool platDuJour = reader["Plat_Du_Jour"] != DBNull.Value && Convert.ToBoolean(reader["Plat_Du_Jour"]);
                         list.Add(new Plat
                         {
                             PlatId = Convert.ToInt32(reader["Plat_Id"]),
@@ -28,7 +29,8 @@ namespace SqlConnector.DataAccess
                             PlatPrix = reader["Plat_Prix"].ToString(),
                             PlatNombrePortion = Convert.ToInt32(reader["Plat_Nombre_Portion"]),
                             CuisinierUsername = reader["Cuisinier_Username"].ToString(),
-                            RecetteId = Convert.ToInt32(reader["Recette_id"])
+                            RecetteId = Convert.ToInt32(reader["Recette_id"]),
+                            PlatDuJour = platDuJour,
                         });
                     }
                 }
@@ -48,6 +50,7 @@ namespace SqlConnector.DataAccess
                 {
                     if(reader.Read())
                     {
+                        bool platDuJour = reader["Plat_Du_Jour"] != DBNull.Value && Convert.ToBoolean(reader["Plat_Du_Jour"]);
                         plat = new Plat
                         {
                             PlatId = Convert.ToInt32(reader["Plat_Id"]),
@@ -56,7 +59,8 @@ namespace SqlConnector.DataAccess
                             PlatPrix = reader["Plat_Prix"].ToString(),
                             PlatNombrePortion = Convert.ToInt32(reader["Plat_Nombre_Portion"]),
                             CuisinierUsername = reader["Cuisinier_Username"].ToString(),
-                            RecetteId = Convert.ToInt32(reader["Recette_id"])
+                            RecetteId = Convert.ToInt32(reader["Recette_id"]),
+                            PlatDuJour = platDuJour
                         };
                     }
                 }
@@ -66,8 +70,8 @@ namespace SqlConnector.DataAccess
         public void Insert(Plat entity)
         {
             string query = @"INSERT INTO Plat 
-                             (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id)
-                             VALUES (@Id, @DateFab, @DatePeremption, @Prix, @NombrePortion, @CuisinierUsername, @RecetteId)";
+                             (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id, PlatDuJour)
+                             VALUES (@Id, @DateFab, @DatePeremption, @Prix, @NombrePortion, @CuisinierUsername, @RecetteId, @PlatDuJour)";
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))
             {
@@ -78,6 +82,7 @@ namespace SqlConnector.DataAccess
                 command.Parameters.AddWithValue("@NombrePortion", entity.PlatNombrePortion);
                 command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
                 command.Parameters.AddWithValue("@RecetteId", entity.RecetteId);
+                command.Parameters.AddWithValue("@PlatDuJour", entity.PlatDuJour);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -90,7 +95,8 @@ namespace SqlConnector.DataAccess
                              Plat_Prix = @Prix,
                              Plat_Nombre_Portion = @NombrePortion,
                              Cuisinier_Username = @CuisinierUsername,
-                             Recette_id = @RecetteId
+                             Recette_id = @RecetteId,
+                             PlatDuJour = @PlatDuJour
                              WHERE Plat_Id = @Id";
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))
@@ -102,6 +108,7 @@ namespace SqlConnector.DataAccess
                 command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
                 command.Parameters.AddWithValue("@RecetteId", entity.RecetteId);
                 command.Parameters.AddWithValue("@Id", entity.PlatId);
+                command.Parameters.AddWithValue("@PlatDuJour", entity.PlatDuJour);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

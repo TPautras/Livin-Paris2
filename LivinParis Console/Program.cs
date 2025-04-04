@@ -14,7 +14,7 @@ namespace LivinParis_Console
         {
             string[] options = {
                 "Rendu 1",
-                "Partie Metro/ BDD Initialisation",
+                "BDD Initialisation",
                 "Livin'Paris",
                 "Afficher Carte du Métro",
                 "Quitter"
