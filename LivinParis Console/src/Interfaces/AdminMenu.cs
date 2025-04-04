@@ -49,7 +49,7 @@ namespace LivinParis_Console
                         Console.ReadKey();
                         break;
                     case 4:
-                        ModuleAutreMain();
+                        new ModuleAutre().ModuleAutreMain();
                         Console.ReadKey();
                         break;
                     default:
