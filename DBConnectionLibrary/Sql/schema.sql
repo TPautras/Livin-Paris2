@@ -103,6 +103,7 @@ CREATE TABLE Plat(
                      Plat_Nombre_Portion INT NOT NULL,
                      Cuisinier_Username VARCHAR(50) NOT NULL,
                      Recette_id INT NOT NULL,
+                     Plat_Du_Jour BOOL,
                      PRIMARY KEY(Plat_Id),
                      FOREIGN KEY(Cuisinier_Username) REFERENCES Cuisinier(Cuisinier_Username) ON DELETE CASCADE ON UPDATE CASCADE,
                      FOREIGN KEY(Recette_id) REFERENCES Recette(Recette_id) ON DELETE CASCADE ON UPDATE CASCADE
