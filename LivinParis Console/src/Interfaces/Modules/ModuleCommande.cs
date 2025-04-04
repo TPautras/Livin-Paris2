@@ -71,7 +71,7 @@ namespace LivinParis_Console.Modules
             Console.WriteLine(optionsPlat.Length);
             foreach (Plat plat in plats)
             {
-                optionsPlat[plats.IndexOf(plat)] = new RecetteDataAccess().GetById(plat.RecetteId).RecetteNom;
+                optionsPlat[plat.PlatId-1] = new RecetteDataAccess().GetById(plat.RecetteId).RecetteNom + "    Id du plat : "+plat.PlatId;
             }
             List<int> platChoice = new List<int>();
             platChoice.Add(Affichages.MenuSelect("Quel plat voulez vous commander ?", optionsPlat));
@@ -90,7 +90,7 @@ namespace LivinParis_Console.Modules
             {
                 Creation myCreation = new Creation();
                 myCreation.CommandeId = myCommande.CommandeId;
-                myCreation.PlatId = i;
+                myCreation.PlatId = i + 1;
                 new CreationDataAccess().Insert(myCreation);
             }
             string nomDepart = new PersonneDataAccess().GetByEmail(new CuisinierDataAccess().GetByUsername(myCommande.CuisinierUsername).PersonneEmail).PersonneStationDeMetroLaPlusProche;
