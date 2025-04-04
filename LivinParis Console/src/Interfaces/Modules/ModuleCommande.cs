@@ -45,24 +45,27 @@ namespace LivinParis_Console.Modules
 
             }
         }
-        private void ModuleCommandeAdding()
+        public void ModuleCommandeAdding(Client userClient = null)
         {
-            List<Client> clients = ClientData.GetAll();
-            string[] options = new string[clients.Count + 1];
-            foreach (Client client in clients)
+            if (userClient == null)
             {
-                Console.WriteLine(client.ClientUsername);
-                options[clients.IndexOf(client)] = client.ClientUsername;
+                List<Client> clients = ClientData.GetAll();
+                string[] options = new string[clients.Count + 1];
+                foreach (Client client in clients)
+                {
+                    Console.WriteLine(client.ClientUsername);
+                    options[clients.IndexOf(client)] = client.ClientUsername;
+                }
+                options[clients.Count] = @"Créer un client";
+                int clientChoice = Affichages.MenuSelect("A PARTIR DE QUEL CLIENT COMMANDER ?", options);
+                if (clientChoice == clients.Count)
+                {
+                    Personne userPersonne = Connexion.CreationPersonne();
+                    Client userClient2 = Connexion.CreationClient(userPersonne);
+                }
+                clients = ClientData.GetAll();
+                userClient = new ClientDataAccess().GetByUsername(options[clientChoice]);
             }
-            options[clients.Count] = @"Créer un client";
-            int clientChoice = Affichages.MenuSelect("A PARTIR DE QUEL CLIENT COMMANDER ?", options);
-            if (clientChoice == clients.Count)
-            {
-                Personne userPersonne = Connexion.CreationPersonne();
-                Client userClient2 = Connexion.CreationClient(userPersonne);
-            }
-            clients = ClientData.GetAll();
-            Client userClient = new ClientDataAccess().GetByUsername(options[clientChoice]);
             List<Plat> plats = new PlatDataAccess().GetAll();
             string[] optionsPlat = new string[plats.Count];
             Console.WriteLine(optionsPlat.Length);
