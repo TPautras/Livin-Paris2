@@ -23,7 +23,7 @@ GraphsLibrary, quand au test de ces classes, il se trouve dans LivinParis Consol
 
 **Initialisation du projet** : Le Sdk 8.0 est requis pour lancer le projet. Il est egalement possible qu'il faille changer la string
 de connection qui se trouve dans le fichier BaseDataAccess.cs. De plus, il est necessaire pour lancer les projet Graphique
-de desinstaller le projet TestGraphMetro puis de faire Ctrl + Z. 
+de desinstaller le projet TestGraphMetro puis de faire Ctrl + Z.
 Quand on lance le projet, il faut aller sur BDD initialisation pour instancier et peupler la base de donnees.
 
 **Partie BDD** : Pour avoir acces aux differends modules, il faut se connecter en tant qu'admin. Pour cela, lancer le projet console,
@@ -37,13 +37,13 @@ Exemple :\
 - Cuisinier
   - Username : cuisinier1
   - mdp : pwdchef1 \
- 
+
 \
 La recherche du plus court chemin entre le cuisinier et le client est dans le menu admin quand on passe une nouvelle commande. \
 La partie gestion des entreprises est dans le panneau admin \
 **Le dump SQL se trouve dans le dossier Assets, a la racine du projet** \
-**Partie Graphe** : La partie simulation du Metro se trouve dans le projet MetroHelper, les parcours de Graphe se trouvent dans le 
-projet GraphsLibrary, dans le dossier parcours. Le rapport sur l'utilisation de l'IA se trouve egalement dans le dossier Assets a la racine du projet.
+**Partie Graphe** : La partie simulation du Metro se trouve dans le projet MetroHelper, les parcours de Graphe se trouvent dans le
+projet GraphsLibrary, dans le dossier parcours. Le rapport sur l'utilisation de l'IA se trouve egalement dans le dossier Assets a la racine du projet, de meme.
 
 ## Contenu de la solution
 
@@ -58,9 +58,9 @@ Ce projet sert d'interface entre le reste du code et la base de donnée.
 
 Il comprend les sous-dossiers suivants :
 
-  - Models : Modélisation des objets résultants des différentes tables, sert pour la normalisation des données recues de la BDD et pour l'interaction entre les différentes composantes du programme
-  - DataAccess : Interface pour faire le CRUD vers la BDD, toutes les classes implémentent l'interface définie dans la classe DataAccess, et la connexion à la BDD est assurée par les classes BaseDataAccess et DataBase
-  - DataService : Interface entre les interfaces utilisateurs et DataAccess, implémentant également une interface
+- Models : Modélisation des objets résultants des différentes tables, sert pour la normalisation des données recues de la BDD et pour l'interaction entre les différentes composantes du programme
+- DataAccess : Interface pour faire le CRUD vers la BDD, toutes les classes implémentent l'interface définie dans la classe DataAccess, et la connexion à la BDD est assurée par les classes BaseDataAccess et DataBase
+- DataService : Interface entre les interfaces utilisateurs et DataAccess, implémentant également une interface
 
 ### Projet Test : LivinParis Test
 
