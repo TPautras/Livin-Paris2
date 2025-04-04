@@ -40,6 +40,7 @@ Exemple :\
  
 \
 La recherche du plus court chemin entre le cuisinier et le client est dans le menu admin quand on passe une nouvelle commande. \
+La partie gestion des entreprises est dans le panneau admin \
 **Le dump SQL se trouve dans le dossier Assets, a la racine du projet** \
 **Partie Graphe** : La partie simulation du Metro se trouve dans le projet MetroHelper, les parcours de Graphe se trouvent dans le 
 projet GraphsLibrary, dans le dossier parcours. Le rapport sur l'utilisation de l'IA se trouve egalement dans le dossier Assets a la racine du projet.

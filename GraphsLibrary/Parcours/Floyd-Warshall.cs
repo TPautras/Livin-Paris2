@@ -21,10 +21,8 @@ namespace Graphs.Parcours
             _graphe = graphe;
             _nbNoeuds = graphe.Ordre();
             
-            // Initialisation des matrices de distances et de prédécesseurs
             InitialiserMatrices();
             
-            // Exécution de l'algorithme de Floyd-Warshall
             CalculerCheminsPlusCourts();
         }
 
@@ -36,21 +34,19 @@ namespace Graphs.Parcours
             _distances = new double[_nbNoeuds + 1, _nbNoeuds + 1];
             _predecesseurs = new int[_nbNoeuds + 1, _nbNoeuds + 1];
 
-            // Initialisation avec des valeurs infinies
             for (int i = 1; i <= _nbNoeuds; i++)
             {
                 for (int j = 1; j <= _nbNoeuds; j++)
                 {
                     if (i == j)
-                        _distances[i, j] = 0; // Distance d'un sommet à lui-même est nulle
+                        _distances[i, j] = 0; 
                     else
-                        _distances[i, j] = Infinity; // Distances inconnues initialement
+                        _distances[i, j] = Infinity; 
                     
-                    _predecesseurs[i, j] = -1; // Pas de prédécesseur initialement
+                    _predecesseurs[i, j] = -1; 
                 }
             }
 
-            // Remplissage des distances directes à partir des liens du graphe
             foreach (var noeud in _graphe.Noeuds.Values)
             {
                 foreach (var lien in noeud.Liens)
@@ -59,7 +55,6 @@ namespace Graphs.Parcours
                     int destination = lien.LienArrivee.Noeud_id;
                     double poids = lien.LienPoids;
 
-                    // Mise à jour de la distance directe
                     _distances[source, destination] = poids;
                     _predecesseurs[source, destination] = source;
                 }
@@ -78,13 +73,10 @@ namespace Graphs.Parcours
                 {
                     for (int j = 1; j <= _nbNoeuds; j++)
                     {
-                        // Si le chemin passant par k est plus court que le chemin direct
                         if (_distances[i, k] != Infinity && _distances[k, j] != Infinity &&
                             _distances[i, k] + _distances[k, j] < _distances[i, j])
                         {
-                            // Mise à jour de la distance
                             _distances[i, j] = _distances[i, k] + _distances[k, j];
-                            // Mise à jour du prédécesseur
                             _predecesseurs[i, j] = _predecesseurs[k, j];
                         }
                     }
@@ -105,13 +97,11 @@ namespace Graphs.Parcours
                 throw new ArgumentException("Les noeuds source ou destination n'existent pas dans le graphe.");
             }
 
-            // Vérifier s'il existe un chemin
             if (_distances[sourceId, destinationId] == Infinity)
             {
                 return (Infinity, new List<int>());
             }
 
-            // Reconstruire le chemin en utilisant la matrice des prédécesseurs
             List<int> chemin = new List<int>();
             ReconstituerChemin(sourceId, destinationId, chemin);
             chemin.Add(destinationId);

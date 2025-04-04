@@ -195,6 +195,7 @@
         <Compile Include="src\Interfaces\Modules\ModuleClient.cs" />
         <Compile Include="src\Interfaces\Modules\ModuleCommande.cs" />
         <Compile Include="src\Interfaces\Modules\ModuleCuisinier.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleEntreprise.cs" />
         <Compile Include="src\Interfaces\Modules\ModuleStatistiques.cs" />
         <Compile Include="src\AffichageMetro.cs" />
         <Compile Include="src\Interfaces\Modules\ModuleClient.cs" />

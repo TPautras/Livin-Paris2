@@ -23,7 +23,12 @@ namespace LivinParis_Console
         {
             string[] options =
             {
-                "Module Client", "Module Cuisinier", "Module Commandes", "Module Statistiques", "Module autre",
+                "Module Client", 
+                "Module Cuisinier", 
+                "Module Commandes", 
+                "Module Statistiques", 
+                "Module autre",
+                "Module Entreprise",
                 "Quitter"
             };
             string prompt = "ADMINISTRATOR";
@@ -50,6 +55,10 @@ namespace LivinParis_Console
                         break;
                     case 4:
                         new ModuleAutre().ModuleAutreMain();
+                        Console.ReadKey();
+                        break;
+                    case 5:
+                        new ModuleEntreprise().ModuleEntrepriseMain();
                         Console.ReadKey();
                         break;
                     default:

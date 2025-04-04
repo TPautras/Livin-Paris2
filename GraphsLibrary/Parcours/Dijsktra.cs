@@ -19,18 +19,15 @@ namespace Graphs.Parcours
         /// <returns>Un objet représentant le résultat du plus court chemin</returns>
         public static (List<int>, double) CheminPlusCourt(Graphe<T> graphe, int depart, int arrivee)
         {
-            // Vérifier que les sommets existent dans le graphe
             if (!graphe.Noeuds.ContainsKey(depart) || !graphe.Noeuds.ContainsKey(arrivee))
             {
                 throw new ArgumentException("Les sommets de départ ou d'arrivée n'existent pas dans le graphe.");
             }
 
-            // Initialisation des distances
             var distances = new Dictionary<int, double>();
             var predecesseurs = new Dictionary<int, int?>();
             var noeudsNonVisites = new HashSet<int>();
 
-            // Initialiser toutes les distances à l'infini sauf le noeud de départ
             foreach (var noeud in graphe.Noeuds.Keys)
             {
                 distances[noeud] = double.PositiveInfinity;
@@ -42,30 +39,24 @@ namespace Graphs.Parcours
 
             while (noeudsNonVisites.Count > 0)
             {
-                // Trouver le nœud non visité avec la plus petite distance
                 int noeudCourantId = noeudsNonVisites
                     .OrderBy(n => distances[n])
                     .First();
 
-                // Si on a atteint le nœud d'arrivée, on arrête
                 if (noeudCourantId == arrivee)
                     break;
 
                 noeudsNonVisites.Remove(noeudCourantId);
 
-                // Vérifier les liens du nœud courant
                 var noeudCourant = graphe.Noeuds[noeudCourantId];
                 foreach (var lien in noeudCourant.Liens)
                 {
                     int voisin = lien.LienArrivee.Noeud_id;
 
-                    // Vérifier que le voisin est encore non visité
                     if (noeudsNonVisites.Contains(voisin))
                     {
-                        // Calculer la distance alternative
                         double distanceAlternative = distances[noeudCourantId] + lien.LienPoids;
 
-                        // Mettre à jour si la distance alternative est plus courte
                         if (distanceAlternative < distances[voisin])
                         {
                             distances[voisin] = distanceAlternative;
@@ -75,7 +66,6 @@ namespace Graphs.Parcours
                 }
             }
 
-            // Reconstituer le chemin
             var chemin = new List<int>();
             int? etapeCourante = arrivee;
             while (etapeCourante != null)
