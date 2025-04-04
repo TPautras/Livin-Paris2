@@ -33,12 +33,12 @@
 
                 <Grid>
                     <StackPanel>
-                        <TextBlock Text="World Leader&#x0a;in global finance"
+                        <TextBlock Text="Leader mondial&#x0a;en livraison culinaire"
                                    Foreground="White"
                                    FontSize="28"
                                    Margin="20,10,10,0"/>
 
-                        <TextBlock Text="Get Started Today !"
+                        <TextBlock Text="Commencez Aujourd'hui !"
                                    Foreground="White"
                                    FontSize="20"
                                    Margin="20,10,10,0"/>
