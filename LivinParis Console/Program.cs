@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Graphs;
 using MetroHelper;
 using SqlConnector;
@@ -99,13 +100,14 @@ namespace LivinParis_Console
 
             string solutionRoot = TrouverRacineProjet("MetroHelper");
             string dataPath = Path.Combine(solutionRoot, "MetroHelper", "Data");
+            
             Console.WriteLine($"\n📂 Chemin des données utilisé : {dataPath}");
 
             try
             {
                 var peuplement = new PeuplementGrandeStation();
                 var grandes = peuplement.CreerGrandesStations(dataPath);
-
+                
                 if (!grandes.ContainsKey(nomDepart) || !grandes.ContainsKey(nomArrivee))
                 {
                     Console.WriteLine("❌ Une des grandes stations sélectionnées n'existe pas dans les données.");

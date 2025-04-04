@@ -85,7 +85,7 @@ CREATE TABLE Clients(
 
 CREATE TABLE Commande(
                          Commande_Id INT,
-                         Entreprise_Id INT NOT NULL,
+                         Entreprise_Id INT,
                          Cuisinier_Username VARCHAR(50) NOT NULL,
                          Client_Username VARCHAR(50) NOT NULL,
                          Commande_Date DATETIME,

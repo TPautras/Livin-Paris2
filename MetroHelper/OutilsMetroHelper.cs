@@ -184,14 +184,14 @@ namespace MetroHelper
         private static void AfficherTrajet(List<Station_de_metro> stations, double temps, int correspondances, string algo)
         {
             Console.WriteLine($"\n Résultat avec {algo} :");
-            Console.WriteLine($"Temps total : {temps} minutes");
-            Console.WriteLine($"Nombre de correspondances : {correspondances}");
-            Console.WriteLine("Stations parcourues :");
-
+            Console.WriteLine($"\n⏱ Temps total : {temps} minutes");
+            Console.WriteLine($"🔁 Nombre de correspondances : {correspondances}\n");
+            Console.WriteLine("\n--- 🧭 Itinéraire trouvé ---\n");
             foreach (var station in stations)
             {
-                Console.WriteLine($"  - {station.Nom}");
+                Console.WriteLine($" - {station.Nom}");
             }
+            Console.WriteLine("Resultat pour le trajet de la station : "+stations.First().Nom+" Jusqu'a " + stations.Last().Nom);
             Console.WriteLine();
         }
         /// <summary>

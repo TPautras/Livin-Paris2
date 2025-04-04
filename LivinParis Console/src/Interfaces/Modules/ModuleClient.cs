@@ -69,9 +69,14 @@ namespace LivinParis_Console.Modules
             }
             options[clients.Count] = @"Créer un client";
             int clientChoice = Affichages.MenuSelect(ASCII.Client + "\n QUEL CLIENT VOULEZ VOUS MODIFIER ?", options);
-            
+            if (clientChoice == clients.Count)
+            {
+                Personne userPersonne = Connexion.CreationPersonne();
+                Client userClient2 = Connexion.CreationClient(userPersonne);
+            }
             bool endMod = false;
             string[] optionsMod = {"Username", "Mot de passe", "Email","Quitter"};
+            clients = ClientData.GetAll();
             Client userClient = clients[clientChoice];
             while (endMod == false)
             {
