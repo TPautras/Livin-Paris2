@@ -191,6 +191,15 @@
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="src\AffichageMetro.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleClient.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleCommande.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleCuisinier.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleStatistiques.cs" />
+        <Compile Include="src\AffichageMetro.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleClient.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleCommande.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleCuisinier.cs" />
+        <Compile Include="src\Interfaces\Modules\ModuleStatistiques.cs" />
         <Compile Include="src\Rendu 1.cs" />
         <Compile Include="src\Interfaces\AdminMenu.cs" />
         <Compile Include="src\Interfaces\ClientMenu.cs" />
@@ -211,6 +220,10 @@
       <ProjectReference Include="..\LivinParis Test\LivinParis Test.csproj">
         <Project>{d019bed6-f76b-4490-8afe-834da94c6a92}</Project>
         <Name>LivinParis Test</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\MetroHelper\MetroHelper.csproj">
+        <Project>{3305ab41-091a-4b9c-b7ed-2b600589a66e}</Project>
+        <Name>MetroHelper</Name>
       </ProjectReference>
       <ProjectReference Include="..\MetroHelper\MetroHelper.csproj">
         <Project>{3305ab41-091a-4b9c-b7ed-2b600589a66e}</Project>

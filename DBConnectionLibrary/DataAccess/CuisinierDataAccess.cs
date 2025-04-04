@@ -104,5 +104,21 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateUsername(Cuisinier entity)
+        {
+            string query = @"UPDATE Cuisinier SET 
+                             Cuisinier_Username = @Username,
+                             Personne_Email = @PersonneEmail
+                             WHERE Cuisinier_Password = @Password";
+            using(var connection = GetConnection())
+            using(var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Password", entity.CuisinierPassword);
+                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
+                command.Parameters.AddWithValue("@Username", entity.CuisinierUsername);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
