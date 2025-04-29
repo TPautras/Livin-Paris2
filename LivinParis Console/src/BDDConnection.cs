@@ -71,6 +71,132 @@ namespace LivinParis_Console
                             export = true;
                         }
                         break;
+                    case 2:
+                        toExport.Add("Composition du plat");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 3:
+                        toExport.Add("Composition de la recette");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 4:
+                        toExport.Add("Contient");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 5:
+                        toExport.Add("Creation");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 6:
+                        toExport.Add("Cuisinier");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 7:
+                        toExport.Add("Entreprise");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 8:
+                        toExport.Add("Evaluation");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 9:
+                        toExport.Add("Fait partie de");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 10:
+                        toExport.Add("Ingredients");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 11:
+                        toExport.Add("Livraison");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 12:
+                        toExport.Add("Livre");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 13:
+                        toExport.Add("Personne");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 14:
+                        toExport.Add("Plat");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
+                    case 15:
+                        toExport.Add("Recette");
+                        Debug.Assert(models != null, nameof(models) + " != null");
+                        models.Add(typeof(Commande));
+                        if (Affichages.MenuSelect("Voulez vous choisir d'autres donnees ?", new string[] { "oui", "non" }) == 1)
+                        {
+                            export = true;
+                        }
+                        break;
                     default:
                         Console.WriteLine("Erreur dans le choix du type");
                         break;
@@ -78,7 +204,23 @@ namespace LivinParis_Console
                 Console.WriteLine("Appuyez sur une touche pour continuer");
                 Console.ReadKey();
             }while (!export);
-            Console.WriteLine(Exports.ExportToJson(models));
+
+            options = new[] { "JSON", "XML" };
+            prompt = "Sous quel format voulez vous exporter vos donnees ?";
+            switch (Affichages.MenuSelect(prompt, options))
+            {
+                case 0:
+                    Console.WriteLine(Exports.ExportToJson(models));
+                    break;
+                case 1:
+                    Console.WriteLine(Exports.ExportToJson(models));
+                    break;
+                default:
+                    Console.WriteLine("Erreur dans le choix du type");
+                    break;
+            }
+            Console.WriteLine("Vos donnes ont ete exportees dans le fichier Exports.<votre format> Dans le dossier Livin Paris Console/bin/Debug !");
+            Console.WriteLine("Appuyez sur une touche pour continuer");
             Console.ReadKey();
         }
     }
