@@ -205,7 +205,7 @@ namespace LivinParis_Console
                 Console.ReadKey();
             }while (!export);
 
-            options = new[] { "JSON", "XML" };
+            options = new[] { "JSON", "XML (Toutes les donnees seront exportees)", "CSV" };
             prompt = "Sous quel format voulez vous exporter vos donnees ?";
             switch (Affichages.MenuSelect(prompt, options))
             {
@@ -213,7 +213,10 @@ namespace LivinParis_Console
                     Console.WriteLine(Exports.ExportToJson(models));
                     break;
                 case 1:
-                    Console.WriteLine(Exports.ExportToJson(models));
+                    Console.WriteLine(Exports.ExportAllToXml());
+                    break;
+                case 2:
+                    Console.WriteLine(Exports.ExportToCsv(models));
                     break;
                 default:
                     Console.WriteLine("Erreur dans le choix du type");
