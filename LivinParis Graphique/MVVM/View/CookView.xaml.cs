@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using LivinParis_Graphique.MVVM.ViewModel;
 
 namespace LivinParis_Graphique.MVVM.View
 {
@@ -6,6 +8,7 @@ namespace LivinParis_Graphique.MVVM.View
     {
         public CookView()
         {
+            DataContext = new LivinParis_Graphique.MVVM.ViewModel.CookViewModel();
             InitializeComponent();
         }
     }

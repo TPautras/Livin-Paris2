@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.View;
 using SqlConnector.DataAccess;      
@@ -9,7 +10,17 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
-        public string Username { get; set; } = string.Empty;
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public string Password { get; set; } = string.Empty;
 
         private UserRole _selectedRole;
@@ -40,20 +51,20 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 case UserRole.Client:
                     PersonneDataAccess personneDataAccess = new PersonneDataAccess();
                     var clientDal = new ClientDataAccess();
-                    Client client = clientDal.GetByUsername(Username);
+                    Client client = clientDal.GetByUsername(_username);
                     user = personneDataAccess.GetByEmail(client.PersonneEmail);
                     password = client.ClientPassword;
                     break;
                 case UserRole.Cook:
                     var cookDal = new CuisinierDataAccess();
                     PersonneDataAccess personneDataAccess1 = new PersonneDataAccess();
-                    Cuisinier cuisinier1 = cookDal.GetByUsername(Username);
+                    Cuisinier cuisinier1 = cookDal.GetByUsername(_username);
                     user = personneDataAccess1.GetByEmail(cuisinier1.PersonneEmail);
                     password = cuisinier1.CuisinierPassword;
                     break;
                 case UserRole.Company:
                     var companyDal = new EntrepriseDataAccess();
-                    user = companyDal.GetByUsername(Username);
+                    user = companyDal.GetByUsername(_username);
                     break;
             }
 

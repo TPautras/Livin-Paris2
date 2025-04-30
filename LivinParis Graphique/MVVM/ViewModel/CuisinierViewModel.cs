@@ -18,5 +18,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             // Initialiser d'éventuelles collections ou données spécifiques
             // CommandesEnCours = new ObservableCollection<Commande>(...);
         }
+
+        public CookViewModel()
+        {
+            
+        }
     }
 }

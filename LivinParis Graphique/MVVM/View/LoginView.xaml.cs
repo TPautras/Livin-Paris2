@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using LivinParis_Graphique.MVVM.ViewModel;
 
 namespace LivinParis_Graphique.MVVM.View
@@ -9,12 +10,13 @@ namespace LivinParis_Graphique.MVVM.View
         {
             InitializeComponent();
             DataContext = new LivinParis_Graphique.MVVM.ViewModel.LoginViewModel();
-            // Liaison spéciale du PasswordBox : on peut abonner à PasswordChanged pour mettre à jour le VM
+            Console.WriteLine("Binding actif pour LoginView");
             PwdBox.PasswordChanged += (s, e) => 
             {
                 if (DataContext is LoginViewModel vm)
                     vm.Password = PwdBox.Password;
             };
+            Loaded += (s, e) => UsernameBox.Focus();
         }
     }
 }

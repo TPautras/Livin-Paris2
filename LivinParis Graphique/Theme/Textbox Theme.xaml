@@ -44,5 +44,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Text" Value="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
     </Style>
 </ResourceDictionary>
