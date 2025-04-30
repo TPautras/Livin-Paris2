@@ -2,7 +2,7 @@
 
 namespace LivinParis_Graphique.MVVM.ViewModel
 {
-    public class HomeViewModel : ObservableObject
+    public class HomeViewModel : BaseViewModel
     {
         public HomeViewModel()
         {

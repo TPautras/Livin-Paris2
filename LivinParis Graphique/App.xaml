@@ -4,21 +4,33 @@
              xmlns:local="clr-namespace:LivinParis_Graphique"
              xmlns:viewModel="clr-namespace:LivinParis_Graphique.MVVM.ViewModel"
              xmlns:view="clr-namespace:LivinParis_Graphique.MVVM.View"
-             StartupUri="MainWindow.xaml">
+             >
     <Application.Resources>
-         <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                 <ResourceDictionary Source="Theme/Textbox Theme.xaml"/>
-             </ResourceDictionary.MergedDictionaries>
-             
-             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                 <view:HomeView/>
-             </DataTemplate>
-             
-             <DataTemplate DataType="{x:Type viewModel:DiscoveryViewModel}">
-                 <view:DiscoveryView/>
-             </DataTemplate>
-         </ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Thèmes existants -->
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/Textbox Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- DataTemplates existants pour HomeViewModel et DiscoveryViewModel -->
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DiscoveryViewModel}">
+                <view:DiscoveryView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ClientViewModel}">
+                <view:ClientView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CookViewModel}">
+                <view:CookView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CompanyViewModel}">
+                <view:CompanyView/>
+            </DataTemplate>
+            <!-- Pas de DataTemplate pour AdminViewModel car on ouvre directement AdminView comme Window -->
+        </ResourceDictionary>
     </Application.Resources>
+
+    <Application.StartupUri>MVVM/View/LoginView.xaml</Application.StartupUri>
 </Application>
