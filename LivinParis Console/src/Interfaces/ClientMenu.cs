@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Graphs;
 using LivinParis_Console.Assets;
+using LivinParis_Console.Modules;
 using SqlConnector.DataAccess;
 using SqlConnector.DataService;
 using SqlConnector.Models;
@@ -41,7 +42,7 @@ namespace LivinParis_Console
                         Console.ReadKey();
                         break;
                     case 1:
-                        
+                        new ModuleCommande().ModuleCommandeAdding(client);
                         break;
                     case 2:
                         foreach (var recette in new RecetteService(recetteDataAccess).GetAll())

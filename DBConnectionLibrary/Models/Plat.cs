@@ -10,5 +10,6 @@ namespace SqlConnector.Models
         public int PlatNombrePortion { get; set; }
         public string CuisinierUsername { get; set; }
         public int RecetteId { get; set; }
+        public bool PlatDuJour  { get; set; }
     }
 }

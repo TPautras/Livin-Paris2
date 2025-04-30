@@ -17,17 +17,14 @@ namespace Graphs.Parcours
         /// <returns>Un objet représentant le résultat du plus court chemin</returns>
         public static (List<int>, double) CheminPlusCourt(Graphe<T> graphe, int depart, int arrivee)
         {
-            // Vérifier que les sommets existent dans le graphe
             if (!graphe.Noeuds.ContainsKey(depart) || !graphe.Noeuds.ContainsKey(arrivee))
             {
                 throw new ArgumentException("Les sommets de départ ou d'arrivée n'existent pas dans le graphe.");
             }
 
-            // Initialisation des distances
             var distances = new Dictionary<int, double>();
             var predecesseurs = new Dictionary<int, int?>();
 
-            // Initialiser toutes les distances à l'infini sauf le noeud de départ
             foreach (var noeud in graphe.Noeuds.Keys)
             {
                 distances[noeud] = double.PositiveInfinity;
@@ -35,17 +32,14 @@ namespace Graphs.Parcours
             }
             distances[depart] = 0;
 
-            // Nombre de nœuds dans le graphe
             int nombreNoeuds = graphe.Noeuds.Count;
 
-            // Liste de tous les liens du graphe
             var tousLesLiens = new List<Lien<T>>();
             foreach (var noeud in graphe.Noeuds.Values)
             {
                 tousLesLiens.AddRange(noeud.Liens);
             }
 
-            // Relaxation des arêtes
             for (int i = 1; i < nombreNoeuds; i++)
             {
                 bool modificationEffectuee = false;
@@ -56,7 +50,6 @@ namespace Graphs.Parcours
                     int destination = lien.LienArrivee.Noeud_id;
                     double poids = lien.LienPoids;
 
-                    // Relaxation de l'arête
                     if (distances[source] != double.PositiveInfinity && 
                         distances[source] + poids < distances[destination])
                     {
@@ -66,12 +59,10 @@ namespace Graphs.Parcours
                     }
                 }
 
-                // Si aucune modification n'a été effectuée, on peut s'arrêter
                 if (!modificationEffectuee)
                     break;
             }
 
-            // Vérification des cycles négatifs
             foreach (var lien in tousLesLiens)
             {
                 int source = lien.LienDepart.Noeud_id;
@@ -85,13 +76,11 @@ namespace Graphs.Parcours
                 }
             }
 
-            // Vérifier si un chemin existe
             if (distances[arrivee] == double.PositiveInfinity)
             {
                 throw new InvalidOperationException("Aucun chemin n'existe entre les sommets spécifiés.");
             }
 
-            // Reconstituer le chemin
             var chemin = new List<int>();
             int? etapeCourante = arrivee;
             while (etapeCourante != null)

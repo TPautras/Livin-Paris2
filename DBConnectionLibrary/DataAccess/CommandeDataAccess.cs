@@ -23,9 +23,9 @@ namespace SqlConnector.DataAccess
                         list.Add(new Commande
                         {
                             CommandeId = Convert.ToInt32(reader["Commande_Id"]),
-                            EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"]),
                             CuisinierUsername = reader["Cuisinier_Username"].ToString(),
-                            ClientUsername = reader["Client_Username"].ToString()
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            DateCreation = Convert.ToDateTime(reader["Commande_Date"]),
                         });
                     }
                 }
@@ -50,7 +50,8 @@ namespace SqlConnector.DataAccess
                             CommandeId = Convert.ToInt32(reader["Commande_Id"]),
                             EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"]),
                             CuisinierUsername = reader["Cuisinier_Username"].ToString(),
-                            ClientUsername = reader["Client_Username"].ToString()
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            DateCreation = Convert.ToDateTime(reader["Commande_Date"]),
                         };
                     }
                 }
@@ -60,8 +61,8 @@ namespace SqlConnector.DataAccess
         public void Insert(Commande entity)
         {
             string query = @"INSERT INTO Commande 
-                             (Commande_Id, Entreprise_Id, Cuisinier_Username, Client_Username)
-                             VALUES (@Id, @EntrepriseId, @CuisinierUsername, @ClientUsername)";
+                             (Commande_Id, Entreprise_Id, Cuisinier_Username, Client_Username, Commande_Date)
+                             VALUES (@Id, @EntrepriseId, @CuisinierUsername, @ClientUsername, @DateCreation);";
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))
             {
@@ -69,6 +70,7 @@ namespace SqlConnector.DataAccess
                 command.Parameters.AddWithValue("@EntrepriseId", entity.EntrepriseId);
                 command.Parameters.AddWithValue("@CuisinierUsername", entity.CuisinierUsername);
                 command.Parameters.AddWithValue("@ClientUsername", entity.ClientUsername);
+                command.Parameters.AddWithValue("@DateCreation", entity.DateCreation);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

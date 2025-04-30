@@ -125,5 +125,92 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+        public List<Client> GetAllByNameAsc()
+        {
+            var list = new List<Client>();
+            string query = @"
+                SELECT c.Client_Username, c.Client_Password, c.Personne_Email
+                FROM Clients c
+                JOIN Personne p ON c.Personne_Email = p.Personne_Email
+                ORDER BY p.Personne_Nom, p.Personne_Prenom";
+            using(var connection = GetConnection())
+            using(var command = new MySqlCommand(query, connection))
+            {
+                connection.Open();
+                using(var reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        list.Add(new Client
+                        {
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            ClientPassword = reader["Client_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        public List<Client> GetAllByStreetAsc()
+        {
+            var list = new List<Client>();
+            string query = @"
+                SELECT c.Client_Username, c.Client_Password, c.Personne_Email
+                FROM Clients c
+                JOIN Personne p ON c.Personne_Email = p.Personne_Email
+                ORDER BY p.Personne_Nom_de_la_rue";
+            using(var connection = GetConnection())
+            using(var command = new MySqlCommand(query, connection))
+            {
+                connection.Open();
+                using(var reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        list.Add(new Client
+                        {
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            ClientPassword = reader["Client_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        public List<Client> GetAllByTotalPurchasesDesc()
+        {
+            var list = new List<Client>();
+            string query = @"
+                SELECT c.Client_Username, c.Client_Password, c.Personne_Email,
+                       IFNULL(SUM(CAST(p.Plat_Prix AS DECIMAL(10,2))), 0) AS TotalSpent
+                FROM Clients c
+                LEFT JOIN Commande co ON c.Client_Username = co.Client_Username
+                LEFT JOIN Creation cr ON co.Commande_Id = cr.Commande_Id
+                LEFT JOIN Plat p ON cr.Plat_Id = p.Plat_Id
+                GROUP BY c.Client_Username
+                ORDER BY TotalSpent DESC";
+            using(var connection = GetConnection())
+            using(var command = new MySqlCommand(query, connection))
+            {
+                connection.Open();
+                using(var reader = command.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        list.Add(new Client
+                        {
+                            ClientUsername = reader["Client_Username"].ToString(),
+                            ClientPassword = reader["Client_Password"].ToString(),
+                            PersonneEmail = reader["Personne_Email"].ToString()
+                        });
+                    }
+                }
+            }
+            return list;
+        }
     }
 }

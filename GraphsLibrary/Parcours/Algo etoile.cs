@@ -30,14 +30,11 @@ namespace Graphs.Parcours
                 throw new ArgumentException("Les noeuds source ou destination n'existent pas dans le graphe.");
             }
 
-            // Ensemble des noeuds à explorer (file de priorité basée sur f = g + h)
             var openSet = new PriorityQueue<int, double>();
             openSet.Enqueue(sourceId, 0);
 
-            // Ensemble des noeuds déjà explorés
             var closedSet = new HashSet<int>();
 
-            // Dictionnaire des coûts g (coût du chemin de départ jusqu'au noeud)
             var gScore = new Dictionary<int, double>();
             foreach (var node in _graphe.Noeuds.Keys)
             {
@@ -45,7 +42,6 @@ namespace Graphs.Parcours
             }
             gScore[sourceId] = 0;
 
-            // Dictionnaire des coûts f (estimation du coût total g + h)
             var fScore = new Dictionary<int, double>();
             foreach (var node in _graphe.Noeuds.Keys)
             {
@@ -53,15 +49,12 @@ namespace Graphs.Parcours
             }
             fScore[sourceId] = Heuristique(sourceId, destinationId);
 
-            // Dictionnaire pour reconstruire le chemin
             var cameFrom = new Dictionary<int, int>();
 
             while (openSet.Count > 0)
             {
-                // Récupérer le noeud avec le fScore le plus bas
                 int current = openSet.Dequeue();
 
-                // Si on a atteint la destination
                 if (current == destinationId)
                 {
                     return (gScore[current], ReconstituerChemin(cameFrom, current));
@@ -69,31 +62,23 @@ namespace Graphs.Parcours
 
                 closedSet.Add(current);
 
-                // Explorer les voisins du noeud courant
                 foreach (var lien in _graphe.Noeuds[current].Liens)
                 {
                     int neighborId = lien.LienArrivee.Noeud_id;
 
-                    // Ignorer les noeuds déjà explorés
                     if (closedSet.Contains(neighborId))
                         continue;
 
-                    // Distance depuis le départ jusqu'à ce voisin en passant par le noeud courant
                     double tentativeGScore = gScore[current] + lien.LienPoids;
 
-                    // Si on a trouvé un meilleur chemin vers ce voisin
                     if (tentativeGScore < gScore[neighborId])
                     {
-                        // Mettre à jour les informations pour ce voisin
                         cameFrom[neighborId] = current;
                         gScore[neighborId] = tentativeGScore;
                         fScore[neighborId] = gScore[neighborId] + Heuristique(neighborId, destinationId);
 
-                        // Ajouter ou mettre à jour le voisin dans la file de priorité
                         if (openSet.UnorderedItems.Select(x => x.Element).Contains(neighborId))
                         {
-                            // Si le noeud est déjà dans la file, on devrait le mettre à jour
-                            // mais .NET ne le permet pas directement, donc on le rajoute simplement
                             openSet.Enqueue(neighborId, fScore[neighborId]);
                         }
                         else
@@ -104,7 +89,6 @@ namespace Graphs.Parcours
                 }
             }
 
-            // Aucun chemin trouvé
             return (double.MaxValue, new List<int>());
         }
 

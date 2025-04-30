@@ -23,7 +23,7 @@ namespace SqlConnector.DataAccess
                     {
                         list.Add(new FaitPartieDe
                         {
-                            PersonneId = reader["Personne_Id"].ToString(),
+                            PersonneId = reader["Personne_Email"].ToString(),
                             EntrepriseId = Convert.ToInt32(reader["Entreprise_Id"])
                         });
                     }
@@ -39,7 +39,7 @@ namespace SqlConnector.DataAccess
 
         public void Insert(FaitPartieDe entity)
         {
-            string query = "INSERT INTO Fait_Partie_De (Personne_Id, Entreprise_Id) VALUES (@PersonneId, @EntrepriseId)";
+            string query = "INSERT INTO Fait_Partie_De (Personne_Email, Entreprise_Id) VALUES (@PersonneId, @EntrepriseId)";
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))
             {
