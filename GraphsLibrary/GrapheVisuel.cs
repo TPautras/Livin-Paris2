@@ -6,21 +6,28 @@ using System.IO;
 
 namespace Graphs
 {
-    public class GrapheImage<T>
+    public class GrapheVisuel<T>
     {
-        public Dictionary<int, Point> PositionsNoeuds;
-        private Graphe<T> graphe;
+        private Graphe<T> _graphe;
+        private Dictionary<int, Point> _positionsNoeuds;
+        private Dictionary<int, string> _couleursParNoeud;
 
-        public GrapheImage(Graphe<T> g)
+        public GrapheVisuel(Graphe<T> graphe)
         {
-            this.graphe = g;
-            this.PositionsNoeuds = new Dictionary<int, Point>();
+            _graphe = graphe;
+            _positionsNoeuds = new Dictionary<int, Point>();
+            _couleursParNoeud = new Dictionary<int, string>();
 
             Random rnd = new Random();
             foreach (var noeud in graphe.Noeuds.Values)
             {
-                PositionsNoeuds[noeud.Noeud_id] = new Point(rnd.Next(50, 450), rnd.Next(50, 450));
+                _positionsNoeuds[noeud.Noeud_id] = new Point(rnd.Next(50, 450), rnd.Next(50, 450));
             }
+        }
+
+        public void ColorierNoeud(int id, string couleur)
+        {
+            _couleursParNoeud[id] = couleur;
         }
 
         public void DessinerGraphe(string filename = "graphe.png")
@@ -29,46 +36,51 @@ namespace Graphs
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White);
             Pen pen = new Pen(Color.Black, 2);
-            Brush brushNoeud = new SolidBrush(Color.Blue);
-            Brush brushTexte = new SolidBrush(Color.White);
             Font font = new Font("Arial", 10);
+            Brush brushTexte = new SolidBrush(Color.White);
 
-            foreach (var noeud in graphe.Noeuds.Values)
+            // Dessin des arêtes
+            foreach (var noeud in _graphe.Noeuds.Values)
             {
-                
                 foreach (var lien in noeud.Liens)
                 {
-                    Point p1 = PositionsNoeuds[lien.LienDepart.Noeud_id];
-                    Point p2 = PositionsNoeuds[lien.LienArrivee.Noeud_id];
-
+                    Point p1 = _positionsNoeuds[lien.LienDepart.Noeud_id];
+                    Point p2 = _positionsNoeuds[lien.LienArrivee.Noeud_id];
                     g.DrawLine(pen, p1, p2);
                 }
             }
 
-            foreach (var noeud in graphe.Noeuds.Values)
+            // Dessin des nœuds
+            foreach (var noeud in _graphe.Noeuds.Values)
             {
-                Point position = PositionsNoeuds[noeud.Noeud_id];
+                Point position = _positionsNoeuds[noeud.Noeud_id];
+
+                string couleurStr = _couleursParNoeud.TryGetValue(noeud.Noeud_id, out string couleur) ? couleur : "Blue";
+                Color color = Color.FromName(couleurStr);
+                Brush brushNoeud = new SolidBrush(color);
+
                 Rectangle rect = new Rectangle(position.X - 10, position.Y - 10, 20, 20);
                 g.FillEllipse(brushNoeud, rect);
                 g.DrawEllipse(pen, rect);
 
-                g.DrawString(noeud.Noeud_Valeur?.ToString() ?? noeud.Noeud_id.ToString(), font, brushTexte, position.X - 5, position.Y - 5);
+                string texte = noeud.Noeud_Valeur?.ToString() ?? noeud.Noeud_id.ToString();
+                g.DrawString(texte, font, brushTexte, position.X - 5, position.Y - 5);
             }
 
             try
             {
                 bmp.Save(filename);
-                Console.WriteLine($"Graphe sauvegardé sous {filename}");
+                Console.WriteLine($"🖼️ Graphe sauvegardé sous {filename}");
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
                 throw new Exception($"Erreur lors de la sauvegarde de l'image : {filename}");
             }
-            string path = Path.Combine(Directory.GetCurrentDirectory(), filename);
-            ImageViewer(path);
+
+            ImageViewer(Path.Combine(Directory.GetCurrentDirectory(), filename));
         }
 
-        public void ImageViewer(string path)
+        private void ImageViewer(string path)
         {
             var psi = new ProcessStartInfo
             {

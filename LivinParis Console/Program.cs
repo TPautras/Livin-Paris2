@@ -17,6 +17,7 @@ namespace LivinParis_Console
                 "Partie Metro/ BDD Initialisation",
                 "Livin'Paris",
                 "Afficher Carte du Métro",
+                "Tester la coloration de graphe",
                 "Quitter"
             };
 
@@ -38,6 +39,11 @@ namespace LivinParis_Console
                         break;
                     case 3:
                         MenuAffichageMetro();
+                        break;
+                    case 4:
+                        var path = TrouverRacineProjet("graph_exemple");
+                        var coloration = new ColorationConsole(path);
+                        coloration.Lancer();
                         break;
                     default:
                         Quit = true;
@@ -98,7 +104,8 @@ namespace LivinParis_Console
             string nomArrivee = grandesStations[arriveeIndex];
 
             string solutionRoot = TrouverRacineProjet("MetroHelper");
-            string dataPath = Path.Combine(solutionRoot, "MetroHelper", "Data");
+            string dataPath = Path.Combine(solutionRoot, "Data");
+
             Console.WriteLine($"\n📂 Chemin des données utilisé : {dataPath}");
 
             try
@@ -115,40 +122,64 @@ namespace LivinParis_Console
                 GrandeStation grandeDepart = grandes[nomDepart];
                 GrandeStation grandeArrivee = grandes[nomArrivee];
 
-                List<Station_de_metro> chemin;
-                int temps;
-                int nbCorrespondances;
-
-                switch (choixAlgo)
+                if (choixAlgo == 0)
                 {
-                    case 0:
-                        (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursDijkstra(grandeDepart, grandeArrivee, dataPath);
-                        break;
-                    case 1:
-                        (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursBellmanFord(grandeDepart, grandeArrivee, dataPath);
-                        break;
-                    case 2:
-                        (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursFloydWarshall(grandeDepart, grandeArrivee, dataPath);
-                        break;
-                    case 3:
-                        (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursAStar(grandeDepart, grandeArrivee, dataPath);
-                        break;
-                    default:
-                        return;
-                }
+                    string[] dijkstraOptions = { "Affichage normal", "Affichage étape par étape" };
+                    int sousChoix = Affichages.MenuSelect("Mode d'affichage ?", dijkstraOptions);
 
-                Console.WriteLine("\n--- 🧭 Itinéraire trouvé ---\n");
-                foreach (var station in chemin)
+                    if (sousChoix == 0)
+                    {
+                        var (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursDijkstra(grandeDepart, grandeArrivee, dataPath);
+                        Console.WriteLine("\n--- 🧭 Itinéraire trouvé ---\n");
+                        foreach (var station in chemin)
+                            Console.WriteLine($" - {station.Nom}");
+                        Console.WriteLine($"\n⏱ Temps total : {temps} minutes");
+                        Console.WriteLine($"🔁 Nombre de correspondances : {nbCorrespondances}\n");
+
+                        var createur = new CreateGraphMetro();
+                        var graphe = createur.ChargerReseauDepuisFichiers(dataPath);
+                        AffichageMetro.AfficherChemin(graphe, chemin, grandes);
+                    }
+                    else
+                    {
+                        var (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursDijkstra(grandeDepart, grandeArrivee, dataPath);
+                        var createur = new CreateGraphMetro();
+                        var graphe = createur.ChargerReseauDepuisFichiers(dataPath);
+                        var couleursParLigne = AffichageMetro.GetCouleursParLigne();
+                        var visuel = new VisualisationEtapeParEtape(graphe, chemin, grandes, couleursParLigne);
+                        visuel.Afficher();
+                    }
+                }
+                else
                 {
-                    Console.WriteLine($" - {station.Nom}");
-                }
-                Console.WriteLine($"\n⏱ Temps total : {temps} minutes");
-                Console.WriteLine($"🔁 Nombre de correspondances : {nbCorrespondances}\n");
+                    List<Station_de_metro> chemin;
+                    int temps, nbCorrespondances;
 
-                // ✅ Générer et afficher le graphe du chemin
-                var createur = new CreateGraphMetro();
-                var graphe = createur.ChargerReseauDepuisFichiers(dataPath);
-                AffichageMetro.AfficherChemin(graphe, chemin, grandes);
+                    switch (choixAlgo)
+                    {
+                        case 1:
+                            (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursBellmanFord(grandeDepart, grandeArrivee, dataPath);
+                            break;
+                        case 2:
+                            (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursFloydWarshall(grandeDepart, grandeArrivee, dataPath);
+                            break;
+                        case 3:
+                            (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursAStar(grandeDepart, grandeArrivee, dataPath);
+                            break;
+                        default:
+                            return;
+                    }
+
+                    Console.WriteLine("\n--- 🧭 Itinéraire trouvé ---\n");
+                    foreach (var station in chemin)
+                        Console.WriteLine($" - {station.Nom}");
+                    Console.WriteLine($"\n⏱ Temps total : {temps} minutes");
+                    Console.WriteLine($"🔁 Nombre de correspondances : {nbCorrespondances}\n");
+
+                    var createur = new CreateGraphMetro();
+                    var graphe = createur.ChargerReseauDepuisFichiers(dataPath);
+                    AffichageMetro.AfficherChemin(graphe, chemin, grandes);
+                }
             }
             catch (Exception ex)
             {
@@ -171,7 +202,7 @@ namespace LivinParis_Console
                 dir = dir.Parent;
             }
 
-            return dir.FullName;
+            return Path.Combine(dir.FullName, dossierCible);
         }
     }
 }

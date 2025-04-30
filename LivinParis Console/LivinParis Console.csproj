@@ -98,6 +98,7 @@
         <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
           <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
         </Reference>
+        <Reference Include="System.Drawing" />
         <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
           <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
         </Reference>
@@ -188,9 +189,12 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Assets\ASCII.cs" />
+        <Compile Include="ChargerGrapheAbstrait.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="src\AffichageMetro.cs" />
+        <Compile Include="src\ColorationConsole.cs" />
+        <Compile Include="src\Interfaces\VisualisationEtapeParEtape.cs" />
         <Compile Include="src\Rendu 1.cs" />
         <Compile Include="src\Interfaces\AdminMenu.cs" />
         <Compile Include="src\Interfaces\ClientMenu.cs" />
@@ -221,6 +225,16 @@
       <None Include="App.config" />
       <None Include="packages.config" />
       <None Include="soc-karate.mtx" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="temp_images\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="graph_exemple\arbre.csv" />
+      <Content Include="graph_exemple\complet.csv" />
+      <Content Include="graph_exemple\cycle.csv" />
+      <Content Include="graph_exemple\plannaire_simple.csv" />
+      <Content Include="graph_exemple\sparsely_connecté.csv" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
