@@ -6,6 +6,9 @@ using Graphs;
 
 namespace MetroHelper
 {
+    /// <summary>
+    /// Classe qui permet la création d'un Graph des stations de métro à partir de stations 
+    /// </summary>
     public class CreateGraphMetro
     {
         private Dictionary<string, Station_de_metro> stations;

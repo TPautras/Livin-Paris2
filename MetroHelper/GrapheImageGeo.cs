@@ -29,7 +29,17 @@ public class GrapheImageGeo<T>
         this.graphe = graphe;
         this.coordonneesNormalisées = NormaliserCoordonnees(coordonnees, 50, 950, 50, 950);
     }
-
+    /// <summary>
+    /// Transforme les coordonnées géographiques (latitude, longitude) de chaque sommet
+    /// en coordonnées normalisées à l'intérieur d'un rectangle (minX, minY) → (maxX, maxY).
+    /// Cette méthode est utile pour afficher un graphe sur une image en respectant les proportions.
+    /// </summary>
+    /// <param name="coords">Dictionnaire des coordonnées initiales : { id_sommet, (latitude, longitude) }</param>
+    /// <param name="minX">Borne minimale sur l'axe X (pixels) pour l'affichage</param>
+    /// <param name="maxX">Borne maximale sur l'axe X (pixels)</param>
+    /// <param name="minY">Borne minimale sur l'axe Y (pixels)</param>
+    /// <param name="maxY">Borne maximale sur l'axe Y (pixels)</param>
+    /// <returns>Dictionnaire des coordonnées normalisées sous forme de PointF { id_sommet, PointF(x, y) }</returns>
     private Dictionary<int, PointF> NormaliserCoordonnees(Dictionary<int, (int lat, int lon)> coords, int minX, int maxX, int minY, int maxY)
     {
         int minLat = coords.Values.Min(c => c.lat);
@@ -47,6 +57,11 @@ public class GrapheImageGeo<T>
             });
     }
 
+    /// <summary>
+    /// Génère une image PNG du graphe avec les arêtes, les sommets et éventuellement un chemin mis en évidence.
+    /// Les positions sont données en coordonnées normalisées (via une méthode externe).
+    /// </summary>
+    /// <param name="filename">Nom du fichier de sortie (par défaut : graphe.png)</param>
     public void Dessiner(string filename = "graphe.png")
     {
         int width = 1000, height = 1000;

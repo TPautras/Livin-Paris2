@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace Graphs
 {
+    /// <summary>
+    /// Classe pour l'application de l'algorithme de coloration de Graphe
+    /// </summary>
+    /// <typeparam name="T"> Variable générique qui prend en considération un graphe avec un n'importe quels types de données</typeparam>
     public class ColorationGraphe<T>
     {
         private Graphe<T> _graphe;
@@ -76,7 +80,7 @@ namespace Graphs
         }
 
         /// <summary>
-        /// Détermine si le graphe est biparti
+        /// Détermine si le graphe est biparti²
         /// </summary>
         public bool EstBiparti()
         {

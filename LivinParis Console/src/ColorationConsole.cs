@@ -5,6 +5,12 @@ using Graphs;
 
 namespace LivinParis_Console
 {
+    /// <summary>
+    /// Permet de créer l'aspect graphique de l'algorithme de coloration de graphs
+    /// Créer l'interface de démo de l'algorithme de graphe dans la console
+    /// Permet de lire les fichiers CSV pour appliquer l'algorithme de coloration
+    /// Génère une image PNG pour l'algorithme de coloration
+    /// </summary>
     public class ColorationConsole
     {
         private string _cheminDossier;
@@ -31,6 +37,14 @@ namespace LivinParis_Console
                 { 5, "Pink" }, { 6, "Brown" }, { 7, "Cyan" }, { 8, "Magenta" }, { 9, "Teal" }
             };
         }
+        /// <summary>
+        /// Lance le menu console permettant à l'utilisateur de choisir un graphe à colorier.
+        /// Lit le fichier CSV correspondant, applique l'algorithme de Welsh-Powell,
+        /// affiche les résultats en console, puis génère une image PNG du graphe colorié.
+        /// </summary>
+        /// <exception cref="Exception">
+        /// Déclenchée si l'utilisateur fait un choix invalide (hors des options prévues).
+        /// </exception>
 
         public void Lancer()
         {
@@ -69,11 +83,11 @@ namespace LivinParis_Console
             }
 
             string chemin = Path.Combine(_cheminDossier, nomFichier);
-            Console.WriteLine($"\n📂 Chemin final utilisé : {chemin}");
+            Console.WriteLine($"\n Chemin final utilisé : {chemin}");
 
             if (!File.Exists(chemin))
             {
-                Console.WriteLine($"❌ Fichier introuvable : {chemin}");
+                Console.WriteLine($" Fichier introuvable : {chemin}");
                 return;
             }
 
@@ -82,7 +96,7 @@ namespace LivinParis_Console
             var colorateur = new ColorationGraphe<int>(graphe);
             var resultat = colorateur.WelshPowell();
 
-            Console.WriteLine("\n✅ Résultat de la coloration (Welsh-Powell) :\n");
+            Console.WriteLine("\n Résultat de la coloration (Welsh-Powell) :\n");
             foreach (var kvp in resultat)
             {
                 Console.WriteLine($"Sommet {kvp.Key} => Couleur {kvp.Value}");
@@ -99,7 +113,7 @@ namespace LivinParis_Console
 
             string imagePath = Path.Combine(_cheminDossier, $"coloration_{Path.GetFileNameWithoutExtension(nomFichier)}.png");
             visualiseur.DessinerGraphe(imagePath);
-            Console.WriteLine($"\n📷 Image enregistrée à : {imagePath}");
+            Console.WriteLine($"\n Image enregistrée à : {imagePath}");
         }
 
         private Graphe<int> ChargerDepuisCsv(string cheminFichier)

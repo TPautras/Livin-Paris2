@@ -6,6 +6,10 @@ using System.IO;
 
 namespace Graphs
 {
+   /// <summary>
+   /// Permet de générer une image visuelle d'un graph sans coordonnées
+   /// </summary>
+   /// <typeparam name="T"></typeparam>
     public class GrapheVisuel<T>
     {
         private Graphe<T> _graphe;
@@ -24,12 +28,22 @@ namespace Graphs
                 _positionsNoeuds[noeud.Noeud_id] = new Point(rnd.Next(50, 450), rnd.Next(50, 450));
             }
         }
-
+        /// <summary>
+        /// Permet de colorier un noeud specifique
+        /// </summary>
+        /// <param name="id"> Id du noeud à colorier</param>
+        /// <param name="couleur">Couleur spécifique à appliquer au noeud</param>
         public void ColorierNoeud(int id, string couleur)
         {
             _couleursParNoeud[id] = couleur;
         }
-
+        /// <summary>
+        /// Methode qui permet de dessiner le graph
+        /// On dessine les arêtes
+        /// On dessine les noeud
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <exception cref="Exception"></exception>
         public void DessinerGraphe(string filename = "graphe.png")
         {
             Bitmap bmp = new Bitmap(500, 500);
@@ -38,8 +52,7 @@ namespace Graphs
             Pen pen = new Pen(Color.Black, 2);
             Font font = new Font("Arial", 10);
             Brush brushTexte = new SolidBrush(Color.White);
-
-            // Dessin des arêtes
+            
             foreach (var noeud in _graphe.Noeuds.Values)
             {
                 foreach (var lien in noeud.Liens)
@@ -49,8 +62,7 @@ namespace Graphs
                     g.DrawLine(pen, p1, p2);
                 }
             }
-
-            // Dessin des nœuds
+            
             foreach (var noeud in _graphe.Noeuds.Values)
             {
                 Point position = _positionsNoeuds[noeud.Noeud_id];
@@ -70,7 +82,7 @@ namespace Graphs
             try
             {
                 bmp.Save(filename);
-                Console.WriteLine($"🖼️ Graphe sauvegardé sous {filename}");
+                Console.WriteLine($" Graphe sauvegardé sous {filename}");
             }
             catch (System.Runtime.InteropServices.ExternalException)
             {
@@ -79,7 +91,10 @@ namespace Graphs
 
             ImageViewer(Path.Combine(Directory.GetCurrentDirectory(), filename));
         }
-
+        /// <summary>
+        /// Permet d'ouvrir directement l'image créée juste après la création de l'image
+        /// </summary>
+        /// <param name="path">nom de l'image à afficher</param>
         private void ImageViewer(string path)
         {
             var psi = new ProcessStartInfo

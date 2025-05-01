@@ -8,7 +8,7 @@ using System.Linq;
 namespace MetroHelper
 {
     /// <summary>
-    /// Classe qui regrouppe différents outils utiles pour les manipulations sur les metros
+    /// Classe qui regroupe différents outils utiles pour les manipulations sur les metros
     /// </summary>
     public static class OutilsMetroHelper
     {
@@ -122,7 +122,7 @@ namespace MetroHelper
         /// <param name="arrivee"></param> Correspond à la Grande station d'arrivée de l'algorithme
         /// <param name="dataPath"></param> Base de donnée pour charger le graph
         /// <returns>
-        /// retourne une liste de station parcouru, un temps de trajet et un nombre de correspondance parcouru
+        /// Retourne une liste de station parcourue, un temps de trajet et un nombre de correspondance parcouru
         /// </returns>
         public static (List<Station_de_metro>, int, int) ParcoursAStar(
             GrandeStation depart, GrandeStation arrivee, string dataPath)
@@ -142,13 +142,13 @@ namespace MetroHelper
         }
 
         /// <summary>
-        /// méthode qui permet de calculer le nombre de correspondances dans un trajet donnée
-        /// Une correspondance est compttée lorsqu'il y a un changement de ligne au cours du trajet
+        /// Méthode qui permet de calculer le nombre de correspondances dans un trajet donnée
+        /// Une correspondance est comptée lorsqu'il y a un changement de ligne au cours du trajet
         /// </summary>
         /// <param name="cheminIds"> Liste des identifiants des stations empruntés dans l'ordre du trajet</param>
         /// <param name="graphe"> Graphe sur lequel repose l'étude de l'algorithme </param>
         /// <returns>
-        /// un entier qui correspond au nombre de correspondances totales effectuées lors du trajet
+        /// Un entier qui correspond au nombre de correspondances totales effectuées lors du trajet
         /// </returns>
         private static int CalculerNombreCorrespondances(List<int> cheminIds, Graphe<Station_de_metro> graphe)
         {
@@ -177,21 +177,21 @@ namespace MetroHelper
         /// <summary>
         /// Affiche les information d'un trajet effectuée avec un des algorithmes de parcours
         /// </summary>
-        /// <param name="stations"> donne la liste des stations parcourues</param> 
-        /// <param name="temps"> donne le temps de trajet total</param>
-        /// <param name="correspondances">Donne le nombre de correspondance qui ont été effectuées</param>
+        /// <param name="stations"> Donne la liste des stations parcourues</param> 
+        /// <param name="temps"> Donne le temps de trajet total</param>
+        /// <param name="correspondances">Donne le nombre de correspondances qui ont été effectuées</param>
         /// <param name="algo"> Dit quel algorithme de parcours de graph a été utilisé</param>
         private static void AfficherTrajet(List<Station_de_metro> stations, double temps, int correspondances, string algo)
         {
             Console.WriteLine($"\n Résultat avec {algo} :");
-            Console.WriteLine($"\n⏱ Temps total : {temps} minutes");
-            Console.WriteLine($"🔁 Nombre de correspondances : {correspondances}\n");
-            Console.WriteLine("\n--- 🧭 Itinéraire trouvé ---\n");
+            Console.WriteLine($"\n Temps total : {temps} minutes");
+            Console.WriteLine($"Nombre de correspondances : {correspondances}\n");
+            Console.WriteLine("\n--- Itinéraire trouvé ---\n");
             foreach (var station in stations)
             {
                 Console.WriteLine($" - {station.Nom}");
             }
-            Console.WriteLine("Resultat pour le trajet de la station : "+stations.First().Nom+" Jusqu'a " + stations.Last().Nom);
+            Console.WriteLine("Résultat pour le trajet de la station : "+stations.First().Nom+" Jusqu'a " + stations.Last().Nom);
             Console.WriteLine();
         }
         /// <summary>
@@ -220,7 +220,7 @@ namespace MetroHelper
                 }
                 else
                 {
-                    Console.WriteLine($"⚠️ Aucun lien trouvé entre {depart} et {arrivee}. Trajet peut être incomplet.");
+                    Console.WriteLine($" Aucun lien trouvé entre {depart} et {arrivee}. Trajet peut être incomplet.");
                 }
             }
 
