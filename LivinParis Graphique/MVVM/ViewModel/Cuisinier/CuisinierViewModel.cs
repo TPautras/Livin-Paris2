@@ -42,8 +42,8 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         {
             CurrentUser = user;
             // Initialiser les ViewModels enfants
-            _voirPlatsViewModel = new VoirPlatsViewModel();
-            _ajouterPlatViewModel = new AjouterPlatViewModel();
+            _voirPlatsViewModel = new VoirPlatsViewModel(user);
+            _ajouterPlatViewModel = new AjouterPlatViewModel(user);
             _creerRecetteViewModel = new CreerRecetteViewModel();
 
             // Vue par défaut affichée
@@ -60,8 +60,8 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public CookViewModel()
         {
             // Initialiser les ViewModels enfants
-            _voirPlatsViewModel = new VoirPlatsViewModel();
-            _ajouterPlatViewModel = new AjouterPlatViewModel();
+            _voirPlatsViewModel = new VoirPlatsViewModel(new Personne());
+            _ajouterPlatViewModel = new AjouterPlatViewModel(new Personne());
             _creerRecetteViewModel = new CreerRecetteViewModel();
             CurrentView = _voirPlatsViewModel;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using LivinParis_Graphique.Core;
@@ -11,19 +12,26 @@ namespace LivinParis_Graphique.MVVM.ViewModel
     {
         public ObservableCollection<PlatToList> Plats { get; set; }
 
-        public VoirPlatsViewModel()
+        public VoirPlatsViewModel(Personne user)
         {
-            List<Plat> plats = new PlatDataAccess().GetAll();
-            var platsFiltres = plats
-                .Where(p => p.CuisinierUsername == "cuisinier1")
-                .Select(p => new PlatToList
+            if (user != null)
+            {
+                Cuisinier c = new CuisinierDataAccess().GetByEmail(user.PersonneEmail);
+                if (c != null)
                 {
-                    RecetteNom = new RecetteDataAccess().GetById(p.RecetteId).RecetteNom,
-                    PlatPrix = $"{p.PlatPrix}€"
-                })
-                .ToList();
+                    List<Plat> plats = new PlatDataAccess().GetAll();
+                    var platsFiltres = plats
+                        .Where(p => p.CuisinierUsername == c.CuisinierUsername)
+                        .Select(p => new PlatToList
+                        {
+                            RecetteNom = new RecetteDataAccess().GetById(p.RecetteId).RecetteNom,
+                            PlatPrix = $"{p.PlatPrix}€"
+                        })
+                        .ToList();
 
-            Plats = new ObservableCollection<PlatToList>(platsFiltres);
+                    Plats = new ObservableCollection<PlatToList>(platsFiltres);
+                }
+            }
         }
     }
 

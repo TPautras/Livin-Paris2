@@ -46,3 +46,4 @@ SELECT * FROM Creation;
 SELECT * FROM Composition_de_la_recette;
 SELECT * FROM livré;
 SELECT * FROM Fait_Partie_De;
+SELECT * FROM Cuisinier WHERE Personne_Email = 'person1@example.com';
