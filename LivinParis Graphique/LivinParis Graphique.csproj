@@ -71,7 +71,10 @@
         <Page Include="MVVM\View\AdminView.xaml" />
         <Page Include="MVVM\View\ClientView.xaml" />
         <Page Include="MVVM\View\CompanyView.xaml" />
-        <Page Include="MVVM\View\CookView.xaml" />
+        <Page Include="MVVM\View\Cuisinier\AjouterPlatView.xaml" />
+        <Page Include="MVVM\View\Cuisinier\CookView.xaml" />
+        <Page Include="MVVM\View\Cuisinier\CreerRecetteView.xaml" />
+        <Page Include="MVVM\View\Cuisinier\VoirPlatsView.xaml" />
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="MVVM\View\LoginView.xaml" />
@@ -82,7 +85,10 @@
         <Compile Include="MVVM\ViewModel\AdminViewModel.cs" />
         <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
         <Compile Include="MVVM\ViewModel\CompanyViewModel.cs" />
-        <Compile Include="MVVM\ViewModel\CuisinierViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Cuisinier\AjouterPlatViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Cuisinier\CreerRecetteViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Cuisinier\CuisinierViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Cuisinier\VoirPlatsViewModel.cs" />
         <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\LoginViewModel.cs" />
@@ -96,8 +102,17 @@
         <Compile Include="MVVM\View\CompanyView.xaml.cs">
           <DependentUpon>CompanyView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="MVVM\View\CookView.xaml.cs">
+        <Compile Include="MVVM\View\Cuisinier\AjouterPlatView.xaml.cs">
+          <DependentUpon>AjouterPlatView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Cuisinier\CookView.xaml.cs">
           <DependentUpon>CookView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Cuisinier\CreerRecetteView.xaml.cs">
+          <DependentUpon>CreerRecetteView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Cuisinier\VoirPlatsView.xaml.cs">
+          <DependentUpon>VoirPlatsView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\DiscoveryView.xaml.cs">
           <DependentUpon>DiscoveryView.xaml</DependentUpon>
@@ -122,7 +137,7 @@
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config"/>
+        <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="MVVM\Model\" />
