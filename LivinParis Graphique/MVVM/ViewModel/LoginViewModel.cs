@@ -117,9 +117,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             }
         }
 
-
-
-
         private void CloseLoginWindow()
         {
             var current = Application.Current.Windows

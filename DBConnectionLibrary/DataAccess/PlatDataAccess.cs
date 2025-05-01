@@ -70,7 +70,7 @@ namespace SqlConnector.DataAccess
         public void Insert(Plat entity)
         {
             string query = @"INSERT INTO Plat 
-                             (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id, PlatDuJour)
+                             (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id, Plat_Du_Jour)
                              VALUES (@Id, @DateFab, @DatePeremption, @Prix, @NombrePortion, @CuisinierUsername, @RecetteId, @PlatDuJour)";
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))

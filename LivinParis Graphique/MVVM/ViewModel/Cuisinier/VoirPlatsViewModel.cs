@@ -12,27 +12,33 @@ namespace LivinParis_Graphique.MVVM.ViewModel
     {
         public ObservableCollection<PlatToList> Plats { get; set; }
 
-        public VoirPlatsViewModel(Personne user)
+        public void Refresh()
         {
-            if (user != null)
+            Cuisinier c = new CuisinierDataAccess().GetByEmail(CurrentUser.PersonneEmail);
+            if (c != null)
             {
-                Cuisinier c = new CuisinierDataAccess().GetByEmail(user.PersonneEmail);
-                if (c != null)
-                {
-                    List<Plat> plats = new PlatDataAccess().GetAll();
-                    var platsFiltres = plats
-                        .Where(p => p.CuisinierUsername == c.CuisinierUsername)
-                        .Select(p => new PlatToList
-                        {
-                            RecetteNom = new RecetteDataAccess().GetById(p.RecetteId).RecetteNom,
-                            PlatPrix = $"{p.PlatPrix}€"
-                        })
-                        .ToList();
+                List<Plat> plats = new PlatDataAccess().GetAll();
+                var platsFiltres = plats
+                    .Where(p => p.CuisinierUsername == c.CuisinierUsername)
+                    .Select(p => new PlatToList
+                    {
+                        RecetteNom = new RecetteDataAccess().GetById(p.RecetteId).RecetteNom,
+                        PlatPrix = $"{p.PlatPrix}€"
+                    })
+                    .ToList();
 
-                    Plats = new ObservableCollection<PlatToList>(platsFiltres);
-                }
+                Plats = new ObservableCollection<PlatToList>(platsFiltres);
             }
         }
+
+        private Personne CurrentUser;
+
+        public VoirPlatsViewModel(Personne user)
+        {
+            CurrentUser = user;
+            Refresh();
+        }
+
     }
 
     public class PlatToList
