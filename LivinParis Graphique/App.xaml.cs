@@ -1,9 +1,18 @@
-﻿namespace LivinParis_Graphique
+﻿using System.Windows;
+
+namespace LivinParis_Graphique
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App
+    public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var login = new MVVM.View.LoginView
+            {
+                DataContext = new MVVM.ViewModel.LoginViewModel()
+            };
+            login.Show();
+        }
     }
 }

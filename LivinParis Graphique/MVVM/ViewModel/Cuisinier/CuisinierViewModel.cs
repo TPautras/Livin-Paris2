@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
+using LivinParis_Graphique.MVVM.View;
 using SqlConnector.Models;
 
 namespace LivinParis_Graphique.MVVM.ViewModel
@@ -10,7 +13,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         // Informations de l'utilisateur courant
         public Personne CurrentUser { get; }
         public string WelcomeMessage => $"Bienvenue, {CurrentUser.PersonneNom} (Cuisinier)";
-
+        
         // Vue actuelle affichée dans la zone de contenu
         private BaseViewModel _currentView;
         public BaseViewModel CurrentView
@@ -70,8 +73,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteLogout()
         {
-            // Ferme la fenêtre du cuisinier (déconnexion)
+            Window newWindow = new LoginView{DataContext = new LoginViewModel()};
             Application.Current.MainWindow?.Close();
+            Application.Current.MainWindow = newWindow;
         }
+
     }
 }

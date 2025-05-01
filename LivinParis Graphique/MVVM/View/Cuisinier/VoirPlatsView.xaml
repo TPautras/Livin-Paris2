@@ -7,15 +7,47 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Liste de vos plats :" Foreground="White" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Plats}">
-            <!-- Style des éléments : texte blanc sur fond sombre -->
+
+        <TextBlock Grid.Row="0"
+                   Text="Liste de vos plats :"
+                   Background="#3A3849"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   FontSize="14"
+                   Margin="0,0,0,10"/>
+
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding Plats}"
+                 Background="Transparent"
+                 BorderThickness="0">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="Background" Value="#3A3849"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Padding" Value="5"/>
                 </Style>
             </ListBox.ItemContainerStyle>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding RecetteNom}"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   Grid.Column="0"/>
+                        <TextBlock Text="{Binding PlatPrix}"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   Grid.Column="1"
+                                   Margin="10,0,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </UserControl>

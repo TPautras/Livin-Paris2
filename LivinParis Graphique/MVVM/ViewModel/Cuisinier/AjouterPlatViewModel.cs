@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using LivinParis_Graphique.Core;
 
 namespace LivinParis_Graphique.MVVM.ViewModel
@@ -41,9 +42,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         private void ExecuteAddDish()
         {
             // Action factice : vide les champs après l'ajout du plat
+            Console.WriteLine(NewDishName);
+            Console.WriteLine(NewDishPrice);
             NewDishName = string.Empty;
             NewDishPrice = string.Empty;
-            // Dans une application réelle, on ajouterait le nouveau plat à une collection ou à la base de données.
         }
     }
 }

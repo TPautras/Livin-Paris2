@@ -78,7 +78,9 @@
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="MVVM\View\LoginView.xaml" />
+        <Page Include="Theme\ComboBox Theme.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
+        <Page Include="Theme\PasswordButton Theme.xaml" />
         <Page Include="Theme\Textbox Theme.xaml" />
     </ItemGroup>
     <ItemGroup>

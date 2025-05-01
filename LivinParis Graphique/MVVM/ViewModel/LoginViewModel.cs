@@ -1,10 +1,11 @@
-﻿using System;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.View;
-using SqlConnector.DataAccess;      
+using SqlConnector.DataAccess;
 using SqlConnector.DataService;
-using SqlConnector.Models; 
+using SqlConnector.Models;
 
 namespace LivinParis_Graphique.MVVM.ViewModel
 {
@@ -20,20 +21,18 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        
+
         public string Password { get; set; } = string.Empty;
 
         private UserRole _selectedRole;
-        public UserRole SelectedRole 
-        { 
-            get => _selectedRole; 
+        public UserRole SelectedRole
+        {
+            get => _selectedRole;
             set { _selectedRole = value; OnPropertyChanged(); }
         }
 
-        // Liste des rôles disponibles pour peupler une ComboBox ou des RadioButtons dans la vue
         public UserRole[] Roles => new UserRole[] { UserRole.Client, UserRole.Cook, UserRole.Company };
 
-        // Commande de connexion 
         public ICommand LoginCommand { get; }
 
         public LoginViewModel()
@@ -43,24 +42,23 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteLogin()
         {
-            // Tentative de connexion en fonction du rôle sélectionné
             Personne? user = null;
             string password = string.Empty;
             switch (SelectedRole)
             {
                 case UserRole.Client:
-                    PersonneDataAccess personneDataAccess = new PersonneDataAccess();
                     var clientDal = new ClientDataAccess();
-                    Client client = clientDal.GetByUsername(_username);
-                    user = personneDataAccess.GetByEmail(client.PersonneEmail);
+                    var personneDalClient = new PersonneDataAccess();
+                    var client = clientDal.GetByUsername(_username);
+                    user = personneDalClient.GetByEmail(client.PersonneEmail);
                     password = client.ClientPassword;
                     break;
                 case UserRole.Cook:
                     var cookDal = new CuisinierDataAccess();
-                    PersonneDataAccess personneDataAccess1 = new PersonneDataAccess();
-                    Cuisinier cuisinier1 = cookDal.GetByUsername(_username);
-                    user = personneDataAccess1.GetByEmail(cuisinier1.PersonneEmail);
-                    password = cuisinier1.CuisinierPassword;
+                    var personneDalCook = new PersonneDataAccess();
+                    var cook = cookDal.GetByUsername(_username);
+                    user = personneDalCook.GetByEmail(cook.PersonneEmail);
+                    password = cook.CuisinierPassword;
                     break;
                 case UserRole.Company:
                     var companyDal = new EntrepriseDataAccess();
@@ -70,7 +68,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
             if (user != null && password == Password)
             {
-                if (user.PersonneIsAdmin != null && (bool)user.PersonneIsAdmin)
+                if (user.PersonneIsAdmin == true)
                 {
                     OpenAdminView(user);
                 }
@@ -79,54 +77,56 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     OpenRoleView(user, SelectedRole);
                 }
             }
-            else 
-            {
-                // Gestion en cas d’échec de la connexion (message d'erreur, etc.)
-                // Par exemple, exposer une propriété ErrorMessage liée à la vue.
-                // ErrorMessage = "Identifiants invalides, veuillez réessayer.";
-            }
         }
 
-        // Ouvre la fenêtre administrateur
         private void OpenAdminView(Personne user)
         {
             var adminVM = new AdminViewModel(user);
-            var adminWindow = new AdminView();          // Fenêtre Admin (voir AdminView.xaml plus bas)
+            var adminWindow = new AdminView();
             adminWindow.DataContext = adminVM;
             adminWindow.Show();
-
             CloseLoginWindow();
         }
 
         private void OpenRoleView(Personne user, UserRole role)
         {
+            Window? newWindow = null;
             switch (role)
             {
                 case UserRole.Client:
-                    var clientVM = new ClientViewModel(user);
-                    var clientWindow = new ClientView();
-                    clientWindow.DataContext = clientVM;
-                    clientWindow.Show();
+                    newWindow = new ClientView { DataContext = new ClientViewModel(user) };
                     break;
                 case UserRole.Cook:
-                    var cookVM = new CookViewModel(user);
-                    var cookWindow = new CookView();
-                    cookWindow.DataContext = cookVM;
-                    cookWindow.Show();
+                    newWindow = new CookView { DataContext = new CookViewModel(user) };
                     break;
                 case UserRole.Company:
-                    var companyVM = new CompanyViewModel(user);
-                    var companyWindow = new CompanyView();
-                    companyWindow.DataContext = companyVM;
-                    companyWindow.Show();
+                    newWindow = new CompanyView { DataContext = new CompanyViewModel(user) };
                     break;
             }
-            CloseLoginWindow();
+
+            if (newWindow != null)
+            {
+                newWindow.Show();
+                Application.Current.MainWindow?.Close();
+                Application.Current.MainWindow = newWindow;
+            }
+            else
+            {
+                // Logique de gestion d'erreur si la fenêtre n'a pas pu être créée
+                MessageBox.Show("Échec de l'ouverture de la nouvelle fenêtre. Veuillez vérifier le rôle sélectionné.");
+            }
         }
+
+
+
 
         private void CloseLoginWindow()
         {
-            System.Windows.Application.Current.MainWindow?.Close();
+            var current = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+            current?.Close();
         }
     }
 }

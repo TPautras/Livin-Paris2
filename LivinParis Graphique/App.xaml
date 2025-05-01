@@ -8,11 +8,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Thèmes existants -->
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/Textbox Theme.xaml"/>
+                <ResourceDictionary Source="Theme/PasswordButton Theme.xaml"/>
+                <ResourceDictionary Source="Theme/ComboBox Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <!-- DataTemplates existants pour HomeViewModel et DiscoveryViewModel -->
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>
@@ -37,9 +37,6 @@
             <DataTemplate DataType="{x:Type viewModel:CreerRecetteViewModel}">
                 <view:CreerRecetteView />
             </DataTemplate>
-            <!-- Pas de DataTemplate pour AdminViewModel car on ouvre directement AdminView comme Window -->
         </ResourceDictionary>
     </Application.Resources>
-
-    <Application.StartupUri>MVVM/View/LoginView.xaml</Application.StartupUri>
 </Application>

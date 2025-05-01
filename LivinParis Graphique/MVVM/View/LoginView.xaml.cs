@@ -10,6 +10,7 @@ namespace LivinParis_Graphique.MVVM.View
         {
             InitializeComponent();
             DataContext = new LivinParis_Graphique.MVVM.ViewModel.LoginViewModel();
+            Console.WriteLine(PwdBox.Password);
             Console.WriteLine("Binding actif pour LoginView");
             PwdBox.PasswordChanged += (s, e) => 
             {
