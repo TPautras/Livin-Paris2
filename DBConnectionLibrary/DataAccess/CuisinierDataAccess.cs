@@ -93,6 +93,43 @@ namespace SqlConnector.DataAccess
             }
             return c;
         }
+
+        public Cuisinier GetByEmail(string email)
+        {
+            Cuisinier c = null;
+            Console.WriteLine(email+"DataAccess");
+            string query = "SELECT * FROM Cuisinier WHERE Personne_Email = @email";
+    
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@email", email.Trim());
+                    connection.Open();
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            c = new Cuisinier
+                            {
+                                CuisinierUsername = reader["Cuisinier_Username"]?.ToString(),
+                                CuisinierPassword = reader["Cuisinier_Password"]?.ToString(),
+                                PersonneEmail = reader["Personne_Email"]?.ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur SQL : " + ex.Message);
+            }
+
+            return c;
+        }
+
         public void DeleteByUsername(string username)
         {
             string query = "DELETE FROM Cuisinier WHERE Cuisinier_Username = @Username";

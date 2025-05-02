@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:LivinParis_Graphique.MVVM.View"
         xmlns:local="clr-namespace:LivinParis_Graphique"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="970"
+        Title="MainWindow" Height="1200" Width="1800"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"

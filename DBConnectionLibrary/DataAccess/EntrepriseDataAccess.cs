@@ -93,5 +93,10 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+
+        public Personne GetByUsername(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

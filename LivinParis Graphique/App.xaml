@@ -4,21 +4,39 @@
              xmlns:local="clr-namespace:LivinParis_Graphique"
              xmlns:viewModel="clr-namespace:LivinParis_Graphique.MVVM.ViewModel"
              xmlns:view="clr-namespace:LivinParis_Graphique.MVVM.View"
-             StartupUri="MainWindow.xaml">
+             >
     <Application.Resources>
-         <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                 <ResourceDictionary Source="Theme/Textbox Theme.xaml"/>
-             </ResourceDictionary.MergedDictionaries>
-             
-             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                 <view:HomeView/>
-             </DataTemplate>
-             
-             <DataTemplate DataType="{x:Type viewModel:DiscoveryViewModel}">
-                 <view:DiscoveryView/>
-             </DataTemplate>
-         </ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/Textbox Theme.xaml"/>
+                <ResourceDictionary Source="Theme/PasswordButton Theme.xaml"/>
+                <ResourceDictionary Source="Theme/ComboBox Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DiscoveryViewModel}">
+                <view:DiscoveryView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ClientViewModel}">
+                <view:ClientView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CookViewModel}">
+                <view:CookView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CompanyViewModel}">
+                <view:CompanyView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VoirPlatsViewModel}">
+                <view:VoirPlatsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AjouterPlatViewModel}">
+                <view:AjouterPlatView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreerRecetteViewModel}">
+                <view:CreerRecetteView />
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

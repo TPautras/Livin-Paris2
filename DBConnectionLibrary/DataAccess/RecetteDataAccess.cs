@@ -63,6 +63,34 @@ namespace SqlConnector.DataAccess
             }
             return recette;
         }
+        
+        public Recette GetByName(string name)
+        {
+            Recette recette = null;
+            string query = "SELECT * FROM Recette WHERE Recette_Nom = @name";
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@name", name);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        recette = new Recette
+                        {
+                            RecetteId = Convert.ToInt32(reader["Recette_id"]),
+                            RecetteNom = reader["Recette_Nom"].ToString(),
+                            RecetteOrigine = reader["Recette_Origine"].ToString(),
+                            RecetteTypeDePlat = reader["Recette_Type_de_plat"].ToString(),
+                            RecetteApportNutritifs = reader["Recette_Apport_nutritifs"].ToString(),
+                            RecetteRegimeAlimentaire = reader["Recette_Regime_alimentaire"].ToString()
+                        };
+                    }
+                }
+            }
+            return recette;
+        }
 
         public void Insert(Recette entity)
         {
