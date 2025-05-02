@@ -1,7 +1,7 @@
 ﻿namespace MetroHelper
 {
     /// <summary>
-    /// classe qui permet de définir les correspondances. Elles sont définies entre 2 stations et sont reliée par un temps et identifiées par un id
+    /// Classe qui permet de définir les correspondances. Elles sont définies entre 2 stations et sont reliée par un temps et identifiées par un id
     /// </summary>
     public class Correspondance
     {

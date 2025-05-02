@@ -97,12 +97,12 @@ namespace MetroHelper
             return grandesStations;
         }
         /// <summary>
-        /// Permet d'exploiter les informations du fichier coord
+        /// Permet de charger les coordonnés des différentes stations de metro
         /// </summary>
-        /// <param name="cheminFichier"></param>
+        /// <param name="cheminFichier">Fichier contenant les coordonnées de mes stations de metro</param>
         private void ChargerCoordonnees(string cheminFichier)
         {
-            var lignes = File.ReadAllLines(cheminFichier).Skip(1); // ignore l'en-tête
+            var lignes = File.ReadAllLines(cheminFichier).Skip(1); 
 
             foreach (var ligne in lignes)
             {
@@ -130,8 +130,7 @@ namespace MetroHelper
                 string nom = parties[0].Trim();
                 double latitude = double.Parse(parties[1], CultureInfo.InvariantCulture);
                 double longitude = double.Parse(parties[2], CultureInfo.InvariantCulture);
-
-                // Conversion en int comme dans tes coordonnées existantes
+                
                 int lat = (int)(latitude * 1_000_000);
                 int lon = (int)(longitude * 1_000_000);
 

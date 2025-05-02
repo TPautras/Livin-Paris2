@@ -91,7 +91,7 @@ namespace LivinParis_Console
             {
                 Console.WriteLine("Entrée invalide.");
             }
-            GrapheImage<T> visualiseur = new GrapheImage<T>(myGraph);
+            GrapheVisuel<T> visualiseur = new GrapheVisuel<T>(myGraph);
             visualiseur.DessinerGraphe("../../graphe.png");
             Console.ReadKey();
         }
