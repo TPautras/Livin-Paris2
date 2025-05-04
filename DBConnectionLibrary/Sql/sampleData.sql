@@ -42,9 +42,9 @@ VALUES
     ('person37@example.com', 'Leroy', 'Celine', 'Dijon', 21000, 'Rue Mercière', 19, '0123456825', 'Abbesses', FALSE),
     ('person38@example.com', 'Bonnet', 'Adrien', 'Nice', 60000, 'Rue de la Buffa', 8, '0123456826', 'Pigalle', FALSE),
     ('person39@example.com', 'Martineau', 'Alexandre', 'Paris', 75000, 'Rue de Rivoli', 35, '0123456827', 'Notre-Dame-de-Lorette', FALSE),
-    ('person40@example.com', 'Lemaire', 'Antoine', 'Lyon', 69000, 'Rue Garibaldi', 10, '0123456828', 'Trinité - d''Estienne d''Orves', FALSE);
+    ('person40@example.com', 'Lemaire', 'Antoine', 'Lyon', 69000, 'Rue Garibaldi', 10, '0123456828', 'Trinité - d''Estienne d''Orves', FALSE),
+    ('thomas.pautras@edu.devinci.fr', 'Pautras', 'Thomas', 'Le Vesinet', 78110, 'Rue Garibaldi', 10, '0123456828', 'Trinité - d''Estienne d''Orves', FALSE);
 
--- Table Ingredient (25 enregistrements)
 INSERT INTO Ingredient (Ingredient_Id, Ingredient_Nom, Ingredient_volume, Ingrédient_Unité)
 VALUES
     (1, 'Tomate', '100ml', 'ml'),
@@ -73,7 +73,6 @@ VALUES
     (24, 'Poivron', '80g', 'g'),
     (25, 'Courgette', '90g', 'g');
 
--- Table Livraison (20 enregistrements)
 INSERT INTO Livraison (Livraison_Id, Livraison_Adresse, Livraison_Date)
 VALUES
     (1, '10 Rue de Rivoli, Paris', '2025-03-01 10:00:00'),
@@ -97,7 +96,6 @@ VALUES
     (19, '14 Rue du Faubourg, Paris', '2025-03-19 11:15:00'),
     (20, '32 Avenue de Clichy, Paris', '2025-03-20 15:30:00');
 
--- Table Recette (20 enregistrements avec des noms réalistes)
 INSERT INTO Recette (Recette_id, Recette_Nom, Recette_Origine, Recette_Type_de_plat, Recette_Apport_nutritifs, Recette_Regime_alimentaire)
 VALUES
     (1, 'Quiche Lorraine', 'Française', 'Plat principal', 'Riche en protéines', 'Omnivore'),
@@ -121,7 +119,6 @@ VALUES
     (19, 'Paella', 'Espagnole', 'Plat principal', 'Complet', 'Omnivore'),
     (20, 'Crema Catalana', 'Espagnole', 'Dessert', 'Léger', 'Végétarien');
 
--- Table Entreprise (10 enregistrements)
 INSERT INTO Entreprise (Entreprise_Id, Entreprise_Nom)
 VALUES
     (1, 'Paris Gourmand'),
@@ -135,7 +132,6 @@ VALUES
     (9, 'Livraison Gourmande'),
     (10, 'Chef à Domicile');
 
--- Table Cuisinier (15 enregistrements, liés aux personnes 1 à 15)
 INSERT INTO Cuisinier (Cuisinier_Username, Cuisinier_Password, Personne_Email)
 VALUES
     ('cuisinier1', 'pwdchef1', 'person1@example.com'),
@@ -152,9 +148,9 @@ VALUES
     ('cuisinier12', 'pwdchef12', 'person12@example.com'),
     ('cuisinier13', 'pwdchef13', 'person13@example.com'),
     ('cuisinier14', 'pwdchef14', 'person14@example.com'),
+    ('toto', 'toto', 'thomas.pautras@edu.devinci.fr'),
     ('cuisinier15', 'pwdchef15', 'person15@example.com');
 
--- Table Clients (20 enregistrements, liés aux personnes 16 à 35)
 INSERT INTO Clients (Client_Username, Client_Password, Personne_Email)
 VALUES
     ('client1', 'pwdclient1', 'person16@example.com'),
@@ -176,9 +172,9 @@ VALUES
     ('client17', 'pwdclient17', 'person32@example.com'),
     ('client18', 'pwdclient18', 'person33@example.com'),
     ('client19', 'pwdclient19', 'person34@example.com'),
+    ('toto', 'toto', 'thomas.pautras@edu.devinci.fr'),
     ('client20', 'pwdclient20', 'person35@example.com');
 
--- Table Commande (25 enregistrements)
 INSERT INTO Commande (Commande_Id, Entreprise_Id, Cuisinier_Username, Client_Username, Commande_Date)
 VALUES
     (1, 1, 'cuisinier1', 'client1', '2025-03-05 14:30:00'),
@@ -207,7 +203,6 @@ VALUES
     (24, 4, 'cuisinier9', 'client4', '2025-03-28 16:55:00'),
     (25, 5, 'cuisinier10', 'client5', '2025-03-29 12:35:00');
 
--- Table Plat (25 enregistrements)
 INSERT INTO Plat (Plat_Id, Plat_date_de_fabrication, Plat_Date_de_peremption, Plat_Prix, Plat_Nombre_Portion, Cuisinier_Username, Recette_id, Plat_Du_Jour)
 VALUES
     (1, '2025-03-04', '2025-03-14', '12.50', 4, 'cuisinier1', 1,0),
@@ -236,7 +231,6 @@ VALUES
     (24, '2025-03-27', '2025-04-06', '38.00', 4, 'cuisinier9', 4,0),
     (25, '2025-03-28', '2025-04-07', '39.50', 6, 'cuisinier10', 5, 1);
 
--- Table Evaluation (25 enregistrements)
 INSERT INTO Evaluation (Evaluation_Id, Evaluation_Client, Evaluation_Cuisinier, Evaluation_Description_Client, Evaluation_Description_Cuisinier, Commande_Id)
 VALUES
     (1, 4.5, 4.0, 'Plat savoureux et bien présenté', 'Client poli et précis', 1),
@@ -265,7 +259,6 @@ VALUES
     (24, 5.0, 4.5, 'Expérience inoubliable', 'Livraison impeccable', 24),
     (25, 4.0, 4.0, 'Plat délicieux et équilibré', 'Client satisfait', 25);
 
--- Table Creation (relation entre Commande et Plat)
 INSERT INTO Creation (Commande_Id, Plat_Id)
 VALUES
     (1,1),
@@ -294,7 +287,6 @@ VALUES
     (24,24),
     (25,25);
 
--- Table Composition_de_la_recette (plusieurs ingrédients par recette)
 INSERT INTO Composition_de_la_recette (Ingredient_Id, Recette_id)
 VALUES
     (1,1), (16,1),
@@ -318,7 +310,6 @@ VALUES
     (12,19), (13,19),
     (14,20), (15,20);
 
--- Table livré (association entre Plat et Livraison)
 INSERT INTO livré (Plat_Id, Livraison_Id)
 VALUES
     (1, 1),
@@ -347,7 +338,6 @@ VALUES
     (24, 4),
     (25, 5);
 
--- Table Fait_Partie_De (liaison entre Personne et Entreprise)
 INSERT INTO Fait_Partie_De (Personne_Email, Entreprise_Id)
 VALUES
     ('person1@example.com', 1),

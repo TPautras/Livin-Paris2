@@ -61,6 +61,41 @@ namespace SqlConnector.DataAccess
             }
             return c;
         }
+        public Client GetByEmail(string email)
+        {
+            Client c = null;
+            Console.WriteLine(email+"DataAccess");
+            string query = "SELECT * FROM Client WHERE Personne_Email = @email";
+    
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@email", email.Trim());
+                    connection.Open();
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            c = new Client
+                            {
+                                ClientUsername = reader["Client_Username"]?.ToString(),
+                                ClientPassword = reader["Client_Password"]?.ToString(),
+                                PersonneEmail = reader["Personne_Email"]?.ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur SQL : " + ex.Message);
+            }
+
+            return c;
+        }
         public void Insert(Client entity)
         {
             string query = @"INSERT INTO Clients 

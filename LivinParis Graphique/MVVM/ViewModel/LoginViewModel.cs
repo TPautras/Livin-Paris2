@@ -82,10 +82,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         private void OpenAdminView(Personne user)
         {
             var adminVM = new AdminViewModel(user);
-            var adminWindow = new AdminView();
+            var adminWindow = new AdminView{ DataContext = adminVM };
             adminWindow.DataContext = adminVM;
             adminWindow.Show();
-            CloseLoginWindow();
+            Application.Current.MainWindow?.Close();
+            Application.Current.MainWindow = adminWindow;
         }
 
         private void OpenRoleView(Personne user, UserRole role)

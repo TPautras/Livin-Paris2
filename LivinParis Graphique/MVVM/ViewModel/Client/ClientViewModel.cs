@@ -7,7 +7,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
     {
         public Personne CurrentUser { get; }
 
-        // On peut intégrer le MainViewModel pour la navigation du client
         public MainViewModel MainVM { get; }
 
         public string WelcomeMessage => $"Bienvenue, {CurrentUser.PersonneNom}!";
@@ -16,8 +15,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         {
             CurrentUser = user;
             MainVM = new MainViewModel();
-            // Si besoin, on pourrait personnaliser MainVM en fonction du client, 
-            // par ex. filtrer les données à afficher dans HomeViewModel, etc.
         }
     }
 }

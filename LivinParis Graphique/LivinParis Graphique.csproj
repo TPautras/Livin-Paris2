@@ -69,7 +69,9 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Page Include="MVVM\View\AdminView.xaml" />
+        <Page Include="MVVM\View\Admin\AdminView.xaml" />
+        <Page Include="MVVM\View\Admin\GestionPersonnesView.xaml" />
+        <Page Include="MVVM\View\Admin\PersonneDetailsView.xaml" />
         <Page Include="MVVM\View\ClientView.xaml" />
         <Page Include="MVVM\View\CompanyView.xaml" />
         <Page Include="MVVM\View\Cuisinier\AjouterPlatView.xaml" />
@@ -87,8 +89,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Model\CommandesToListCuisinier.cs" />
-        <Compile Include="MVVM\ViewModel\AdminViewModel.cs" />
-        <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Admin\AdminViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Admin\GestionPersonnesViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Admin\PersonneDetailViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Client\ClientViewModel.cs" />
         <Compile Include="MVVM\ViewModel\CompanyViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\AjouterPlatViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\CreerRecetteViewModel.cs" />
@@ -99,8 +103,14 @@
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\LoginViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
-        <Compile Include="MVVM\View\AdminView.xaml.cs">
+        <Compile Include="MVVM\View\Admin\AdminView.xaml.cs">
           <DependentUpon>AdminView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Admin\GestionPersonnesView.xaml.cs">
+          <DependentUpon>GestionPersonnesView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Admin\PersonneDetailsView.xaml.cs">
+          <DependentUpon>PersonneDetailsView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\ClientView.xaml.cs">
           <DependentUpon>ClientView.xaml</DependentUpon>
