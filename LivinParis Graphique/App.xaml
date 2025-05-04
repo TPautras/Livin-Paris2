@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:LivinParis_Graphique"
              xmlns:viewModel="clr-namespace:LivinParis_Graphique.MVVM.ViewModel"
              xmlns:view="clr-namespace:LivinParis_Graphique.MVVM.View"
-             >
+             xmlns:core="clr-namespace:LivinParis_Graphique.Core">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

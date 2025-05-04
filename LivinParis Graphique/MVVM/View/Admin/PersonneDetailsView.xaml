@@ -10,48 +10,33 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock Text="Détails de l'utilisateur" 
-                         Foreground="White" 
-                         FontSize="18" 
-                         FontWeight="Bold"
-                         Margin="0,0,0,15"/>
+                           Foreground="White" 
+                           FontSize="18" 
+                           FontWeight="Bold"
+                           Margin="0,0,0,15"/>
                 
                 <!-- Informations personnelles -->
                 <GroupBox Header="Informations personnelles" Foreground="White" Margin="0,0,0,15">
                     <StackPanel Margin="0,10,0,0">
-                        <!-- Nom -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Nom:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Nom:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
-                        
-                        <!-- Prénom -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Prénom:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Prénom:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
-                        
-                        <!-- Email -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Email:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Email:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
-                        
-                        <!-- Téléphone -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Téléphone:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Téléphone:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Telephone, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
                     </StackPanel>
                 </GroupBox>
@@ -59,40 +44,25 @@
                 <!-- Adresse -->
                 <GroupBox Header="Adresse" Foreground="White" Margin="0,0,0,15">
                     <StackPanel Margin="0,10,0,0">
-                        <!-- Rue -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Rue:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Rue:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Adresse.Rue, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
-                        
-                        <!-- Code postal -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Code postal:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Code postal:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Adresse.CodePostal, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
-                        
-                        <!-- Ville -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Ville:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Ville:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Adresse.Ville, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
-                        
-                        <!-- Pays -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Pays:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Pays:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Adresse.Pays, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"/>
+                                     Style="{StaticResource ModernTextbox}"/>
                         </DockPanel>
                     </StackPanel>
                 </GroupBox>
@@ -100,42 +70,26 @@
                 <!-- Information de compte -->
                 <GroupBox Header="Information de compte" Foreground="White" Margin="0,0,0,15">
                     <StackPanel Margin="0,10,0,0">
-                        <!-- Nom d'utilisateur -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Nom d'utilisateur:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Nom d'utilisateur:" Foreground="White" Width="120"/>
                             <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                                 Style="{StaticResource ModernTextbox}"
-                                 IsEnabled="{Binding IsNewUser}"/>
+                                     Style="{StaticResource ModernTextbox}"
+                                     IsEnabled="{Binding IsNewUser}"/>
                         </DockPanel>
-                        
-                        <!-- Mot de passe -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Mot de passe:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Mot de passe:" Foreground="White" Width="120"/>
                             <PasswordBox x:Name="PasswordBox" 
-                                     Style="{StaticResource ModernPasswordBox}"/>
+                                         Style="{StaticResource ModernPasswordBox}"/>
                         </DockPanel>
-                        
-                        <!-- Rôle -->
-                        <DockPanel Margin="0,0,0,10" Visibility="{Binding IsAdminMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Text="Rôle:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                        <DockPanel Margin="0,0,0,10" Visibility="{Binding AdminFieldsVisibility}">
+                            <TextBlock Text="Rôle:" Foreground="White" Width="120"/>
                             <ComboBox ItemsSource="{Binding AvailableRoles}"
-                                  SelectedItem="{Binding SelectedRole}"
-                                  Style="{StaticResource ModernComboBox}"/>
+                                      SelectedItem="{Binding SelectedRole}"
+                                      Style="{StaticResource ModernComboBox}"/>
                         </DockPanel>
-                        
-                        <!-- Admin -->
-                        <DockPanel Margin="0,0,0,10" Visibility="{Binding IsAdminMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Text="Admin:" 
-                                   Foreground="White" 
-                                   Width="120"/>
-                            <CheckBox IsChecked="{Binding IsAdmin}" 
-                                  VerticalAlignment="Center"/>
+                        <DockPanel Margin="0,0,0,10" Visibility="{Binding AdminFieldsVisibility}">
+                            <TextBlock Text="Admin:" Foreground="White" Width="120"/>
+                            <CheckBox IsChecked="{Binding IsAdmin}" VerticalAlignment="Center"/>
                         </DockPanel>
                     </StackPanel>
                 </GroupBox>
@@ -143,22 +97,15 @@
                 <!-- Préférences -->
                 <GroupBox Header="Préférences" Foreground="White" Margin="0,0,0,15">
                     <StackPanel Margin="0,10,0,0">
-                        <!-- Notifications -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Notifications:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Notifications:" Foreground="White" Width="120"/>
                             <CheckBox IsChecked="{Binding Preferences.EnableNotifications}" 
-                                  VerticalAlignment="Center"/>
+                                      VerticalAlignment="Center"/>
                         </DockPanel>
-                        
-                        <!-- Newsletter -->
                         <DockPanel Margin="0,0,0,10">
-                            <TextBlock Text="Newsletter:" 
-                                   Foreground="White" 
-                                   Width="120"/>
+                            <TextBlock Text="Newsletter:" Foreground="White" Width="120"/>
                             <CheckBox IsChecked="{Binding Preferences.SubscribeNewsletter}" 
-                                  VerticalAlignment="Center"/>
+                                      VerticalAlignment="Center"/>
                         </DockPanel>
                     </StackPanel>
                 </GroupBox>
@@ -166,13 +113,12 @@
                 <!-- Boutons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                     <RadioButton Content="Annuler" 
-                              Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding CancelCommand}"
-                              Margin="0,0,10,0"/>
-                    
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding CancelCommand}"
+                                 Margin="0,0,10,0"/>
                     <RadioButton Content="Enregistrer" 
-                              Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding SaveCommand}"/>
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding SaveCommand}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

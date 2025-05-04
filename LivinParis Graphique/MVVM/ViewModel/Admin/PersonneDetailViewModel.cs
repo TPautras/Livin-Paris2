@@ -22,7 +22,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        
+        public Visibility AdminFieldsVisibility => IsAdminMode ? Visibility.Visible : Visibility.Collapsed;
         private string _prenom;
         public string Prenom
         {
@@ -257,6 +257,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     // Traitement spécifique pour les entreprises si nécessaire
                     break;
             }
+        }
+        
+        public void UpdateVisibility()
+        {
+            OnPropertyChanged(nameof(AdminFieldsVisibility));
         }
         
         private void SaveNewUser()
