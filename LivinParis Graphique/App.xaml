@@ -49,6 +49,12 @@
             <DataTemplate DataType="{x:Type viewModel:PersonneDetailsViewModel}">
                 <view:PersonneDetailsView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:GestionCommandesViewModel}">
+                <view:GestionCommandesView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CommandeDetailsViewModel}">
+                <view:CommandeDetailView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

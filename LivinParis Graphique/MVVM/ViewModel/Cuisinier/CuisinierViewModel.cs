@@ -67,9 +67,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteLogout()
         {
-            Window newWindow = new LoginView{DataContext = new LoginViewModel()};
+            Window newWindow = new MVVM.View.LoginView{DataContext = new LoginViewModel()};
             Application.Current.MainWindow?.Close();
             Application.Current.MainWindow = newWindow;
+            newWindow.Show();
         }
 
     }

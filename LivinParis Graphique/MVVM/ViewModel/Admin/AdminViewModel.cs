@@ -22,7 +22,8 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         }
 
         private GestionPersonnesViewModel _gestionPersonnesViewModel;
-        
+        private GestionCommandesViewModel _gestionCommandesViewModel;
+        public ICommand ShowGestionCommandesCommand { get; }
         public ICommand ShowGestionPersonnesCommand { get; }
         public ICommand LogoutCommand { get; }
 
@@ -30,23 +31,22 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         {
             CurrentUser = user;
             
-            // Initialiser les view models
             _gestionPersonnesViewModel = new GestionPersonnesViewModel();
-
-            // Définir la vue par défaut
+            _gestionCommandesViewModel = new GestionCommandesViewModel();
             CurrentView = _gestionPersonnesViewModel;
 
-            // Configurer les commandes
+            ShowGestionCommandesCommand = new RelayCommand(o => CurrentView = _gestionCommandesViewModel);
             ShowGestionPersonnesCommand = new RelayCommand(o => CurrentView = _gestionPersonnesViewModel);
             LogoutCommand = new RelayCommand(o => ExecuteLogout());
         }
 
-        // Constructeur par défaut pour le designer
         public AdminViewModel()
         {
             _gestionPersonnesViewModel = new GestionPersonnesViewModel();
+            _gestionCommandesViewModel = new GestionCommandesViewModel();
             CurrentView = _gestionPersonnesViewModel;
-
+            
+            ShowGestionCommandesCommand = new RelayCommand(o => CurrentView = _gestionCommandesViewModel);
             ShowGestionPersonnesCommand = new RelayCommand(o => CurrentView = _gestionPersonnesViewModel);
             LogoutCommand = new RelayCommand(o => ExecuteLogout());
         }

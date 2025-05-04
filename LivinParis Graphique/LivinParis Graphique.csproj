@@ -71,6 +71,8 @@
             <SubType>Code</SubType>
         </Compile>
         <Page Include="MVVM\View\Admin\AdminView.xaml" />
+        <Page Include="MVVM\View\Admin\CommandeDetailView.xaml" />
+        <Page Include="MVVM\View\Admin\GestionCommandesView.xaml" />
         <Page Include="MVVM\View\Admin\GestionPersonnesView.xaml" />
         <Page Include="MVVM\View\Admin\PersonneDetailsView.xaml" />
         <Page Include="MVVM\View\ClientView.xaml" />
@@ -91,6 +93,8 @@
     <ItemGroup>
         <Compile Include="MVVM\Model\CommandesToListCuisinier.cs" />
         <Compile Include="MVVM\ViewModel\Admin\AdminViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Admin\CommandeDetailViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Admin\GestionCommandesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Admin\GestionPersonnesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Admin\PersonneDetailViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\ClientViewModel.cs" />
@@ -106,6 +110,12 @@
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
         <Compile Include="MVVM\View\Admin\AdminView.xaml.cs">
           <DependentUpon>AdminView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Admin\CommandeDetailView.xaml.cs">
+          <DependentUpon>CommandeDetailView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Admin\GestionCommandesView.xaml.cs">
+          <DependentUpon>GestionCommandesView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\Admin\GestionPersonnesView.xaml.cs">
           <DependentUpon>GestionPersonnesView.xaml</DependentUpon>

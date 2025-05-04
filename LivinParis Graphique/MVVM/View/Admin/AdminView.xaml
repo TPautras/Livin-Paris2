@@ -16,7 +16,6 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <!-- En-tête -->
             <TextBlock Text="{Binding WelcomeMessage}" 
                        Grid.Column="0"
                        VerticalAlignment="Center"
@@ -34,7 +33,6 @@
                        FontWeight="Bold"
                        Margin="20,0,0,0"/>
             
-            <!-- Menu latéral -->
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Gérer les utilisateurs"
                              Height="50"
@@ -49,7 +47,7 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
-                             IsEnabled="False"/>
+                             Command="{Binding ShowGestionCommandesCommand}"/>
                 
                 <RadioButton Content="Statistiques"
                              Height="50"
@@ -75,7 +73,6 @@
                         Command="{Binding LogoutCommand}"/>
             </StackPanel>
             
-            <!-- Zone de contenu principal -->
             <ContentControl 
                 Grid.Row="1"
                 Grid.Column="1"
