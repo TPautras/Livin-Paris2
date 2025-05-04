@@ -19,29 +19,26 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Username -->
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Identifiant :" 
                        Foreground="White" VerticalAlignment="Center" Margin="0,0,10,10"/>
             <TextBox x:Name="UsernameBox" Grid.Row="0" Grid.Column="1"
                      Focusable="True"
                      Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     Width="200" Margin="0,0,0,10" Style="{StaticResource ModernTextbox}"/>
+                     Width="200" Margin="0,0,0,10" Style="{StaticResource ModernTextbox}"
+                     Tag="Votre identifiant"/>
 
-            <!-- Password -->
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Mot de passe :" 
                        Foreground="White" VerticalAlignment="Center" Margin="0,0,10,10"/>
             <PasswordBox x:Name="PwdBox" Grid.Row="1" Grid.Column="1" 
                          Width="200" Margin="0,0,0,10"
                          Style="{StaticResource ModernPasswordBox}"/>
 
-            <!-- Role selection -->
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Rôle :" 
                        Foreground="White" VerticalAlignment="Center" Margin="0,0,10,10"/>
             <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding SelectedRole}" 
                       ItemsSource="{Binding Roles}" Width="200" Margin="0,0,0,10"
                       Style="{StaticResource ModernComboBox}"/>
 
-            <!-- Login Button -->
             <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Se connecter"
                     Command="{Binding LoginCommand}" 
                     Background="#4C4A62" Foreground="White" FontWeight="Bold"

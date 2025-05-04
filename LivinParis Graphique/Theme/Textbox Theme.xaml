@@ -16,7 +16,7 @@
                             Width="200" Height="40">
                         <Grid>
                             <TextBlock x:Name="Placeholder"
-                                       Text="Votre valeur"
+                                       Text="{TemplateBinding Tag}"
                                        Margin="10,0,0,0"
                                        VerticalAlignment="Center"
                                        Foreground="DarkGray"

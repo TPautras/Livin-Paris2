@@ -54,7 +54,7 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
-                             IsEnabled="False"/>
+                             Command="{Binding ShowStatistiquesCommand}"/>
                 
                 <RadioButton Content="Autre"
                              Height="50"

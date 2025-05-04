@@ -75,6 +75,7 @@
         <Page Include="MVVM\View\Admin\GestionCommandesView.xaml" />
         <Page Include="MVVM\View\Admin\GestionPersonnesView.xaml" />
         <Page Include="MVVM\View\Admin\PersonneDetailsView.xaml" />
+        <Page Include="MVVM\View\Admin\StatistiquesView.xaml" />
         <Page Include="MVVM\View\ClientView.xaml" />
         <Page Include="MVVM\View\CompanyView.xaml" />
         <Page Include="MVVM\View\Cuisinier\AjouterPlatView.xaml" />
@@ -97,6 +98,7 @@
         <Compile Include="MVVM\ViewModel\Admin\GestionCommandesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Admin\GestionPersonnesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Admin\PersonneDetailViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Admin\StatistiquesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\ClientViewModel.cs" />
         <Compile Include="MVVM\ViewModel\CompanyViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\AjouterPlatViewModel.cs" />
@@ -122,6 +124,9 @@
         </Compile>
         <Compile Include="MVVM\View\Admin\PersonneDetailsView.xaml.cs">
           <DependentUpon>PersonneDetailsView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Admin\StatistiquesView.xaml.cs">
+          <DependentUpon>StatistiquesView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\ClientView.xaml.cs">
           <DependentUpon>ClientView.xaml</DependentUpon>

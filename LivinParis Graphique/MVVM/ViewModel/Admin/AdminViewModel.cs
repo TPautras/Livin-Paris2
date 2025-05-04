@@ -23,22 +23,30 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private GestionPersonnesViewModel _gestionPersonnesViewModel;
         private GestionCommandesViewModel _gestionCommandesViewModel;
+        private StatistiquesViewModel _statistiquesViewModel;
         public ICommand ShowGestionCommandesCommand { get; }
         public ICommand ShowGestionPersonnesCommand { get; }
         public ICommand LogoutCommand { get; }
+        public ICommand ShowStatistiquesCommand { get; }
+
+
 
         public AdminViewModel(Personne user)
         {
             CurrentUser = user;
-            
+
             _gestionPersonnesViewModel = new GestionPersonnesViewModel();
             _gestionCommandesViewModel = new GestionCommandesViewModel();
+            _statistiquesViewModel = new StatistiquesViewModel();
+
             CurrentView = _gestionPersonnesViewModel;
 
             ShowGestionCommandesCommand = new RelayCommand(o => CurrentView = _gestionCommandesViewModel);
             ShowGestionPersonnesCommand = new RelayCommand(o => CurrentView = _gestionPersonnesViewModel);
+            ShowStatistiquesCommand = new RelayCommand(o => CurrentView = _statistiquesViewModel);
             LogoutCommand = new RelayCommand(o => ExecuteLogout());
         }
+
 
         public AdminViewModel()
         {
