@@ -37,6 +37,9 @@
             <DataTemplate DataType="{x:Type viewModel:CreerRecetteViewModel}">
                 <view:CreerRecetteView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VoirCommandesViewModel}">
+                <view:VoirCommandeView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

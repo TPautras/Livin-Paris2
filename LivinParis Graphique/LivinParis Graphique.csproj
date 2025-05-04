@@ -15,6 +15,7 @@
         <WarningLevel>4</WarningLevel>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <LangVersion>9</LangVersion>
+        <ApplicationIcon>images\favicon (3).ico</ApplicationIcon>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -74,6 +75,7 @@
         <Page Include="MVVM\View\Cuisinier\AjouterPlatView.xaml" />
         <Page Include="MVVM\View\Cuisinier\CookView.xaml" />
         <Page Include="MVVM\View\Cuisinier\CreerRecetteView.xaml" />
+        <Page Include="MVVM\View\Cuisinier\VoirCommandeView.xaml" />
         <Page Include="MVVM\View\Cuisinier\VoirPlatsView.xaml" />
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
@@ -84,12 +86,14 @@
         <Page Include="Theme\Textbox Theme.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="MVVM\Model\CommandesToListCuisinier.cs" />
         <Compile Include="MVVM\ViewModel\AdminViewModel.cs" />
         <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
         <Compile Include="MVVM\ViewModel\CompanyViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\AjouterPlatViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\CreerRecetteViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\CuisinierViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Cuisinier\VoirCommandesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\VoirPlatsViewModel.cs" />
         <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
@@ -112,6 +116,9 @@
         </Compile>
         <Compile Include="MVVM\View\Cuisinier\CreerRecetteView.xaml.cs">
           <DependentUpon>CreerRecetteView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Cuisinier\VoirCommandeView.xaml.cs">
+          <DependentUpon>VoirCommandeView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\Cuisinier\VoirPlatsView.xaml.cs">
           <DependentUpon>VoirPlatsView.xaml</DependentUpon>
@@ -142,10 +149,8 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="MVVM\Model\" />
-    </ItemGroup>
-    <ItemGroup>
       <Content Include="Fonts\Poppins-Regular.ttf" />
+      <Content Include="images\favicon (3).ico" />
       <Content Include="images\man.png" />
     </ItemGroup>
     <ItemGroup>
