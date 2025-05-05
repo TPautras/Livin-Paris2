@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.Model;
@@ -17,13 +18,14 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public string Cuisinier { get; set; }
         public string Prix { get; set; }
         public string Recette { get; set; }
-        public ObservableCollection<CommentaireViewDisplay> Commentaires { get; set; }
         public string Origine { get; set; }
         public string Regime { get; set; }
         public string Apports { get; set; }
         public string Type {get;set;}
         public string Temps {get;set;}
         public Personne User { get; set; }
+        public string Evaluation { get; set; }
+        public ObservableCollection<string> Commentaires { get; set; }
 
         public PlatDetailViewModel(PlatToExplore platToExplore, Personne currentUser)
         {
@@ -37,6 +39,12 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             Type = platToExplore.RecetteEntiere.RecetteTypeDePlat;
             Cuisinier cooker = new CuisinierDataAccess().GetByUsername(Cuisinier);
             Personne personne = new PersonneDataAccess().GetByEmail(cooker.PersonneEmail);
+            Evaluation = new EvaluationDataAccess()
+                .GetAverageRatingByCuisinierUsername(cooker.CuisinierUsername)
+                .ToString(CultureInfo.CurrentCulture) + " / 5";
+            Commentaires = new ObservableCollection<string>(
+                new EvaluationDataAccess().GetCommentsByCuisinierUsername(cooker.CuisinierUsername)
+                );
             Temps = CalculerTemps(personne);
             _platDetailView = new PlatDetailView();
         }
