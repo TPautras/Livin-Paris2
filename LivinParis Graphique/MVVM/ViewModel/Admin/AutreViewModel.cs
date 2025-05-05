@@ -17,7 +17,9 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             {
                 new CategorieAutre("Exports", "Exporter les données dans différents formats."),
                 new CategorieAutre("Parcours", "Gérer les parcours utilisateurs."),
-                new CategorieAutre("Coloration", "Personnaliser les thèmes et couleurs.")
+                new CategorieAutre("Coloration", "Personnaliser les thèmes et couleurs."),
+                new CategorieAutre("Pratt-Parser", "Recreation a la main de MySql"),
+                new CategorieAutre("Ameliorations", "Les ameliorations et particularites de notre projet LivinParis !"),
             };
 
             OpenCategoryCommand = new RelayCommand(OpenCategory);
@@ -28,7 +30,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             if (parameter is CategorieAutre cat)
             {
                 MessageBox.Show($"Vous avez sélectionné : {cat.Titre}", "Catégorie Sélectionnée");
-                // Ici tu peux gérer la navigation vers des vues spécifiques pour chaque catégorie
             }
         }
     }

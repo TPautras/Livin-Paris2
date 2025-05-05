@@ -37,6 +37,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="CryptingUtils472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\CryptingUtils.1.1.0\lib\net472\CryptingUtils472.dll</HintPath>
+        </Reference>
         <Reference Include="HessQLParser472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\HessQL.Parser.1.1.0\lib\net472\HessQLParser472.dll</HintPath>
         </Reference>
@@ -228,6 +231,9 @@
         <Project>{e5d6cc2b-678e-453b-b211-744bb4e76da9}</Project>
         <Name>DBConnectionLibrary</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="MVVM\View\Admin\Autre\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>

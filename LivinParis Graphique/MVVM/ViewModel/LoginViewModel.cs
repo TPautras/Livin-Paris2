@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
@@ -6,11 +7,13 @@ using LivinParis_Graphique.MVVM.View;
 using SqlConnector.DataAccess;
 using SqlConnector.DataService;
 using SqlConnector.Models;
+using CryptingUtils;
 
 namespace LivinParis_Graphique.MVVM.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
+        private static readonly byte[] EncryptionKey = Crypter.GenerateKey("LivinParisSecretKey2025");
         private string _username;
         public string Username
         {
@@ -42,6 +45,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteLogin()
         {
+            Console.WriteLine("test");
             Personne? user = null;
             string password = string.Empty;
             switch (SelectedRole)
@@ -65,9 +69,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     user = companyDal.GetByUsername(_username);
                     break;
             }
-
+            Console.WriteLine(password);
             if (user != null && password == Password)
             {
+                Console.WriteLine(Password);
+                Console.WriteLine(password);
                 if (user.PersonneIsAdmin == true)
                 {
                     OpenAdminView(user);

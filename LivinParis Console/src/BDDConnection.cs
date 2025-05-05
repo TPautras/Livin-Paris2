@@ -16,7 +16,7 @@ namespace LivinParis_Console
     {
         public static void ConnectorTest()
         {
-            string[] options = { "Initialiser la base de donnees", "Exporter les donnees","Quitter" };
+            string[] options = { "Initialiser la base de donnees", "Exporter les donnees","Migrer vers un systeme encrypte", "Quitter" };
             int bddChoice = Affichages.MenuSelect(ASCII.Bdd+"\n Quelle option voulez vous choisir ?", options);
             switch (bddChoice)
             {
@@ -25,6 +25,9 @@ namespace LivinParis_Console
                     break;
                 case 1:
                     MainExport();
+                    break;
+                case 2:
+                    Migration.Main();
                     break;
                 default:
                     break;
