@@ -73,6 +73,9 @@
             <DataTemplate DataType="{x:Type viewModel:PlatDetailViewModel}">
                 <view:PlatDetailView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
+                <view:CartView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

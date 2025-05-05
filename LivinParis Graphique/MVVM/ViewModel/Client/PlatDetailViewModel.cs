@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
+using System.Windows.Input;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.Model;
 using LivinParis_Graphique.MVVM.View;
@@ -14,6 +15,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 {
     public class PlatDetailViewModel : BaseViewModel
     {
+        private ExploreViewModel _exploreViewModel;
         private PlatDetailView _platDetailView;
         public string Cuisinier { get; set; }
         public string Prix { get; set; }
@@ -27,8 +29,12 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public string Evaluation { get; set; }
         public ObservableCollection<string> Commentaires { get; set; }
 
-        public PlatDetailViewModel(PlatToExplore platToExplore, Personne currentUser)
+        public ICommand AddToCartCommand { get; set; }
+
+        public PlatDetailViewModel(PlatToExplore platToExplore, Personne currentUser, ExploreViewModel exploreViewModel)
         {
+            _exploreViewModel = exploreViewModel;
+            AddToCartCommand = new RelayCommand(o => ExecuteAddToCart());
             Cuisinier = platToExplore.Cuisinier;
             User = currentUser;
             Prix = platToExplore.Prix;
@@ -47,6 +53,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 );
             Temps = CalculerTemps(personne);
             _platDetailView = new PlatDetailView();
+        }
+
+        private void ExecuteAddToCart()
+        {
+            _exploreViewModel.AddToCart(Recette, Prix,new CuisinierDataAccess().GetByUsername(Cuisinier));
         }
 
         public string CalculerTemps(Personne personneArrivee)

@@ -161,6 +161,7 @@
                                 VerticalAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 FontSize="50"
+                                Command="{Binding AddToCartCommand}"
                                 Margin="0,10,0,0"
                                 Style="{StaticResource MenuButtonTheme}"/>
                         </StackPanel>

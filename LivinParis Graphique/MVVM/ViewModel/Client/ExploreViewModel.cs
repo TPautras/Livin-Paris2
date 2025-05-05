@@ -51,9 +51,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public ICommand RefreshPlat { get; }
         public ICommand AddPlatCommand { get; }
         public ICommand ShowPlatDetailsCommand { get; }
+        private ClientViewModel _clientViewModel;
 
-        public ExploreViewModel(Personne user)
+        public ExploreViewModel(Personne user, ClientViewModel clientViewModel)
         {
+            _clientViewModel = clientViewModel;
             User = user;
             _commandeDataAccess = new CommandeDataAccess();
             _exploreView = new ExploreView();
@@ -118,11 +120,22 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             {
                 var platDetailView = new PlatDetailView
                 {
-                    DataContext = new PlatDetailViewModel(plat, User)
+                    DataContext = new PlatDetailViewModel(plat, User, this)
                 };
                 platDetailView.ShowDialog();
                 LoadPlats();
             }
+        }
+
+        public void AddToCart(string recetteNom, string prix, Cuisinier cuisinier)
+        {
+            _clientViewModel.AddCartItem(
+                new CartItem
+                {
+                    Cuisinier = cuisinier.CuisinierUsername,
+                    Prix = prix,
+                    RecetteName = recetteNom
+                });
         }
     }
 }

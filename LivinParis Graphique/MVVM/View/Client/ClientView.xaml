@@ -20,7 +20,7 @@
                 <RadioButton Content="Explorer les plats" Style="{StaticResource MenuButtonTheme}" 
                              Command="{Binding ShowExploreViewCommand}" Margin="0,5,0,0"/>
                 <RadioButton Content="Votre Panier" Style="{StaticResource MenuButtonTheme}" 
-                             Command="{Binding ShowAjouterPlatCommand}" Margin="0,5,0,0"/>
+                             Command="{Binding ShowCartViewCommand}" Margin="0,5,0,0"/>
                 <RadioButton Content="Vos Commandes" Style="{StaticResource MenuButtonTheme}" 
                              Command="{Binding ShowCreerRecetteCommand}" Margin="0,5,0,0"/>
                 <RadioButton Content="Parametres" Style="{StaticResource MenuButtonTheme}" 
