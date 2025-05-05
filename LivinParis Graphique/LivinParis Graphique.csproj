@@ -139,6 +139,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Model\CommandesToListCuisinier.cs" />
+        <Compile Include="MVVM\Model\CommentaireViewDisplay.cs" />
         <Compile Include="MVVM\Model\PlatToExplore.cs" />
         <Compile Include="MVVM\ViewModel\Admin\AdminViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Admin\AutreViewModel.cs" />
@@ -252,6 +253,10 @@
       <ProjectReference Include="..\DBConnectionLibrary\DBConnectionLibrary.csproj">
         <Project>{e5d6cc2b-678e-453b-b211-744bb4e76da9}</Project>
         <Name>DBConnectionLibrary</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\MetroHelper\MetroHelper.csproj">
+        <Project>{3305ab41-091a-4b9c-b7ed-2b600589a66e}</Project>
+        <Name>MetroHelper</Name>
       </ProjectReference>
     </ItemGroup>
     <ItemGroup>

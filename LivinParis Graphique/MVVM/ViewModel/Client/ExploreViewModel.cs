@@ -13,48 +13,36 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 {
     public class ExploreViewModel : BaseViewModel
     {
+        public Personne User { get; set; }
         private readonly CommandeDataAccess _commandeDataAccess;
-        private ObservableCollection<Commande> _allCommandes;
+        private readonly ExploreView _exploreView;
+        private ObservableCollection<PlatToExplore> _allPlats;
 
-        private ObservableCollection<Commande> _commandes;
-        public ObservableCollection<Commande> Commandes {
-            get => _commandes;
-            set { _commandes = value; OnPropertyChanged(); }
+        private ObservableCollection<PlatToExplore> _plats;
+        public ObservableCollection<PlatToExplore> Plats
+        {
+            get => _plats;
+            set { _plats = value; OnPropertyChanged(); }
         }
 
         private string _searchQuery;
-        public string SearchQuery {
+        public string SearchQuery
+        {
             get => _searchQuery;
-            set {
+            set
+            {
                 _searchQuery = value;
                 OnPropertyChanged();
-                FilterCommandes();
+                FilterPlats();
             }
         }
 
-        private DateTime? _filterDate;
-        public DateTime? FilterDate {
-            get => _filterDate;
-            set {
-                _filterDate = value;
-                OnPropertyChanged();
-                FilterCommandes();
-            }
-        }
-
-        private Commande _selectedCommande;
-        public Commande SelectedCommande {
-            get => _selectedCommande;
-            set {
-                _selectedCommande = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        private Plat _selectedPlat;
-        public Plat SelectedPlat {
+        private PlatToExplore _selectedPlat;
+        public PlatToExplore SelectedPlat
+        {
             get => _selectedPlat;
-            set {
+            set
+            {
                 _selectedPlat = value;
                 OnPropertyChanged();
             }
@@ -64,73 +52,77 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public ICommand AddPlatCommand { get; }
         public ICommand ShowPlatDetailsCommand { get; }
 
-        private void LoadPlats() {
-            List<Plat> plats = new PlatDataAccess().GetAll();
-            foreach (Plat plat in plats)
+        public ExploreViewModel(Personne user)
+        {
+            User = user;
+            _commandeDataAccess = new CommandeDataAccess();
+            _exploreView = new ExploreView();
+            RefreshPlat = new RelayCommand(o => LoadPlats());
+            AddPlatCommand = new RelayCommand(o => OpenAddCommande());
+            ShowPlatDetailsCommand = new RelayCommand(o => OpenPlatDetails(o));
+            LoadPlats();
+        }
+
+        private void LoadPlats()
+        {
+            var plats = new PlatDataAccess().GetAll();
+            var result = new ObservableCollection<PlatToExplore>();
+
+            foreach (var plat in plats)
             {
                 if (plat.PlatDateDePeremption < DateTime.Today)
                 {
-                    Console.WriteLine(plat.PlatDateDePeremption);
-                    Plats.Add(new PlatToExplore
+                    result.Add(new PlatToExplore
                     {
                         Prix = plat.PlatPrix.ToString() + " \u20ac",
                         Cuisinier = plat.CuisinierUsername,
                         Recette = new RecetteDataAccess().GetById(plat.RecetteId).RecetteNom,
+                        RecetteEntiere = new RecetteDataAccess().GetById(plat.RecetteId),
                     });
                 }
             }
+
+            Plats = result;
+            _allPlats = result;
         }
 
-        private void FilterCommandes() {
-            if (_allCommandes == null) return;
+        private void FilterPlats()
+        {
+            if (_allPlats == null) return;
 
-            IEnumerable<Commande> filtered = _allCommandes;
+            IEnumerable<PlatToExplore> filtered = _allPlats;
 
-            if (!string.IsNullOrEmpty(SearchQuery)) {
+            if (!string.IsNullOrEmpty(SearchQuery))
+            {
                 string query = SearchQuery.ToLower();
-                filtered = filtered.Where(c =>
-                    (!string.IsNullOrEmpty(c.ClientUsername) && c.ClientUsername.ToLower().Contains(query)) ||
-                    (!string.IsNullOrEmpty(c.CuisinierUsername) && c.CuisinierUsername.ToLower().Contains(query))
+                filtered = filtered.Where(p =>
+                    (!string.IsNullOrEmpty(p.Cuisinier) && p.Cuisinier.ToLower().Contains(query)) ||
+                    (!string.IsNullOrEmpty(p.Recette) && p.Recette.ToLower().Contains(query))
                 );
             }
 
-            if (FilterDate.HasValue) {
-                DateTime dateSel = FilterDate.Value.Date;
-                filtered = filtered.Where(c => c.DateCreation.Date == dateSel);
-            }
-
-            Commandes = new ObservableCollection<Commande>(filtered);
+            Plats = new ObservableCollection<PlatToExplore>(filtered);
         }
 
-        private void OpenAddCommande() {
-            var newCommandeVM = new CommandeDetailsViewModel(); 
+        private void OpenAddCommande()
+        {
+            var newCommandeVM = new CommandeDetailsViewModel();
             var detailsWindow = new CommandeDetailView { DataContext = newCommandeVM };
             detailsWindow.ShowDialog();
-
             LoadPlats();
         }
 
-        private void OpenPlatDetails(object parameter) {
-            if (parameter is Commande cmd) {
-                var detailsVM = new CommandeDetailsViewModel(cmd);
-                var detailsWindow = new CommandeDetailView { DataContext = detailsVM };
-                detailsWindow.ShowDialog();
+        private void OpenPlatDetails(object parameter)
+        {
+            if (parameter is PlatToExplore plat)
+            {
+                var platDetailView = new PlatDetailView
+                {
+                    DataContext = new PlatDetailViewModel(plat, User)
+                };
+                platDetailView.ShowDialog();
                 LoadPlats();
             }
-        }
-        public ObservableCollection<PlatToExplore> Plats { get; set; } = new ObservableCollection<PlatToExplore>();
-        
-        private ExploreView _exploreView;
-
-        public ExploreViewModel()
-        {
-            _commandeDataAccess = new CommandeDataAccess();
-            RefreshPlat = new RelayCommand(o => LoadPlats());
-            AddPlatCommand = new RelayCommand(o => OpenAddCommande());
-            ShowPlatDetailsCommand = new RelayCommand(OpenPlatDetails);
-
-            LoadPlats();
-            _exploreView = new ExploreView();
         }
     }
 }

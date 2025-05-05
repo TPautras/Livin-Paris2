@@ -28,7 +28,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         public ClientViewModel(Personne user)
         {
-            _exploreViewModel = new ExploreViewModel();
+            _exploreViewModel = new ExploreViewModel(user);
             CurrentUser = user;
             
             CurrentView = _exploreViewModel;

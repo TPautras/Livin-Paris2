@@ -28,7 +28,7 @@
         </StackPanel>
 
         <DataGrid Grid.Row="1"
-                  ItemsSource="{Binding Commandes}" 
+                  ItemsSource="{Binding Plats}" 
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
@@ -41,7 +41,7 @@
                   BorderBrush="#272537"
                   Background="#272537"
                   Foreground="White"
-                  SelectedItem="{Binding SelectedCommande, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedPlat, Mode=TwoWay}"
                   AlternatingRowBackground="#353340"
                   RowBackground="#272537">
             <DataGrid.Resources>
@@ -71,13 +71,15 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
+                <Style x:Key="CenteredCellStyle" TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Client" Binding="{Binding ClientUsername}" Width="*" />
-                <DataGridTextColumn Header="Cuisinier" Binding="{Binding CuisinierUsername}" Width="*" />
-                <DataGridTextColumn Header="Entreprise" Binding="{Binding EntrepriseId}" Width="*" />
-                <DataGridTextColumn Header="Date Création" Binding="{Binding DateCreation, StringFormat='dd/MM/yyyy'}" Width="*" />
+                <DataGridTextColumn Header="Recette" Binding="{Binding Recette, StringFormat='dd/MM/yyyy'}" Width="*" />
+                <DataGridTextColumn Header="Prix" Binding="{Binding Prix}" ElementStyle="{StaticResource CenteredCellStyle}" />
+                <DataGridTextColumn Header="Cuisinier" Binding="{Binding Cuisinier}" Width="*" ElementStyle="{StaticResource CenteredCellStyle}"/>
                 <DataGridTemplateColumn Header="Détails" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

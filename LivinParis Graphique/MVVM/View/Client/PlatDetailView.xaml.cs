@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace LivinParis_Graphique.MVVM.View.Client
+namespace LivinParis_Graphique.MVVM.View
 {
     public partial class PlatDetailView : Window
     {
