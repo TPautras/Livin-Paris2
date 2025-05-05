@@ -129,6 +129,7 @@
         <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="MVVM\View\Login\ForgotPasswordView.xaml" />
         <Page Include="MVVM\View\Login\LoginView.xaml" />
+        <Page Include="MVVM\View\Login\PasswordReminderView.xaml" />
         <Page Include="Theme\ComboBox Theme.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
         <Page Include="Theme\PasswordButton Theme.xaml" />
@@ -154,6 +155,7 @@
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Login\ForgotPasswordViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Login\LoginViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Login\PasswordReminderViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
         <Compile Include="MVVM\View\Admin\AdminView.xaml.cs">
           <DependentUpon>AdminView.xaml</DependentUpon>
@@ -208,6 +210,9 @@
         </Compile>
         <Compile Include="MVVM\View\Login\LoginView.xaml.cs">
           <DependentUpon>LoginView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Login\PasswordReminderView.xaml.cs">
+          <DependentUpon>PasswordReminderView.xaml</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>

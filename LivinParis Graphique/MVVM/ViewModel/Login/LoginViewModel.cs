@@ -89,29 +89,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         
         private void ExecuteForgotPassword()
         {
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                MessageBox.Show("Veuillez entrer votre email.");
-                return;
-            }
-
-            var personneDal = new PersonneDataAccess();
-            var personne = personneDal.GetByEmail(Username);
-            if (personne == null)
-            {
-                MessageBox.Show("Aucun utilisateur trouvé avec cet email.");
-                return;
-            }
-
-            var password = personneDal.GetClientPasswordByEmail(Username);
-            if (password == null)
-            {
-                MessageBox.Show("Mot de passe introuvable.");
-                return;
-            }
-
-            SqlConnector.Services.Mailer.SendPasswordReminder(Username, password);
-            MessageBox.Show("Votre mot de passe a été envoyé par mail.");
+            var ForgotPasswordViewModel = new ForgotPasswordViewModel();
+            var newWindow = new ForgotPasswordView{DataContext = ForgotPasswordViewModel};
+            Application.Current.MainWindow = newWindow;
+            newWindow.ShowDialog();
         }
 
 
