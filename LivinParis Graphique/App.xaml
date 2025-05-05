@@ -67,6 +67,9 @@
             <DataTemplate DataType="{x:Type viewModel:PasswordReminderViewModel}">
                 <view:PasswordReminderView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ExploreViewModel}">
+                <view:ExploreView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

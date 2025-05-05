@@ -19,15 +19,21 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        private ExploreViewModel _exploreViewModel;
         
         public ICommand LogoutCommand { get; }
+        public ICommand ShowExploreViewCommand { get; }
 
         public string WelcomeMessage => $"Bienvenue, {CurrentUser.PersonneNom}!";
 
         public ClientViewModel(Personne user)
         {
+            _exploreViewModel = new ExploreViewModel();
             CurrentUser = user;
-            CurrentView = new DiscoveryViewModel();
+            
+            CurrentView = _exploreViewModel;
+
+            ShowExploreViewCommand = new RelayCommand(o => CurrentView = _exploreViewModel);
             LogoutCommand = new RelayCommand(o => ExecuteLogout());
         }
         
