@@ -58,6 +58,9 @@
             <DataTemplate DataType="{x:Type viewModel:StatistiquesViewModel}">
                 <view:StatistiquesView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AutreViewModel}">
+                <view:AutreView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

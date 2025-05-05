@@ -60,8 +60,8 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             IsEnabled="False"/>
+                             Command="{Binding ShowAutreCommand}"
+                             Style="{StaticResource MenuButtonTheme}"/>
                 
                 <Button Content="Déconnexion"
                         Height="50"
