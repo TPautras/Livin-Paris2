@@ -113,7 +113,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             }
             else
             {
-                // Logique de gestion d'erreur si la fenêtre n'a pas pu être créée
                 MessageBox.Show("Échec de l'ouverture de la nouvelle fenêtre. Veuillez vérifier le rôle sélectionné.");
             }
         }

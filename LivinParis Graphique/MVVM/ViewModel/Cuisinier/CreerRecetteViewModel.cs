@@ -43,7 +43,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public CreerRecetteViewModel()
         {
             CreateRecipeCommand = new RelayCommand(o => ExecuteCreateRecipe());
-            // Champs initialisés à vide
             _recipeName = string.Empty;
             _ingredients = string.Empty;
             _steps = string.Empty;
@@ -51,11 +50,9 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteCreateRecipe()
         {
-            // Action factice : vide les champs après la création de la recette
             RecipeName = string.Empty;
             Ingredients = string.Empty;
             Steps = string.Empty;
-            // Dans une application réelle, on enregistrerait la recette dans une base de données ou une collection.
         }
     }
 }

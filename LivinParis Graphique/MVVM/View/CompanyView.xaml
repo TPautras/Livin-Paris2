@@ -8,7 +8,6 @@
         <StackPanel>
             <TextBlock Text="{Binding WelcomeMessage}" Foreground="White" FontSize="18" FontWeight="Bold" />
             <TextBlock Text="Espace Entreprise" Foreground="White" FontSize="14" Margin="0,0,0,20"/>
-            <!-- Contenu spécifique à l'entreprise -->
             <TextBlock Text="(Interface entreprise - fonctionnalités à implémenter)" 
                        Foreground="Gray" FontStyle="Italic"/>
         </StackPanel>

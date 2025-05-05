@@ -254,7 +254,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     }
                     break;
                 case UserRole.Company:
-                    // Traitement spécifique pour les entreprises si nécessaire
                     break;
             }
         }
@@ -280,10 +279,8 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     PersonneIsAdmin = IsAdmin
                 };
                 
-                // Enregistrer la personne
                 new PersonneDataAccess().Insert(personne);
                 
-                // Enregistrer selon le rôle
                 switch (SelectedRole)
                 {
                     case UserRole.Client:
@@ -307,7 +304,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                         break;
                     
                     case UserRole.Company:
-                        // Traitement spécifique pour les entreprises si nécessaire
                         break;
                 }
                 
@@ -324,7 +320,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         {
             try
             {
-                // Mettre à jour la personne
                 var personneDAL = new PersonneDataAccess();
                 var personne = personneDAL.GetByEmail(Email);
                 
@@ -340,7 +335,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     
                     personneDAL.Update(personne);
                     
-                    // Mettre à jour selon le rôle
                     switch (SelectedRole)
                     {
                         case UserRole.Client:
@@ -364,7 +358,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                             break;
                         
                         case UserRole.Company:
-                            // Traitement spécifique pour les entreprises si nécessaire
                             break;
                     }
                     
@@ -380,8 +373,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         
         private void Close()
         {
-            // Cette méthode pourrait être remplacée par un événement que la vue écouterait
-            // pour fermer la fenêtre ou naviger à une autre vue
         }
         
         #endregion
@@ -441,7 +432,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             Rue = string.Empty;
             CodePostal = string.Empty;
             Ville = string.Empty;
-            Pays = "France"; // Valeur par défaut
+            Pays = "France";
         }
     }
     
