@@ -37,10 +37,12 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public UserRole[] Roles => new UserRole[] { UserRole.Client, UserRole.Cook, UserRole.Company };
 
         public ICommand LoginCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
 
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(_ => ExecuteLogin());
+            ForgotPasswordCommand = new RelayCommand(_ => ExecuteForgotPassword());
         }
 
         private void ExecuteLogin()
@@ -84,6 +86,34 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 }
             }
         }
+        
+        private void ExecuteForgotPassword()
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                MessageBox.Show("Veuillez entrer votre email.");
+                return;
+            }
+
+            var personneDal = new PersonneDataAccess();
+            var personne = personneDal.GetByEmail(Username);
+            if (personne == null)
+            {
+                MessageBox.Show("Aucun utilisateur trouvé avec cet email.");
+                return;
+            }
+
+            var password = personneDal.GetClientPasswordByEmail(Username);
+            if (password == null)
+            {
+                MessageBox.Show("Mot de passe introuvable.");
+                return;
+            }
+
+            SqlConnector.Services.Mailer.SendPasswordReminder(Username, password);
+            MessageBox.Show("Votre mot de passe a été envoyé par mail.");
+        }
+
 
         private void OpenAdminView(Personne user)
         {

@@ -127,7 +127,8 @@
         <Page Include="MVVM\View\Cuisinier\VoirPlatsView.xaml" />
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
-        <Page Include="MVVM\View\LoginView.xaml" />
+        <Page Include="MVVM\View\Login\ForgotPasswordView.xaml" />
+        <Page Include="MVVM\View\Login\LoginView.xaml" />
         <Page Include="Theme\ComboBox Theme.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
         <Page Include="Theme\PasswordButton Theme.xaml" />
@@ -151,7 +152,8 @@
         <Compile Include="MVVM\ViewModel\Cuisinier\VoirPlatsViewModel.cs" />
         <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
-        <Compile Include="MVVM\ViewModel\LoginViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Login\ForgotPasswordViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Login\LoginViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
         <Compile Include="MVVM\View\Admin\AdminView.xaml.cs">
           <DependentUpon>AdminView.xaml</DependentUpon>
@@ -201,7 +203,10 @@
         <Compile Include="MVVM\View\HomeView.xaml.cs">
           <DependentUpon>HomeView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="MVVM\View\LoginView.xaml.cs">
+        <Compile Include="MVVM\View\Login\ForgotPasswordView.xaml.cs">
+          <DependentUpon>ForgotPasswordView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Login\LoginView.xaml.cs">
           <DependentUpon>LoginView.xaml</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -223,6 +228,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Fonts\Poppins-Regular.ttf" />
+      <Resource Include="images\Design sans titre.png" />
       <Content Include="images\favicon (3).ico" />
       <Content Include="images\man.png" />
     </ItemGroup>

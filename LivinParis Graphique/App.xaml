@@ -61,6 +61,9 @@
             <DataTemplate DataType="{x:Type viewModel:AutreViewModel}">
                 <view:AutreView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ForgotPasswordViewModel}">
+                <view:ForgotPasswordView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

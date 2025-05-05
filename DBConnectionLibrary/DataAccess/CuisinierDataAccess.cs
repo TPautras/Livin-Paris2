@@ -10,7 +10,7 @@ namespace SqlConnector.DataAccess
 {
     public class CuisinierDataAccess : BaseDataAccess, IDataAccess<Cuisinier>
     {
-        private static readonly byte[] EncryptionKey = Crypter.GenerateKey("LivinParisSecretKey2025");
+        
 
         public List<Cuisinier> GetAll()
         {

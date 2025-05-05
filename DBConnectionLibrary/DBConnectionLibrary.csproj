@@ -160,6 +160,7 @@
         <Compile Include="Models\Plat.cs" />
         <Compile Include="Models\Recette.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Services\Mailer.cs" />
         <Compile Include="Sql\ExportDtosFull.cs" />
         <Compile Include="Sql\Exports.cs" />
         <Compile Include="Sql\InitializeSql.cs" />
