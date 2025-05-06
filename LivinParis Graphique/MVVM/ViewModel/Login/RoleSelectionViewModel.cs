@@ -44,18 +44,35 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteViewClient()
         {
-            _createClientView= new CreateClientView{ DataContext = new CreateClientViewModel(User) };
+            _createClientView = new CreateClientView();
+            var vm = new CreateClientViewModel(User, _createClientView);
+            _createClientView.DataContext = vm;
+
             Application.Current.MainWindow = _createClientView;
-            ClientVisibility= Visibility.Hidden;
+            ClientVisibility = Visibility.Hidden;
             _createClientView.Show();
+            CheckAndCloseIfBothCreated();
         }
-        
+
+
         private void ExecuteViewCuisinier()
         {
-            _createCuisinierView= new CreateCuisinierView(){ DataContext = new CreateCuisinierViewModel(User) };
-            Application.Current.MainWindow = _createClientView;
-            CuisinierVisibility= Visibility.Hidden;
-            _createClientView.Show();
+            _createCuisinierView = new CreateCuisinierView();
+            var vm = new CreateCuisinierViewModel(User, _createCuisinierView);
+            _createCuisinierView.DataContext = vm;
+
+            Application.Current.MainWindow = _createCuisinierView;
+            CuisinierVisibility = Visibility.Hidden;
+            _createCuisinierView.Show();
+            CheckAndCloseIfBothCreated();
+        }
+
+        private void CheckAndCloseIfBothCreated()
+        {
+            if (ClientVisibility == Visibility.Hidden && CuisinierVisibility == Visibility.Hidden)
+            {
+                _roleSelectionView.Close();
+            }
         }
     }
 }
