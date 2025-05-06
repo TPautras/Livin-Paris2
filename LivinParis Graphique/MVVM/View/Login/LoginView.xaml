@@ -63,7 +63,7 @@
                         Background="#4C4A62" Foreground="White" FontWeight="Bold"
                         Padding="8,2" Margin="0,10,0,0" BorderBrush="{x:Null}"/>
                 <RadioButton Grid.Row="4" Grid.ColumnSpan="2" Content="Creer un compte"
-                        Command="{Binding LoginCommand}" 
+                        Command="{Binding CreateNewUserCommand}" 
                         Style="{StaticResource MenuButtonTheme}" Margin="75,15,75,0"/>
                 <RadioButton Grid.Row="5" Grid.ColumnSpan="2" Content="Mot de passe oublie"
                              Command="{Binding ForgotPasswordCommand}" 

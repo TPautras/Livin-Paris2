@@ -130,6 +130,9 @@
         <Page Include="MVVM\View\Cuisinier\VoirPlatsView.xaml" />
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
+        <Page Include="MVVM\View\Login\CreateClientView.xaml" />
+        <Page Include="MVVM\View\Login\CreateCuisinierView.xaml" />
+        <Page Include="MVVM\View\Login\CreateUserView.xaml" />
         <Page Include="MVVM\View\Login\ForgotPasswordView.xaml" />
         <Page Include="MVVM\View\Login\LoginView.xaml" />
         <Page Include="MVVM\View\Login\PasswordReminderView.xaml" />
@@ -162,6 +165,9 @@
         <Compile Include="MVVM\ViewModel\Cuisinier\VoirPlatsViewModel.cs" />
         <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Login\CreateClientViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Login\CreateCuisinierViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Login\CreateUserViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Login\ForgotPasswordViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Login\LoginViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Login\PasswordReminderViewModel.cs" />
@@ -222,6 +228,15 @@
         </Compile>
         <Compile Include="MVVM\View\HomeView.xaml.cs">
           <DependentUpon>HomeView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Login\CreateClientView.xaml.cs">
+          <DependentUpon>CreateClientView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Login\CreateCuisinierView.xaml.cs">
+          <DependentUpon>CreateCuisinierView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Login\CreateUserView.xaml.cs">
+          <DependentUpon>CreateUserView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\Login\ForgotPasswordView.xaml.cs">
           <DependentUpon>ForgotPasswordView.xaml</DependentUpon>

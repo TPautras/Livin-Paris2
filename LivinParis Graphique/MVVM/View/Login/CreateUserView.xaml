@@ -1,0 +1,131 @@
+﻿<Window x:Class="LivinParis_Graphique.MVVM.View.CreateUserView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:LivinParis_Graphique.MVVM.View"
+        mc:Ignorable="d"
+        Title="CreateUserView" Height="750" Width="670"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow">
+    <Border Background="#272537" Padding="20">
+        <StackPanel
+            Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Text="Creation d'un utilisateur" 
+                           Foreground="White"
+                           FontSize="25"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre adresse mail" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre adresse mail"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre nom" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre nom"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre prenom" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre prenom"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre ville" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Ville, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre ville"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez Code Postal" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Postal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre Code Postal"
+                    Margin="0,10,0,30"/>
+            </StackPanel>
+            <StackPanel
+                Margin="0,80,0,0">
+                <TextBlock Text="Entrez le nom de votre rue" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Rue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre nom de rue"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre numero de rue" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding NRue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre numero de rue"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre numero de telephone" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Tel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre numero de telephone"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Quelle est la station de metro la plus proche ?" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <ComboBox Grid.Row="1" Grid.Column="1" 
+                          Text="{Binding Station, UpdateSourceTrigger=PropertyChanged}" 
+                          ItemsSource="{Binding AvailableStations}"
+                          Style="{StaticResource ModernComboBox}" Margin="0,0,0,10" Width="200"/>
+                <RadioButton Tag="Creer l'utilisateur"
+                             Content="Creer l'utilisateur"
+                             FontSize="25"
+                             Background="#2F2D40"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CreateUserCommand}"></RadioButton>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

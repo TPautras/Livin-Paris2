@@ -38,9 +38,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         public ICommand LoginCommand { get; }
         public ICommand ForgotPasswordCommand { get; }
+        public ICommand CreateNewUserCommand { get; }
 
         public LoginViewModel()
         {
+            CreateNewUserCommand = new RelayCommand(o => ExecuteCreateNewUser());
             LoginCommand = new RelayCommand(_ => ExecuteLogin());
             ForgotPasswordCommand = new RelayCommand(_ => ExecuteForgotPassword());
         }
@@ -89,8 +91,15 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         
         private void ExecuteForgotPassword()
         {
-            var ForgotPasswordViewModel = new ForgotPasswordViewModel();
-            var newWindow = new ForgotPasswordView{DataContext = ForgotPasswordViewModel};
+            var forgotPasswordViewModel = new ForgotPasswordViewModel();
+            var newWindow = new ForgotPasswordView{DataContext = forgotPasswordViewModel};
+            Application.Current.MainWindow = newWindow;
+            newWindow.ShowDialog();
+        }
+        private void ExecuteCreateNewUser()
+        {
+            var createNewUserViewModel = new CreateUserViewModel();
+            var newWindow = new CreateUserView(){DataContext = createNewUserViewModel};
             Application.Current.MainWindow = newWindow;
             newWindow.ShowDialog();
         }

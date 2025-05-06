@@ -76,6 +76,15 @@
             <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
                 <view:CartView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateUserViewModel}">
+                <view:CreateUserView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateClientViewModel}">
+                <view:CreateClientView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateCuisinierViewModel}">
+                <view:CreateCuisinierView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
