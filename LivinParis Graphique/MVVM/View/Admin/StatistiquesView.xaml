@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="LivinParis_Graphique.MVVM.View.StatistiquesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#272537">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+
+            <Border Background="#353340" Padding="10" Margin="0,10">
+                <StackPanel>
+                    <TextBlock Text="Livraisons par cuisinier" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <ItemsControl ItemsSource="{Binding LivraisonParCuisinier}" Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#353340" Padding="10" Margin="0,10">
+                <StackPanel>
+                    <TextBlock Text="Moyenne prix commandes : " 
+                               FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding MoyennePrixCommandes, StringFormat='{}{0:F2} €'}" 
+                               Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#353340" Padding="10" Margin="0,10">
+                <StackPanel>
+                    <TextBlock Text="Moyenne dépenses clients : " 
+                               FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding MoyenneDepensesClients, StringFormat='{}{0:F2} €'}" 
+                               Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+
+            <Border Background="#353340" Padding="10" Margin="0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker SelectedDate="{Binding DateDebut}" Margin="5"/>
+                        <DatePicker SelectedDate="{Binding DateFin}" Margin="5"/>
+                        <RadioButton Content="Afficher commandes"
+                                Command="{Binding LoadCommandesPeriodeCommand}"
+                                Style="{StaticResource MenuButtonTheme}"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding CommandesPeriode}" Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#353340" Padding="10" Margin="0,10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Tag="Username du client" Text="{Binding ClientUsername}" Style="{StaticResource ModernTextbox}" Margin="5"/>
+                        <TextBox Tag="Origine du plat" Text="{Binding OriginePlat}" Style="{StaticResource ModernTextbox}" Margin="5"/>
+                        <RadioButton Content="Afficher commandes client"
+                                Command="{Binding LoadCommandesClientCommand}"
+                                Style="{StaticResource MenuButtonTheme}"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding CommandesClient}" Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

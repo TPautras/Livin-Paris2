@@ -54,7 +54,7 @@ namespace LivinParis_Console
             OuvrirImage(imagePath);
         }
 
-        public static void AfficherChemin(Graphe<Station_de_metro> graphe, List<Station_de_metro> chemin, Dictionary<string, GrandeStation> grandes)
+        public static void AfficherChemin(Graphe<Station_de_metro> graphe, List<Station_de_metro> chemin, Dictionary<string, GrandeStation> grandes, bool Ouvrir = true)
         {
             var coordonneesGeo = new Dictionary<int, (int lat, int lon)>();
             foreach (var noeud in graphe.Noeuds.Values)
@@ -89,7 +89,8 @@ namespace LivinParis_Console
 
             visualiseur.Dessiner(imagePath);
             Console.WriteLine("✅ Chemin affiché dans chemin.png.");
-            OuvrirImage(imagePath);
+            if (Ouvrir)
+                OuvrirImage(imagePath);
         }
 
         public static void AfficherCarteAvecCorrespondances()

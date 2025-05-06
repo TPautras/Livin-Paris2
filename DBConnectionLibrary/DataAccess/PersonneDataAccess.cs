@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using CryptingUtils;
 using LivinParis.DataAccess;
 using MySql.Data.MySqlClient;
 using SqlConnector.Models;
@@ -139,5 +141,32 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+        
+        public string GetClientPasswordByEmail(string email)
+        {
+            string password = null;
+            string query = "SELECT Client_Password FROM Clients WHERE Personne_Email = @Email";
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", email);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        try
+                        {
+                            password = Crypter.Decrypt(reader["Client_Password"].ToString(), EncryptionKey);
+                        }
+                        catch (CryptographicException)
+                        {
+                        }
+                    }
+                }
+            }
+            return password;
+        }
+
     }
 }

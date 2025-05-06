@@ -174,7 +174,7 @@ namespace Graphs.Parcours
                         }
                         else
                         {
-                            result += $"Distance = {distance}, Chemin = {string.Join(" -> "+ chemin)}\n";
+                            result += $"Distance = {distance}, Chemin = {chemin}\n";
                         }
                     }
                 }

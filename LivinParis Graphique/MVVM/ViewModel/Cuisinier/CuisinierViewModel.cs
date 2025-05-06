@@ -27,10 +27,12 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         private VoirPlatsViewModel _voirPlatsViewModel;
         private AjouterPlatViewModel _ajouterPlatViewModel;
         private CreerRecetteViewModel _creerRecetteViewModel;
+        private VoirCommandesViewModel _voirCommandesViewModel;
         
         public ICommand ShowVoirPlatsCommand { get; }
         public ICommand ShowAjouterPlatCommand { get; }
         public ICommand ShowCreerRecetteCommand { get; }
+        public ICommand ShowVoirCommandesCommand { get; }
         public ICommand LogoutCommand { get; }
 
         public CookViewModel(Personne user)
@@ -39,12 +41,14 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             _voirPlatsViewModel = new VoirPlatsViewModel(user);
             _ajouterPlatViewModel = new AjouterPlatViewModel(user, _voirPlatsViewModel);
             _creerRecetteViewModel = new CreerRecetteViewModel();
+            _voirCommandesViewModel = new VoirCommandesViewModel(user);
 
             CurrentView = _voirPlatsViewModel;
 
             ShowVoirPlatsCommand = new RelayCommand(o => CurrentView = _voirPlatsViewModel);
             ShowAjouterPlatCommand = new RelayCommand(o => CurrentView = _ajouterPlatViewModel);
             ShowCreerRecetteCommand = new RelayCommand(o => CurrentView = _creerRecetteViewModel);
+            ShowVoirCommandesCommand = new RelayCommand(o => CurrentView = _voirCommandesViewModel);
             LogoutCommand = new RelayCommand(o => ExecuteLogout());
         }
 
@@ -63,9 +67,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteLogout()
         {
-            Window newWindow = new LoginView{DataContext = new LoginViewModel()};
+            Window newWindow = new MVVM.View.LoginView{DataContext = new LoginViewModel()};
             Application.Current.MainWindow?.Close();
             Application.Current.MainWindow = newWindow;
+            newWindow.Show();
         }
 
     }

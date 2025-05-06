@@ -6,32 +6,34 @@
         WindowStyle="None" AllowsTransparency="True" Background="Transparent">
     <Border Background="#272537" CornerRadius="10" Padding="10">
         <Grid>
-            <!-- Colonnes : menu gauche et contenu principal -->
+            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>   <!-- Menu latéral -->
-                <ColumnDefinition Width="*"/>     <!-- Zone de contenu -->
+                <ColumnDefinition Width="200"/>   
+                <ColumnDefinition Width="*"/>     
             </Grid.ColumnDefinitions>
 
-            <!-- Menu latéral gauche -->
+            
             <StackPanel Grid.Column="0" Background="#2F2D40" Margin="10">
-                <!-- Message de bienvenue -->
+                
                 <TextBlock Text="{Binding WelcomeMessage}" Foreground="White" FontWeight="Bold" Margin="0,0,0,10"/>
-                <!-- Boutons de navigation -->
+                
                 <RadioButton Content="Voir vos plats" Style="{StaticResource MenuButtonTheme}" 
-                        Command="{Binding ShowVoirPlatsCommand}" Margin="0,5,0,0"/>
+                             Command="{Binding ShowVoirPlatsCommand}" Margin="0,5,0,0"/>
                 <RadioButton Content="Ajouter un plat" Style="{StaticResource MenuButtonTheme}" 
                              Command="{Binding ShowAjouterPlatCommand}" Margin="0,5,0,0"/>
                 <RadioButton Content="Créer une recette" Style="{StaticResource MenuButtonTheme}" 
                              Command="{Binding ShowCreerRecetteCommand}" Margin="0,5,0,0"/>
+                <RadioButton Content="Voir vos commandes" Style="{StaticResource MenuButtonTheme}" 
+                             Command="{Binding ShowVoirCommandesCommand}" Margin="0,5,0,0"/>
             </StackPanel>
 
-            <!-- Zone principale de contenu -->
+            
             <DockPanel Grid.Column="1" LastChildFill="True" Margin="10,0,0,0">
-                <!-- Bouton Déconnexion en haut à droite -->
+                
                 <RadioButton Content="Déconnexion" DockPanel.Dock="Top" HorizontalAlignment="Right"
                              Command="{Binding LogoutCommand}" 
                              Style="{StaticResource MenuButtonTheme}" Margin="0,0,0,10"/>
-                <!-- Contenu variable lié au ViewModel courant -->
+                
                 <ContentControl Content="{Binding CurrentView}" DockPanel.Dock="Bottom"/>
             </DockPanel>
         </Grid>

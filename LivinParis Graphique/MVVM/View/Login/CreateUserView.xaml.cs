@@ -1,11 +1,10 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace LivinParis_Graphique.MVVM.View
 {
-    public partial class AdminView : Window
+    public partial class CreateUserView : Window
     {
-        public AdminView()
+        public CreateUserView()
         {
             InitializeComponent();
         }

@@ -9,13 +9,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         public string WelcomeMessage => $"Bienvenue, {CurrentUser.PersonneNom} (Entreprise)";
 
-        // Exemple: liste des commandes passées par l'entreprise, etc.
-        // public ObservableCollection<Commande> Commandes { get; }
 
         public CompanyViewModel(Personne user)
         {
             CurrentUser = user;
-            // Initialisation des données spécifiques à l'entreprise si nécessaire.
         }
     }
 }

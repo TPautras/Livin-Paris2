@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:LivinParis_Graphique"
              xmlns:viewModel="clr-namespace:LivinParis_Graphique.MVVM.ViewModel"
              xmlns:view="clr-namespace:LivinParis_Graphique.MVVM.View"
-             >
+             xmlns:core="clr-namespace:LivinParis_Graphique.Core">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -36,6 +36,57 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:CreerRecetteViewModel}">
                 <view:CreerRecetteView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VoirCommandesViewModel}">
+                <view:VoirCommandeView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AdminViewModel}">
+                <view:AdminView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:GestionPersonnesViewModel}">
+                <view:GestionPersonnesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:PersonneDetailsViewModel}">
+                <view:PersonneDetailsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:GestionCommandesViewModel}">
+                <view:GestionCommandesView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CommandeDetailsViewModel}">
+                <view:CommandeDetailView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:StatistiquesViewModel}">
+                <view:StatistiquesView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AutreViewModel}">
+                <view:AutreView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ForgotPasswordViewModel}">
+                <view:ForgotPasswordView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:PasswordReminderViewModel}">
+                <view:PasswordReminderView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ExploreViewModel}">
+                <view:ExploreView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:PlatDetailViewModel}">
+                <view:PlatDetailView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
+                <view:CartView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateUserViewModel}">
+                <view:CreateUserView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateClientViewModel}">
+                <view:CreateClientView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CreateCuisinierViewModel}">
+                <view:CreateCuisinierView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CommandesViewModel}">
+                <view:CommandesView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

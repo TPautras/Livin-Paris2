@@ -1,0 +1,47 @@
+﻿<Window x:Class="LivinParis_Graphique.MVVM.View.RoleSelectionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:LivinParis_Graphique.MVVM.View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        Title="RoleSelectionWindow" Height="250" Width="600">
+    <Grid
+        Background="#272537">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Margin = "0,30,0,0"
+            Text="Quel type de profil souhaitez vous ?"
+            Foreground="White"
+            FontSize="28"
+            HorizontalAlignment="Center"/>
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Width="400">
+            <RadioButton 
+                Grid.Row="1"
+                Content="Cuisinier"
+                Command="{Binding ShowCuisinierCreationCommand}"
+                Style="{StaticResource MenuButtonTheme}"
+                Visibility="{Binding CuisinierVisibility}"
+                FontSize="24"
+                Margin="40,0,40,0"/>
+            <RadioButton 
+                Grid.Row="1"
+                Content="Client"
+                Style="{StaticResource MenuButtonTheme}"
+                Command="{Binding ShowClientCreationCommand}"
+                Visibility="{Binding ClientVisibility}"
+                FontSize="24"/>
+            
+        </StackPanel>
+        
+    </Grid>
+</Window>

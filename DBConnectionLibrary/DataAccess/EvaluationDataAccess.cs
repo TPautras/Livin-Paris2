@@ -117,5 +117,55 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+        public decimal GetAverageRatingByCuisinierUsername(string username)
+        {
+            decimal total = 0;
+            int count = 0;
+            string query = @"SELECT e.Evaluation_Cuisinier 
+                     FROM evaluation e 
+                     JOIN commande c ON e.Commande_Id = c.Commande_Id 
+                     WHERE c.Cuisinier_Username = @Username";
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        total += Convert.ToDecimal(reader["Evaluation_Cuisinier"]);
+                        count++;
+                    }
+                }
+            }
+            return count > 0 ? total / count : 0;
+        }
+
+        public List<string> GetCommentsByCuisinierUsername(string username)
+        {
+            var list = new List<string>();
+            string query = @"SELECT e.Evaluation_Description_Client 
+                     FROM evaluation e 
+                     JOIN commande c ON e.Commande_Id = c.Commande_Id 
+                     WHERE c.Cuisinier_Username = @Username";
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string comment = reader["Evaluation_Description_Client"]?.ToString();
+                        if (!string.IsNullOrWhiteSpace(comment))
+                            list.Add(comment);
+                    }
+                }
+            }
+            return list;
+        }
+
     }
 }

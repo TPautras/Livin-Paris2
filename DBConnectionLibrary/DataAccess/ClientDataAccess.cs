@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using LivinParis.DataAccess;
 using MySql.Data.MySqlClient;
 using SqlConnector.Models;
+using CryptingUtils;
+
 namespace SqlConnector.DataAccess
 {
     public class ClientDataAccess : BaseDataAccess, IDataAccess<Client>
     {
+        private static readonly byte[] EncryptionKey = Crypter.GenerateKey("LivinParisSecretKey2025");
+
         public List<Client> GetAll()
         {
             var list = new List<Client>();
@@ -20,11 +25,33 @@ namespace SqlConnector.DataAccess
                 {
                     while(reader.Read())
                     {
+                        string username = reader["Client_Username"].ToString();
+                        string encryptedPwd = reader["Client_Password"].ToString();
+                        string email = reader["Personne_Email"].ToString();
+                        string passwordPlain;
+                        try
+                        {
+                            passwordPlain = Crypter.Decrypt(encryptedPwd, EncryptionKey);
+                        }
+                        catch(CryptographicException)
+                        {
+                            passwordPlain = encryptedPwd;
+                            using(var conn = GetConnection())
+                            {
+                                conn.Open();
+                                using(var cmd = new MySqlCommand("UPDATE Clients SET Client_Password = @Password WHERE Client_Username = @Username", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@Password", Crypter.Encrypt(passwordPlain, EncryptionKey));
+                                    cmd.Parameters.AddWithValue("@Username", username);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
                         list.Add(new Client
                         {
-                            ClientUsername = reader["Client_Username"].ToString(),
-                            ClientPassword = reader["Client_Password"].ToString(),
-                            PersonneEmail = reader["Personne_Email"].ToString()
+                            ClientUsername = username,
+                            ClientPassword = passwordPlain,
+                            PersonneEmail = email
                         });
                     }
                 }
@@ -50,17 +77,40 @@ namespace SqlConnector.DataAccess
                 {
                     if(reader.Read())
                     {
+                        string encryptedPwd = reader["Client_Password"].ToString();
+                        string usernameValue = reader["Client_Username"].ToString();
+                        string emailValue = reader["Personne_Email"].ToString();
+                        string passwordPlain;
+                        try
+                        {
+                            passwordPlain = Crypter.Decrypt(encryptedPwd, EncryptionKey);
+                        }
+                        catch(CryptographicException)
+                        {
+                            passwordPlain = encryptedPwd;
+                            using(var conn = GetConnection())
+                            {
+                                conn.Open();
+                                using(var cmd = new MySqlCommand("UPDATE Clients SET Client_Password = @Password WHERE Client_Username = @Username", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@Password", Crypter.Encrypt(passwordPlain, EncryptionKey));
+                                    cmd.Parameters.AddWithValue("@Username", usernameValue);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
                         c = new Client
                         {
-                            ClientUsername = reader["Client_Username"].ToString(),
-                            ClientPassword = reader["Client_Password"].ToString(),
-                            PersonneEmail = reader["Personne_Email"].ToString()
+                            ClientUsername = usernameValue,
+                            ClientPassword = passwordPlain,
+                            PersonneEmail = emailValue
                         };
                     }
                 }
             }
             return c;
         }
+
         public void Insert(Client entity)
         {
             string query = @"INSERT INTO Clients 
@@ -70,12 +120,13 @@ namespace SqlConnector.DataAccess
             using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Username", entity.ClientUsername);
-                command.Parameters.AddWithValue("@Password", entity.ClientPassword);
+                command.Parameters.AddWithValue("@Password", Crypter.Encrypt(entity.ClientPassword, EncryptionKey));
                 command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+
         public void Update(Client entity)
         {
             string query = @"UPDATE Clients SET 
@@ -85,27 +136,77 @@ namespace SqlConnector.DataAccess
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@Password", entity.ClientPassword);
+                command.Parameters.AddWithValue("@Password", Crypter.Encrypt(entity.ClientPassword, EncryptionKey));
                 command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
                 command.Parameters.AddWithValue("@Username", entity.ClientUsername);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+
         public void UpdateUsername(Client entity)
         {
-            string query = @"UPDATE Clients SET 
-                             Client_Username = @Username,
-                             Personne_Email = @PersonneEmail
-                             WHERE Client_Password = @Password";
+            Client existingClient = null;
             using(var connection = GetConnection())
-            using(var command = new MySqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@Password", entity.ClientPassword);
-                command.Parameters.AddWithValue("@PersonneEmail", entity.PersonneEmail);
-                command.Parameters.AddWithValue("@Username", entity.ClientUsername);
-                connection.Open();
-                command.ExecuteNonQuery();
+                string findQuery = "SELECT * FROM Clients WHERE Client_Password = @Password";
+                using(var findCommand = new MySqlCommand(findQuery, connection))
+                {
+                    connection.Open();
+                    findCommand.Parameters.AddWithValue("@Password", Crypter.Encrypt(entity.ClientPassword, EncryptionKey));
+                    using(var reader = findCommand.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            existingClient = new Client
+                            {
+                                ClientUsername = reader["Client_Username"].ToString(),
+                                ClientPassword = entity.ClientPassword,
+                                PersonneEmail = reader["Personne_Email"].ToString()
+                            };
+                        }
+                    }
+                }
+                if(existingClient == null)
+                {
+                    connection.Close();
+                    connection.Open();
+                    using(var findCommand2 = new MySqlCommand("SELECT * FROM Clients WHERE Client_Password = @Password", connection))
+                    {
+                        findCommand2.Parameters.AddWithValue("@Password", entity.ClientPassword);
+                        using(var reader2 = findCommand2.ExecuteReader())
+                        {
+                            if(reader2.Read())
+                            {
+                                existingClient = new Client
+                                {
+                                    ClientUsername = reader2["Client_Username"].ToString(),
+                                    ClientPassword = entity.ClientPassword,
+                                    PersonneEmail = reader2["Personne_Email"].ToString()
+                                };
+                            }
+                        }
+                    }
+                }
+                if(existingClient != null)
+                {
+                    string oldUsername = existingClient.ClientUsername;
+                    connection.Close();
+                    connection.Open();
+                    string updateQuery = @"UPDATE Clients SET 
+                                            Client_Username = @Username,
+                                            Personne_Email = @Email,
+                                            Client_Password = @Password
+                                            WHERE Client_Username = @OldUsername";
+                    using(var updateCommand = new MySqlCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@Username", entity.ClientUsername);
+                        updateCommand.Parameters.AddWithValue("@Email", entity.PersonneEmail);
+                        updateCommand.Parameters.AddWithValue("@Password", Crypter.Encrypt(existingClient.ClientPassword, EncryptionKey));
+                        updateCommand.Parameters.AddWithValue("@OldUsername", oldUsername);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                }
             }
         }
 
@@ -125,6 +226,61 @@ namespace SqlConnector.DataAccess
                 command.ExecuteNonQuery();
             }
         }
+
+        public Client GetByEmail(string email)
+        {
+            Client c = null;
+            string query = "SELECT * FROM Clients WHERE Personne_Email = @email";
+            try
+            {
+                using(var connection = GetConnection())
+                using(var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@email", email.Trim());
+                    connection.Open();
+                    using(var reader = command.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            string usernameValue = reader["Client_Username"]?.ToString();
+                            string encryptedPwd = reader["Client_Password"]?.ToString();
+                            string emailValue = reader["Personne_Email"]?.ToString();
+                            string passwordPlain;
+                            try
+                            {
+                                passwordPlain = Crypter.Decrypt(encryptedPwd, EncryptionKey);
+                            }
+                            catch(CryptographicException)
+                            {
+                                passwordPlain = encryptedPwd;
+                                using(var conn = GetConnection())
+                                {
+                                    conn.Open();
+                                    using(var cmd = new MySqlCommand("UPDATE Clients SET Client_Password = @Password WHERE Client_Username = @Username", conn))
+                                    {
+                                        cmd.Parameters.AddWithValue("@Password", Crypter.Encrypt(passwordPlain, EncryptionKey));
+                                        cmd.Parameters.AddWithValue("@Username", usernameValue);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                            c = new Client
+                            {
+                                ClientUsername = usernameValue,
+                                ClientPassword = passwordPlain,
+                                PersonneEmail = emailValue
+                            };
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Erreur SQL : " + ex.Message);
+            }
+            return c;
+        }
+
         public List<Client> GetAllByNameAsc()
         {
             var list = new List<Client>();
@@ -141,11 +297,33 @@ namespace SqlConnector.DataAccess
                 {
                     while(reader.Read())
                     {
+                        string username = reader["Client_Username"].ToString();
+                        string encryptedPwd = reader["Client_Password"].ToString();
+                        string email = reader["Personne_Email"].ToString();
+                        string passwordPlain;
+                        try
+                        {
+                            passwordPlain = Crypter.Decrypt(encryptedPwd, EncryptionKey);
+                        }
+                        catch(CryptographicException)
+                        {
+                            passwordPlain = encryptedPwd;
+                            using(var conn = GetConnection())
+                            {
+                                conn.Open();
+                                using(var cmd = new MySqlCommand("UPDATE Clients SET Client_Password = @Password WHERE Client_Username = @Username", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@Password", Crypter.Encrypt(passwordPlain, EncryptionKey));
+                                    cmd.Parameters.AddWithValue("@Username", username);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
                         list.Add(new Client
                         {
-                            ClientUsername = reader["Client_Username"].ToString(),
-                            ClientPassword = reader["Client_Password"].ToString(),
-                            PersonneEmail = reader["Personne_Email"].ToString()
+                            ClientUsername = username,
+                            ClientPassword = passwordPlain,
+                            PersonneEmail = email
                         });
                     }
                 }
@@ -169,11 +347,33 @@ namespace SqlConnector.DataAccess
                 {
                     while(reader.Read())
                     {
+                        string username = reader["Client_Username"].ToString();
+                        string encryptedPwd = reader["Client_Password"].ToString();
+                        string email = reader["Personne_Email"].ToString();
+                        string passwordPlain;
+                        try
+                        {
+                            passwordPlain = Crypter.Decrypt(encryptedPwd, EncryptionKey);
+                        }
+                        catch(CryptographicException)
+                        {
+                            passwordPlain = encryptedPwd;
+                            using(var conn = GetConnection())
+                            {
+                                conn.Open();
+                                using(var cmd = new MySqlCommand("UPDATE Clients SET Client_Password = @Password WHERE Client_Username = @Username", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@Password", Crypter.Encrypt(passwordPlain, EncryptionKey));
+                                    cmd.Parameters.AddWithValue("@Username", username);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
                         list.Add(new Client
                         {
-                            ClientUsername = reader["Client_Username"].ToString(),
-                            ClientPassword = reader["Client_Password"].ToString(),
-                            PersonneEmail = reader["Personne_Email"].ToString()
+                            ClientUsername = username,
+                            ClientPassword = passwordPlain,
+                            PersonneEmail = email
                         });
                     }
                 }
@@ -201,11 +401,33 @@ namespace SqlConnector.DataAccess
                 {
                     while(reader.Read())
                     {
+                        string username = reader["Client_Username"].ToString();
+                        string encryptedPwd = reader["Client_Password"].ToString();
+                        string email = reader["Personne_Email"].ToString();
+                        string passwordPlain;
+                        try
+                        {
+                            passwordPlain = Crypter.Decrypt(encryptedPwd, EncryptionKey);
+                        }
+                        catch(CryptographicException)
+                        {
+                            passwordPlain = encryptedPwd;
+                            using(var conn = GetConnection())
+                            {
+                                conn.Open();
+                                using(var cmd = new MySqlCommand("UPDATE Clients SET Client_Password = @Password WHERE Client_Username = @Username", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@Password", Crypter.Encrypt(passwordPlain, EncryptionKey));
+                                    cmd.Parameters.AddWithValue("@Username", username);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
                         list.Add(new Client
                         {
-                            ClientUsername = reader["Client_Username"].ToString(),
-                            ClientPassword = reader["Client_Password"].ToString(),
-                            PersonneEmail = reader["Personne_Email"].ToString()
+                            ClientUsername = username,
+                            ClientPassword = passwordPlain,
+                            PersonneEmail = email
                         });
                     }
                 }

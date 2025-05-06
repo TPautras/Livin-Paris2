@@ -1,0 +1,46 @@
+﻿<Window x:Class="LivinParis_Graphique.MVVM.View.CreateClientView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:LivinParis_Graphique.MVVM.View"
+        mc:Ignorable="d"
+        Title="CreateClientView" Height="450" Width="800">
+    <Border Background="#272537" Padding="20">
+        <StackPanel>
+            <TextBlock Text="Creation d'un client" 
+                       Foreground="White"
+                       FontSize="25"
+                       HorizontalAlignment="Center"
+                       Margin="0,10,0,30"/>
+            <StackPanel>
+                <TextBlock Text="Entrez votre username" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                />
+                <TextBox 
+                    Style="{StaticResource ModernTextbox}"
+                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Tag="Votre username"
+                    Margin="0,10,0,30"/>
+                <TextBlock Text="Entrez votre mot de passe" 
+                           Foreground="White"
+                           FontSize="18"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                /><TextBox 
+                      Style="{StaticResource ModernTextbox}"
+                      Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      Tag="Votre mot de passe"
+                      Margin="0,10,0,30"/>
+                <RadioButton
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding CreerCommand}"
+                    Content="Creer le client"/>
+                
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

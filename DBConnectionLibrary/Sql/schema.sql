@@ -123,6 +123,7 @@ CREATE TABLE evaluation(
 CREATE TABLE Creation(
                          Commande_Id INT,
                          Plat_Id INT,
+                         Creation_Quantity INT,
                          PRIMARY KEY(Commande_Id, Plat_Id),
                          FOREIGN KEY(Commande_Id) REFERENCES Commande(Commande_Id) ON DELETE CASCADE ON UPDATE CASCADE,
                          FOREIGN KEY(Plat_Id) REFERENCES Plat(Plat_Id) ON DELETE CASCADE ON UPDATE CASCADE

@@ -23,7 +23,8 @@ namespace SqlConnector.DataAccess
                         list.Add(new Creation
                         {
                             CommandeId = Convert.ToInt32(reader["Commande_Id"]),
-                            PlatId = Convert.ToInt32(reader["Plat_Id"])
+                            PlatId = Convert.ToInt32(reader["Plat_Id"]),
+                            Quantity = Convert.ToInt32(reader["Creation_Quantity"]),
                         });
                     }
                 }
@@ -48,6 +49,7 @@ namespace SqlConnector.DataAccess
                         {
                             CommandeId =  Convert.ToInt32(reader["Commande_Id"]),
                             PlatId = Convert.ToInt32(reader["Plat_Id"]),
+                            Quantity = Convert.ToInt32(reader["Creation_Quantity"]),
                             
                         };
                     }
@@ -58,12 +60,13 @@ namespace SqlConnector.DataAccess
 
         public void Insert(Creation entity)
         {
-            string query = "INSERT INTO Creation (Commande_Id, Plat_Id) VALUES (@CommandeId, @PlatId)";
+            string query = "INSERT INTO Creation (Commande_Id, Plat_Id, Creation_Quantity) VALUES (@CommandeId, @PlatId, @CreationQuantity)";
             using(var connection = GetConnection())
             using(var command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@CommandeId", entity.CommandeId);
                 command.Parameters.AddWithValue("@PlatId", entity.PlatId);
+                command.Parameters.AddWithValue("@CreationQuantity", entity.Quantity);
                 connection.Open();
                 command.ExecuteNonQuery();
             }

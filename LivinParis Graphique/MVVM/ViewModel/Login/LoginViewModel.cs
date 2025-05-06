@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
@@ -6,11 +7,13 @@ using LivinParis_Graphique.MVVM.View;
 using SqlConnector.DataAccess;
 using SqlConnector.DataService;
 using SqlConnector.Models;
+using CryptingUtils;
 
 namespace LivinParis_Graphique.MVVM.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
+        private static readonly byte[] EncryptionKey = Crypter.GenerateKey("LivinParisSecretKey2025");
         private string _username;
         public string Username
         {
@@ -34,14 +37,19 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public UserRole[] Roles => new UserRole[] { UserRole.Client, UserRole.Cook, UserRole.Company };
 
         public ICommand LoginCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
+        public ICommand CreateNewUserCommand { get; }
 
         public LoginViewModel()
         {
+            CreateNewUserCommand = new RelayCommand(o => ExecuteCreateNewUser());
             LoginCommand = new RelayCommand(_ => ExecuteLogin());
+            ForgotPasswordCommand = new RelayCommand(_ => ExecuteForgotPassword());
         }
 
         private void ExecuteLogin()
         {
+            Console.WriteLine("test");
             Personne? user = null;
             string password = string.Empty;
             switch (SelectedRole)
@@ -65,9 +73,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                     user = companyDal.GetByUsername(_username);
                     break;
             }
-
+            Console.WriteLine(password);
             if (user != null && password == Password)
             {
+                Console.WriteLine(Password);
+                Console.WriteLine(password);
                 if (user.PersonneIsAdmin == true)
                 {
                     OpenAdminView(user);
@@ -78,14 +88,31 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 }
             }
         }
+        
+        private void ExecuteForgotPassword()
+        {
+            var forgotPasswordViewModel = new ForgotPasswordViewModel();
+            var newWindow = new ForgotPasswordView{DataContext = forgotPasswordViewModel};
+            Application.Current.MainWindow = newWindow;
+            newWindow.ShowDialog();
+        }
+        private void ExecuteCreateNewUser()
+        {
+            var createNewUserViewModel = new CreateUserViewModel();
+            var newWindow = new CreateUserView(){DataContext = createNewUserViewModel};
+            Application.Current.MainWindow = newWindow;
+            newWindow.ShowDialog();
+        }
+
 
         private void OpenAdminView(Personne user)
         {
             var adminVM = new AdminViewModel(user);
-            var adminWindow = new AdminView();
+            var adminWindow = new AdminView{ DataContext = adminVM };
             adminWindow.DataContext = adminVM;
             adminWindow.Show();
-            CloseLoginWindow();
+            Application.Current.MainWindow?.Close();
+            Application.Current.MainWindow = adminWindow;
         }
 
         private void OpenRoleView(Personne user, UserRole role)
@@ -94,7 +121,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             switch (role)
             {
                 case UserRole.Client:
-                    newWindow = new ClientView { DataContext = new ClientViewModel(user) };
+                    newWindow = new ClientView { DataContext = new ClientViewModel(user, Username )};
                     break;
                 case UserRole.Cook:
                     newWindow = new CookView { DataContext = new CookViewModel(user) };
@@ -112,7 +139,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             }
             else
             {
-                // Logique de gestion d'erreur si la fenêtre n'a pas pu être créée
                 MessageBox.Show("Échec de l'ouverture de la nouvelle fenêtre. Veuillez vérifier le rôle sélectionné.");
             }
         }
