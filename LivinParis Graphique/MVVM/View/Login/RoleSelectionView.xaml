@@ -30,7 +30,7 @@
                 Content="Cuisinier"
                 Command="{Binding ShowCuisinierCreationCommand}"
                 Style="{StaticResource MenuButtonTheme}"
-                Visibility="{Binding CuisinierVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Visibility="{Binding CuisinierVisibility}"
                 FontSize="24"
                 Margin="40,0,40,0"/>
             <RadioButton 
@@ -38,7 +38,7 @@
                 Content="Client"
                 Style="{StaticResource MenuButtonTheme}"
                 Command="{Binding ShowClientCreationCommand}"
-                Visibility="{Binding ClientVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Visibility="{Binding ClientVisibility}"
                 FontSize="24"/>
             
         </StackPanel>

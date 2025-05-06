@@ -112,7 +112,9 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 PersonneStationDeMetroLaPlusProche = Station
             };
             new PersonneService(new PersonneDataAccess()).Insert(personne);
-            var newWindow = new RoleSelectionView { DataContext = new RoleSelectionViewModel(personne) };
+            var newWindow = new RoleSelectionView();
+            var RsVM = new RoleSelectionViewModel(personne, newWindow);
+            newWindow.DataContext = RsVM;
             Application.Current.MainWindow?.Close();
             Application.Current.MainWindow = newWindow;
             newWindow.Show();

@@ -21,20 +21,20 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public Visibility CuisinierVisibility
         {
             get { return _cuisinierVisibility; }
-            set { value = _cuisinierVisibility; OnPropertyChanged(); }
+            set { _cuisinierVisibility = value; OnPropertyChanged(); }
         }
         public Visibility ClientVisibility
         {
             get { return _clientVisibility; }
-            set { value = _clientVisibility; OnPropertyChanged(); }
+            set { _clientVisibility = value ; OnPropertyChanged(); }
         }
         public Personne User { get; set; }
         
-        public RoleSelectionViewModel(Personne UserInput)
+        public RoleSelectionViewModel(Personne UserInput, RoleSelectionView roleSelectionView)
         {
             User = UserInput;
             
-            _roleSelectionView = new RoleSelectionView();
+            _roleSelectionView = roleSelectionView;
             _createClientView = new CreateClientView();
             _createCuisinierView = new CreateCuisinierView();
 
