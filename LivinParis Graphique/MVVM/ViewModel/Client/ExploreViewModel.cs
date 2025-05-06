@@ -51,11 +51,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public ICommand RefreshPlat { get; }
         public ICommand AddPlatCommand { get; }
         public ICommand ShowPlatDetailsCommand { get; }
-        private ClientViewModel _clientViewModel;
+        public ClientViewModel ClientViewModel;
 
         public ExploreViewModel(Personne user, ClientViewModel clientViewModel)
         {
-            _clientViewModel = clientViewModel;
+            ClientViewModel = clientViewModel;
             User = user;
             _commandeDataAccess = new CommandeDataAccess();
             _exploreView = new ExploreView();
@@ -129,7 +129,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         public void AddToCart(string recetteNom, string prix, Cuisinier cuisinier)
         {
-            _clientViewModel.AddCartItem(
+            ClientViewModel.AddCartItem(
                 new CartItem
                 {
                     Cuisinier = cuisinier.CuisinierUsername,

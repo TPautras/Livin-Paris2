@@ -63,13 +63,32 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="RecetteName" Binding="{Binding RecetteName}" Width="*" />
                 <DataGridTextColumn Header="Prix" Binding="{Binding Prix}" ElementStyle="{StaticResource CenteredCellStyle}" />
+                <DataGridTextColumn Header="Quantité" Binding="{Binding Quantity}" 
+                                    ElementStyle="{StaticResource CenteredCellStyle}" Width="80"/>
                 <DataGridTextColumn Header="Cuisinier" Binding="{Binding Cuisinier}" Width="*" ElementStyle="{StaticResource CenteredCellStyle}"/>
-                <DataGridTemplateColumn Header="Détails" Width="100">
+                <DataGridTemplateColumn Header="Ajouter une commande" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Voir"
-                                    Command="{Binding DataContext.ShowPlatDetailsCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    CommandParameter="{Binding}"
+                            <Button Content="+" 
+                                    Command="{Binding DataContext.AddItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    CommandParameter="{Binding}" 
+                                    Padding="5,2"
+                                    Background="#FFA500"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Width="60"
+                                    HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Enlever une commande" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="-" 
+                                    Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    CommandParameter="{Binding}" 
                                     Padding="5,2"
                                     Background="#FFA500"
                                     Foreground="White"

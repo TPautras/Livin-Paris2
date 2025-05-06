@@ -17,7 +17,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
     {
         public Personne CurrentUser { get; }
         public string ClientUsername { get; }
-        public ObservableCollection<CartItem> Cart { get; } = new ObservableCollection<CartItem>();
+        public ObservableCollection<CartItem> Cart { get; set; } = new ObservableCollection<CartItem>();
 
         private BaseViewModel _currentView;
         public BaseViewModel CurrentView
@@ -113,9 +113,11 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 var creation = new Creation
                 {
                     CommandeId = cId,
-                    PlatId = p.PlatId
+                    PlatId = p.PlatId,
+                    Quantity = cartItem.Quantity,
                 };
                 new CreationDataAccess().Insert(creation);
+                Cart = new ObservableCollection<CartItem>();
             }
         }
     }

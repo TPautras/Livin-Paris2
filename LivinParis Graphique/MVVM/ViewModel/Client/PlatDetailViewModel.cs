@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.Model;
@@ -57,7 +59,17 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         private void ExecuteAddToCart()
         {
-            _exploreViewModel.AddToCart(Recette, Prix,new CuisinierDataAccess().GetByUsername(Cuisinier));
+            CartItem c = new CartItem(Recette, Prix,new CuisinierDataAccess().GetByUsername(Cuisinier));
+            if (_exploreViewModel.ClientViewModel.Cart.FirstOrDefault(x => x.RecetteName == Recette && Cuisinier ==x.Cuisinier) != null)
+            {
+                _exploreViewModel.ClientViewModel.Cart.FirstOrDefault(x => x.RecetteName == Recette && Cuisinier ==x.Cuisinier)!.Quantity++;
+            }
+            else
+            {
+                _exploreViewModel.AddToCart(Recette, Prix,new CuisinierDataAccess().GetByUsername(Cuisinier));
+            }
+
+            MessageBox.Show($"Vous avez ajoute {Recette} a votre panier!");
         }
 
         public string CalculerTemps(Personne personneArrivee)
