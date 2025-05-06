@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:LivinParis_Graphique.MVVM.View"
         mc:Ignorable="d"
-        Title="ClientDetailCommande" Height="450" Width="800">
+        Title="ClientDetailCommande" Height="600" Width="800">
     <Border Background="#272537" Padding="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -67,9 +67,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <Image 
-                            Source="{Binding ImageSource}"
-                             />
+                        <Image Source="{Binding ImageSource, Mode=OneWay}" Width="400" Height="400" />
                     </StackPanel>
                     
                     <TextBlock 

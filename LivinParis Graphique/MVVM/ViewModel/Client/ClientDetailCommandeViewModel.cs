@@ -4,7 +4,12 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Graphs;
+using LivinParis_Console;
 using LivinParis_Graphique.Core;
 using MetroHelper;
 using SqlConnector.DataAccess;
@@ -17,12 +22,22 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         public string Prix { get; set; }
         public string Temps { get; set; }
         public ObservableCollection<string> Plats { get; set; }
-        public string ImageSource { get; set; }
+        private ImageSource _imageSource;
+        public ImageSource ImageSource {
+            get => _imageSource;
+            set { _imageSource = value; OnPropertyChanged(); }
+        }
+
         public string Cuisinier { get; set; }
         public ObservableCollection<string> Commentaires { get; set; }
         public Commande Commande { get; set; }
         public CommandesViewModel CommandesViewModel { get; set; }
         public ICommand AddReviewCommand { get; set; }
+        private Uri _imageUri;
+        public Uri ImageUri {
+            get => _imageUri;
+            set { _imageUri = value; OnPropertyChanged(nameof(ImageUri)); }
+        }
         public ClientDetailCommandeViewModel(Commande commande, CommandesViewModel commandesViewModel)
         {
             Commande = commande;
@@ -49,6 +64,8 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             Commentaires = new ObservableCollection<string>(
                 new EvaluationDataAccess().GetCommentsByCuisinierUsername(Commande.CuisinierUsername)
                 );
+            LoadImage(new PersonneDataAccess().GetByEmail(new CuisinierDataAccess()
+                .GetByUsername(commande.CuisinierUsername).PersonneEmail));
         }
         public string CalculerTemps(Personne personneArrivee)
         {
@@ -89,6 +106,51 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             }
 
             return dir.FullName;
+        }
+        public void LoadImage(Personne personneArrivee)
+        {
+            string solutionRoot = TrouverRacineProjet("MetroHelper");
+            string dataPath = Path.Combine(solutionRoot, "MetroHelper", "Data");
+
+            try
+            {
+                var peuplement = new PeuplementGrandeStation();
+                var grandes = peuplement.CreerGrandesStations(dataPath);
+
+                GrandeStation grandeDepart = grandes[CommandesViewModel.ClientViewModel.CurrentUser.PersonneStationDeMetroLaPlusProche];
+                GrandeStation grandeArrivee = grandes[personneArrivee.PersonneStationDeMetroLaPlusProche];
+
+                List<Station_de_metro> chemin;
+                int temps;
+                int nbCorrespondances;
+                (chemin, temps, nbCorrespondances) = OutilsMetroHelper.ParcoursDijkstra(grandeDepart, grandeArrivee, dataPath);
+
+                var createur = new CreateGraphMetro();
+                var graphe = createur.ChargerReseauDepuisFichiers(dataPath);
+
+                string imagePath = Path.Combine(solutionRoot, "chemin.png");
+                AffichageMetro.AfficherChemin(graphe, chemin, grandes, false);
+                
+                if (File.Exists(imagePath))
+                {
+                    var bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.CacheOption = BitmapCacheOption.OnLoad;
+                    bmp.UriSource = new Uri(imagePath, UriKind.Absolute);
+                    bmp.EndInit();
+
+                    ImageSource = bmp;
+                }
+                else
+                {
+                    MessageBox.Show($"Image introuvable : {imagePath}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Une erreur est survenue : {ex.Message}");
+            }
         }
     }
 }

@@ -290,6 +290,14 @@
         <Project>{e5d6cc2b-678e-453b-b211-744bb4e76da9}</Project>
         <Name>DBConnectionLibrary</Name>
       </ProjectReference>
+      <ProjectReference Include="..\GraphsLibrary\GraphsLibrary.csproj">
+        <Project>{845a2cea-a6fa-405e-9267-65b375abf980}</Project>
+        <Name>GraphsLibrary</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\LivinParis Console\LivinParis Console.csproj">
+        <Project>{a06d592d-87ae-4cd7-8043-79de7a3809c3}</Project>
+        <Name>LivinParis Console</Name>
+      </ProjectReference>
       <ProjectReference Include="..\MetroHelper\MetroHelper.csproj">
         <Project>{3305ab41-091a-4b9c-b7ed-2b600589a66e}</Project>
         <Name>MetroHelper</Name>
