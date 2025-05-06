@@ -119,7 +119,9 @@
         <Page Include="MVVM\View\Admin\PersonneDetailsView.xaml" />
         <Page Include="MVVM\View\Admin\StatistiquesView.xaml" />
         <Page Include="MVVM\View\Client\CartView.xaml" />
+        <Page Include="MVVM\View\Client\ClientDetailCommande.xaml" />
         <Page Include="MVVM\View\Client\ClientView.xaml" />
+        <Page Include="MVVM\View\Client\CommandesView.xaml" />
         <Page Include="MVVM\View\Client\ExploreView.xaml" />
         <Page Include="MVVM\View\Client\PlatDetailView.xaml" />
         <Page Include="MVVM\View\CompanyView.xaml" />
@@ -155,7 +157,9 @@
         <Compile Include="MVVM\ViewModel\Admin\PersonneDetailViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Admin\StatistiquesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\CartViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Client\ClientDetailCommandeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\ClientViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Client\CommandesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\ExploreViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\PlatDetailViewModel.cs" />
         <Compile Include="MVVM\ViewModel\CompanyViewModel.cs" />
@@ -198,8 +202,14 @@
         <Compile Include="MVVM\View\Client\CartView.xaml.cs">
           <DependentUpon>CartView.xaml</DependentUpon>
         </Compile>
+        <Compile Include="MVVM\View\Client\ClientDetailCommande.xaml.cs">
+          <DependentUpon>ClientDetailCommande.xaml</DependentUpon>
+        </Compile>
         <Compile Include="MVVM\View\Client\ClientView.xaml.cs">
           <DependentUpon>ClientView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Client\CommandesView.xaml.cs">
+          <DependentUpon>CommandesView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\Client\ExploreView.xaml.cs">
           <DependentUpon>ExploreView.xaml</DependentUpon>

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.Model;
+using LivinParis_Graphique.MVVM.View;
 using SqlConnector;
 using SqlConnector.DataAccess;
 using SqlConnector.Models;
@@ -30,10 +31,12 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             }
         }
         private ExploreViewModel _exploreViewModel;
+        private CommandesViewModel _commandesViewModel;
         
         public ICommand LogoutCommand { get; }
         public ICommand ShowExploreViewCommand { get; }
         public ICommand ShowCartViewCommand { get; }
+        public ICommand ShowCommandesCommand { get; }
 
         public string WelcomeMessage => $"Bienvenue, {CurrentUser.PersonneNom}!";
 
@@ -44,6 +47,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             _exploreViewModel = new ExploreViewModel(user, this);
             CurrentView = _exploreViewModel;
 
+            ShowCommandesCommand = new RelayCommand(o=>
+            {
+                CurrentView = new CommandesViewModel(this);
+            });
             ShowCartViewCommand = new RelayCommand(o =>
             {
                 CurrentView = new CartViewModel(Cart, this);

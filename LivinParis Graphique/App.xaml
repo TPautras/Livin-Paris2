@@ -85,6 +85,9 @@
             <DataTemplate DataType="{x:Type viewModel:CreateCuisinierViewModel}">
                 <view:CreateCuisinierView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CommandesViewModel}">
+                <view:CommandesView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
