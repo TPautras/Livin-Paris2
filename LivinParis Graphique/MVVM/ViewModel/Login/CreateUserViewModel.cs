@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using LivinParis_Graphique.Core;
 using LivinParis_Graphique.MVVM.View;
@@ -111,6 +112,10 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 PersonneStationDeMetroLaPlusProche = Station
             };
             new PersonneService(new PersonneDataAccess()).Insert(personne);
+            var newWindow = new RoleSelectionView { DataContext = new RoleSelectionViewModel(personne) };
+            Application.Current.MainWindow?.Close();
+            Application.Current.MainWindow = newWindow;
+            newWindow.Show();
         }
     }
 }
