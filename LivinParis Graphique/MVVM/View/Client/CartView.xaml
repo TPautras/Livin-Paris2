@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:LivinParis_Graphique.MVVM.View"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Background="#272537">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
         <DataGrid 
                   ItemsSource="{Binding Items}" 
                   AutoGenerateColumns="False"
@@ -79,5 +83,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <RadioButton Grid.Row="1"
+                     Style="{StaticResource MenuButtonTheme}"
+                     Command="{Binding PushCartCommand}"
+                     Content="Commander"/>
     </Grid>
 </UserControl>

@@ -121,7 +121,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             switch (role)
             {
                 case UserRole.Client:
-                    newWindow = new ClientView { DataContext = new ClientViewModel(user) };
+                    newWindow = new ClientView { DataContext = new ClientViewModel(user, Username )};
                     break;
                 case UserRole.Cook:
                     newWindow = new CookView { DataContext = new CookViewModel(user) };
