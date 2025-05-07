@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using Graphs;
 using LivinParis_Console;
 using LivinParis_Graphique.Core;
+using LivinParis_Graphique.MVVM.View;
 using MetroHelper;
 using SqlConnector.DataAccess;
 using SqlConnector.Models;
@@ -40,6 +41,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         }
         public ClientDetailCommandeViewModel(Commande commande, CommandesViewModel commandesViewModel)
         {
+            AddReviewCommand = new RelayCommand(o => AddReviewExecute());
             Commande = commande;
             CommandesViewModel = commandesViewModel;
             double prix = 0;
@@ -66,6 +68,12 @@ namespace LivinParis_Graphique.MVVM.ViewModel
                 );
             LoadImage(new PersonneDataAccess().GetByEmail(new CuisinierDataAccess()
                 .GetByUsername(commande.CuisinierUsername).PersonneEmail));
+        }
+
+        public void AddReviewExecute()
+        {
+            ReviewView rv = new ReviewView { DataContext = new ReviewViewModel(this) };
+            rv.ShowDialog();
         }
         public string CalculerTemps(Personne personneArrivee)
         {

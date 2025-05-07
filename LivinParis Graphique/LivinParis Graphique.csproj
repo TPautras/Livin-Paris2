@@ -124,6 +124,7 @@
         <Page Include="MVVM\View\Client\CommandesView.xaml" />
         <Page Include="MVVM\View\Client\ExploreView.xaml" />
         <Page Include="MVVM\View\Client\PlatDetailView.xaml" />
+        <Page Include="MVVM\View\Client\ReviewView.xaml" />
         <Page Include="MVVM\View\CompanyView.xaml" />
         <Page Include="MVVM\View\Cuisinier\AjouterPlatView.xaml" />
         <Page Include="MVVM\View\Cuisinier\CookView.xaml" />
@@ -162,6 +163,7 @@
         <Compile Include="MVVM\ViewModel\Client\CommandesViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\ExploreViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Client\PlatDetailViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\Client\ReviewViewModel.cs" />
         <Compile Include="MVVM\ViewModel\CompanyViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\AjouterPlatViewModel.cs" />
         <Compile Include="MVVM\ViewModel\Cuisinier\CreerRecetteViewModel.cs" />
@@ -216,6 +218,9 @@
         </Compile>
         <Compile Include="MVVM\View\Client\PlatDetailView.xaml.cs">
           <DependentUpon>PlatDetailView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\Client\ReviewView.xaml.cs">
+          <DependentUpon>ReviewView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\CompanyView.xaml.cs">
           <DependentUpon>CompanyView.xaml</DependentUpon>

@@ -1,0 +1,48 @@
+﻿<Window x:Class="LivinParis_Graphique.MVVM.View.ReviewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:LivinParis_Graphique.MVVM.View"
+        mc:Ignorable="d"
+        Title="ReviewView" Height="450" Width="800">
+    <Grid>
+        <Border Background="#272537" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Votre Review" 
+                           Foreground="White"
+                           FontSize="25"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,30"/>
+                <StackPanel>
+                    <TextBlock Text="Votre note sur 5" 
+                               Foreground="White"
+                               FontSize="18"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"
+                    />
+                    <TextBox 
+                        Style="{StaticResource ModernTextbox}"
+                        Text="{Binding Note, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Tag="Votre username"
+                        Margin="0,10,0,30"/>
+                    <TextBlock Text="Quel est votre avis de ce cuisinier ?" 
+                               Foreground="White"
+                               FontSize="18"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"
+                    /><TextBox 
+                          Style="{StaticResource ModernTextbox}"
+                          Text="{Binding Review, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          Tag="Votre mot de passe"
+                          Margin="0,10,0,30"/>
+                    <RadioButton
+                        Style="{StaticResource MenuButtonTheme}"
+                        Command="{Binding CreerReview}"
+                        Content="Uploader la review"/>
+                
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
