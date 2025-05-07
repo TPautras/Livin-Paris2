@@ -59,7 +59,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             }
         }
 
-        public List<string> AvailableDishes { get; }= new RecetteDataAccess().GetAll().Select(q => q.RecetteNom).ToList();
+        public List<string> AvailableDishes { get; set; }= new RecetteDataAccess().GetAll().Select(q => q.RecetteNom).ToList();
         private string _newDishName;
         public string NewDishName
         {
@@ -88,12 +88,16 @@ namespace LivinParis_Graphique.MVVM.ViewModel
 
         public AjouterPlatViewModel(Personne personne, VoirPlatsViewModel voirPlatsViewModel)
         {
+            AvailableDishes = new RecetteDataAccess().GetAll().Select(q => q.RecetteNom).ToList();
             User = personne;
             _voirPlatsViewModel = voirPlatsViewModel;
             AddDishCommand = new RelayCommand(o => ExecuteAddDish());
         }
 
-
+        public void ReloadDishes()
+        {
+            AvailableDishes = new RecetteDataAccess().GetAll().Select(q => q.RecetteNom).ToList();
+        }
         private void ExecuteAddDish()
         {
             Cuisinier c = new CuisinierDataAccess().GetByEmail(User.PersonneEmail);

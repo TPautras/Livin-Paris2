@@ -28,6 +28,16 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         private AjouterPlatViewModel _ajouterPlatViewModel;
         private CreerRecetteViewModel _creerRecetteViewModel;
         private VoirCommandesViewModel _voirCommandesViewModel;
+
+        public AjouterPlatViewModel AjouterPlatViewModel
+        {
+            get => _ajouterPlatViewModel;
+            set
+            {
+                _ajouterPlatViewModel = value;
+                OnPropertyChanged();
+            }
+        }
         
         public ICommand ShowVoirPlatsCommand { get; }
         public ICommand ShowAjouterPlatCommand { get; }
@@ -40,7 +50,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             CurrentUser = user;
             _voirPlatsViewModel = new VoirPlatsViewModel(user);
             _ajouterPlatViewModel = new AjouterPlatViewModel(user, _voirPlatsViewModel);
-            _creerRecetteViewModel = new CreerRecetteViewModel();
+            _creerRecetteViewModel = new CreerRecetteViewModel(this);
             _voirCommandesViewModel = new VoirCommandesViewModel(user);
 
             CurrentView = _voirPlatsViewModel;
@@ -56,7 +66,7 @@ namespace LivinParis_Graphique.MVVM.ViewModel
         {
             _voirPlatsViewModel = new VoirPlatsViewModel(new Personne());
             _ajouterPlatViewModel = new AjouterPlatViewModel(new Personne(), _voirPlatsViewModel);
-            _creerRecetteViewModel = new CreerRecetteViewModel();
+            _creerRecetteViewModel = new CreerRecetteViewModel(this);
             CurrentView = _voirPlatsViewModel;
 
             ShowVoirPlatsCommand = new RelayCommand(o => CurrentView = _voirPlatsViewModel);
