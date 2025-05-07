@@ -11,7 +11,6 @@ namespace LivinParis_Graphique.Core
         {
             if (value is bool boolValue)
             {
-                // If the parameter is specified and is "invert", we invert the boolean value
                 if (parameter is string param && param.ToString().ToLower() == "invert")
                 {
                     boolValue = !boolValue;
@@ -27,7 +26,6 @@ namespace LivinParis_Graphique.Core
         {
             if (value is Visibility visibility)
             {
-                // If the parameter is specified and is "invert", we invert the result
                 bool result = visibility == Visibility.Visible;
                 
                 if (parameter is string param && param.ToString().ToLower() == "invert")

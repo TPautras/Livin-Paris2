@@ -1,5 +1,4 @@
-﻿// File: Program.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using SqlConnector.Models;
 using SqlConnector.DataAccess;

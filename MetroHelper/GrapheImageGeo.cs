@@ -75,7 +75,6 @@ public class GrapheImageGeo<T>
 
             bool filtrerChemin = NafficherQueChemin && AffichageChemin != null && AffichageChemin.Count > 0;
 
-            // 🔁 Arêtes
             foreach (var noeud in graphe.Noeuds.Values)
             {
                 if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id)) continue;
@@ -116,7 +115,6 @@ public class GrapheImageGeo<T>
                 }
             }
 
-            // 🔁 Nœuds
             foreach (var noeud in graphe.Noeuds.Values)
             {
                 if (!coordonneesNormalisées.ContainsKey(noeud.Noeud_id)) continue;

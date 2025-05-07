@@ -101,10 +101,7 @@ namespace Graphs.Parcours
         /// <returns>Estimation de la distance</returns>
         private double Heuristique(int nodeId, int goalId)
         {
-            // Dans un graphe général sans coordonnées spatiales, 
-            // on peut retourner une heuristique simple (comme 0 ou 1)
-            // Pour un graphe avec des coordonnées, on pourrait calculer la distance euclidienne
-            return 1; // Heuristique constante
+            return 1;
         }
 
         /// <summary>

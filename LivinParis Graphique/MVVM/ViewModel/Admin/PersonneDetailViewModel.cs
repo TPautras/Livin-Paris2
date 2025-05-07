@@ -74,7 +74,6 @@ namespace LivinParis_Graphique.MVVM.ViewModel
             set
             {
                 _password = value;
-                // Ne pas appeler OnPropertyChanged() pour le mot de passe
             }
         }
         

@@ -38,8 +38,8 @@ namespace LivinParis_Console
                     sommetsVus.Add(b);
                 }
 
-                graphe.AjouterLien(a, b, 1); // Poids arbitraire 1
-                graphe.AjouterLien(b, a, 1); // Non orienté
+                graphe.AjouterLien(a, b, 1); 
+                graphe.AjouterLien(b, a, 1); 
             }
 
             return graphe;
